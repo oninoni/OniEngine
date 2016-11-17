@@ -223,6 +223,14 @@ vector<T, N> operator/(T a, const vector<T, N> & b) {
 }
 
 template <typename T, int N>
+vector<T, N> operator/=(vector<T, N> & a, T b) {
+    for (int i = 0; i < N; i++)
+        a[i] /= b;
+    return a;
+}
+
+
+template <typename T, int N>
 std::ostream & operator<<(std::ostream & s, const vector<T, N> & a) {
     s << "[";
     for (int i = 0; i < N - 1; i++)
@@ -232,12 +240,6 @@ std::ostream & operator<<(std::ostream & s, const vector<T, N> & a) {
 }
 
 
-template <typename T, int N>
-vector<T, N> operator/=(vector<T, N> & a, T b) {
-    for (int i = 0; i < N; i++)
-        a[i] /= b;
-    return a;
-}
 
 template <typename T, int N>
 struct vector{
@@ -357,6 +359,15 @@ public:
     }
 };
 
+template <typename T>
+vector<T, 2> rotate(vector<T, 2> a, double angle) {
+    double rad = angle * (3.14159265358979323846 / 180);
+    double preCos = cos(rad);
+    double preSin = sin(rad);
+
+    return vector<T, 2>(a.x * preCos - a.y * preSin, a.x * preSin + a.y * preCos);
+}
+
 typedef unsigned int uint;
 
 typedef vector<float, 2> vec2;
@@ -370,4 +381,3 @@ typedef vector<int, 4> ivec4;
 typedef vector<uint, 2> uvec2;
 typedef vector<uint, 3> uvec3;
 typedef vector<uint, 4> uvec4;
-

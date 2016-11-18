@@ -3,7 +3,7 @@
 
 #include "OpenGL.h"
 
-static class RenderUtil {
+class RenderUtil {
 public:
     static void clearScreen();
     static void initGraphics();

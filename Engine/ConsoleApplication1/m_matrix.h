@@ -3,12 +3,12 @@
 #include "m_vector.h"
 
 template<typename T, int M, int N>
-struct matrix;
+struct m_matrix;
 
 // Compare
 
 template<typename T, int M, int N>
-bool operator==(const matrix<T, M, N> & a, const matrix<T, M, N> & b) {
+bool operator==(const m_matrix<T, M, N> & a, const m_matrix<T, M, N> & b) {
     for (int i = 0; i < M; i++)
         for (int j = 0; j < N; j++)
             if (a[i][j] != b[i][j])
@@ -17,7 +17,7 @@ bool operator==(const matrix<T, M, N> & a, const matrix<T, M, N> & b) {
 }
 
 template<typename T, int M, int N>
-bool operator!=(const matrix<T, M, N> & a, const matrix<T, M, N> & b) {
+bool operator!=(const m_matrix<T, M, N> & a, const m_matrix<T, M, N> & b) {
     for (int i = 0; i < M; i++)
         for (int j = 0; j < N; j++)
             if (a[i][j] != b[i][j])
@@ -28,8 +28,8 @@ bool operator!=(const matrix<T, M, N> & a, const matrix<T, M, N> & b) {
 // +
 
 template<typename T, int M, int N>
-matrix<T, M, N> operator+(const matrix<T, M, N> & a, const matrix<T, M, N> & b) {
-    matrix<T, M, N> c;
+m_matrix<T, M, N> operator+(const m_matrix<T, M, N> & a, const m_matrix<T, M, N> & b) {
+    m_matrix<T, M, N> c;
     for (int i = 0; i < M; i++)
         for (int j = 0; j < N; j++)
             c[i][j] = a[i][j] + b[i][j];
@@ -37,7 +37,7 @@ matrix<T, M, N> operator+(const matrix<T, M, N> & a, const matrix<T, M, N> & b) 
 }
 
 template<typename T, int M, int N>
-matrix<T, M, N> operator+=(matrix<T, M, N> & a, const matrix<T, M, N> & b) {
+m_matrix<T, M, N> operator+=(m_matrix<T, M, N> & a, const m_matrix<T, M, N> & b) {
     for (int i = 0; i < M; i++)
         for (int j = 0; j < N; j++)
             a[i][j] += b[i][j];
@@ -47,8 +47,8 @@ matrix<T, M, N> operator+=(matrix<T, M, N> & a, const matrix<T, M, N> & b) {
 // -
 
 template<typename T, int M, int N>
-matrix<T, M, N> operator-(const matrix<T, M, N> & a, const matrix<T, M, N> & b) {
-    matrix<T, M, N> c;
+m_matrix<T, M, N> operator-(const m_matrix<T, M, N> & a, const m_matrix<T, M, N> & b) {
+    m_matrix<T, M, N> c;
     for (int i = 0; i < M; i++)
         for (int j = 0; j < N; j++)
             c[i][j] = a[i][j] - b[i][j];
@@ -56,7 +56,7 @@ matrix<T, M, N> operator-(const matrix<T, M, N> & a, const matrix<T, M, N> & b) 
 }
 
 template<typename T, int M, int N>
-matrix<T, M, N> operator-=(matrix<T, M, N> & a, const matrix<T, M, N> & b) {
+m_matrix<T, M, N> operator-=(m_matrix<T, M, N> & a, const m_matrix<T, M, N> & b) {
     for (int i = 0; i < M; i++)
         for (int j = 0; j < N; j++)
             a[i][j] -= b[i][j];
@@ -66,8 +66,8 @@ matrix<T, M, N> operator-=(matrix<T, M, N> & a, const matrix<T, M, N> & b) {
 // *
 
 template<typename T, int M, int N, int O>
-matrix<T, M, O> operator*(const matrix<T, M, N> & a, const matrix<T, N, O> & b) {
-    matrix<T, M, O> c;
+m_matrix<T, M, O> operator*(const m_matrix<T, M, N> & a, const m_matrix<T, N, O> & b) {
+    m_matrix<T, M, O> c;
     for (int i = 0; i < M; i++)
         for (int j = 0; j < O; j++)
             for (int k = 0; k < N; k++)
@@ -76,8 +76,8 @@ matrix<T, M, O> operator*(const matrix<T, M, N> & a, const matrix<T, N, O> & b) 
 }
 
 template<typename T>
-matrix<T, 4, 4> operator*(const matrix<T, 4, 4> & a, const matrix<T, 4, 4> & b) {
-    matrix<T, 4, 4> c;
+m_matrix<T, 4, 4> operator*(const m_matrix<T, 4, 4> & a, const m_matrix<T, 4, 4> & b) {
+    m_matrix<T, 4, 4> c;
     c[0][0] = b[0][0] * a[0][0] + b[1][0] * a[0][1] + b[2][0] * a[0][2] + b[3][0] * a[0][3];
     c[1][0] = b[0][0] * a[1][0] + b[1][0] * a[1][1] + b[2][0] * a[1][2] + b[3][0] * a[1][3];
     c[2][0] = b[0][0] * a[2][0] + b[1][0] * a[2][1] + b[2][0] * a[2][2] + b[3][0] * a[2][3];
@@ -98,8 +98,8 @@ matrix<T, 4, 4> operator*(const matrix<T, 4, 4> & a, const matrix<T, 4, 4> & b) 
 }
 
 template<typename T>
-matrix<T, 3, 3> operator*(const matrix<T, 3, 3> & a, const matrix<T, 3, 3> & b) {
-    matrix<T, 3, 3> c;
+m_matrix<T, 3, 3> operator*(const m_matrix<T, 3, 3> & a, const m_matrix<T, 3, 3> & b) {
+    m_matrix<T, 3, 3> c;
     c[0][0] = b[0][0] * a[0][0] + b[1][0] * a[0][1] + b[2][0] * a[0][2];
     c[1][0] = b[0][0] * a[1][0] + b[1][0] * a[1][1] + b[2][0] * a[1][2];
     c[2][0] = b[0][0] * a[2][0] + b[1][0] * a[2][1] + b[2][0] * a[2][2];
@@ -113,14 +113,14 @@ matrix<T, 3, 3> operator*(const matrix<T, 3, 3> & a, const matrix<T, 3, 3> & b) 
 }
 
 template<typename T, int M, int N>
-matrix<T, M, N> operator*=(matrix<T, M, N> & a, const matrix<T, M, N> & b) {
+m_matrix<T, M, N> operator*=(m_matrix<T, M, N> & a, const m_matrix<T, M, N> & b) {
     a = a * b;
     return a;
 }
 
 template<typename T, int M, int N>
-matrix<T, M, N> operator*(const matrix<T, M, N> & a, T b) {
-    matrix<T, M, N> c;
+m_matrix<T, M, N> operator*(const m_matrix<T, M, N> & a, T b) {
+    m_matrix<T, M, N> c;
     for (int i = 0; i < M; i++)
         for (int j = 0; j < N; j++)
             c[i][j] = a[i][j] * b;
@@ -128,8 +128,8 @@ matrix<T, M, N> operator*(const matrix<T, M, N> & a, T b) {
 }
 
 template<typename T, int M, int N>
-matrix<T, M, N> operator*(T a, const matrix<T, M, N> & b) {
-    matrix<T, M, N> c;
+m_matrix<T, M, N> operator*(T a, const m_matrix<T, M, N> & b) {
+    m_matrix<T, M, N> c;
     for (int i = 0; i < M; i++)
         for (int j = 0; j < N; j++)
             c[i][j] = a * b[i][j];
@@ -137,7 +137,7 @@ matrix<T, M, N> operator*(T a, const matrix<T, M, N> & b) {
 }
 
 template<typename T, int M, int N>
-matrix<T, M, N> operator*=(matrix<T, M, N> & a, T b) {
+m_matrix<T, M, N> operator*=(m_matrix<T, M, N> & a, T b) {
     for (int i = 0; i < M; i++)
         for (int j = 0; j < N; j++)
             a[i][j] *= b;
@@ -145,8 +145,8 @@ matrix<T, M, N> operator*=(matrix<T, M, N> & a, T b) {
 }
 
 template<typename T, int M, int N>
-vector<T ,M> operator*(const matrix<T, M, N> & a, const vector<T, N> & b) {
-    matrix<T, 1, N> c;
+m_vector<T ,M> operator*(const m_matrix<T, M, N> & a, const m_vector<T, N> & b) {
+    m_matrix<T, 1, N> c;
     c[0] = b;
     return (c * a)[0];
 }
@@ -155,8 +155,8 @@ vector<T ,M> operator*(const matrix<T, M, N> & a, const vector<T, N> & b) {
 // /
 
 template<typename T, int M, int N>
-matrix<T, M, N> operator/(const matrix<T, M, N> & a, T b) {
-    matrix<T, M, N> c;
+m_matrix<T, M, N> operator/(const m_matrix<T, M, N> & a, T b) {
+    m_matrix<T, M, N> c;
     for (int i = 0; i < M; i++)
         for (int j = 0; j < N; j++)
             c[i][j] = a[i][j] / b;
@@ -164,8 +164,8 @@ matrix<T, M, N> operator/(const matrix<T, M, N> & a, T b) {
 }
 
 template<typename T, int M, int N>
-matrix<T, M, N> operator/(T a, const matrix<T, M, N> & b) {
-    matrix<T, M, N> c;
+m_matrix<T, M, N> operator/(T a, const m_matrix<T, M, N> & b) {
+    m_matrix<T, M, N> c;
     for (int i = 0; i < M; i++)
         for (int j = 0; j < N; j++)
             c[i][j] = a / b[i][j];
@@ -173,7 +173,7 @@ matrix<T, M, N> operator/(T a, const matrix<T, M, N> & b) {
 }
 
 template<typename T, int M, int N>
-matrix<T, M, N> operator/=(matrix<T, M, N> & a, T b) {
+m_matrix<T, M, N> operator/=(m_matrix<T, M, N> & a, T b) {
     for (int i = 0; i < M; i++)
         for (int j = 0; j < N; j++)
             a[i][j] /= b;
@@ -181,14 +181,14 @@ matrix<T, M, N> operator/=(matrix<T, M, N> & a, T b) {
 }
 
 template <typename T, int M, int N>
-std::ostream & operator<<(std::ostream & s, const matrix<T, M, N> & a) {
+std::ostream & operator<<(std::ostream & s, const m_matrix<T, M, N> & a) {
     for (int i = 0; i < M; i++)
         s << a[i] << std::endl;
     return s;
 }
 
 template <typename T, int M, int N>
-T determinant(const matrix<T, M, N> & a) {
+T determinant(const m_matrix<T, M, N> & a) {
     T b = 0;
     for (int i = 0; i < ((N < M) ? N : M); i++) {
         b += determinant(a.minor(i, i));
@@ -197,18 +197,18 @@ T determinant(const matrix<T, M, N> & a) {
 }
 
 template <typename T>
-T determinant(const matrix<T, 1, 1> & a) {
+T determinant(const m_matrix<T, 1, 1> & a) {
     return a[0][0];
 }
 
 template <typename T>
-T determinant(const matrix<T, 2, 2> & a) {
+T determinant(const m_matrix<T, 2, 2> & a) {
     return a[0][0] * a[1][1] -
         a[1][0] * a[0][1];
 }
 
 template <typename T>
-T determinant(const matrix<T, 3, 3> & a) {
+T determinant(const m_matrix<T, 3, 3> & a) {
     return a[0][0] * a[1][1] * a[2][2] +
         a[0][1] * a[1][2] * a[2][0] +
         a[0][2] * a[1][0] * a[2][1] -
@@ -218,21 +218,21 @@ T determinant(const matrix<T, 3, 3> & a) {
 }
 
 template<typename T, int M, int N>
-struct matrix {
-    matrix() {
+struct m_matrix {
+    m_matrix() {
         clear();
     }
 
-    inline vector<T, N> operator[](int i) const {
+    inline m_vector<T, N> operator[](int i) const {
         return data[i];
     }
 
-    inline vector<T, N> & operator[](int i) {
+    inline m_vector<T, N> & operator[](int i) {
         return data[i];
     }
 
-    matrix<T, N, M> transpose() const {
-        matrix<T, N, M> a;
+    m_matrix<T, N, M> transpose() const {
+        m_matrix<T, N, M> a;
         for (int i = 0; i < M; i++)
             for (int j = 0; j < N; j++)
                 a[j][i] = data[i][j];
@@ -240,8 +240,9 @@ struct matrix {
     }
 
     void clear() {
-        for (int i = 0; i < M; i++)
-            data[i] = vector<T, N>();
+        memset(this, 0, sizeof(m_matrix<T, M, N>));
+        //for (int i = 0; i < M; i++)
+        //    data[i] = m_vector<T, N>();
     }
 
     void identity() {
@@ -250,7 +251,7 @@ struct matrix {
             data[i][i] = 1;
     }
 
-    matrix<T, M, N> inverse() const {
+    m_matrix<T, M, N> inverse() const {
         return (1 / determinant()) * adjugate();
     }
 
@@ -258,8 +259,8 @@ struct matrix {
         return ::determinant(*this);
     }
 
-    matrix<T, M - 1, N - 1> minor(int i, int j) const {
-        matrix<T, M - 1, N - 1> b;
+    m_matrix<T, M - 1, N - 1> minor(int i, int j) const {
+        m_matrix<T, M - 1, N - 1> b;
         int x2 = 0;
         for (int x1 = 0; x1 < M; x1++) {
             if (x1 == i)
@@ -276,12 +277,12 @@ struct matrix {
         return b;
     }
 
-    matrix<T, M, N> adjugate() const {
+    m_matrix<T, M, N> adjugate() const {
         return cofactormatrix().transpose();
     }
 
-    matrix<T, M, N> cofactormatrix() const {
-        matrix<T, M, N> a;
+    m_matrix<T, M, N> cofactormatrix() const {
+        m_matrix<T, M, N> a;
         for (int i = 0; i < M; i++)
             for (int j = 0; j < N; j++)
                 a[i][j] = cofactor(i, j);
@@ -297,18 +298,29 @@ struct matrix {
         }
     }
 
-    vector<T, N> data[M];
+    void setTranslationMatrix(const vec3 & t, bool invert = false);
+
+    void setRotationMatrix(const vec3 & r, bool invert = false);
+
+    void setScaleMatrix(const vec3 & s);
+
+    void SetProjectionMatrix(int width, int height, float zNear, float zFar, float fov);
+
+    m_vector<T, N> data[M];
 };
 
-typedef matrix<float, 2, 2> mat2;
-typedef matrix<float, 3, 3> mat3;
-typedef matrix<float, 4, 4> mat4;
 
-typedef matrix<int, 2, 2> imat2;
-typedef matrix<int, 3, 3> imat3;
-typedef matrix<int, 4, 4> imat4;
 
-typedef matrix<uint, 2, 2> umat2;
-typedef matrix<uint, 3, 3> umat3;
-typedef matrix<uint, 4, 4> umat4;
+typedef m_matrix<float, 2, 2> mat2;
+typedef m_matrix<float, 3, 3> mat3;
+typedef m_matrix<float, 4, 4> mat4;
+
+typedef m_matrix<int, 2, 2> imat2;
+typedef m_matrix<int, 3, 3> imat3;
+typedef m_matrix<int, 4, 4> imat4;
+
+typedef m_matrix<uint, 2, 2> umat2;
+typedef m_matrix<uint, 3, 3> umat3;
+typedef m_matrix<uint, 4, 4> umat4;
+
 

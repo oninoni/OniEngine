@@ -2,13 +2,14 @@
 
 #include "OpenGL.h"
 #include <iostream>
+#include "Shader.h"
 #include "Vertex.h"
 
 class Mesh {
 private:
 
     enum {
-        POSITION_VB,
+        VERTICE_BUFFER,
 
         NUM_BUFFERS
     };
@@ -17,7 +18,7 @@ private:
     GLuint vaoBuffers[NUM_BUFFERS];
     unsigned int drawCount;
 public:
-    Mesh(Vertex* vertices, unsigned int n);
+    Mesh(Shader* shader, Vertex* vertices, uint nVert);
     ~Mesh();
 
     void render();

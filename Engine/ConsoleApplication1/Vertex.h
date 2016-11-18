@@ -2,13 +2,19 @@
 
 #include "m_vector.h"
 
-class Vertex {
-private:
-    vec3 position;
-public:
-    Vertex(vec3 pos);
-    ~Vertex();
+/*
+Postion vec3
+Normal vec3
+color vec3
+uv vec2
+ka
+kd
+ks
+*/
 
-    vec3 getPosition();
-    void setPosition(vec3 pos);
+struct Vertex {
+    Vertex(vec3 pos, vec4 col);
+
+    vec3 position;
+    vec4 color;
 };

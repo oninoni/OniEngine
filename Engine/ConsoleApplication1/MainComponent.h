@@ -2,14 +2,13 @@
 
 class Game;
 
+#include <Windows.h>
+
 #include "Time.h"
 #include "InputManager.h"
 #include "RenderUtil.h"
 #include "Window.h"
 #include "Game.h"
-
-#include <Windows.h>
-
 
 class MainComponent {
 private:

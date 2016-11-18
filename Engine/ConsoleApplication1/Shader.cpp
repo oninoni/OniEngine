@@ -1,6 +1,25 @@
 #include "Shader.h"
 
-GLuint Shader::creatShader(const string & text, GLenum type) {
+GLuint getDataSize(GLenum dataType) {
+    switch (dataType) {
+    case GL_BYTE:
+    case GL_UNSIGNED_BYTE:
+        return 1;
+    case GL_SHORT:
+    case GL_UNSIGNED_SHORT:
+        return 2;
+    case GL_INT:
+    case GL_UNSIGNED_INT:
+    case GL_FLOAT:
+        return 4;
+    case GL_DOUBLE:
+        return 8;
+    default:
+        return 0;
+    }
+}
+
+GLuint Shader::createShader(const string & text, GLenum type) {
     GLuint shader = glCreateShader(type);
 
     if (shader == 0)
@@ -42,14 +61,12 @@ void Shader::checkShaderError(GLuint shader, GLuint flag, bool isProgram, const 
 Shader::Shader(const string & fileName) {
     program = glCreateProgram();
 
-    shaders[VertexShader] = creatShader(RecourceLoader::loadShader(fileName + ".vs"), GL_VERTEX_SHADER);
-    //shaders[GeometryShader] = creatShader(RecourceLoader::loadShader(fileName + ".gs"), GL_GEOMETRY_SHADER);
-    shaders[FragmentShader] = creatShader(RecourceLoader::loadShader(fileName + ".fs"), GL_FRAGMENT_SHADER);
+    shaders[VertexShader] = createShader(RecourceLoader::loadShader(fileName + ".vs"), GL_VERTEX_SHADER);
+    //shaders[GeometryShader] = createShader(RecourceLoader::loadShader(fileName + ".gs"), GL_GEOMETRY_SHADER);
+    shaders[FragmentShader] = createShader(RecourceLoader::loadShader(fileName + ".fs"), GL_FRAGMENT_SHADER);
 
     for (int i = 0; i < NUM_SHADERS; i++)
         glAttachShader(program, shaders[i]);
-
-    glBindAttribLocation(program, 0, "position");
 
     glLinkProgram(program);
     checkShaderError(program, GL_LINK_STATUS, true, "Error: Shadersprogram " + fileName + " failed to link: ");
@@ -62,6 +79,42 @@ void Shader::bind() {
     glUseProgram(program);
 }
 
+void Shader::addUniform(string uniform) {
+    GLint uniformLocation = glGetUniformLocation(program, uniform.c_str());
+    
+    if (uniformLocation == 0xFFFFFFFF) {
+        cerr << "Error: could not find uniform " + uniform + "!";
+    }
+    
+    uniforms[uniform] = uniformLocation;
+}
+
+GLint Shader::getUniformLocation(string uniform) {
+    if (uniforms.find(uniform) == uniforms.end())
+        addUniform(uniform);
+    return uniforms[uniform];
+}
+
+void Shader::setUniformI(GLint uniformLocation, int value) {
+    bind();
+    glUniform1i(uniformLocation, value);
+}
+
+void Shader::setUniformF(GLint uniformLocation, float value) {
+    bind();
+    glUniform1f(uniformLocation, value);
+}
+
+void Shader::setUniformVec3(GLint uniformLocation, vec3 value) {
+    bind();
+    glUniform3f(uniformLocation, value.x, value.y, value.z);
+}
+
+void Shader::setUniformMat4(GLint uniformLocation, mat4 value, GLboolean transpose) {
+    bind();
+    glUniformMatrix4fv(uniformLocation, 1, transpose, (float*)&value);
+}
+
 Shader::~Shader() {
     for (int i = 0; i < NUM_SHADERS; i++) {
         glDetachShader(program, shaders[i]);
@@ -70,3 +123,28 @@ Shader::~Shader() {
 
     glDeleteProgram(program);
 }
+
+void Shader::addAttribute(string name, GLenum type, int size) {
+    GLSLAttribute d;
+    d.location = glGetAttribLocation(program, name.c_str());
+    d.size = size;
+    d.type = type;
+    d.offset = stride;
+    stride += size * getDataSize(type);
+
+    attributes.push_back(d);
+
+}
+
+GLSLAttribute Shader::getGLSLAttribute(int i) {
+    return attributes[i];
+}
+
+int Shader::getGLSLAttributeCount() {
+    return attributes.size();
+}
+
+int Shader::getGLSLALSKJFHJKADSHFJKSDHFJKHSTride() {
+    return stride;
+}
+

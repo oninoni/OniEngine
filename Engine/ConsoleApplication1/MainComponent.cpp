@@ -78,6 +78,8 @@ void MainComponent::run() {
 
             if (window->isCloseRequested())
                 stop();
+
+            glfwPollEvents();
             
             Time::setDelta(frameTime);
             InputManager::getInstance()->update();

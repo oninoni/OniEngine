@@ -1,21 +1,33 @@
 #include "Mesh.h"
-Mesh::Mesh(Vertex* vertices, unsigned int n){
-    drawCount = n;
+
+Mesh::Mesh(Shader* shader, Vertex* vertices, uint nVert){
+    drawCount = nVert;
 
     glGenVertexArrays(1, &vao);
     glBindVertexArray(vao);
 
     glGenBuffers(NUM_BUFFERS, vaoBuffers);
-    glBindBuffer(GL_ARRAY_BUFFER, vaoBuffers[POSITION_VB]);
-    glBufferData(GL_ARRAY_BUFFER, drawCount * sizeof(vertices[0]), vertices, GL_STATIC_DRAW);
 
-    glEnableVertexAttribArray(0);
-    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 0, 0);
+    glBindBuffer(GL_ARRAY_BUFFER, vaoBuffers[VERTICE_BUFFER]);
+    glBufferData(GL_ARRAY_BUFFER, sizeof(Vertex) * nVert, vertices, GL_STATIC_DRAW);
 
-    glBindVertexArray(0);
+    for (int i = 0; i < shader->getGLSLAttributeCount(); i++) {
+        GLSLAttribute attribute = shader->getGLSLAttribute(i);
+        
+        glEnableVertexAttribArray(attribute.location);
+        glVertexAttribPointer(
+            attribute.location,
+            attribute.size,
+            attribute.type,
+            GL_FALSE,
+            shader->getGLSLALSKJFHJKADSHFJKSDHFJKHSTride(),
+            (void*)attribute.offset
+        );
+    }
 }
 
 Mesh::~Mesh() {
+    glDeleteBuffers(NUM_BUFFERS, vaoBuffers);
     glDeleteVertexArrays(1, &vao);
 }
 
@@ -23,6 +35,4 @@ void Mesh::render() {
     glBindVertexArray(vao);
 
     glDrawArrays(GL_TRIANGLES, 0, drawCount);
-
-    glBindVertexArray(0);
 }

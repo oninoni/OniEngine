@@ -24,10 +24,7 @@ Window::Window(int width, int height, string title) {
 }
 
 void Window::render() {
-    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-
     glfwSwapBuffers(window);
-    glfwPollEvents();
 }
 
 void Window::dispose() {

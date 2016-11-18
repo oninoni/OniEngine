@@ -5,10 +5,15 @@
 #include "Mesh.h"
 #include "Shader.h"
 #include "RecourceLoader.h"
+#include "Transform.h"
+#include "Camera.h"
 #include <iostream>
 
 class Game {
 private:
+    Transform* transform;
+
+    Camera* camera;
     Mesh* mesh;
     Shader* shader;
 public:

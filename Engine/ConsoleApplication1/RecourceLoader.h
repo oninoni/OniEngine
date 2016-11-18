@@ -6,7 +6,7 @@
 #include <sstream>
 using namespace std;
 
-static class RecourceLoader {
+class RecourceLoader {
 public:
     static string loadShader(string fileName);
 };

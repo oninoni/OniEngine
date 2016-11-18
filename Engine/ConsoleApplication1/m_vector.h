@@ -3,11 +3,13 @@
 #include <math.h>
 #include <iostream>
 
-template <typename T, int N>
-struct vector;
+#define PI 3.14159265358979323846f
 
 template <typename T, int N>
-bool operator==(const vector<T, N> & a, const vector<T, N> & b) {
+struct m_vector;
+
+template <typename T, int N>
+bool operator==(const m_vector<T, N> & a, const m_vector<T, N> & b) {
     for (int i = 0; i < N; i++)
         if (a[i] != b[i])
             return false;
@@ -15,7 +17,7 @@ bool operator==(const vector<T, N> & a, const vector<T, N> & b) {
 }
 
 template <typename T, int N>
-bool operator!=(const vector<T, N> & a, const vector<T, N> & b) {
+bool operator!=(const m_vector<T, N> & a, const m_vector<T, N> & b) {
     for (int i = 0; i < N; i++)
         if (a[i] == b[i])
             return true;
@@ -23,7 +25,7 @@ bool operator!=(const vector<T, N> & a, const vector<T, N> & b) {
 }
 
 template <typename T, int N>
-bool operator>(const vector<T, N> & a, const vector<T, N> & b) {
+bool operator>(const m_vector<T, N> & a, const m_vector<T, N> & b) {
     for (int i = 0; i < N; i++)
         if (a[i] <= b[i])
             return false;
@@ -31,7 +33,7 @@ bool operator>(const vector<T, N> & a, const vector<T, N> & b) {
 }
 
 template <typename T, int N>
-bool operator<(const vector<T, N> & a, const vector<T, N> & b) {
+bool operator<(const m_vector<T, N> & a, const m_vector<T, N> & b) {
     for (int i = 0; i < N; i++)
         if (a[i] >= b[i])
             return false;
@@ -39,7 +41,7 @@ bool operator<(const vector<T, N> & a, const vector<T, N> & b) {
 }
 
 template <typename T, int N>
-bool operator>=(const vector<T, N> & a, const vector<T, N> & b) {
+bool operator>=(const m_vector<T, N> & a, const m_vector<T, N> & b) {
     for (int i = 0; i < N; i++)
         if (a[i] < b[i])
             return false;
@@ -47,7 +49,7 @@ bool operator>=(const vector<T, N> & a, const vector<T, N> & b) {
 }
 
 template <typename T, int N>
-bool operator<=(const vector<T, N> & a, const vector<T, N> & b) {
+bool operator<=(const m_vector<T, N> & a, const m_vector<T, N> & b) {
     for (int i = 0; i < N; i++)
         if (a[i] > b[i])
             return false;
@@ -57,13 +59,13 @@ bool operator<=(const vector<T, N> & a, const vector<T, N> & b) {
 //Arithmetics
 
 template <typename T, int N>
-inline vector<T, N> operator+(const vector<T, N> & a) {
+inline m_vector<T, N> operator+(const m_vector<T, N> & a) {
     return a;
 }
 
 template <typename T, int N>
-vector<T, N> operator-(const vector<T, N> & a) {
-    vector<T, N> b;
+m_vector<T, N> operator-(const m_vector<T, N> & a) {
+    m_vector<T, N> b;
     for (int i = 0; i < N; i++)
         b[i] = -a[i];
     return b;
@@ -72,38 +74,38 @@ vector<T, N> operator-(const vector<T, N> & a) {
 // +
 
 template <typename T, int N>
-vector<T, N> operator+(const vector<T, N> & a, const vector<T, N> & b) {
-    vector<T, N> c;
+m_vector<T, N> operator+(const m_vector<T, N> & a, const m_vector<T, N> & b) {
+    m_vector<T, N> c;
     for (int i = 0; i < N; i++)
         c[i] = a[i] + b[i];
     return c;
 }
 
 template <typename T, int N>
-vector<T, N> operator+=(vector<T, N> & a, const vector<T, N> & b) {
+m_vector<T, N> operator+=(m_vector<T, N> & a, const m_vector<T, N> & b) {
     for (int i = 0; i < N; i++)
         a[i] += b[i];
     return a;
 }
 
 template <typename T, int N>
-vector<T, N> operator+(const vector<T, N> & a, T b) {
-    vector<T, N> c;
+m_vector<T, N> operator+(const m_vector<T, N> & a, T b) {
+    m_vector<T, N> c;
     for (int i = 0; i < N; i++)
         c[i] = a[i] + b;
     return c;
 }
 
 template <typename T, int N>
-vector<T, N> operator+(T a, const vector<T, N> & b) {
-    vector<T, N> c;
+m_vector<T, N> operator+(T a, const m_vector<T, N> & b) {
+    m_vector<T, N> c;
     for (int i = 0; i < N; i++)
         c[i] = a + b[i];
     return c;
 }
 
 template <typename T, int N>
-vector<T, N> operator+=(vector<T, N> & a, T b) {
+m_vector<T, N> operator+=(m_vector<T, N> & a, T b) {
     for (int i = 0; i < N; i++)
         a[i] += b;
     return a;
@@ -112,38 +114,38 @@ vector<T, N> operator+=(vector<T, N> & a, T b) {
 // -
 
 template <typename T, int N>
-vector<T, N> operator-(const vector<T, N> & a, const vector<T, N> & b) {
-    vector<T, N> c;
+m_vector<T, N> operator-(const m_vector<T, N> & a, const m_vector<T, N> & b) {
+    m_vector<T, N> c;
     for (int i = 0; i < N; i++)
         c[i] = a[i] - b[i];
     return c;
 }
 
 template <typename T, int N>
-vector<T, N> operator-=(vector<T, N> & a, const vector<T, N> & b) {
+m_vector<T, N> operator-=(m_vector<T, N> & a, const m_vector<T, N> & b) {
     for (int i = 0; i < N; i++)
         a[i] -= b[i];
     return a;
 }
 
 template <typename T, int N>
-vector<T, N> operator-(const vector<T, N> & a, T b) {
-    vector<T, N> c;
+m_vector<T, N> operator-(const m_vector<T, N> & a, T b) {
+    m_vector<T, N> c;
     for (int i = 0; i < N; i++)
         c[i] = a[i] - b;
     return c;
 }
 
 template <typename T, int N>
-vector<T, N> operator-(T a, const vector<T, N> & b) {
-    vector<T, N> c;
+m_vector<T, N> operator-(T a, const m_vector<T, N> & b) {
+    m_vector<T, N> c;
     for (int i = 0; i < N; i++)
         c[i] = a - b[i];
     return c;
 }
 
 template <typename T, int N>
-vector<T, N> operator-=(vector<T, N> & a, T b) {
+m_vector<T, N> operator-=(m_vector<T, N> & a, T b) {
     for (int i = 0; i < N; i++)
         a[i] -= b;
     return a;
@@ -152,38 +154,38 @@ vector<T, N> operator-=(vector<T, N> & a, T b) {
 // *
 
 template <typename T, int N>
-vector<T, N> operator*(const vector<T, N> & a, const vector<T, N> & b) {
-    vector<T, N> c;
+m_vector<T, N> operator*(const m_vector<T, N> & a, const m_vector<T, N> & b) {
+    m_vector<T, N> c;
     for (int i = 0; i < N; i++)
         c[i] = a[i] * b[i];
     return c;
 }
 
 template <typename T, int N>
-vector<T, N> operator*=(vector<T, N> & a, const vector<T, N> & b) {
+m_vector<T, N> operator*=(m_vector<T, N> & a, const m_vector<T, N> & b) {
     for (int i = 0; i < N; i++)
         a[i] *= b[i];
     return a;
 }
 
 template <typename T, int N>
-vector<T, N> operator*(const vector<T, N> & a, T b) {
-    vector<T, N> c;
+m_vector<T, N> operator*(const m_vector<T, N> & a, T b) {
+    m_vector<T, N> c;
     for (int i = 0; i < N; i++)
         c[i] = a[i] * b;
     return c;
 }
 
 template <typename T, int N>
-vector<T, N> operator*(T a, const vector<T, N> & b) {
-    vector<T, N> c;
+m_vector<T, N> operator*(T a, const m_vector<T, N> & b) {
+    m_vector<T, N> c;
     for (int i = 0; i < N; i++)
         c[i] = a * b[i];
     return c;
 }
 
 template <typename T, int N>
-vector<T, N> operator*=(vector<T, N> & a, T b) {
+m_vector<T, N> operator*=(m_vector<T, N> & a, T b) {
     for (int i = 0; i < N; i++)
         a[i] *= b;
     return a;
@@ -192,38 +194,38 @@ vector<T, N> operator*=(vector<T, N> & a, T b) {
 // /
 
 template <typename T, int N>
-vector<T, N> operator/(const vector<T, N> & a, const vector<T, N> & b) {
-    vector<T, N> c;
+m_vector<T, N> operator/(const m_vector<T, N> & a, const m_vector<T, N> & b) {
+    m_vector<T, N> c;
     for (int i = 0; i < N; i++)
         c[i] = a[i] / b[i];
     return c;
 }
 
 template <typename T, int N>
-vector<T, N> operator/=(vector<T, N> & a, const vector<T, N> & b) {
+m_vector<T, N> operator/=(m_vector<T, N> & a, const m_vector<T, N> & b) {
     for (int i = 0; i < N; i++)
         a[i] /= b[i];
     return a;
 }
 
 template <typename T, int N>
-vector<T, N> operator/(const vector<T, N> & a, T b) {
-    vector<T, N> c;
+m_vector<T, N> operator/(const m_vector<T, N> & a, T b) {
+    m_vector<T, N> c;
     for (int i = 0; i < N; i++)
         c[i] = a[i] / b;
     return c;
 }
 
 template <typename T, int N>
-vector<T, N> operator/(T a, const vector<T, N> & b) {
-    vector<T, N> c;
+m_vector<T, N> operator/(T a, const m_vector<T, N> & b) {
+    m_vector<T, N> c;
     for (int i = 0; i < N; i++)
         c[i] = a / b[i];
     return c;
 }
 
 template <typename T, int N>
-vector<T, N> operator/=(vector<T, N> & a, T b) {
+m_vector<T, N> operator/=(m_vector<T, N> & a, T b) {
     for (int i = 0; i < N; i++)
         a[i] /= b;
     return a;
@@ -231,7 +233,7 @@ vector<T, N> operator/=(vector<T, N> & a, T b) {
 
 
 template <typename T, int N>
-std::ostream & operator<<(std::ostream & s, const vector<T, N> & a) {
+std::ostream & operator<<(std::ostream & s, const m_vector<T, N> & a) {
     s << "[";
     for (int i = 0; i < N - 1; i++)
         s << a[i] << "|";
@@ -242,7 +244,7 @@ std::ostream & operator<<(std::ostream & s, const vector<T, N> & a) {
 
 
 template <typename T, int N>
-struct vector{
+struct m_vector{
 public:
     __declspec(property(get = getX, put = setX)) T x;
     __declspec(property(get = getY, put = setY)) T y;
@@ -258,6 +260,11 @@ public:
     __declspec(property(get = getY, put = setY)) T g;
     __declspec(property(get = getZ, put = setZ)) T b;
     __declspec(property(get = getW, put = setW)) T a;
+
+    __declspec(property(get = getX, put = setX)) T pitch;
+    __declspec(property(get = getY, put = setY)) T yaw;
+    __declspec(property(get = getY, put = setY)) T turn;
+    __declspec(property(get = getZ, put = setZ)) T roll;
 
     T data[N];
 
@@ -286,28 +293,28 @@ public:
         data[3] = a;
     }
 
-    vector() {
+    m_vector() {
         for (int i = 0; i < N; i++)
             data[i] = 0;
     }
 
-    vector(T k) {
+    m_vector(T k) {
         for (int i = 0; i < N; i++)
             data[i] = k;
     }
 
-    vector(T x, T y) : vector(){
+    m_vector(T x, T y) : m_vector(){
         setX(x);
         setY(y);
     }
 
-    vector(T x, T y, T z) : vector() {
+    m_vector(T x, T y, T z) : m_vector() {
         setX(x);
         setY(y);
         setZ(z);
     }
 
-    vector(T x, T y, T z, T w) : vector() {
+    m_vector(T x, T y, T z, T w) : m_vector() {
         setX(x);
         setY(y);
         setZ(z);
@@ -322,7 +329,7 @@ public:
         return data[i];
     }
 
-    T dot(const vector<T, N> & a) const {
+    T dot(const m_vector<T, N> & a) const {
         T c = 0;
         for (int i = 0; i < N; i++) {
             c += data[i] * a.data[i];
@@ -338,46 +345,46 @@ public:
         return sqrt(lengthSquared());
     }
 
-    vector<T, N> normalize() const {
+    m_vector<T, N> normalize() const {
         return *this / length();
     }
 
-    vector<T, N> cross(const vector<T, N> & a) const {
-        vector<T, N> c;
+    m_vector<T, N> cross(const m_vector<T, N> & a) const {
+        m_vector<T, N> c;
         c.x = y * a.z - z * a.y;
         c.y = z * a.x - x * a.z;
         c.z = x * a.y - y * a.x;
         return c;
     }
 
-    inline vector<T, N> vectorTo(const vector<T, N> & a) const {
+    inline m_vector<T, N> vectorTo(const m_vector<T, N> & a) const {
         return a - *this;
     }
 
-    float distanceTo(const vector<T, N> & a) const {
+    float distanceTo(const m_vector<T, N> & a) const {
         return vectorTo(a).length();
     }
 };
 
 template <typename T>
-vector<T, 2> rotate(vector<T, 2> a, double angle) {
-    double rad = angle * (3.14159265358979323846 / 180);
+m_vector<T, 2> rotate(m_vector<T, 2> a, double angle) {
+    double rad = angle * PI / 180.0f;
     double preCos = cos(rad);
     double preSin = sin(rad);
 
-    return vector<T, 2>(a.x * preCos - a.y * preSin, a.x * preSin + a.y * preCos);
+    return m_vector<T, 2>(a.x * preCos - a.y * preSin, a.x * preSin + a.y * preCos);
 }
 
 typedef unsigned int uint;
 
-typedef vector<float, 2> vec2;
-typedef vector<float, 3> vec3;
-typedef vector<float, 4> vec4;
+typedef m_vector<float, 2> vec2;
+typedef m_vector<float, 3> vec3;
+typedef m_vector<float, 4> vec4;
 
-typedef vector<int, 2> ivec2;
-typedef vector<int, 3> ivec3;
-typedef vector<int, 4> ivec4;
+typedef m_vector<int, 2> ivec2;
+typedef m_vector<int, 3> ivec3;
+typedef m_vector<int, 4> ivec4;
 
-typedef vector<uint, 2> uvec2;
-typedef vector<uint, 3> uvec3;
-typedef vector<uint, 4> uvec4;
+typedef m_vector<uint, 2> uvec2;
+typedef m_vector<uint, 3> uvec3;
+typedef m_vector<uint, 4> uvec4;

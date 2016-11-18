@@ -6,8 +6,12 @@ int * MainComponent::argc;
 char ** MainComponent::argv;
 
 MainComponent::MainComponent(int * argc, char ** argv) {
+
     window = new Window(800, 600, "OniEngine");
+    cout << RenderUtil::getOpenGLVersion() << endl;
     isRunning = false;
+
+    RenderUtil::initGraphics();
 
     //InputManager::getInstance();
 
@@ -102,8 +106,8 @@ void MainComponent::run() {
 }
 
 void MainComponent::render() {
+    RenderUtil::clearScreen();
     game->render();
-
     window->render();
 }
 

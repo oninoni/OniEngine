@@ -22,19 +22,33 @@
     <ClInclude Include="Game.h" />
     <ClInclude Include="InputManager.h" />
     <ClInclude Include="MainComponent.h" />
+    <ClInclude Include="Mesh.h" />
     <ClInclude Include="m_matrix.h" />
     <ClInclude Include="m_vector.h" />
     <ClInclude Include="OpenGL.h" />
+    <ClInclude Include="RecourceLoader.h" />
+    <ClInclude Include="RenderUtil.h" />
+    <ClInclude Include="Shader.h" />
     <ClInclude Include="Time.h" />
+    <ClInclude Include="Vertex.h" />
     <ClInclude Include="Window.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="InputManager.cpp" />
     <ClCompile Include="MainComponent.cpp" />
+    <ClCompile Include="Mesh.cpp" />
+    <ClCompile Include="RecourceLoader.cpp" />
+    <ClCompile Include="RenderUtil.cpp" />
+    <ClCompile Include="Shader.cpp" />
     <ClCompile Include="test.cpp" />
     <ClCompile Include="Time.cpp" />
+    <ClCompile Include="Vertex.cpp" />
     <ClCompile Include="Window.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="basicFragment.fs" />
+    <None Include="basicVertex.vs" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{EF709456-5B3A-42D9-9FA9-8AF020C5F5D7}</ProjectGuid>

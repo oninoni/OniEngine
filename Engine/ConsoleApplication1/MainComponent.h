@@ -4,6 +4,7 @@ class Game;
 
 #include "Time.h"
 #include "InputManager.h"
+#include "RenderUtil.h"
 #include "Window.h"
 #include "Game.h"
 

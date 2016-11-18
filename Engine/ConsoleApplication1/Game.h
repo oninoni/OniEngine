@@ -1,9 +1,15 @@
 #pragma once
 
 #include "InputManager.h"
+#include "Mesh.h"
+#include "Shader.h"
+#include "RecourceLoader.h"
 #include <iostream>
 
 class Game {
+private:
+    Mesh* mesh;
+    Shader* shader;
 public:
     Game();
     ~Game();

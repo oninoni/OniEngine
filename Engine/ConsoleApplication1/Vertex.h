@@ -6,8 +6,6 @@ class Vertex {
 private:
     vec3 position;
 public:
-    static const int SIZE;
-
     Vertex(vec3 pos);
     ~Vertex();
 

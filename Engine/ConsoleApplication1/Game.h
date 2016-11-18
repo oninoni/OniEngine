@@ -1,6 +1,7 @@
 #pragma once
 
 #include "InputManager.h"
+#include "Vertex.h"
 #include "Mesh.h"
 #include "Shader.h"
 #include "RecourceLoader.h"

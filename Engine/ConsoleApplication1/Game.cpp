@@ -1,18 +1,15 @@
 #include "Game.h"
 
 Game::Game() {
-    mesh = new Mesh();
-    shader = new Shader();
+    Vertex vertices[3] = {
+        Vertex(vec3(-1, -1, 0)),
+        Vertex(vec3(0, 1, 0)),
+        Vertex(vec3(1, -1, 0)),
+    };
 
-    int lengthV = 0;
-    char* dataV = RecourceLoader::loadShader("basicVertex.vs", lengthV);
-    shader->addVertexShader(dataV, lengthV);
-    int lengthF = 0;
-    char* dataF = RecourceLoader::loadShader("basicFragment.fs", lengthF);
-    cout << dataF << endl;
-    shader->addFragmentShader(dataF, lengthF);
+    mesh = new Mesh(vertices, sizeof(vertices) / sizeof(vertices[0]));
 
-    shader->compileShader();
+    shader = new Shader("basic");
 }
 
 

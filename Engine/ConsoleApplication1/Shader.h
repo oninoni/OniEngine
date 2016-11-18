@@ -1,26 +1,28 @@
 #pragma once
 
 #include "OpenGL.h"
+#include "RecourceLoader.h"
 #include <iostream>
 using namespace std;
 
+enum ShaderType{
+    VertexShader,
+    GeometryShader,
+    FragmentShader,
+
+    NUM_SHADERS
+};
+
 class Shader {
 private:
-    bool checkShaderErrors(int shader);
-    bool Shader::checkProgramErrors();
+    
+    GLuint program;
+    GLuint shaders[NUM_SHADERS];
 
-    int program;
-
-    void addProgram(char* data, GLenum type, int length);
+    static GLuint creatShader(const string& text, GLenum type);
+    static void checkShaderError(GLuint shader, GLuint flag, bool isProgram, const std::string& errorMessage);
 public:
-    Shader();
-    ~Shader();
-
-    void addVertexShader(char* data, int length);
-    void addGeometryShader(char* data, int length);
-    void addFragmentShader(char* data, int length);
-
-    void compileShader();
-
+    Shader(const string& fileName);
     void bind();
+    ~Shader();
 };

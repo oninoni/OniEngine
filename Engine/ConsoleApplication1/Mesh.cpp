@@ -1,11 +1,6 @@
 #include "Mesh.h"
-Mesh::Mesh(){
-    Vertex vertices[3] = {
-        Vertex(vec3(-1, -1, 0)),
-        Vertex(vec3(-1, 1, 0)),
-        Vertex(vec3(0, 1, 0))
-    };
-    drawCount = 3;
+Mesh::Mesh(Vertex* vertices, unsigned int n){
+    drawCount = n;
 
     glGenVertexArrays(1, &vao);
     glBindVertexArray(vao);

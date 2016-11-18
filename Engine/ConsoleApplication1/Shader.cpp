@@ -1,85 +1,72 @@
 #include "Shader.h"
 
+GLuint Shader::creatShader(const string & text, GLenum type) {
+    GLuint shader = glCreateShader(type);
 
-void Shader::addProgram(char* data, GLenum type, int length) {
-    int shader = glCreateShader(type);
+    if (shader == 0)
+        cerr << "Error Shader creation failed!" << endl;
 
-    if(shader == 0)
-        cout << "Shader creation Failed! No Memory Location in Shader!" << endl;
+    const GLchar* shaderSourceStrings[1];
+    GLint shaderSourceStringsLength[1];
 
-    glShaderSource(shader, 1, &data, &length);
+    shaderSourceStrings[0] = text.c_str();
+    shaderSourceStringsLength[0] = text.length();
+
+    glShaderSource(shader, 1, shaderSourceStrings, shaderSourceStringsLength);
     glCompileShader(shader);
 
-    if (!checkShaderErrors(shader))
-        return ;
+    checkShaderError(shader, GL_COMPILE_STATUS, false, "Error: Shader compilation failed: ");
 
-    glAttachShader(program, shader);
-    glDeleteShader(shader);
+    return shader;
 }
 
-bool Shader::checkShaderErrors(int shader) {
-    //by Possseidon
-    int blen;
-    glGetShaderiv(shader, GL_INFO_LOG_LENGTH, &blen);
+void Shader::checkShaderError(GLuint shader, GLuint flag, bool isProgram, const string & errorMessage) {
+    GLint success = 0;
+    GLchar error[1024] = { 0 };
 
-    if (blen <= 1)
-        return true;
+    if (isProgram)
+        glGetProgramiv(shader, flag, &success);
+    else
+        glGetShaderiv(shader, flag, &success);
 
-    char* infoLog = new char[blen];
-    int slen;
-    glGetShaderInfoLog(shader, blen, &slen, infoLog);
-    cout << "Shader Error in " << endl << infoLog << endl;
-    delete[] infoLog;
+    if (success == GL_FALSE) {
+        if (isProgram)
+            glGetProgramInfoLog(shader, sizeof(error), NULL, error);
+        else
+            glGetShaderInfoLog(shader, sizeof(error), NULL, error);
 
-    return false;
+        cerr << errorMessage.c_str() << ": '" << error << "'" << endl;
+    }
 }
 
-bool Shader::checkProgramErrors() {
-    int blen;
-    glGetProgramiv(program, GL_INFO_LOG_LENGTH, &blen);
-    if (blen <= 1)
-        return true;
-
-    char* infoLog = new char[blen];
-    int slen;
-    glGetProgramInfoLog(program, blen, &slen, infoLog);
-    cout << "Linking Error:" << endl << infoLog << endl;
-    delete[] infoLog;
-
-    return false;
-}
-
-Shader::Shader() {
+Shader::Shader(const string & fileName) {
     program = glCreateProgram();
 
-    if (program == 0) 
-        cout << "Shader creation Failed! No Memory Location in Contructor!" << endl;
-}
+    shaders[VertexShader] = creatShader(RecourceLoader::loadShader(fileName + ".vs"), GL_VERTEX_SHADER);
+    //shaders[GeometryShader] = creatShader(RecourceLoader::loadShader(fileName + ".gs"), GL_GEOMETRY_SHADER);
+    shaders[FragmentShader] = creatShader(RecourceLoader::loadShader(fileName + ".fs"), GL_FRAGMENT_SHADER);
 
+    for (int i = 0; i < NUM_SHADERS; i++)
+        glAttachShader(program, shaders[i]);
 
-Shader::~Shader() {
-}
+    glBindAttribLocation(program, 0, "position");
 
-void Shader::addVertexShader(char* data, int length) {
-    addProgram(data, GL_VERTEX_SHADER, length);
-}
-
-void Shader::addGeometryShader(char* data, int length) {
-    addProgram(data, GL_GEOMETRY_SHADER, length);
-}
-
-void Shader::addFragmentShader(char* data, int length) {
-    addProgram(data, GL_FRAGMENT_SHADER, length);
-}
-
-void Shader::compileShader() {
     glLinkProgram(program);
+    checkShaderError(program, GL_LINK_STATUS, true, "Error: Shadersprogram " + fileName + " failed to link: ");
 
-    if (!checkProgramErrors())
-        return;
+    glValidateProgram(program);
+    checkShaderError(program, GL_VALIDATE_STATUS, true, "Error: Shadersprogram " + fileName + " failed to validate: ");
 }
 
 void Shader::bind() {
     glUseProgram(program);
 }
 
+Shader::~Shader() {
+    for (int i = 0; i < NUM_SHADERS; i++) {
+        glDetachShader(program, shaders[i]);
+        glDeleteShader(shaders[i]);
+    }
+
+    glDeleteProgram(program);
+}

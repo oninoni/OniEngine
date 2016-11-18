@@ -17,7 +17,7 @@ private:
     GLuint vaoBuffers[NUM_BUFFERS];
     unsigned int drawCount;
 public:
-    Mesh();
+    Mesh(Vertex* vertices, unsigned int n);
     ~Mesh();
 
     void render();

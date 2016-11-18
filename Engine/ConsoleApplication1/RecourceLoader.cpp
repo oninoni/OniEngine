@@ -1,20 +1,21 @@
 #include "RecourceLoader.h"
 
-char * RecourceLoader::loadShader(string fileName, int & length) {
+string RecourceLoader::loadShader(string fileName) {
+    ifstream file;
+    file.open((fileName).c_str());
 
-    ifstream shaderFile(fileName);
-    if (!shaderFile.good()) {
-        cout << "Cant open Shader file " << fileName << "!" << endl;
-        return NULL;
+    string output;
+    string line;
+
+    if (file.is_open()) {
+        while (file.good()) {
+            getline(file, line);
+            output.append(line + "\n");
+        }
+    }
+    else {
+        cerr << "Unable to load shader: " << fileName << endl;
     }
 
-    stringstream buffer;
-    buffer << shaderFile.rdbuf();
-
-    length = buffer.str().size();
-    char* data = new char[length + 1];
-    buffer.read(data, length);
-    data[length] = 0;
-
-    return data;
+    return output;
 }

@@ -1,5 +1,7 @@
 #pragma once
 
+class Shader;
+
 #include "OpenGL.h"
 #include <iostream>
 #include "Shader.h"
@@ -7,7 +9,6 @@
 
 class Mesh {
 private:
-
     enum {
         VERTICE_BUFFER,
 

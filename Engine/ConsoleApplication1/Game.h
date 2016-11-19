@@ -1,5 +1,7 @@
 #pragma once
 
+class Camera;
+
 #include "InputManager.h"
 #include "Vertex.h"
 #include "Mesh.h"
@@ -12,16 +14,16 @@
 class Game {
 private:
     Transform* transform;
-
+    InputManager* input;
+    
     Camera* camera;
     Mesh* mesh;
     Shader* shader;
 public:
-    Game();
+    Game(InputManager* i);
     ~Game();
 
-    void input();
-    void update();
+    void update(const double & delta);
     void render();
 };
 

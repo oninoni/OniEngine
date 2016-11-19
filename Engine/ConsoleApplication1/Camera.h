@@ -18,10 +18,12 @@ private:
 
     Perspective perspective;
 public:
-    Camera(int width, int height, float zNear, float zFar, float fov, vec3 position = vec3());
+    Camera(int width, int height, float zNear, float zFar, float fov);
     ~Camera();
 
     Transform* getTransform();
 
     void render(Shader* shader, const mat4 & modelmatrix);
+
+
 };

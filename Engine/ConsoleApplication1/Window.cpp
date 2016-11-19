@@ -20,6 +20,8 @@ Window::Window(int width, int height, string title) {
         return;
     }
 
+    glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
+
     glfwSwapInterval(0); // V-Sync off (on is default, but it glitches if you don't call it)
 }
 

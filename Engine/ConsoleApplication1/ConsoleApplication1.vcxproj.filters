@@ -75,11 +75,11 @@
     <ClInclude Include="Mesh.h">
       <Filter>Header Files\Renderer</Filter>
     </ClInclude>
-    <ClInclude Include="Transform.h">
-      <Filter>Header Files\Renderer</Filter>
-    </ClInclude>
     <ClInclude Include="Camera.h">
       <Filter>Header Files\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="Transform.h">
+      <Filter>Header Files\Math</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -116,13 +116,13 @@
     <ClCompile Include="Mesh.cpp">
       <Filter>Source Files\Renderer</Filter>
     </ClCompile>
-    <ClCompile Include="Transform.cpp">
-      <Filter>Source Files\Renderer</Filter>
-    </ClCompile>
     <ClCompile Include="Camera.cpp">
       <Filter>Source Files\Renderer</Filter>
     </ClCompile>
     <ClCompile Include="m_matrix.cpp">
+      <Filter>Source Files\Math</Filter>
+    </ClCompile>
+    <ClCompile Include="Transform.cpp">
       <Filter>Source Files\Math</Filter>
     </ClCompile>
   </ItemGroup>

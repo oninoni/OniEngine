@@ -1,5 +1,6 @@
 #pragma once
 
+class InputManager;
 class Game;
 
 #include <Windows.h>
@@ -15,6 +16,7 @@ private:
     Window* window;
     bool isRunning;
 
+    InputManager* inputManager;
     Game* game;
 
     void run();
@@ -24,9 +26,6 @@ private:
     static int * argc;
     static char ** argv;
 public:
-    static MainComponent*  getInstance();
-    static MainComponent*  getInstance(int * argc, char ** argv);
-
     static const double FRAME_CAP;
 
     MainComponent(int * argc, char ** argv);
@@ -36,4 +35,5 @@ public:
     void stop();
 
     GLFWwindow* getGLFWWindow();
+    InputManager* getInputManager();
 };

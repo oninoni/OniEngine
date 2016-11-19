@@ -13,25 +13,13 @@ MainComponent::MainComponent(int * argc, char ** argv) {
 
     RenderUtil::initGraphics();
 
-    //InputManager::getInstance();
-
-    game = new Game();
+    inputManager = new InputManager(this);
+    game = new Game(inputManager);
 }
 
 MainComponent::~MainComponent() {
     delete game;
     delete window;
-}
-
-MainComponent* MainComponent::getInstance(int * argc, char ** argv) {
-    MainComponent::argc = argc;
-    MainComponent::argv = argv;
-    return getInstance();
-}
-
-MainComponent* MainComponent::getInstance() {
-    static MainComponent mainComponent(argc, argv);
-    return &mainComponent;
 }
 
 void MainComponent::start() {
@@ -48,6 +36,10 @@ void MainComponent::stop() {
 
 GLFWwindow* MainComponent::getGLFWWindow() {
     return window->getGLFWWindow();
+}
+
+InputManager * MainComponent::getInputManager() {
+    return inputManager;
 }
 
 void MainComponent::run() {
@@ -82,10 +74,9 @@ void MainComponent::run() {
             glfwPollEvents();
             
             Time::setDelta(frameTime);
-            InputManager::getInstance()->update();
+            inputManager->update();
 
-            game->input();
-            game->update();
+            game->update(Time::getDelta());
 
             if (frameCounter >= Time::SECOND)
             {

@@ -1,5 +1,7 @@
 #pragma once
 
+class MainComponent;
+
 #include "m_vector.h"
 #include "MainComponent.h"
 
@@ -9,26 +11,21 @@
 #define IM_SCROLL_DOWN -1
 
 enum KeyAction {
-	kaUp,
-	kaDown,
+	kaForward,
+	kaBack,
 	kaLeft,
 	kaRight,
 	kaFirePrimary,
 	kaFireSecondary,
 	kaReload,
-    kaWeaponSwitchUp,
-    kaWeaponSwitchDown,
+    kaSpace,
+    kaShift,
 
-    // add new above
 	KA_SIZE
 };
 
 class InputManager {
 private:
-    // Private Constructor cause only one Instance;
-    InputManager(GLFWwindow* w);
-    ~InputManager();
-
 	GLFWwindow* window;
 
 	int keyBinds[KA_SIZE];
@@ -41,7 +38,8 @@ private:
 
     int getScroll(int keyCode);
 public:
-    static InputManager* getInstance();
+    InputManager(MainComponent* mC);
+    ~InputManager();
 
     vec2 getMousePos();
 

@@ -8,6 +8,15 @@ private:
 
     bool inverted;
 
+    vec3 d_forward;
+    bool forwardHasChanged;
+
+    vec3 d_left;
+    bool leftHasChanged;
+
+    vec3 d_up;
+    bool upHasChanged;
+
     vec3 t_translation;
     bool translationHasChanged;
     mat4 translationMatrix;
@@ -48,7 +57,11 @@ public:
     void setOffset(vec3 s);
     void setOffset(float x, float y, float z);
 
-    __declspec(property(get = getTranslation, put = setTranslation)) vec3 translation;
+    vec3 getForward();
+    vec3 getLeft();
+    vec3 getUp();
+
+    __declspec(property(get = getTranslation, put = setTranslation)) vec3 position;
     __declspec(property(get = getRotation, put = setRotation)) vec3 rotation;
     __declspec(property(get = getScale, put = setScale)) vec3 scale;
     __declspec(property(get = getOffset, put = setOffset)) vec3 offset;

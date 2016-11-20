@@ -2,6 +2,7 @@
 
 #include "Transform.h"
 #include "Shader.h"
+#include "InputManager.h"
 
 struct Perspective {
     float zNear;
@@ -23,7 +24,7 @@ public:
 
     Transform* getTransform();
 
+    void updateFreeCam(const double & delta, InputManager* input);
+
     void render(Shader* shader, const mat4 & modelmatrix);
-
-
 };

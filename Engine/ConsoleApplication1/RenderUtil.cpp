@@ -21,9 +21,17 @@ void RenderUtil::initGraphics() {
     //TODO Depth Clamp for later
 
     //Basically Free Gamma Correction!
-    glEnable(GL_FRAMEBUFFER_SRGB);
+    //glEnable(GL_FRAMEBUFFER_SRGB);
 }
 
 const char* RenderUtil::getOpenGLVersion() {
     return (char*)glGetString(GL_VERSION);
+}
+
+void RenderUtil::setClearColor(vec4 color) {
+    glClearColor(color.r, color.g, color.b, color.a);
+}
+
+inline void RenderUtil::setClearColor(vec3 color) {
+    glClearColor(color.r, color.g, color.b, 1.0);
 }

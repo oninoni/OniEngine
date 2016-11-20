@@ -8,14 +8,14 @@ class Camera;
 #include "Shader.h"
 #include "RecourceLoader.h"
 #include "Transform.h"
-#include "Texture.h"
+#include "Material.h"
 #include "Camera.h"
 #include <iostream>
 
 class Game {
 private:
     Transform* transform;
-    Texture* texture;
+    Material* material;
     Mesh* mesh;
 
     InputManager* input;

@@ -20,6 +20,7 @@ private:
     unsigned int drawCount;
 public:
     Mesh(Shader* shader, Vertex* vertices, uint nVert);
+    Mesh(Shader* shader, string fileName);
     ~Mesh();
 
     void render();

@@ -26,6 +26,9 @@ Mesh::Mesh(Shader* shader, Vertex* vertices, uint nVert){
     }
 }
 
+Mesh::Mesh(Shader * shader, string fileName) : Mesh(*(RecourceLoader::loadMesh(fileName, shader))){
+}
+
 Mesh::~Mesh() {
     glDeleteBuffers(NUM_BUFFERS, vaoBuffers);
     glDeleteVertexArrays(1, &vao);

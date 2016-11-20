@@ -6,11 +6,15 @@
 Postion vec3
 Normal vec3
 uv vec2
-ka vec3
-kd vec3
-ks vec3
+color vec3
 uvector/tangent vec3
 vvector/bitangent vec3
+
+Material:
+
+ambientTexture sampler2D
+diffuseTexture sampler2D
+specularTexture sampler2D
 */
 
 struct Vertex {

@@ -16,12 +16,6 @@
     <Filter Include="Header Files\Math">
       <UniqueIdentifier>{4706adb1-0691-483a-b636-bc968b52fdbc}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\Renderer">
-      <UniqueIdentifier>{e8fd2a10-2ff6-4883-9352-741c7c029af5}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\Renderer">
-      <UniqueIdentifier>{b1e62ec4-8cf3-4293-a058-0e655fd32e50}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\Engine">
       <UniqueIdentifier>{5ab9e03e-0c5f-456b-80e6-87cd5eb47680}</UniqueIdentifier>
     </Filter>
@@ -34,23 +28,41 @@
     <Filter Include="Source Files\Math">
       <UniqueIdentifier>{7d4e2757-f90a-4179-8b21-8f9109188c13}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\Renderer\Scene">
-      <UniqueIdentifier>{d5b09cc0-92ac-4f44-82b2-d547aa0405dd}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\Renderer\Pipeline">
-      <UniqueIdentifier>{18915777-4ce3-433f-b5f0-13a55df84551}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\Renderer\Scene">
-      <UniqueIdentifier>{ba1c6d01-b118-4235-ba36-b25390d8d953}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\Renderer\Pipeline">
-      <UniqueIdentifier>{f1669fb2-e71f-481f-b7f4-d9c22ed1510c}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\Engine\IO">
       <UniqueIdentifier>{42f30380-190d-4abd-bc24-cc00977db6b1}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\Engine\IO">
       <UniqueIdentifier>{eb92ae08-1fe3-4147-9a48-7ee92d0b33db}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Engine\Main">
+      <UniqueIdentifier>{e0104ecb-444b-4532-8633-b542a3721949}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Engine\Main">
+      <UniqueIdentifier>{c621af6c-0ecc-4e10-a029-7447905b8705}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Render">
+      <UniqueIdentifier>{89a76e3e-144a-40b8-bdd0-4b5e50176dce}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Render\Pipeline">
+      <UniqueIdentifier>{18915777-4ce3-433f-b5f0-13a55df84551}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Render\Scene">
+      <UniqueIdentifier>{d5b09cc0-92ac-4f44-82b2-d547aa0405dd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Render">
+      <UniqueIdentifier>{52675e1b-562d-43c0-8f9f-ce491a5434f3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Render\Pipeline">
+      <UniqueIdentifier>{f1669fb2-e71f-481f-b7f4-d9c22ed1510c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Render\Scene">
+      <UniqueIdentifier>{ba1c6d01-b118-4235-ba36-b25390d8d953}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Render\Lighting">
+      <UniqueIdentifier>{e9f87242-0dce-44ab-89cc-6c945482b9cf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Render\Lighting">
+      <UniqueIdentifier>{2092856e-b3ed-47d7-b57b-a015cad69e0c}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -60,44 +72,29 @@
     <ClInclude Include="m_matrix.h">
       <Filter>Header Files\Math</Filter>
     </ClInclude>
-    <ClInclude Include="Window.h">
-      <Filter>Header Files\Engine</Filter>
-    </ClInclude>
-    <ClInclude Include="MainComponent.h">
-      <Filter>Header Files\Engine</Filter>
-    </ClInclude>
-    <ClInclude Include="Time.h">
-      <Filter>Header Files\Engine</Filter>
-    </ClInclude>
-    <ClInclude Include="Game.h">
-      <Filter>Header Files\Engine</Filter>
-    </ClInclude>
     <ClInclude Include="OpenGL.h">
       <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="InputManager.h">
-      <Filter>Header Files\Engine</Filter>
     </ClInclude>
     <ClInclude Include="Transform.h">
       <Filter>Header Files\Math</Filter>
     </ClInclude>
     <ClInclude Include="Camera.h">
-      <Filter>Header Files\Renderer\Scene</Filter>
+      <Filter>Header Files\Render\Scene</Filter>
     </ClInclude>
     <ClInclude Include="Mesh.h">
-      <Filter>Header Files\Renderer\Scene</Filter>
+      <Filter>Header Files\Render\Scene</Filter>
     </ClInclude>
     <ClInclude Include="Vertex.h">
-      <Filter>Header Files\Renderer\Scene</Filter>
+      <Filter>Header Files\Render\Scene</Filter>
     </ClInclude>
     <ClInclude Include="RenderUtil.h">
-      <Filter>Header Files\Renderer\Pipeline</Filter>
+      <Filter>Header Files\Render\Pipeline</Filter>
     </ClInclude>
     <ClInclude Include="Shader.h">
-      <Filter>Header Files\Renderer\Pipeline</Filter>
+      <Filter>Header Files\Render\Pipeline</Filter>
     </ClInclude>
     <ClInclude Include="Texture.h">
-      <Filter>Header Files\Renderer\Pipeline</Filter>
+      <Filter>Header Files\Render\Pipeline</Filter>
     </ClInclude>
     <ClInclude Include="RecourceLoader.h">
       <Filter>Header Files\Engine\IO</Filter>
@@ -105,25 +102,34 @@
     <ClInclude Include="lodepng.h">
       <Filter>Header Files\Engine\IO</Filter>
     </ClInclude>
+    <ClInclude Include="Window.h">
+      <Filter>Header Files\Render\Pipeline</Filter>
+    </ClInclude>
+    <ClInclude Include="Game.h">
+      <Filter>Header Files\Engine\Main</Filter>
+    </ClInclude>
+    <ClInclude Include="InputManager.h">
+      <Filter>Header Files\Engine\Main</Filter>
+    </ClInclude>
+    <ClInclude Include="MainComponent.h">
+      <Filter>Header Files\Engine\Main</Filter>
+    </ClInclude>
+    <ClInclude Include="Time.h">
+      <Filter>Header Files\Engine\Main</Filter>
+    </ClInclude>
+    <ClInclude Include="Material.h">
+      <Filter>Header Files\Render\Pipeline</Filter>
+    </ClInclude>
+    <ClInclude Include="BaseLight.h">
+      <Filter>Header Files\Render\Lighting</Filter>
+    </ClInclude>
+    <ClInclude Include="DirectionalLight.h">
+      <Filter>Header Files\Render\Lighting</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="test.cpp">
       <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="MainComponent.cpp">
-      <Filter>Source Files\Engine</Filter>
-    </ClCompile>
-    <ClCompile Include="Window.cpp">
-      <Filter>Source Files\Engine</Filter>
-    </ClCompile>
-    <ClCompile Include="Game.cpp">
-      <Filter>Source Files\Engine</Filter>
-    </ClCompile>
-    <ClCompile Include="Time.cpp">
-      <Filter>Source Files\Engine</Filter>
-    </ClCompile>
-    <ClCompile Include="InputManager.cpp">
-      <Filter>Source Files\Engine</Filter>
     </ClCompile>
     <ClCompile Include="m_matrix.cpp">
       <Filter>Source Files\Math</Filter>
@@ -132,28 +138,52 @@
       <Filter>Source Files\Math</Filter>
     </ClCompile>
     <ClCompile Include="Camera.cpp">
-      <Filter>Source Files\Renderer\Scene</Filter>
+      <Filter>Source Files\Render\Scene</Filter>
     </ClCompile>
     <ClCompile Include="Mesh.cpp">
-      <Filter>Source Files\Renderer\Scene</Filter>
+      <Filter>Source Files\Render\Scene</Filter>
     </ClCompile>
     <ClCompile Include="Vertex.cpp">
-      <Filter>Source Files\Renderer\Scene</Filter>
+      <Filter>Source Files\Render\Scene</Filter>
     </ClCompile>
     <ClCompile Include="RenderUtil.cpp">
-      <Filter>Source Files\Renderer\Pipeline</Filter>
+      <Filter>Source Files\Render\Pipeline</Filter>
     </ClCompile>
     <ClCompile Include="Shader.cpp">
-      <Filter>Source Files\Renderer\Pipeline</Filter>
+      <Filter>Source Files\Render\Pipeline</Filter>
     </ClCompile>
     <ClCompile Include="Texture.cpp">
-      <Filter>Source Files\Renderer\Pipeline</Filter>
+      <Filter>Source Files\Render\Pipeline</Filter>
     </ClCompile>
     <ClCompile Include="lodepng.cpp">
       <Filter>Source Files\Engine\IO</Filter>
     </ClCompile>
     <ClCompile Include="RecourceLoader.cpp">
       <Filter>Source Files\Engine\IO</Filter>
+    </ClCompile>
+    <ClCompile Include="Window.cpp">
+      <Filter>Source Files\Render\Pipeline</Filter>
+    </ClCompile>
+    <ClCompile Include="Time.cpp">
+      <Filter>Source Files\Engine\Main</Filter>
+    </ClCompile>
+    <ClCompile Include="Game.cpp">
+      <Filter>Source Files\Engine\Main</Filter>
+    </ClCompile>
+    <ClCompile Include="InputManager.cpp">
+      <Filter>Source Files\Engine\Main</Filter>
+    </ClCompile>
+    <ClCompile Include="MainComponent.cpp">
+      <Filter>Source Files\Engine\Main</Filter>
+    </ClCompile>
+    <ClCompile Include="Material.cpp">
+      <Filter>Source Files\Render\Pipeline</Filter>
+    </ClCompile>
+    <ClCompile Include="BaseLight.cpp">
+      <Filter>Source Files\Render\Lighting</Filter>
+    </ClCompile>
+    <ClCompile Include="DirectionalLight.cpp">
+      <Filter>Source Files\Render\Lighting</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

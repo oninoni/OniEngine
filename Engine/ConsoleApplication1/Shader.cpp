@@ -95,24 +95,39 @@ GLint Shader::getUniformLocation(string uniform) {
     return uniforms[uniform];
 }
 
-void Shader::setUniformI(GLint uniformLocation, int value) {
+void Shader::setUniformI(string uniformLocation, int value) {
     bind();
-    glUniform1i(uniformLocation, value);
+    glUniform1i(getUniformLocation(uniformLocation), value);
 }
 
-void Shader::setUniformF(GLint uniformLocation, float value) {
+void Shader::setUniformF(string uniformLocation, float value) {
     bind();
-    glUniform1f(uniformLocation, value);
+    glUniform1f(getUniformLocation(uniformLocation), value);
 }
 
-void Shader::setUniformVec3(GLint uniformLocation, vec3 value) {
+void Shader::setUniformVec3(string uniformLocation, vec3 value) {
     bind();
-    glUniform3f(uniformLocation, value.x, value.y, value.z);
+    glUniform3f(getUniformLocation(uniformLocation), value.x, value.y, value.z);
 }
 
-void Shader::setUniformMat4(GLint uniformLocation, mat4 value, GLboolean transpose) {
+void Shader::setUniformVec4(string uniformLocation, vec4 value) {
     bind();
-    glUniformMatrix4fv(uniformLocation, 1, transpose, (float*)&value);
+    glUniform4f(getUniformLocation(uniformLocation), value.x, value.y, value.z, value.w);
+}
+
+void Shader::setUniformMat4(string uniformLocation, mat4 value, GLboolean transpose) {
+    bind();
+    glUniformMatrix4fv(getUniformLocation(uniformLocation), 1, transpose, (float*)&value);
+}
+
+void Shader::setUniformBLight(string uniformLocation, BaseLight * baseLight) {
+    setUniformVec3(".l_color", baseLight->getColor());
+    setUniformF(".l_intensity", baseLight->getIntensity());
+}
+
+void Shader::setUniformDLight(string uniformLocation, DirectionalLight* directionalLight) {
+    setUniformBLight(".base", directionalLight);
+    setUniformVec3(".l_direction", directionalLight->getDirection());
 }
 
 Shader::~Shader() {

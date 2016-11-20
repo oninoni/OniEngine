@@ -4,7 +4,6 @@ Game::Game(InputManager* i) {
     input = i;
 
     shader = new Shader("basic");
-    
     shader->addAttribute("v_position", GL_FLOAT, 3);
     shader->addAttribute("v_normal", GL_FLOAT, 3);
     shader->addAttribute("v_uv", GL_FLOAT, 2);
@@ -12,15 +11,14 @@ Game::Game(InputManager* i) {
     camera = new Camera(800, 600, 0.1f, 1000, 70.0f);
     camera->getTransform()->position = vec3(0, 0, 5);
 
-    mesh = RecourceLoader::loadMesh("Models/cube.obj", shader);
+    mesh = new Mesh(shader, "Models/cube.obj");
+    material = new Material(new Texture("Textures/brick.png"), vec4(1, 1, 1, 1));
 
-    texture = new Texture("Textures/brick.png");
-
-    glUniform1i(shader->getUniformLocation("diffuse"), 0);
+    shader->setUniformVec3(shader->getUniformLocation("l_ambient"), vec3(0.1, 0.1, 0.1));
 
     transform = new Transform();
     //transform->rotation = vec3(-90, 0, 0);
-    //transform->scale = vec3(0.1, 0.1, 0.1);
+    //transform->scale = vec3(0.1, 0.1, 0.1s
 }
 
 Game::~Game() {
@@ -28,44 +26,14 @@ Game::~Game() {
     delete shader;
 }
 
-#define FLYSPEED 4
-#define TURNSPEED 20
-
 void Game::update(const double & delta) {
-    vec3 cameraMovement;
-    if (input->keyDown(KeyAction::kaSpace)) {
-        cameraMovement += camera->getTransform()->getUp()* (float)(delta * FLYSPEED);
-    }
-    if (input->keyDown(KeyAction::kaShift)) {
-        cameraMovement += camera->getTransform()->getUp()* -(float)(delta * FLYSPEED);
-    }
-    if (input->keyDown(KeyAction::kaLeft)) {
-        cameraMovement += camera->getTransform()->getLeft()* (float)(delta * FLYSPEED);
-    }
-    if (input->keyDown(KeyAction::kaRight)) {
-        cameraMovement += camera->getTransform()->getLeft()* -(float)(delta * FLYSPEED);
-    }
-    if (input->keyDown(KeyAction::kaForward)) {
-        cameraMovement += camera->getTransform()->getForward()* (float)(delta * FLYSPEED);
-    }
-    if (input->keyDown(KeyAction::kaBack)) {
-        cameraMovement += camera->getTransform()->getForward()* -(float)(delta * FLYSPEED);
-    }
-    camera->getTransform()->position += cameraMovement;
-
-    vec3 cameraRotation;
-    vec2 mousePos = input->getMousePos();
-
-    cameraRotation.yaw = -mousePos.x * TURNSPEED;
-    cameraRotation.pitch = max(min(mousePos.y * TURNSPEED, 90.0), -90.0);
-
-    camera->getTransform()->rotation = cameraRotation;
+    camera->updateFreeCam(delta, input);
 }
 
 void Game::render() {
-    texture->bind(0);
     camera->render(shader, transform->getTransformationMatrix());
 
     shader->bind();
+    material->bind(shader, 0);
     mesh->render();
 }

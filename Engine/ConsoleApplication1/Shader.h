@@ -4,6 +4,7 @@
 #include "RecourceLoader.h"
 #include "m_vector.h"
 #include "m_matrix.h"
+#include "DirectionalLight.h"
 #include <vector>
 #include <iostream>
 #include <unordered_map>
@@ -39,6 +40,8 @@ private:
 
     static GLuint createShader(const string& text, GLenum type);
     static void checkShaderError(GLuint shader, GLuint flag, bool isProgram, const std::string& errorMessage);
+
+    void setUniformBLight(string uniformLocation, BaseLight * baseLight);
 public:
     Shader(const string& fileName);
     void bind();
@@ -51,9 +54,12 @@ public:
 
     GLint getUniformLocation(string uniform);
 
-    void setUniformI(GLint uniformLocation, int value);
-    void setUniformF(GLint uniformLocation, float value);
-    void setUniformVec3(GLint uniformLocation, vec3 value);
-    void setUniformMat4(GLint uniformLocation, mat4 value, GLboolean transpose = GL_FALSE);
+    void setUniformI(string uniformLocation, int value);
+    void setUniformF(string uniformLocation, float value);
+    void setUniformVec3(string uniformLocation, vec3 value);
+    void setUniformVec4(string uniformLocation, vec4 value);
+    void setUniformMat4(string uniformLocation, mat4 value, GLboolean transpose = GL_FALSE);
+
+    void setUniformDLight(string uniformLocation, DirectionalLight* directionalLight);
 
 };

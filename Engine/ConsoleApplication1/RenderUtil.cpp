@@ -9,7 +9,7 @@ void RenderUtil::initGraphics() {
     glClearColor(0, 0, 0, 0);
 
     // Clockwise is front
-    glFrontFace(GL_CW); 
+    glFrontFace(GL_CCW);
 
     //Culling Back
     glCullFace(GL_BACK);

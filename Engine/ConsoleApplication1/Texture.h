@@ -16,5 +16,5 @@ public:
 
     GLuint getID();
 
-    void Bind(unsigned int unit);
+    void bind(unsigned int unit);
 };

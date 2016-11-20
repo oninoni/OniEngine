@@ -16,15 +16,16 @@ Game::Game(InputManager* i) {
 
     texture = new Texture("Textures/brick.png");
 
+    glUniform1i(shader->getUniformLocation("diffuse"), 0);
+
     transform = new Transform();
     //transform->rotation = vec3(-90, 0, 0);
     //transform->scale = vec3(0.1, 0.1, 0.1);
 }
 
 Game::~Game() {
-    delete mesh;
+    delete camera;
     delete shader;
-    delete transform;
 }
 
 #define FLYSPEED 4
@@ -62,9 +63,9 @@ void Game::update(const double & delta) {
 }
 
 void Game::render() {
+    texture->bind(0);
     camera->render(shader, transform->getTransformationMatrix());
 
-    texture->Bind(0);
     shader->bind();
     mesh->render();
 }

@@ -41,9 +41,9 @@ Mesh *RecourceLoader::loadOBJ(string fileName, Shader* shader) {
                 continue;
             }
 
-            for (int i = 0; i < tokens.size(); i++) {
+            /*for (int i = 0; i < tokens.size(); i++) {
                 cout << "|" << tokens[i] << "|" << endl;
-            }
+            }*/
 
             if (tokens[0] == "o") {
                 //NAME
@@ -65,8 +65,8 @@ Mesh *RecourceLoader::loadOBJ(string fileName, Shader* shader) {
             else if (tokens[0] == "vt") {
                 if (tokens.size() >= 3) {
                     vec2 uv;
-                    uv.u = stof(tokens[1]);
-                    uv.v = stof(tokens[2]);
+                    uv.x = stof(tokens[1]);
+                    uv.y = stof(tokens[2]);
                     //cout << line << " read as " << uv << endl;
                     uvs.push_back(uv);
                 }
@@ -102,7 +102,7 @@ Mesh *RecourceLoader::loadOBJ(string fileName, Shader* shader) {
             }
             else if (tokens[0] == "f") {
                 if (tokens.size() == 4) {
-                    for (int i = 2; i >= 0; i--) { // REVERSE ORDER
+                    for (int i = 0; i < 3; i++) { // REVERSE ORDER
                         string vertexIds = tokens[i + 1];
                         vector <string> vertexIdsSplit;
 
@@ -169,7 +169,7 @@ Mesh *RecourceLoader::loadOBJ(string fileName, Shader* shader) {
                         indices.push_back(index);
                         //Per Vertice Materials here too
 
-                        cout << vertexIds << " read as: " << index << endl;
+                        //cout << vertexIds << " read as: " << index << endl;
                     }
                 }
                 else {
@@ -257,7 +257,7 @@ Image RecourceLoader::loadTexture(string fileName) {
 
     transform(format.begin(), format.end(), format.begin(), tolower);
 
-    if (format == "obj") {
+    if (format == "png") {
         return loadPNG(fileName.c_str());
     }
 

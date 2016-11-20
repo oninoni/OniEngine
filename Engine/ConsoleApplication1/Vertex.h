@@ -5,7 +5,6 @@
 /*
 Postion vec3
 Normal vec3
-color vec3
 uv vec2
 ka vec3
 kd vec3
@@ -16,8 +15,9 @@ vvector/bitangent vec3
 
 struct Vertex {
     Vertex();
-    Vertex(vec3 pos, vec4 col);
+    Vertex(vec3 pos, vec3 n, vec2 uv);
 
     vec3 position;
-    vec4 color;
+    vec3 normal;
+    vec2 uv;
 };

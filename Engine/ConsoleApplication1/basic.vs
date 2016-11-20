@@ -3,13 +3,14 @@
 uniform mat4 mvp;
 
 in vec3 v_position;
-in vec4 v_color;
+in vec3 v_normal;
+in vec2 v_uv;
 
-out vec4 f_color;
-out vec3 f_position;
+out vec3 f_normal;
+out vec2 f_uv;
 
 void main(){
-    f_color = v_color;
-    f_position = v_position;
+    f_normal = v_normal;
+    f_uv = v_uv;
     gl_Position = vec4(v_position, 1.0) * mvp;
 }

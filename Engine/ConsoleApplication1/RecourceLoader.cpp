@@ -1,13 +1,5 @@
 #include "RecourceLoader.h"
 
-enum FaceMode {
-    fM_NAM,
-    fM_Vertex,
-    fM_VertexTexture,
-    fm_VertexNormal,
-    fM_VertexTextureNormal
-};
-
 Mesh *RecourceLoader::loadOBJ(string fileName, Shader* shader) {
     vector<vec3> positions;
     vector<vec3> normals;
@@ -24,7 +16,7 @@ Mesh *RecourceLoader::loadOBJ(string fileName, Shader* shader) {
             getline(file, line);
             vector<string> tokens;
 
-            cout << line << endl;
+            //cout << line << endl;
 
             int initialSpaces;
             for (initialSpaces = 0; initialSpaces < line.size(); initialSpaces++) {
@@ -41,12 +33,16 @@ Mesh *RecourceLoader::loadOBJ(string fileName, Shader* shader) {
                     if (line[i] != ' ') {
                         tokens.push_back(line.substr(lastPos + 1, i - lastPos));
                     }
-                    lastPos = i;
+                    lastPos = i + 1;
                 }
             }
             if (tokens.size() == 0) {
-                cout << "Skipping Line" << endl;
+                //cout << "Skipping Line" << endl;
                 continue;
+            }
+
+            for (int i = 0; i < tokens.size(); i++) {
+                cout << "|" << tokens[i] << "|" << endl;
             }
 
             if (tokens[0] == "o") {
@@ -71,7 +67,7 @@ Mesh *RecourceLoader::loadOBJ(string fileName, Shader* shader) {
                     vec2 uv;
                     uv.u = stof(tokens[1]);
                     uv.v = stof(tokens[2]);
-                    cout << line << " read as " << uv << endl;
+                    //cout << line << " read as " << uv << endl;
                     uvs.push_back(uv);
                 }
                 else {
@@ -110,6 +106,8 @@ Mesh *RecourceLoader::loadOBJ(string fileName, Shader* shader) {
                         string vertexIds = tokens[i + 1];
                         vector <string> vertexIdsSplit;
 
+                        //cout << vertexIds << endl; 
+
                         FaceMode mode = fM_NAM;
                         int SlashCounter = 0;
 
@@ -122,20 +120,21 @@ Mesh *RecourceLoader::loadOBJ(string fileName, Shader* shader) {
                                     vertexIdsSplit.push_back("0");
                                     mode = fm_VertexNormal;
                                 }
-                                lastP = j;
-                                SlashCounter++;
+                                lastP = j + 1;
+                                if (vertexIds[j + 1] == '/')
+                                    SlashCounter++;
                             }
                         }
 
                         if (mode == fM_NAM) {
                             switch (SlashCounter) {
-                            case 1:
+                            case 0:
                                 mode = fM_Vertex;
                                 break;
-                            case 2:
+                            case 1:
                                 mode = fM_VertexTexture;
                                 break;
-                            case 3:
+                            case 2:
                                 mode = fM_VertexTextureNormal;
                                 break;
                             }
@@ -189,13 +188,14 @@ Mesh *RecourceLoader::loadOBJ(string fileName, Shader* shader) {
             ivec3 index = indices[i];
             verts[i] = Vertex(
                 positions[index.x],
-                vec4()
+                normals[index.z],
+                uvs[index.y]
                 );
         }
 
         Mesh* m = new Mesh(shader, verts, indices.size());
 
-        delete verts;
+        delete[] verts;
 
         return m;
     }
@@ -235,11 +235,49 @@ Mesh* RecourceLoader::loadMesh(string fileName, Shader* shader) {
         }
     }
 
-    if (format == "obj" || format == "OBJ") {
+    transform(format.begin(), format.end(), format.begin(), tolower);
+
+    if (format == "obj") {
         return loadOBJ(fileName, shader);
     }
 
-    cerr << "File: " << fileName << " could not be loaded by the Engine. File Format not supported!" << endl;
+    cerr << "File: " << fileName << " could not be loaded by the Engine. Object Format not supported!" << endl;
 
     return NULL;
+}
+
+Image RecourceLoader::loadTexture(string fileName) {
+    string format;
+
+    for (int i = fileName.size() - 1; i >= 0; i--) {
+        if (fileName.at(i) == '.') {
+            format = fileName.substr(i + 1);
+        }
+    }
+
+    transform(format.begin(), format.end(), format.begin(), tolower);
+
+    if (format == "obj") {
+        return loadPNG(fileName.c_str());
+    }
+
+    cerr << "File: " << fileName << " could not be loaded by the Engine. Texture Format not supported!" << endl;
+
+    return Image();
+}
+
+Image RecourceLoader::loadPNG(const char * filename) {
+    Image image;
+
+    //decode
+    unsigned error = lodepng::decode(image.data, image.width, image.height, filename);
+
+    //if there's an error, display it
+    if (error)
+        cout << "decoder error " << error << ": " << lodepng_error_text(error) << endl;
+
+    //the pixels are now in the vector "image", 4 bytes per pixel, ordered RGBARGBA..., use it as texture, draw it, ...
+
+
+    return image;
 }

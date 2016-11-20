@@ -34,6 +34,24 @@
     <Filter Include="Source Files\Math">
       <UniqueIdentifier>{7d4e2757-f90a-4179-8b21-8f9109188c13}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Renderer\Scene">
+      <UniqueIdentifier>{d5b09cc0-92ac-4f44-82b2-d547aa0405dd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Renderer\Pipeline">
+      <UniqueIdentifier>{18915777-4ce3-433f-b5f0-13a55df84551}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Renderer\Scene">
+      <UniqueIdentifier>{ba1c6d01-b118-4235-ba36-b25390d8d953}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Renderer\Pipeline">
+      <UniqueIdentifier>{f1669fb2-e71f-481f-b7f4-d9c22ed1510c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Engine\IO">
+      <UniqueIdentifier>{42f30380-190d-4abd-bc24-cc00977db6b1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Engine\IO">
+      <UniqueIdentifier>{eb92ae08-1fe3-4147-9a48-7ee92d0b33db}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="m_vector.h">
@@ -60,26 +78,32 @@
     <ClInclude Include="InputManager.h">
       <Filter>Header Files\Engine</Filter>
     </ClInclude>
-    <ClInclude Include="RenderUtil.h">
-      <Filter>Header Files\Renderer</Filter>
-    </ClInclude>
-    <ClInclude Include="Vertex.h">
-      <Filter>Header Files\Renderer</Filter>
-    </ClInclude>
-    <ClInclude Include="Shader.h">
-      <Filter>Header Files\Renderer</Filter>
-    </ClInclude>
-    <ClInclude Include="RecourceLoader.h">
-      <Filter>Header Files\Engine</Filter>
-    </ClInclude>
-    <ClInclude Include="Mesh.h">
-      <Filter>Header Files\Renderer</Filter>
-    </ClInclude>
-    <ClInclude Include="Camera.h">
-      <Filter>Header Files\Renderer</Filter>
-    </ClInclude>
     <ClInclude Include="Transform.h">
       <Filter>Header Files\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Camera.h">
+      <Filter>Header Files\Renderer\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="Mesh.h">
+      <Filter>Header Files\Renderer\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="Vertex.h">
+      <Filter>Header Files\Renderer\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="RenderUtil.h">
+      <Filter>Header Files\Renderer\Pipeline</Filter>
+    </ClInclude>
+    <ClInclude Include="Shader.h">
+      <Filter>Header Files\Renderer\Pipeline</Filter>
+    </ClInclude>
+    <ClInclude Include="Texture.h">
+      <Filter>Header Files\Renderer\Pipeline</Filter>
+    </ClInclude>
+    <ClInclude Include="RecourceLoader.h">
+      <Filter>Header Files\Engine\IO</Filter>
+    </ClInclude>
+    <ClInclude Include="lodepng.h">
+      <Filter>Header Files\Engine\IO</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -101,29 +125,35 @@
     <ClCompile Include="InputManager.cpp">
       <Filter>Source Files\Engine</Filter>
     </ClCompile>
-    <ClCompile Include="RenderUtil.cpp">
-      <Filter>Source Files\Renderer</Filter>
-    </ClCompile>
-    <ClCompile Include="Vertex.cpp">
-      <Filter>Source Files\Renderer</Filter>
-    </ClCompile>
-    <ClCompile Include="Shader.cpp">
-      <Filter>Source Files\Renderer</Filter>
-    </ClCompile>
-    <ClCompile Include="RecourceLoader.cpp">
-      <Filter>Source Files\Engine</Filter>
-    </ClCompile>
-    <ClCompile Include="Mesh.cpp">
-      <Filter>Source Files\Renderer</Filter>
-    </ClCompile>
-    <ClCompile Include="Camera.cpp">
-      <Filter>Source Files\Renderer</Filter>
-    </ClCompile>
     <ClCompile Include="m_matrix.cpp">
       <Filter>Source Files\Math</Filter>
     </ClCompile>
     <ClCompile Include="Transform.cpp">
       <Filter>Source Files\Math</Filter>
+    </ClCompile>
+    <ClCompile Include="Camera.cpp">
+      <Filter>Source Files\Renderer\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="Mesh.cpp">
+      <Filter>Source Files\Renderer\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="Vertex.cpp">
+      <Filter>Source Files\Renderer\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="RenderUtil.cpp">
+      <Filter>Source Files\Renderer\Pipeline</Filter>
+    </ClCompile>
+    <ClCompile Include="Shader.cpp">
+      <Filter>Source Files\Renderer\Pipeline</Filter>
+    </ClCompile>
+    <ClCompile Include="Texture.cpp">
+      <Filter>Source Files\Renderer\Pipeline</Filter>
+    </ClCompile>
+    <ClCompile Include="lodepng.cpp">
+      <Filter>Source Files\Engine\IO</Filter>
+    </ClCompile>
+    <ClCompile Include="RecourceLoader.cpp">
+      <Filter>Source Files\Engine\IO</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

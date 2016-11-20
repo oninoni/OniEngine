@@ -22,6 +22,7 @@
     <ClInclude Include="Camera.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="InputManager.h" />
+    <ClInclude Include="lodepng.h" />
     <ClInclude Include="MainComponent.h" />
     <ClInclude Include="Mesh.h" />
     <ClInclude Include="m_matrix.h" />
@@ -30,6 +31,7 @@
     <ClInclude Include="RecourceLoader.h" />
     <ClInclude Include="RenderUtil.h" />
     <ClInclude Include="Shader.h" />
+    <ClInclude Include="Texture.h" />
     <ClInclude Include="Time.h" />
     <ClInclude Include="Transform.h" />
     <ClInclude Include="Vertex.h" />
@@ -39,6 +41,7 @@
     <ClCompile Include="Camera.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="InputManager.cpp" />
+    <ClCompile Include="lodepng.cpp" />
     <ClCompile Include="MainComponent.cpp" />
     <ClCompile Include="Mesh.cpp" />
     <ClCompile Include="m_matrix.cpp" />
@@ -46,6 +49,7 @@
     <ClCompile Include="RenderUtil.cpp" />
     <ClCompile Include="Shader.cpp" />
     <ClCompile Include="test.cpp" />
+    <ClCompile Include="Texture.cpp" />
     <ClCompile Include="Time.cpp" />
     <ClCompile Include="Transform.cpp" />
     <ClCompile Include="Vertex.cpp" />

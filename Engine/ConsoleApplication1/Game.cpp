@@ -1,49 +1,24 @@
 #include "Game.h"
 
 Game::Game(InputManager* i) {
-
-    Vertex vertices[] = {
-
-        Vertex(vec3(-1, -1, 1), vec4(1, 0, 0, 1)),
-        Vertex(vec3(0, 1, 0), vec4(0, 1, 0, 1)),
-        Vertex(vec3(1, -1, 1), vec4(0, 0, 1, 1)),
-
-        Vertex(vec3(1, -1, 1), vec4(0, 0, 1, 1)),
-        Vertex(vec3(0, 1, 0), vec4(0, 1, 0, 1)),
-        Vertex(vec3(1, -1, -1), vec4(1, 0, 0, 1)),
-
-        Vertex(vec3(1, -1, -1), vec4(1, 0, 0, 1)),
-        Vertex(vec3(0, 1, 0), vec4(0, 1, 0, 1)),
-        Vertex(vec3(-1, -1, -1), vec4(0, 0, 1, 1)),
-
-        Vertex(vec3(-1, -1, -1), vec4(0, 0, 1, 1)),
-        Vertex(vec3(0, 1, 0), vec4(0, 1, 0, 1)),
-        Vertex(vec3(-1, -1, 1), vec4(1, 0, 0, 1)),
-
-        Vertex(vec3(-1, -1, 1), vec4(1, 0, 0, 1)),
-        Vertex(vec3(1, -1, 1), vec4(0, 0, 1, 1)),
-        Vertex(vec3(-1, -1, -1), vec4(0, 0, 1, 1)),
-
-        Vertex(vec3(-1, -1, -1), vec4(0, 0, 1, 1)),
-        Vertex(vec3(1, -1, 1), vec4(0, 0, 1, 1)),
-        Vertex(vec3(1, -1, -1), vec4(1, 0, 0, 1)),
-    };
-
     input = i;
 
     shader = new Shader("basic");
     
     shader->addAttribute("v_position", GL_FLOAT, 3);
-    shader->addAttribute("v_color", GL_FLOAT, 4);
+    shader->addAttribute("v_normal", GL_FLOAT, 3);
+    shader->addAttribute("v_uv", GL_FLOAT, 2);
 
     camera = new Camera(800, 600, 0.1f, 1000, 70.0f);
     camera->getTransform()->position = vec3(0, 0, 5);
 
-    mesh =// new Mesh(shader, vertices, 18);
+    mesh = RecourceLoader::loadMesh("Models/cube.obj", shader);
 
-    RecourceLoader::loadMesh("Models/alfa147.obj", shader);
+    texture = new Texture("Textures/brick.png");
 
     transform = new Transform();
+    //transform->rotation = vec3(-90, 0, 0);
+    //transform->scale = vec3(0.1, 0.1, 0.1);
 }
 
 Game::~Game() {
@@ -89,6 +64,7 @@ void Game::update(const double & delta) {
 void Game::render() {
     camera->render(shader, transform->getTransformationMatrix());
 
+    texture->Bind(0);
     shader->bind();
     mesh->render();
 }

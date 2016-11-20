@@ -56,5 +56,11 @@ void Camera::updateFreeCam(const double & delta, InputManager* input) {
 void Camera::render(Shader* shader, const mat4 & modelmatrix) {
     mat4 mvp = projectionMatrix * transform->getTransformationMatrix() * modelmatrix;
 
-    shader->setUniformMat4(shader->getUniformLocation("modelViewProjection"), mvp);
+    shader->setUniformMat4("model", modelmatrix);
+    shader->setUniformMat4("view", transform->getTransformationMatrix());
+    shader->setUniformMat4("projection", projectionMatrix);
+
+    shader->setUniformMat4("modelViewProjection", mvp);
+
+    shader->setUniformVec3("f_cameraPosition", transform->position);
 }

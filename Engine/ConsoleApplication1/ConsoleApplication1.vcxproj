@@ -19,6 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Attenuation.h" />
     <ClInclude Include="BaseLight.h" />
     <ClInclude Include="Camera.h" />
     <ClInclude Include="DirectionalLight.h" />
@@ -31,9 +32,11 @@
     <ClInclude Include="m_matrix.h" />
     <ClInclude Include="m_vector.h" />
     <ClInclude Include="OpenGL.h" />
+    <ClInclude Include="PointLight.h" />
     <ClInclude Include="RecourceLoader.h" />
     <ClInclude Include="RenderUtil.h" />
     <ClInclude Include="Shader.h" />
+    <ClInclude Include="SpotLight.h" />
     <ClInclude Include="Texture.h" />
     <ClInclude Include="Time.h" />
     <ClInclude Include="Transform.h" />
@@ -41,6 +44,7 @@
     <ClInclude Include="Window.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Attenuation.cpp" />
     <ClCompile Include="BaseLight.cpp" />
     <ClCompile Include="Camera.cpp" />
     <ClCompile Include="DirectionalLight.cpp" />
@@ -51,9 +55,11 @@
     <ClCompile Include="Material.cpp" />
     <ClCompile Include="Mesh.cpp" />
     <ClCompile Include="m_matrix.cpp" />
+    <ClCompile Include="PointLight.cpp" />
     <ClCompile Include="RecourceLoader.cpp" />
     <ClCompile Include="RenderUtil.cpp" />
     <ClCompile Include="Shader.cpp" />
+    <ClCompile Include="SpotLight.cpp" />
     <ClCompile Include="test.cpp" />
     <ClCompile Include="Texture.cpp" />
     <ClCompile Include="Time.cpp" />

@@ -9,11 +9,13 @@ private:
     Texture* ambient;
     Texture* diffuse;
     Texture* specular;
+    float specularReflectance;
+    float specularExponent;
 
     vec4 color;
 public:
-    Material::Material(Texture* t, vec4 c = vec4(1, 1, 1, 1));
-    Material(Texture* a, Texture* d, Texture* s, vec4 c = vec4(1, 1, 1, 1));
+    Material::Material(Texture* t, float sE = 8, float sR = 1, vec4 c = vec4(1, 1, 1, 1));
+    Material(Texture* a, Texture* d, Texture* s, float sE = 8, float sR = 1, vec4 c = vec4(1, 1, 1, 1));
     ~Material();
 
     Texture* getAmbient();

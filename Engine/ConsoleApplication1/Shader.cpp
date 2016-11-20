@@ -83,7 +83,7 @@ void Shader::addUniform(string uniform) {
     GLint uniformLocation = glGetUniformLocation(program, uniform.c_str());
     
     if (uniformLocation == 0xFFFFFFFF) {
-        cerr << "Error: could not find uniform " + uniform + "!";
+        cerr << "Warning: could not find uniform " + uniform + "!";
     }
     
     uniforms[uniform] = uniformLocation;
@@ -121,13 +121,32 @@ void Shader::setUniformMat4(string uniformLocation, mat4 value, GLboolean transp
 }
 
 void Shader::setUniformBLight(string uniformLocation, BaseLight * baseLight) {
-    setUniformVec3(".l_color", baseLight->getColor());
-    setUniformF(".l_intensity", baseLight->getIntensity());
+    setUniformVec3(uniformLocation + ".l_color", baseLight->getColor());
+    setUniformF(uniformLocation + ".l_intensity", baseLight->getIntensity());
+}
+
+void Shader::setUniformAttend(string uniformLocation, Attenuation * attenuation) {
+    setUniformF(uniformLocation + ".attend_constant", attenuation->getConstant());
+    setUniformF(uniformLocation + ".attend_linear", attenuation->getLinear());
+    setUniformF(uniformLocation + ".attend_square", attenuation->getSquare());
 }
 
 void Shader::setUniformDLight(string uniformLocation, DirectionalLight* directionalLight) {
-    setUniformBLight(".base", directionalLight);
-    setUniformVec3(".l_direction", directionalLight->getDirection());
+    setUniformBLight(uniformLocation + ".base", directionalLight);
+    setUniformVec3(uniformLocation + ".l_direction", directionalLight->getDirection());
+}
+
+void Shader::setUniformPLight(string uniformLocation, PointLight * pointLight) {
+    setUniformBLight(uniformLocation + ".base", pointLight);
+    setUniformAttend(uniformLocation + ".attenuation", pointLight);
+    setUniformVec3(uniformLocation + ".l_position", pointLight->getPosition());
+    setUniformF(uniformLocation + ".l_range", pointLight->getRange());
+}
+
+void Shader::setUniformSLight(string uniformLocation, SpotLight * spotLight) {
+    setUniformPLight(uniformLocation + ".pointLight", spotLight);
+    setUniformVec3(uniformLocation + ".l_direction", spotLight->getDirection());
+    setUniformF(uniformLocation + ".l_cutoff", spotLight->getCutoff());
 }
 
 Shader::~Shader() {

@@ -3,7 +3,6 @@
 void InputManager::scroll_callback(GLFWwindow * window, double xoffset, double yoffset) {
     InputManager* inputManager = ((MainComponent*)glfwGetWindowUserPointer(window))->getInputManager();
     if (yoffset != 0) {
-        cout << yoffset << endl;
         if (yoffset > 0) {
             inputManager->getScrollData()[IM_SCROLL_UP] = (int)yoffset;
         }

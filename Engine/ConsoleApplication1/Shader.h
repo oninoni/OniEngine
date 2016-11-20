@@ -5,6 +5,7 @@
 #include "m_vector.h"
 #include "m_matrix.h"
 #include "DirectionalLight.h"
+#include "SpotLight.h"
 #include <vector>
 #include <iostream>
 #include <unordered_map>
@@ -42,6 +43,7 @@ private:
     static void checkShaderError(GLuint shader, GLuint flag, bool isProgram, const std::string& errorMessage);
 
     void setUniformBLight(string uniformLocation, BaseLight * baseLight);
+    void setUniformAttend(string uniformLocation, Attenuation* attenuation);
 public:
     Shader(const string& fileName);
     void bind();
@@ -61,5 +63,6 @@ public:
     void setUniformMat4(string uniformLocation, mat4 value, GLboolean transpose = GL_FALSE);
 
     void setUniformDLight(string uniformLocation, DirectionalLight* directionalLight);
-
+    void setUniformPLight(string uniformLocation, PointLight* pointLight);
+    void setUniformSLight(string uniformLocation, SpotLight* spotLight);
 };

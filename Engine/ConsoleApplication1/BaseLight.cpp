@@ -7,10 +7,6 @@ BaseLight::BaseLight(vec3 c, float i) {
     intensity = i;
 }
 
-
-BaseLight::~BaseLight() {
-}
-
 vec3 BaseLight::getColor() {
     return color;
 }

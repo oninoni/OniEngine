@@ -18,10 +18,7 @@ void RenderUtil::initGraphics() {
     //Enable z component on render result
     glEnable(GL_DEPTH_TEST);
 
-    //TODO Depth Clamp for later
-
-    //Basically Free Gamma Correction!
-    //glEnable(GL_FRAMEBUFFER_SRGB);
+    glEnable(GL_DEPTH_CLAMP);
 }
 
 const char* RenderUtil::getOpenGLVersion() {

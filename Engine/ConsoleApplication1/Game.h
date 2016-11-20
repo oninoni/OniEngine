@@ -16,7 +16,13 @@ class Game {
 private:
     Transform* transform;
     Material* material;
+
+    Mesh* floor;
     Mesh* mesh;
+
+    DirectionalLight* directionalLight;
+    PointLight* pointLight;
+    SpotLight* spotLight;
 
     InputManager* input;
     Camera* camera;

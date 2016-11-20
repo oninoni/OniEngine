@@ -12,6 +12,9 @@ Mesh *RecourceLoader::loadOBJ(string fileName, Shader* shader) {
     string line;
 
     if (file.is_open()) {
+
+        
+
         while (file.good()) {
             getline(file, line);
             vector<string> tokens;
@@ -102,7 +105,7 @@ Mesh *RecourceLoader::loadOBJ(string fileName, Shader* shader) {
             }
             else if (tokens[0] == "f") {
                 if (tokens.size() == 4) {
-                    for (int i = 0; i < 3; i++) { // REVERSE ORDER
+                    for (int i = 0; i < 3; i++) {
                         string vertexIds = tokens[i + 1];
                         vector <string> vertexIdsSplit;
 
@@ -177,7 +180,7 @@ Mesh *RecourceLoader::loadOBJ(string fileName, Shader* shader) {
                 }
                 continue;
             }
-            cerr << "Unknown Line in " << fileName << ": " << line << endl;
+            //cerr << "Unknown Line in " << fileName << ": " << line << endl;
         }
 
         cout << "All is read!" << endl;

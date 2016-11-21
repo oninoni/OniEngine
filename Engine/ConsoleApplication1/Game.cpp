@@ -13,7 +13,7 @@ Game::Game(InputManager* i) {
 
     mesh = new Mesh(shader, "Models/cube.obj");
     floor = new Mesh(shader, "Models/cube.obj");
-    material = new Material(new Texture("Textures/brick.png"), new Texture("Textures/brick.png"), new Texture("Textures/brick.png"), 128.0f);
+    material = new Material(new Texture("Textures/brick.png"), new Texture("Textures/brick.png"), new Texture("Textures/brickSpecular.png"), 128.0f);
 
     shader->setUniformVec3("l_ambient", vec3(0.1, 0.1, 0.1));
 

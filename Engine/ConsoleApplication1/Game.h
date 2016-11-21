@@ -23,6 +23,7 @@ private:
     DirectionalLight* directionalLight;
     PointLight* pointLight;
     SpotLight* spotLight;
+    SpotLight* spotLight2;
 
     InputManager* input;
     Camera* camera;

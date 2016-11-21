@@ -147,6 +147,7 @@ void Shader::setUniformSLight(string uniformLocation, SpotLight * spotLight) {
     setUniformPLight(uniformLocation + ".pointLight", spotLight);
     setUniformVec3(uniformLocation + ".l_direction", spotLight->getDirection());
     setUniformF(uniformLocation + ".l_cutoff", spotLight->getCutoff());
+    setUniformF(uniformLocation + ".l_cutoffBlend", spotLight->getCutoffBlend());
 }
 
 Shader::~Shader() {

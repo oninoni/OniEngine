@@ -19,14 +19,16 @@ Game::Game(InputManager* i) {
 
     transform = new Transform();
 
-    directionalLight = new DirectionalLight(vec3(1, 1, 1), 1, vec3(-0.4, -0.3, -0.2));
+    directionalLight = new DirectionalLight(vec3(1, 1, 1), .2, vec3(-0.4, -0.3, -0.2));
     shader->setUniformDLight("l_directionalLight", directionalLight);
     
-    //pointLight = new PointLight(vec3(-2.5, 2, -2.1), 20, vec3(1, 1, 1), 1, 0, 0, 1);
+    //pointLight = new PointLight(vec3(0, 2, 0), 20, vec3(1, 0, 0), 1);
     //shader->setUniformPLight("l_pointLights[0]", pointLight);
 
-    spotLight = new SpotLight(vec3(0, -1, 0), .9, vec3(0, 1, 0), 20, vec3(1, 0, 0), 1, 0, 0, .5);
+    spotLight = new SpotLight(vec3(0, -1, 0), 45, 5, vec3(0, 2, 0), 20, vec3(0, 0, 1), 1);
     shader->setUniformSLight("l_spotLights[0]", spotLight);
+    spotLight2 = new SpotLight(vec3(0, -1, 0), 45, 5, vec3(0, 2, 0), 20, vec3(1, 0, 0), 1);
+    shader->setUniformSLight("l_spotLights[1]", spotLight2);
 
     //transform->rotation = vec3(-90, 0, 0);
     //transform->scale = vec3(0.1, 0.1, 0.1s
@@ -49,21 +51,24 @@ void Game::render() {
     shader->bind();
     material->bind(shader, 0);
 
-    spotLight->setDirection(vec3(sin(Time::getTime()), -1, 0));
+    spotLight->setDirection(vec3(sin(Time::getTime() * PI), -1, cos(Time::getTime() * PI)));
     shader->setUniformSLight("l_spotLights[0]", spotLight);
 
-    transform->position = vec3(0, 0, 0);
+    spotLight2->setDirection(vec3(-sin(Time::getTime() * PI), -1, -cos(Time::getTime() * PI)));
+    shader->setUniformSLight("l_spotLights[1]", spotLight2);
+
+    transform->position = vec3(2, 0, 0);
     transform->scale = vec3(1, 1, 1);
     transform->rotation = vec3(0, 0, 0);
-    transform->offset = vec3(-.5, -.5, -.5);
+    transform->offset = vec3(-.5, -.05, -.5);
 
     camera->render(shader, transform->getTransformationMatrix());
     mesh->render();
 
-    transform->position = vec3(0, -.5, 0);
+    transform->position = vec3(0, -.2, 0);
     transform->scale = vec3(50, 0.1, 50);
     transform->rotation = vec3(0, 0, 0);
-    transform->offset = vec3(-.5, -.5, -.5);
+    transform->offset = vec3(-.5, -.05, -.5);
 
     camera->render(shader, transform->getTransformationMatrix());
     floor->render();

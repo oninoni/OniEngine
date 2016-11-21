@@ -30,6 +30,7 @@ struct SpotLight{
     PointLight pointLight;
     vec3 l_direction;
     float l_cutoff;
+    float l_cutoffBlend;
 };
 
 uniform vec4 f_color;
@@ -54,7 +55,6 @@ in vec2 f_uv;
 in vec3 f_position;
 
 out vec4 out_color;
-
 
 vec4 calcLight(BaseLight base, vec3 direction){
     float diffuseFactor = dot(-direction, f_normal);
@@ -84,34 +84,36 @@ vec4 calcDirectionalLight(DirectionalLight dLight){
 }
 
 vec4 calcPointLight(PointLight pointLight){
-    vec3 lightDirection = f_position - pointLight.l_position;
-    float distanceToLight = length(lightDirection);
+    vec3 direction = f_position - pointLight.l_position;
+    float distanceToLight = length(direction);
     
-    if(distanceToLight > pointLight.l_range)
+    if(distanceToLight > pointLight.l_range*2)
         return vec4(0, 0, 0, 0);
     
-    lightDirection = normalize(lightDirection);
+    direction = normalize(direction);
     
-    vec4 color = calcLight(pointLight.base, lightDirection);
+    vec4 color = calcLight(pointLight.base, direction);
     
-    float attenuation = pointLight.attenuation.attend_constant + 
-    pointLight.attenuation.attend_linear * distanceToLight + 
-    distanceToLight * pointLight.attenuation.attend_square * pointLight.attenuation.attend_square + 
-    0.0001;
+    float attenuation = 
+            pointLight.attenuation.attend_constant + 
+            pointLight.attenuation.attend_linear * distanceToLight + 
+            pointLight.attenuation.attend_square * (distanceToLight * distanceToLight);
     
     return color / attenuation;
 }
 
 vec4 calcSpotLight(SpotLight spotLight){
-
-    vec3 lightDirection = normalize(f_position - spotLight.pointLight.l_position);
-    float spotFactor = dot(lightDirection, spotLight.l_direction);
+    vec3 direction = normalize(f_position - spotLight.pointLight.l_position);
+    float angle = acos(dot(spotLight.l_direction, direction)) * 180 / 3.14159265359;
     
     vec4 color = vec4(0, 0, 0, 0);
     
-    if(spotFactor > spotLight.l_cutoff){
-        color = calcPointLight(spotLight.pointLight)
-            * (1.0 - ((1.0 - spotFactor) / (1.0 - spotLight.l_cutoff)));
+    if(angle < spotLight.l_cutoff){
+        float multiplier = 1;
+        if(spotLight.l_cutoff - spotLight.l_cutoffBlend < angle){
+            multiplier = 1 - (angle - (spotLight.l_cutoff - spotLight.l_cutoffBlend)) / spotLight.l_cutoffBlend;
+        }
+        color = calcPointLight(spotLight.pointLight) * multiplier;
     }
     
     return color;

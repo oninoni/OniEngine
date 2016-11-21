@@ -2,10 +2,12 @@
 
 
 
-PointLight::PointLight(vec3 p, float r, vec3 c, float i, float ac, float al, float as) :
-    BaseLight(c, i),
-    Attenuation(ac, al, as)
-{
+PointLight::PointLight(vec3 p, float r, vec3 c, float i) : BaseLight(c, i), Attenuation(r) {
+    position = p;
+    range = r;
+}
+
+PointLight::PointLight(vec3 p, float r, vec3 c, float i, float ac, float al, float as) : BaseLight(c, i), Attenuation(ac, al, as){
     position = p;
     range = r;
 }

@@ -2,6 +2,12 @@
 
 
 
+Attenuation::Attenuation(float range) {
+    constant = 1;
+    linear = 2 / (range);
+    square = 4 / (range*range);
+}
+
 Attenuation::Attenuation(float c, float l, float s) {
     constant = c;
     linear = l;

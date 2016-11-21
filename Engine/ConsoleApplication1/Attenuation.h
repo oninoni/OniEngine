@@ -6,6 +6,7 @@ protected:
     float linear;
     float square;
 
+    Attenuation(float range);
     Attenuation(float c, float l, float s);
 public:
     float getConstant();

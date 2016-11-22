@@ -1,5 +1,7 @@
 #include "DirectionalLight.h"
 
+#include "BaseLight.h"
+
 DirectionalLight::DirectionalLight(vec3 c, float i, vec3 d) : BaseLight(c, i){
     direcion = d.normalize();
 }

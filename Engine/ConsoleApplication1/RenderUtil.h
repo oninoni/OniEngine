@@ -1,7 +1,6 @@
 #pragma once
 
-#include "m_vector.h"
-#include "OpenGL.h"
+#include "stdafx.h"
 
 class RenderUtil {
 public:

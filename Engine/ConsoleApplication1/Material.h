@@ -1,6 +1,9 @@
 #pragma once
 
-#include "Texture.h"
+#include "stdafx.h"
+
+class Texture;
+class Shader;
 
 //TODO: Reflection and Refraction
 

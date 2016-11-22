@@ -1,16 +1,13 @@
 #pragma once
 
-#include "OpenGL.h"
-#include "RecourceLoader.h"
-#include "m_vector.h"
-#include "m_matrix.h"
-#include "DirectionalLight.h"
-#include "SpotLight.h"
-#include <vector>
-#include <iostream>
-#include <unordered_map>
+#include "stdafx.h"
 
-using namespace std;
+class BaseLight;
+class Attenuation;
+
+class DirectionalLight;
+class PointLight;
+class SpotLight;
 
 enum ShaderType{
     VertexShader,

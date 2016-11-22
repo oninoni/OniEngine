@@ -1,11 +1,9 @@
 #pragma once
 
-class Shader;
+#include "stdafx.h"
 
-#include "OpenGL.h"
-#include <iostream>
-#include "Shader.h"
-#include "Vertex.h"
+class Shader;
+class Vertex;
 
 class Mesh {
 private:

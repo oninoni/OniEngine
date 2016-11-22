@@ -1,5 +1,7 @@
 #include "SpotLight.h"
 
+#include "PointLight.h"
+
 SpotLight::SpotLight(vec3 d, float cO, float cOB, vec3 p, float r, vec3 c, float i) : PointLight(p, r, c, i) {
     direction = d.normalize();
     cutoff = cO;

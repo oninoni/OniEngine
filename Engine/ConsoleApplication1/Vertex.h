@@ -1,6 +1,6 @@
 #pragma once
 
-#include "m_vector.h"
+#include "stdafx.h"
 
 /*
 Postion vec3
@@ -17,7 +17,8 @@ diffuseTexture sampler2D
 specularTexture sampler2D
 */
 
-struct Vertex {
+class Vertex {
+public:
     Vertex();
     Vertex(vec3 pos, vec3 n, vec2 uv);
 

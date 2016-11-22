@@ -1,5 +1,7 @@
 #pragma once
 
+#include "stdafx.h"
+
 #include "PointLight.h"
 
 class SpotLight : public PointLight {

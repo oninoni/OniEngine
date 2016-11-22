@@ -1,6 +1,6 @@
 #pragma once
 
-#include "OpenGL.h"
+#include "stdafx.h"
 
 class Time {
 private:

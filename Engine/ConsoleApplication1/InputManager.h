@@ -1,11 +1,8 @@
 #pragma once
 
-class MainComponent;
+#include "stdafx.h"
 
-#include "m_vector.h"
-#include "MainComponent.h"
-
-#include "OpenGL.h"
+class CoreEngine;
 
 #define IM_SCROLL_UP -2
 #define IM_SCROLL_DOWN -1
@@ -38,7 +35,7 @@ private:
 
     int getScroll(int keyCode);
 public:
-    InputManager(MainComponent* mC);
+    InputManager(CoreEngine* mC);
     ~InputManager();
 
     vec2 getMousePos();

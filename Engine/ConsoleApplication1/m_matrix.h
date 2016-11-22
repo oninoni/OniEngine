@@ -1,6 +1,6 @@
 #pragma once
 
-#include "m_vector.h"
+#include "stdafx.h"
 
 template<typename T, int M, int N>
 struct m_matrix;

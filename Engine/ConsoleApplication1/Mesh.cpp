@@ -1,5 +1,10 @@
 #include "Mesh.h"
 
+#include "Vertex.h"
+
+#include "RecourceLoader.h"
+#include "Shader.h"
+
 Mesh::Mesh(Shader* shader, Vertex* vertices, uint nVert){
     drawCount = nVert;
 

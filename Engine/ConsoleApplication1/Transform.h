@@ -1,11 +1,9 @@
 #pragma once
 
-#include "m_vector.h"
-#include "m_matrix.h"
+#include "stdafx.h"
 
 class Transform {
 private:
-
     bool inverted;
 
     vec3 d_forward;

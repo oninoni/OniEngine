@@ -1,7 +1,5 @@
 #include "Transform.h"
 
-
-
 Transform::Transform(bool invert) {
     translationHasChanged = true;
     rotationHasChanged = true;

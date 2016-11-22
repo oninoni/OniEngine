@@ -1,6 +1,7 @@
 #include "PointLight.h"
 
-
+#include "BaseLight.h"
+#include "Attenuation.h"
 
 PointLight::PointLight(vec3 p, float r, vec3 c, float i) : BaseLight(c, i), Attenuation(r) {
     position = p;

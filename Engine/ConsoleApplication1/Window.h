@@ -1,10 +1,6 @@
 #pragma once
 
-#include <iostream>
-
-using namespace std;
-
-#include "OpenGL.h"
+#include "stdafx.h"
 
 class Window {
 private:

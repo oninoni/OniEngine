@@ -1,5 +1,7 @@
 #pragma once
 
+#include "stdafx.h"
+
 #include "BaseLight.h"
 
 class DirectionalLight : public BaseLight {

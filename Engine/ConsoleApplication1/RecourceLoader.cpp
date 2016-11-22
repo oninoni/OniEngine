@@ -1,5 +1,13 @@
 #include "RecourceLoader.h"
 
+#include "lodepng.h"
+
+#include "Vertex.h"
+#include "Mesh.h"
+
+#include "Texture.h"
+#include "Shader.h"
+
 Mesh *RecourceLoader::loadOBJ(string fileName, Shader* shader) {
     vector<vec3> positions;
     vector<vec3> normals;
@@ -21,7 +29,7 @@ Mesh *RecourceLoader::loadOBJ(string fileName, Shader* shader) {
 
             //cout << line << endl;
 
-            int initialSpaces;
+            uint initialSpaces;
             for (initialSpaces = 0; initialSpaces < line.size(); initialSpaces++) {
                 if (line[initialSpaces] != ' ')
                     break;
@@ -115,7 +123,7 @@ Mesh *RecourceLoader::loadOBJ(string fileName, Shader* shader) {
                         int SlashCounter = 0;
 
                         int lastP = -1;
-                        for (int j = 0; j < vertexIds.size(); j++) {
+                        for (uint j = 0; j < vertexIds.size(); j++) {
                             if (vertexIds[j + 1] == '/' || j == vertexIds.size() - 1) {
                                 if (vertexIds[j] != '/')
                                     vertexIdsSplit.push_back(vertexIds.substr(lastP + 1, j - lastP));

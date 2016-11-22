@@ -28,41 +28,53 @@
     <Filter Include="Source Files\Math">
       <UniqueIdentifier>{7d4e2757-f90a-4179-8b21-8f9109188c13}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\Engine\IO">
-      <UniqueIdentifier>{42f30380-190d-4abd-bc24-cc00977db6b1}</UniqueIdentifier>
+    <Filter Include="Header Files\Engine\Core">
+      <UniqueIdentifier>{9d382f95-2b73-464d-b665-175a32b5f2ba}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\Engine\IO">
-      <UniqueIdentifier>{eb92ae08-1fe3-4147-9a48-7ee92d0b33db}</UniqueIdentifier>
+    <Filter Include="Header Files\Engine\Physics">
+      <UniqueIdentifier>{610c5e1b-23cb-4f08-aa23-aec628b47457}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\Engine\Main">
-      <UniqueIdentifier>{e0104ecb-444b-4532-8633-b542a3721949}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\Engine\Main">
-      <UniqueIdentifier>{c621af6c-0ecc-4e10-a029-7447905b8705}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\Render">
-      <UniqueIdentifier>{89a76e3e-144a-40b8-bdd0-4b5e50176dce}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\Render\Pipeline">
-      <UniqueIdentifier>{18915777-4ce3-433f-b5f0-13a55df84551}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\Render\Scene">
-      <UniqueIdentifier>{d5b09cc0-92ac-4f44-82b2-d547aa0405dd}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\Render">
+    <Filter Include="Header Files\Engine\Render">
       <UniqueIdentifier>{52675e1b-562d-43c0-8f9f-ce491a5434f3}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\Render\Pipeline">
+    <Filter Include="Header Files\Engine\Render\Pipeline">
       <UniqueIdentifier>{f1669fb2-e71f-481f-b7f4-d9c22ed1510c}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\Render\Scene">
+    <Filter Include="Header Files\Engine\Render\Scene">
       <UniqueIdentifier>{ba1c6d01-b118-4235-ba36-b25390d8d953}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\Render\Lighting">
+    <Filter Include="Header Files\Engine\Render\Lighting">
       <UniqueIdentifier>{e9f87242-0dce-44ab-89cc-6c945482b9cf}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\Render\Lighting">
+    <Filter Include="Source Files\Engine\Core">
+      <UniqueIdentifier>{0b6b8d41-1c21-437e-910d-6bc475e4a5f5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Engine\Render">
+      <UniqueIdentifier>{66bac570-5bb2-4c0b-8584-63e30433b7fa}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Engine\Render\Lighting">
       <UniqueIdentifier>{2092856e-b3ed-47d7-b57b-a015cad69e0c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Engine\Render\Pipeline">
+      <UniqueIdentifier>{18915777-4ce3-433f-b5f0-13a55df84551}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Engine\Render\Scene">
+      <UniqueIdentifier>{d5b09cc0-92ac-4f44-82b2-d547aa0405dd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Engine\Core\IO">
+      <UniqueIdentifier>{42f30380-190d-4abd-bc24-cc00977db6b1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Engine\Core\IO">
+      <UniqueIdentifier>{eb92ae08-1fe3-4147-9a48-7ee92d0b33db}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Engine\Physics">
+      <UniqueIdentifier>{571986c0-fe3f-4d47-a6ba-09bae7f43e05}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Game">
+      <UniqueIdentifier>{6b18c456-4049-40ce-8100-f43c2816a300}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Game">
+      <UniqueIdentifier>{a02782ca-73ed-443c-b3af-ea243a59e419}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -72,74 +84,89 @@
     <ClInclude Include="m_matrix.h">
       <Filter>Header Files\Math</Filter>
     </ClInclude>
-    <ClInclude Include="OpenGL.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Transform.h">
       <Filter>Header Files\Math</Filter>
     </ClInclude>
     <ClInclude Include="Camera.h">
-      <Filter>Header Files\Render\Scene</Filter>
+      <Filter>Header Files\Engine\Render\Scene</Filter>
     </ClInclude>
     <ClInclude Include="Mesh.h">
-      <Filter>Header Files\Render\Scene</Filter>
+      <Filter>Header Files\Engine\Render\Scene</Filter>
     </ClInclude>
     <ClInclude Include="Vertex.h">
-      <Filter>Header Files\Render\Scene</Filter>
+      <Filter>Header Files\Engine\Render\Scene</Filter>
     </ClInclude>
     <ClInclude Include="RenderUtil.h">
-      <Filter>Header Files\Render\Pipeline</Filter>
+      <Filter>Header Files\Engine\Render\Pipeline</Filter>
     </ClInclude>
     <ClInclude Include="Shader.h">
-      <Filter>Header Files\Render\Pipeline</Filter>
+      <Filter>Header Files\Engine\Render\Pipeline</Filter>
     </ClInclude>
     <ClInclude Include="Texture.h">
-      <Filter>Header Files\Render\Pipeline</Filter>
+      <Filter>Header Files\Engine\Render\Pipeline</Filter>
     </ClInclude>
     <ClInclude Include="RecourceLoader.h">
-      <Filter>Header Files\Engine\IO</Filter>
+      <Filter>Header Files\Engine\Core\IO</Filter>
     </ClInclude>
     <ClInclude Include="lodepng.h">
-      <Filter>Header Files\Engine\IO</Filter>
+      <Filter>Header Files\Engine\Core\IO</Filter>
     </ClInclude>
     <ClInclude Include="Window.h">
-      <Filter>Header Files\Render\Pipeline</Filter>
-    </ClInclude>
-    <ClInclude Include="Game.h">
-      <Filter>Header Files\Engine\Main</Filter>
-    </ClInclude>
-    <ClInclude Include="InputManager.h">
-      <Filter>Header Files\Engine\Main</Filter>
-    </ClInclude>
-    <ClInclude Include="MainComponent.h">
-      <Filter>Header Files\Engine\Main</Filter>
-    </ClInclude>
-    <ClInclude Include="Time.h">
-      <Filter>Header Files\Engine\Main</Filter>
+      <Filter>Header Files\Engine\Render\Pipeline</Filter>
     </ClInclude>
     <ClInclude Include="Material.h">
-      <Filter>Header Files\Render\Pipeline</Filter>
+      <Filter>Header Files\Engine\Render\Pipeline</Filter>
     </ClInclude>
     <ClInclude Include="BaseLight.h">
-      <Filter>Header Files\Render\Lighting</Filter>
+      <Filter>Header Files\Engine\Render\Lighting</Filter>
     </ClInclude>
     <ClInclude Include="DirectionalLight.h">
-      <Filter>Header Files\Render\Lighting</Filter>
+      <Filter>Header Files\Engine\Render\Lighting</Filter>
     </ClInclude>
     <ClInclude Include="Attenuation.h">
-      <Filter>Header Files\Render\Lighting</Filter>
+      <Filter>Header Files\Engine\Render\Lighting</Filter>
     </ClInclude>
     <ClInclude Include="PointLight.h">
-      <Filter>Header Files\Render\Lighting</Filter>
+      <Filter>Header Files\Engine\Render\Lighting</Filter>
     </ClInclude>
     <ClInclude Include="SpotLight.h">
-      <Filter>Header Files\Render\Lighting</Filter>
+      <Filter>Header Files\Engine\Render\Lighting</Filter>
+    </ClInclude>
+    <ClInclude Include="stdafx.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="InputManager.h">
+      <Filter>Header Files\Engine\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Time.h">
+      <Filter>Header Files\Engine\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="CoreEngine.h">
+      <Filter>Header Files\Engine\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="TestGame.h">
+      <Filter>Header Files\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="Game.h">
+      <Filter>Header Files\Engine\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="GameObject.h">
+      <Filter>Header Files\Engine\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="GameComponent.h">
+      <Filter>Header Files\Engine\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="MeshRenderer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="RenderingEngine.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PhongShader.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="test.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="m_matrix.cpp">
       <Filter>Source Files\Math</Filter>
     </ClCompile>
@@ -147,68 +174,89 @@
       <Filter>Source Files\Math</Filter>
     </ClCompile>
     <ClCompile Include="Camera.cpp">
-      <Filter>Source Files\Render\Scene</Filter>
+      <Filter>Source Files\Engine\Render\Scene</Filter>
     </ClCompile>
     <ClCompile Include="Mesh.cpp">
-      <Filter>Source Files\Render\Scene</Filter>
+      <Filter>Source Files\Engine\Render\Scene</Filter>
     </ClCompile>
     <ClCompile Include="Vertex.cpp">
-      <Filter>Source Files\Render\Scene</Filter>
+      <Filter>Source Files\Engine\Render\Scene</Filter>
     </ClCompile>
     <ClCompile Include="RenderUtil.cpp">
-      <Filter>Source Files\Render\Pipeline</Filter>
+      <Filter>Source Files\Engine\Render\Pipeline</Filter>
     </ClCompile>
     <ClCompile Include="Shader.cpp">
-      <Filter>Source Files\Render\Pipeline</Filter>
+      <Filter>Source Files\Engine\Render\Pipeline</Filter>
     </ClCompile>
     <ClCompile Include="Texture.cpp">
-      <Filter>Source Files\Render\Pipeline</Filter>
+      <Filter>Source Files\Engine\Render\Pipeline</Filter>
     </ClCompile>
     <ClCompile Include="lodepng.cpp">
-      <Filter>Source Files\Engine\IO</Filter>
+      <Filter>Source Files\Engine\Core\IO</Filter>
     </ClCompile>
     <ClCompile Include="RecourceLoader.cpp">
-      <Filter>Source Files\Engine\IO</Filter>
+      <Filter>Source Files\Engine\Core\IO</Filter>
     </ClCompile>
     <ClCompile Include="Window.cpp">
-      <Filter>Source Files\Render\Pipeline</Filter>
-    </ClCompile>
-    <ClCompile Include="Time.cpp">
-      <Filter>Source Files\Engine\Main</Filter>
-    </ClCompile>
-    <ClCompile Include="Game.cpp">
-      <Filter>Source Files\Engine\Main</Filter>
-    </ClCompile>
-    <ClCompile Include="InputManager.cpp">
-      <Filter>Source Files\Engine\Main</Filter>
-    </ClCompile>
-    <ClCompile Include="MainComponent.cpp">
-      <Filter>Source Files\Engine\Main</Filter>
+      <Filter>Source Files\Engine\Render\Pipeline</Filter>
     </ClCompile>
     <ClCompile Include="Material.cpp">
-      <Filter>Source Files\Render\Pipeline</Filter>
+      <Filter>Source Files\Engine\Render\Pipeline</Filter>
     </ClCompile>
     <ClCompile Include="BaseLight.cpp">
-      <Filter>Source Files\Render\Lighting</Filter>
+      <Filter>Source Files\Engine\Render\Lighting</Filter>
     </ClCompile>
     <ClCompile Include="DirectionalLight.cpp">
-      <Filter>Source Files\Render\Lighting</Filter>
+      <Filter>Source Files\Engine\Render\Lighting</Filter>
     </ClCompile>
     <ClCompile Include="Attenuation.cpp">
-      <Filter>Source Files\Render\Lighting</Filter>
+      <Filter>Source Files\Engine\Render\Lighting</Filter>
     </ClCompile>
     <ClCompile Include="PointLight.cpp">
-      <Filter>Source Files\Render\Lighting</Filter>
+      <Filter>Source Files\Engine\Render\Lighting</Filter>
     </ClCompile>
     <ClCompile Include="SpotLight.cpp">
-      <Filter>Source Files\Render\Lighting</Filter>
+      <Filter>Source Files\Engine\Render\Lighting</Filter>
+    </ClCompile>
+    <ClCompile Include="InputManager.cpp">
+      <Filter>Source Files\Engine\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="Time.cpp">
+      <Filter>Source Files\Engine\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="CoreEngine.cpp">
+      <Filter>Source Files\Engine\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="Source.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="TestGame.cpp">
+      <Filter>Source Files\Game</Filter>
+    </ClCompile>
+    <ClCompile Include="Game.cpp">
+      <Filter>Source Files\Engine\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="GameObject.cpp">
+      <Filter>Source Files\Engine\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="GameComponent.cpp">
+      <Filter>Source Files\Engine\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="MeshRenderer.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="RenderingEngine.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PhongShader.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="basic.fs">
+    <None Include="phong.vs">
       <Filter>Resource Files\Shaders</Filter>
     </None>
-    <None Include="basic.vs">
+    <None Include="phong.fs">
       <Filter>Resource Files\Shaders</Filter>
     </None>
   </ItemGroup>

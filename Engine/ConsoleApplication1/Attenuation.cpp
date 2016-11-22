@@ -1,7 +1,5 @@
 #include "Attenuation.h"
 
-
-
 Attenuation::Attenuation(float range) {
     constant = 1;
     linear = 2 / (range);

@@ -1,13 +1,13 @@
 #pragma once
 
-#include "m_vector.h"
+#include "stdafx.h"
 
 class BaseLight {
 protected:
     vec3 color;
     float intensity;
 
-    BaseLight(vec3 color, float intensity);
+    BaseLight(vec3 c, float i);
 public:
 
     vec3 getColor();
@@ -16,4 +16,3 @@ public:
     float getIntensity();
     void setIntensity(float i);
 };
-

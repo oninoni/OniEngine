@@ -1,5 +1,9 @@
 #include "Shader.h"
 
+#include "RecourceLoader.h"
+#include "DirectionalLight.h"
+#include "SpotLight.h"
+
 GLuint getDataSize(GLenum dataType) {
     switch (dataType) {
     case GL_BYTE:

@@ -1,38 +1,21 @@
 #pragma once
 
+#include "stdafx.h"
+
+class InputManager;
+class GameObject;
 class Camera;
 
-#include "InputManager.h"
-#include "Vertex.h"
-#include "Mesh.h"
-#include "Shader.h"
-#include "RecourceLoader.h"
-#include "Transform.h"
-#include "Material.h"
-#include "Camera.h"
-#include <iostream>
-
 class Game {
-private:
-    Transform* transform;
-    Material* material;
-
-    Mesh* floor;
-    Mesh* mesh;
-
-    DirectionalLight* directionalLight;
-    PointLight* pointLight;
-    SpotLight* spotLight;
-    SpotLight* spotLight2;
-
-    InputManager* input;
-    Camera* camera;
-    Shader* shader;
+protected:
+    GameObject* root;
 public:
-    Game(InputManager* i);
-    ~Game();
+    Game();
+    virtual ~Game() = 0;
 
-    void update(const double & delta);
-    void render();
+    virtual void init();
+    virtual void update(const double & delta, InputManager* input);
+
+    GameObject* getRootGameObject();
 };
 

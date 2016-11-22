@@ -1,7 +1,9 @@
 #include "InputManager.h"
 
+#include "CoreEngine.h"
+
 void InputManager::scroll_callback(GLFWwindow * window, double xoffset, double yoffset) {
-    InputManager* inputManager = ((MainComponent*)glfwGetWindowUserPointer(window))->getInputManager();
+    InputManager* inputManager = ((CoreEngine*)glfwGetWindowUserPointer(window))->getInputManager();
     if (yoffset != 0) {
         if (yoffset > 0) {
             inputManager->getScrollData()[IM_SCROLL_UP] = (int)yoffset;
@@ -19,7 +21,7 @@ int InputManager::getScroll(int keyCode) {
     return -1;
 }
 
-InputManager::InputManager(MainComponent* mC) {
+InputManager::InputManager(CoreEngine* mC) {
     window = mC->getGLFWWindow();
 
     glfwSetWindowUserPointer(window, mC);

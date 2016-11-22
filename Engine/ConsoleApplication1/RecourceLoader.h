@@ -1,22 +1,9 @@
 #pragma once
 
+#include "stdafx.h"
+
 class Mesh;
-
-
-#include <Windows.h>
-
-#include <algorithm>
-#include <iostream>
-#include <string>
-#include <fstream>
-#include <sstream>
-#include <vector>
-#include "lodepng.h"
-#include "Texture.h"
-#include "Mesh.h"
-#include "Shader.h"
-
-using namespace std;
+class Shader;
 
 enum FaceMode {
     fM_NAM,

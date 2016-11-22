@@ -1,35 +1,35 @@
 #pragma once
 
+#include "stdafx.h"
+
+class Window;
 class InputManager;
 class Game;
+class RenderingEngine;
 
-#include <Windows.h>
-
-#include "Time.h"
-#include "InputManager.h"
-#include "RenderUtil.h"
-#include "Window.h"
-#include "Game.h"
-
-class MainComponent {
+class CoreEngine {
 private:
+    int width, height;
+    float frameTime;
+
     Window* window;
     bool isRunning;
 
     InputManager* inputManager;
     Game* game;
 
+    RenderingEngine* renderingEngine;
+
+    void initRendering();
+
     void run();
     void render();
     void cleanUp();
-
-    static int * argc;
-    static char ** argv;
 public:
-    static const double FRAME_CAP;
+    CoreEngine(int width, int height, float framerate, Game* game);
+    ~CoreEngine();
 
-    MainComponent(int * argc, char ** argv);
-    ~MainComponent();
+    void createWindow(string title);
 
     void start();
     void stop();

@@ -1,8 +1,10 @@
 #pragma once
 
-#include "Transform.h"
-#include "Shader.h"
-#include "InputManager.h"
+#include "stdafx.h"
+
+class Shader;
+
+class InputManager;
 
 struct Perspective {
     float zNear;

@@ -1,5 +1,7 @@
 #include "Texture.h"
 
+#include "RecourceLoader.h"
+
 Texture::Texture(string fileName) {
     Image image = RecourceLoader::loadTexture(fileName);
 
@@ -14,7 +16,6 @@ Texture::Texture(string fileName) {
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
 
     glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, image.width, image.height, 0, GL_RGBA, GL_UNSIGNED_BYTE, image.data.data());
-
 }
 
 

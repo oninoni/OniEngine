@@ -1,5 +1,8 @@
 #include "Camera.h"
 
+#include "Shader.h"
+#include "InputManager.h"
+
 #define FLYSPEED 4
 #define TURNSPEED 20
 

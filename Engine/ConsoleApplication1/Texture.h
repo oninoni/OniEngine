@@ -1,11 +1,6 @@
 #pragma once
 
-#include "OpenGL.h"
-#include "RecourceLoader.h"
-#include <string>
-#include <assert.h>
-
-using namespace std;
+#include "stdafx.h"
 
 class Texture {
 private:

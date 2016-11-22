@@ -1,5 +1,8 @@
 #pragma once
 
+class Texture;
+class Shader;
+
 //TODO: Reflection and Refraction
 
 class Material {

@@ -1,5 +1,8 @@
 #pragma once
 
+class Shader;
+class Vertex;
+
 class Mesh {
 private:
     enum {

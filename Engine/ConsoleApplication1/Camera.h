@@ -1,5 +1,8 @@
 #pragma once
 
+class InputManager;
+class Shader;
+
 struct Perspective {
     float zNear;
     float zFar;

@@ -1,5 +1,12 @@
 #pragma once
 
+class Window;
+class InputManager;
+class Game;
+class RenderingEngine;
+
+struct GLFWwindow;
+
 class CoreEngine {
 private:
     int width, height;

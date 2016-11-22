@@ -1,5 +1,8 @@
 #pragma once
 
+class Shader;
+class Camera;
+
 class RenderingEngine {
 private:
     Shader* shader;

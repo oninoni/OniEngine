@@ -1,5 +1,12 @@
 #pragma once
 
+class BaseLight;
+class Attenuation;
+
+class DirectionalLight;
+class PointLight;
+class SpotLight;
+
 enum ShaderType{
     VertexShader,
     GeometryShader,

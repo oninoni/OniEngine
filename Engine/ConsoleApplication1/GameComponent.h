@@ -1,5 +1,8 @@
 #pragma once
 
+class Camera;
+class InputManager;
+
 class GameComponent {
 protected:
     GameComponent();

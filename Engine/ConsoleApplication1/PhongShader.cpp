@@ -10,11 +10,10 @@ PhongShader::PhongShader() : Shader("phong") {
     setUniformVec3("l_ambient", vec3(1.0f, 1.0f, 1.0f));
 }
 
-
 PhongShader::~PhongShader() {
 }
 
-Shader* PhongShader::getInstance() {
+PhongShader* PhongShader::getInstance() {
     static PhongShader phongShader;
     return &phongShader;
 }

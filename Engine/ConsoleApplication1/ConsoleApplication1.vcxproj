@@ -38,7 +38,6 @@
     <ClInclude Include="PointLight.h" />
     <ClInclude Include="RecourceLoader.h" />
     <ClInclude Include="RenderingEngine.h" />
-    <ClInclude Include="RenderUtil.h" />
     <ClInclude Include="Shader.h" />
     <ClInclude Include="SpotLight.h" />
     <ClInclude Include="stdafx.h" />
@@ -68,7 +67,6 @@
     <ClCompile Include="PointLight.cpp" />
     <ClCompile Include="RecourceLoader.cpp" />
     <ClCompile Include="RenderingEngine.cpp" />
-    <ClCompile Include="RenderUtil.cpp" />
     <ClCompile Include="Shader.cpp" />
     <ClCompile Include="Source.cpp" />
     <ClCompile Include="SpotLight.cpp" />

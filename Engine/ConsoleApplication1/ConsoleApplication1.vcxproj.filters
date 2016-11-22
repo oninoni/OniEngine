@@ -96,9 +96,6 @@
     <ClInclude Include="Vertex.h">
       <Filter>Header Files\Engine\Render\Scene</Filter>
     </ClInclude>
-    <ClInclude Include="RenderUtil.h">
-      <Filter>Header Files\Engine\Render\Pipeline</Filter>
-    </ClInclude>
     <ClInclude Include="Shader.h">
       <Filter>Header Files\Engine\Render\Pipeline</Filter>
     </ClInclude>
@@ -181,9 +178,6 @@
     </ClCompile>
     <ClCompile Include="Vertex.cpp">
       <Filter>Source Files\Engine\Render\Scene</Filter>
-    </ClCompile>
-    <ClCompile Include="RenderUtil.cpp">
-      <Filter>Source Files\Engine\Render\Pipeline</Filter>
     </ClCompile>
     <ClCompile Include="Shader.cpp">
       <Filter>Source Files\Engine\Render\Pipeline</Filter>

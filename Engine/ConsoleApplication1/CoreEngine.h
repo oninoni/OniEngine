@@ -20,11 +20,7 @@ private:
 
     RenderingEngine* renderingEngine;
 
-    void initRendering();
-
     void run();
-    void render();
-    void cleanUp();
 public:
     CoreEngine(int width, int height, float framerate, Game* game);
     ~CoreEngine();

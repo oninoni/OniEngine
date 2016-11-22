@@ -2,7 +2,6 @@
 
 #include "Time.h"
 #include "InputManager.h"
-#include "RenderUtil.h"
 #include "Window.h"
 #include "Game.h"
 #include "RenderingEngine.h"
@@ -29,7 +28,6 @@ CoreEngine::~CoreEngine() {
 
 void CoreEngine::createWindow(string title) {
     window = new Window(width, height, title);
-    initRendering();
 
     renderingEngine = new RenderingEngine();
     inputManager = new InputManager(this);
@@ -55,11 +53,6 @@ GLFWwindow* CoreEngine::getGLFWWindow() {
 
 InputManager * CoreEngine::getInputManager() {
     return inputManager;
-}
-
-void CoreEngine::initRendering() {
-    RenderUtil::initGraphics();
-    cout << RenderUtil::getOpenGLVersion() << endl;
 }
 
 void CoreEngine::run() {
@@ -105,19 +98,15 @@ void CoreEngine::run() {
         }
         
          if (shouldRender) {
-            renderingEngine->render(game->getRootGameObject());
-            window->render();
-            frames++;
+             renderingEngine->clearScreen();
+             renderingEngine->render(game->getRootGameObject());
+
+             window->render();
+             
+             frames++;
         }
         else {
             Sleep(1);
         }
     }
 }
-/*
-void CoreEngine::render() {
-    RenderUtil::clearScreen();
-    game->render();
-    window->render();
-}
-*/

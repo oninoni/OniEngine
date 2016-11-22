@@ -7,6 +7,6 @@ public:
     PhongShader();
     ~PhongShader();
 
-    static Shader* getInstance();
+    static PhongShader* getInstance();
 };
 

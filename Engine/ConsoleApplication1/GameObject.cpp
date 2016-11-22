@@ -17,17 +17,19 @@ GameObject::~GameObject() {
 }
 
 void GameObject::addChild(GameObject* child) {
+    child->setParent(this);
     children.push_back(child);
 }
 
 void GameObject::addComponent(GameComponent* component) {
+    component->setParent(this);
     components.push_back(component);
-    component->init(transform);
+    component->init();
 }
 
 void GameObject::update(const double & delta, InputManager * input) {
     for (GameComponent* gameComponent : components) {
-        gameComponent->update(transform ,delta, input);
+        gameComponent->update(delta, input);
     }
 
     for (GameObject* gameObject : children) {
@@ -37,7 +39,7 @@ void GameObject::update(const double & delta, InputManager * input) {
 
 void GameObject::render(Shader* shader, Camera* camera) {
     for (GameComponent* gameComponent : components) {
-        gameComponent->render(transform, shader, camera);
+        gameComponent->render(shader, camera);
     }
 
     for (GameObject* gameObject : children) {
@@ -45,6 +47,18 @@ void GameObject::render(Shader* shader, Camera* camera) {
     }
 }
 
-Transform* GameObject::getTransform() {
+Transform* GameObject::getRelativeTransform() {
     return transform;
+}
+
+Transform * GameObject::getTransform() {
+    return &(*(getParent()->getTransform()) + *transform);
+}
+
+GameObject * GameObject::getParent() {
+    return parent;
+}
+
+void GameObject::setParent(GameObject * parent) {
+    this->parent = parent;
 }

@@ -37,25 +37,27 @@ public:
 
     mat4 getTransformationMatrix();
 
-    vec3 getTranslation();
+    vec3 getTranslation() const;
     void setTranslation(vec3 t);
     void setTranslation(float x, float y, float z);
 
-    vec3 getRotation();
+    vec3 getRotation() const;
     void setRotation(vec3 r);
     void setRotation(float x, float y, float z);
 
-    vec3 getScale();
+    vec3 getScale() const;
     void setScale(vec3 s);
     void setScale(float x, float y, float z);
 
-    vec3 getOffset();
+    vec3 getOffset() const;
     void setOffset(vec3 s);
     void setOffset(float x, float y, float z);
 
     vec3 getForward();
     vec3 getLeft();
     vec3 getUp();
+
+    Transform operator+(const Transform & other) const;
 
     __declspec(property(get = getTranslation, put = setTranslation)) vec3 position;
     __declspec(property(get = getRotation, put = setRotation)) vec3 rotation;

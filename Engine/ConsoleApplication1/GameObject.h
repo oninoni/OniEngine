@@ -9,7 +9,9 @@ class GameObject {
 private:
     Transform* transform;
 
+    GameObject* parent;
     vector<GameObject*> children;
+
     vector<GameComponent*> components;
 public:
     GameObject();
@@ -21,5 +23,9 @@ public:
     void update(const double & delta, InputManager* input);
     void render(Shader* shader, Camera* camera);
 
+    Transform* getRelativeTransform();
     Transform* getTransform();
+
+    GameObject* getParent();
+    void setParent(GameObject* parent);
 };

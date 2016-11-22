@@ -61,20 +61,32 @@
     <Filter Include="Source Files\Engine\Render\Scene">
       <UniqueIdentifier>{d5b09cc0-92ac-4f44-82b2-d547aa0405dd}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\Engine\Core\IO">
-      <UniqueIdentifier>{42f30380-190d-4abd-bc24-cc00977db6b1}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\Engine\Core\IO">
-      <UniqueIdentifier>{eb92ae08-1fe3-4147-9a48-7ee92d0b33db}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\Engine\Physics">
       <UniqueIdentifier>{571986c0-fe3f-4d47-a6ba-09bae7f43e05}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\Game">
+    <Filter Include="Header Files\Engine\Core\SceneGraph">
+      <UniqueIdentifier>{b6e1a767-843e-43f8-9166-54d346c3051e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Engine\Core\SceneGraph\Components">
+      <UniqueIdentifier>{e68b284f-9906-4e9b-bfca-c18990e8799c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Engine\Core\Utility">
+      <UniqueIdentifier>{42f30380-190d-4abd-bc24-cc00977db6b1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Engine\Core\Utility">
+      <UniqueIdentifier>{eb92ae08-1fe3-4147-9a48-7ee92d0b33db}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Engine\Core\SceneGraph">
+      <UniqueIdentifier>{41ae2836-a619-424e-ae67-d8afffbda450}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\TestGame">
       <UniqueIdentifier>{6b18c456-4049-40ce-8100-f43c2816a300}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\Game">
+    <Filter Include="Source Files\TestGame">
       <UniqueIdentifier>{a02782ca-73ed-443c-b3af-ea243a59e419}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Engine\Core\SceneGraph\Components">
+      <UniqueIdentifier>{75da2412-b9c2-4f28-bfc9-e11b7776d4f4}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -103,10 +115,10 @@
       <Filter>Header Files\Engine\Render\Pipeline</Filter>
     </ClInclude>
     <ClInclude Include="RecourceLoader.h">
-      <Filter>Header Files\Engine\Core\IO</Filter>
+      <Filter>Header Files\Engine\Core\Utility</Filter>
     </ClInclude>
     <ClInclude Include="lodepng.h">
-      <Filter>Header Files\Engine\Core\IO</Filter>
+      <Filter>Header Files\Engine\Core\Utility</Filter>
     </ClInclude>
     <ClInclude Include="Window.h">
       <Filter>Header Files\Engine\Render\Pipeline</Filter>
@@ -132,25 +144,13 @@
     <ClInclude Include="stdafx.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="InputManager.h">
-      <Filter>Header Files\Engine\Core</Filter>
-    </ClInclude>
-    <ClInclude Include="Time.h">
-      <Filter>Header Files\Engine\Core</Filter>
-    </ClInclude>
     <ClInclude Include="CoreEngine.h">
       <Filter>Header Files\Engine\Core</Filter>
     </ClInclude>
     <ClInclude Include="TestGame.h">
-      <Filter>Header Files\Game</Filter>
+      <Filter>Header Files\TestGame</Filter>
     </ClInclude>
     <ClInclude Include="Game.h">
-      <Filter>Header Files\Engine\Core</Filter>
-    </ClInclude>
-    <ClInclude Include="GameObject.h">
-      <Filter>Header Files\Engine\Core</Filter>
-    </ClInclude>
-    <ClInclude Include="GameComponent.h">
       <Filter>Header Files\Engine\Core</Filter>
     </ClInclude>
     <ClInclude Include="RenderingEngine.h">
@@ -159,8 +159,23 @@
     <ClInclude Include="PhongShader.h">
       <Filter>Header Files\Engine\Render\Pipeline</Filter>
     </ClInclude>
-    <ClInclude Include="MeshRenderer.h">
-      <Filter>Header Files\Engine\Core</Filter>
+    <ClInclude Include="GameObject.h">
+      <Filter>Header Files\Engine\Core\SceneGraph</Filter>
+    </ClInclude>
+    <ClInclude Include="GameComponent.h">
+      <Filter>Header Files\Engine\Core\SceneGraph</Filter>
+    </ClInclude>
+    <ClInclude Include="InputManager.h">
+      <Filter>Header Files\Engine\Core\Utility</Filter>
+    </ClInclude>
+    <ClInclude Include="Time.h">
+      <Filter>Header Files\Engine\Core\Utility</Filter>
+    </ClInclude>
+    <ClInclude Include="C_MeshRenderer.h">
+      <Filter>Header Files\Engine\Core\SceneGraph\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="C_Camera.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -169,9 +184,6 @@
     </ClCompile>
     <ClCompile Include="Transform.cpp">
       <Filter>Source Files\Math</Filter>
-    </ClCompile>
-    <ClCompile Include="Camera.cpp">
-      <Filter>Source Files\Engine\Render\Scene</Filter>
     </ClCompile>
     <ClCompile Include="Mesh.cpp">
       <Filter>Source Files\Engine\Render\Scene</Filter>
@@ -186,10 +198,10 @@
       <Filter>Source Files\Engine\Render\Pipeline</Filter>
     </ClCompile>
     <ClCompile Include="lodepng.cpp">
-      <Filter>Source Files\Engine\Core\IO</Filter>
+      <Filter>Source Files\Engine\Core\Utility</Filter>
     </ClCompile>
     <ClCompile Include="RecourceLoader.cpp">
-      <Filter>Source Files\Engine\Core\IO</Filter>
+      <Filter>Source Files\Engine\Core\Utility</Filter>
     </ClCompile>
     <ClCompile Include="Window.cpp">
       <Filter>Source Files\Engine\Render\Pipeline</Filter>
@@ -212,12 +224,6 @@
     <ClCompile Include="SpotLight.cpp">
       <Filter>Source Files\Engine\Render\Lighting</Filter>
     </ClCompile>
-    <ClCompile Include="InputManager.cpp">
-      <Filter>Source Files\Engine\Core</Filter>
-    </ClCompile>
-    <ClCompile Include="Time.cpp">
-      <Filter>Source Files\Engine\Core</Filter>
-    </ClCompile>
     <ClCompile Include="CoreEngine.cpp">
       <Filter>Source Files\Engine\Core</Filter>
     </ClCompile>
@@ -225,18 +231,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="TestGame.cpp">
-      <Filter>Source Files\Game</Filter>
+      <Filter>Source Files\TestGame</Filter>
     </ClCompile>
     <ClCompile Include="Game.cpp">
-      <Filter>Source Files\Engine\Core</Filter>
-    </ClCompile>
-    <ClCompile Include="GameObject.cpp">
-      <Filter>Source Files\Engine\Core</Filter>
-    </ClCompile>
-    <ClCompile Include="GameComponent.cpp">
-      <Filter>Source Files\Engine\Core</Filter>
-    </ClCompile>
-    <ClCompile Include="MeshRenderer.cpp">
       <Filter>Source Files\Engine\Core</Filter>
     </ClCompile>
     <ClCompile Include="PhongShader.cpp">
@@ -244,6 +241,27 @@
     </ClCompile>
     <ClCompile Include="RenderingEngine.cpp">
       <Filter>Source Files\Engine\Render</Filter>
+    </ClCompile>
+    <ClCompile Include="InputManager.cpp">
+      <Filter>Source Files\Engine\Core\Utility</Filter>
+    </ClCompile>
+    <ClCompile Include="Time.cpp">
+      <Filter>Source Files\Engine\Core\Utility</Filter>
+    </ClCompile>
+    <ClCompile Include="GameComponent.cpp">
+      <Filter>Source Files\Engine\Core\SceneGraph</Filter>
+    </ClCompile>
+    <ClCompile Include="GameObject.cpp">
+      <Filter>Source Files\Engine\Core\SceneGraph</Filter>
+    </ClCompile>
+    <ClCompile Include="Camera.cpp">
+      <Filter>Source Files\Engine\Render\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="C_MeshRenderer.cpp">
+      <Filter>Source Files\Engine\Core\SceneGraph\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="C_Camera.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

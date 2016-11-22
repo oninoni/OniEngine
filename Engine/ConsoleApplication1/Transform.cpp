@@ -72,7 +72,7 @@ mat4 Transform::getTransformationMatrix() {
     return transformationMatrix;
 }
 
-vec3 Transform::getTranslation() {
+vec3 Transform::getTranslation() const{
     return t_translation;
 }
 
@@ -88,7 +88,7 @@ void Transform::setTranslation(float x, float y, float z) {
     setTranslation(vec3(x, y, z));
 }
 
-vec3 Transform::getRotation() {
+vec3 Transform::getRotation() const{
     return t_rotation;
 }
 
@@ -104,7 +104,7 @@ void Transform::setRotation(float x, float y, float z) {
     setRotation(vec3(x, y, z));
 }
 
-vec3 Transform::getScale() {
+vec3 Transform::getScale() const{
     return t_scale;
 }
 
@@ -120,7 +120,7 @@ void Transform::setScale(float x, float y, float z) {
     setScale(vec3(x, y, z));
 }
 
-vec3 Transform::getOffset() {
+vec3 Transform::getOffset() const{
     return t_offset;
 }
 
@@ -164,4 +164,15 @@ vec3 Transform::getUp() {
         upHasChanged = false;
     }
     return d_up;
+}
+
+Transform Transform::operator+(const Transform & other) const {
+    Transform t;
+
+    t.position = position + other.position;
+    t.rotation = rotation + other.rotation;
+    t.scale = scale + other.scale;
+    t.offset = offset + other.offset;
+
+    return t;
 }

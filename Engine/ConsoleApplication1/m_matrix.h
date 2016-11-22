@@ -302,7 +302,7 @@ struct m_matrix {
 
     void setScaleMatrix(const vec3 & s);
 
-    void SetProjectionMatrix(int width, int height, float zNear, float zFar, float fov);
+    void SetProjectionMatrix(float aspectRatio, float zNear, float zFar, float fov);
 
     m_vector<T, N> data[M];
 };

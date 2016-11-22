@@ -70,15 +70,12 @@ void m_matrix<float, 4, 4>::setScaleMatrix(const vec3 & s) {
 }
 
 template<>
-void m_matrix<float, 4, 4>::SetProjectionMatrix(int width, int height, float zNear, float zFar, float fov) {
+void m_matrix<float, 4, 4>::SetProjectionMatrix(float aspectRatio, float zNear, float zFar, float fov) {
     clear();
 
-    float _fov = fov * PI / 360;
+    float f = cos(fov) / sin(fov);
 
-    float f = cos(_fov) / sin(_fov);
-    float aspect = (float) width / height;
-
-    data[0][0] = f / aspect;
+    data[0][0] = f / aspectRatio;
     data[1][1] = f;
     data[2][2] = (zFar + zNear) / (zNear - zFar);
     data[2][3] = (2 * zFar * zNear) / (zNear - zFar);

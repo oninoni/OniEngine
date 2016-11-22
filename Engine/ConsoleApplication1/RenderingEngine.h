@@ -15,7 +15,7 @@ private:
     inline void setClearColor(vec3 color);
 
 public:
-    RenderingEngine();
+    RenderingEngine(Camera* camera);
     ~RenderingEngine();
 
     void clearScreen();

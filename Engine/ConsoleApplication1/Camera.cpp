@@ -8,14 +8,13 @@
 #define FLYSPEED 4
 #define TURNSPEED 20
 
-Camera::Camera(int width, int height, float zNear, float zFar, float fov) {
+Camera::Camera(float aspectRatio, float zNear, float zFar, float fov) {
     perspective.zNear = zNear;
     perspective.zFar = zFar;
-    perspective.width = width;
-    perspective.height = height;
+    perspective.aspectRatio = aspectRatio;
     perspective.fov = fov;
 
-    projectionMatrix.SetProjectionMatrix(width, height, zNear, zFar, fov);
+    projectionMatrix.SetProjectionMatrix(aspectRatio, zNear, zFar, fov);
 
     transform = new Transform(true);
 }

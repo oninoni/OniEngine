@@ -10,6 +10,6 @@ public:
     ~TestGame();
 
     void init();
-    //void update(const double & delta, InputManager* input);
+    void update(const double & delta, InputManager* input);
 };
 

@@ -1,9 +1,12 @@
 #pragma once
 
 class GameObject;
+class Camera;
 
 class Game {
-protected:
+private:
+    Camera* camera;
+
     GameObject* root;
 public:
     Game();
@@ -13,5 +16,7 @@ public:
     virtual void update(const double & delta, InputManager* input);
 
     GameObject* getRootGameObject();
+
+    Camera* getCamera();
 };
 

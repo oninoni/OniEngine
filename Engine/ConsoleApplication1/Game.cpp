@@ -8,19 +8,18 @@
 #include "Game.h"
 
 Game::Game() {
+    camera = new Camera(800 / 600, 0.1, 1000, 70 * 3.141 / 360);
 }
 
 Game::~Game() {
+    delete camera;
 }
 
 void Game::init() {
-
 }
 
 void Game::update(const double & delta, InputManager * input) {
     getRootGameObject()->update(delta, input);
-
-    //camera->updateFreeCam(delta, input);
 }
 
 GameObject* Game::getRootGameObject() {
@@ -28,4 +27,8 @@ GameObject* Game::getRootGameObject() {
         root = new GameObject();
 
     return root;
+}
+
+Camera * Game::getCamera() {
+    return camera;
 }

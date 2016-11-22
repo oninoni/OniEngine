@@ -13,6 +13,7 @@
 #include "PhongShader.h"
 
 #include "TestGame.h"
+#include "Camera.h"
 
 TestGame::TestGame() : Game(){
 }
@@ -33,4 +34,8 @@ void TestGame::init() {
     cubeObject->addComponent(meshRenderer);
 
     getRootGameObject()->addChild(cubeObject);
+}
+
+void TestGame::update(const double & delta, InputManager * input) {
+    getCamera()->updateFreeCam(delta, input);
 }

@@ -6,14 +6,13 @@
 
 #include "RenderingEngine.h"
 
-RenderingEngine::RenderingEngine() {
+RenderingEngine::RenderingEngine(Camera* camera) {
     initGraphics();
     cout << getOpenGLVersion() << endl;
 
     shader = PhongShader::getInstance();
 
-    camera = new Camera(800, 700, 0.1f, 1000, 70);
-    camera->getTransform()->position = vec3(0, 0, 5);
+    this->camera = camera;
 }
 
 RenderingEngine::~RenderingEngine() {

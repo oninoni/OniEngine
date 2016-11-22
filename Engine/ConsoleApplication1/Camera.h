@@ -6,8 +6,7 @@ class Shader;
 struct Perspective {
     float zNear;
     float zFar;
-    int width;
-    int height;
+    float aspectRatio;
     float fov;
 };
 
@@ -18,7 +17,7 @@ private:
 
     Perspective perspective;
 public:
-    Camera(int width, int height, float zNear, float zFar, float fov);
+    Camera(float aspectRatio, float zNear, float zFar, float fov);
     ~Camera();
 
     Transform* getTransform();

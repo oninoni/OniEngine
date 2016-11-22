@@ -1,9 +1,11 @@
-#include "Game.h"
+#include "stdafx.h"
 
 #include "InputManager.h"
 #include "GameObject.h"
 #include "Shader.h"
 #include "Camera.h"
+
+#include "Game.h"
 
 Game::Game() {
 }

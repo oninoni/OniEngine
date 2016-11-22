@@ -1,10 +1,5 @@
 #pragma once
 
-#include "stdafx.h"
-
-class Shader;
-class Vertex;
-
 class Mesh {
 private:
     enum {

@@ -1,12 +1,5 @@
 #pragma once
 
-#include "stdafx.h"
-
-class Window;
-class InputManager;
-class Game;
-class RenderingEngine;
-
 class CoreEngine {
 private:
     int width, height;

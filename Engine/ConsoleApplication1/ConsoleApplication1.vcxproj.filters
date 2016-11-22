@@ -156,14 +156,14 @@
     <ClInclude Include="GameComponent.h">
       <Filter>Header Files\Engine\Core</Filter>
     </ClInclude>
-    <ClInclude Include="MeshRenderer.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="RenderingEngine.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\Engine\Render</Filter>
     </ClInclude>
     <ClInclude Include="PhongShader.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\Engine\Render\Pipeline</Filter>
+    </ClInclude>
+    <ClInclude Include="MeshRenderer.h">
+      <Filter>Header Files\Engine\Core</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -243,13 +243,13 @@
       <Filter>Source Files\Engine\Core</Filter>
     </ClCompile>
     <ClCompile Include="MeshRenderer.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="RenderingEngine.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\Engine\Core</Filter>
     </ClCompile>
     <ClCompile Include="PhongShader.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\Engine\Render\Pipeline</Filter>
+    </ClCompile>
+    <ClCompile Include="RenderingEngine.cpp">
+      <Filter>Source Files\Engine\Render</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

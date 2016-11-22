@@ -1,11 +1,5 @@
 #pragma once
 
-#include "stdafx.h"
-
-class Shader;
-
-class InputManager;
-
 struct Perspective {
     float zNear;
     float zFar;

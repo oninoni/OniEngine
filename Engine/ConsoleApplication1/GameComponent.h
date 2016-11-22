@@ -1,11 +1,5 @@
 #pragma once
 
-#include "stdafx.h"
-
-class InputManager;
-class Camera;
-class Shader;
-
 class GameComponent {
 protected:
     GameComponent();

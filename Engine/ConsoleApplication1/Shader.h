@@ -1,14 +1,5 @@
 #pragma once
 
-#include "stdafx.h"
-
-class BaseLight;
-class Attenuation;
-
-class DirectionalLight;
-class PointLight;
-class SpotLight;
-
 enum ShaderType{
     VertexShader,
     GeometryShader,

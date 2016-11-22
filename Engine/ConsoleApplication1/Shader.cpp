@@ -1,8 +1,15 @@
-#include "Shader.h"
+#include "stdafx.h"
 
 #include "RecourceLoader.h"
+
+#include "Attenuation.h"
+#include "BaseLight.h"
+
 #include "DirectionalLight.h"
+#include "PointLight.h"
 #include "SpotLight.h"
+
+#include "Shader.h"
 
 GLuint getDataSize(GLenum dataType) {
     switch (dataType) {

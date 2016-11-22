@@ -1,13 +1,6 @@
 #pragma once
 
-#include "stdafx.h"
-
 #include "GameComponent.h"
-
-class Material;
-class Mesh;
-class Shader;
-class Camera;
 
 class MeshRenderer : public GameComponent {
 private:

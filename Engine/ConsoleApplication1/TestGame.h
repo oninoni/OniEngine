@@ -1,11 +1,6 @@
 #pragma once
 
-#include "stdafx.h"
-
 #include "Game.h"
-
-class InputManager;
-
 
 class TestGame : public Game{
 private:

@@ -1,6 +1,8 @@
-#include "InputManager.h"
+#include "stdafx.h"
 
 #include "CoreEngine.h"
+
+#include "InputManager.h"
 
 void InputManager::scroll_callback(GLFWwindow * window, double xoffset, double yoffset) {
     InputManager* inputManager = ((CoreEngine*)glfwGetWindowUserPointer(window))->getInputManager();

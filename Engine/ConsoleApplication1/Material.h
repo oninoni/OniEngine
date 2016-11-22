@@ -1,10 +1,5 @@
 #pragma once
 
-#include "stdafx.h"
-
-class Texture;
-class Shader;
-
 //TODO: Reflection and Refraction
 
 class Material {

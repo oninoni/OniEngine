@@ -1,6 +1,8 @@
-#include "Texture.h"
+#include "stdafx.h"
 
 #include "RecourceLoader.h"
+
+#include "Texture.h"
 
 Texture::Texture(string fileName) {
     Image image = RecourceLoader::loadTexture(fileName);

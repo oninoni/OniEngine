@@ -1,8 +1,10 @@
-#include "RenderingEngine.h"
+#include "stdafx.h"
 
 #include "PhongShader.h"
 #include "GameObject.h"
 #include "Camera.h"
+
+#include "RenderingEngine.h"
 
 RenderingEngine::RenderingEngine() {
     shader = PhongShader::getInstance();

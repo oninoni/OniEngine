@@ -1,9 +1,11 @@
-#include "MeshRenderer.h"
+#include "stdafx.h"
 
 #include "Material.h"
 #include "Mesh.h"
 #include "Shader.h"
 #include "Camera.h"
+
+#include "MeshRenderer.h"
 
 MeshRenderer::MeshRenderer(Mesh * m, Material * mat) {
     mesh = m;

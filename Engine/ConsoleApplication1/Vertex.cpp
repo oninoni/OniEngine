@@ -1,3 +1,5 @@
+#include "stdafx.h"
+
 #include "Vertex.h"
 
 Vertex::Vertex() :Vertex(vec3(), vec3(), vec2()){

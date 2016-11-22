@@ -1,11 +1,5 @@
 #pragma once
 
-#include "stdafx.h"
-
-class InputManager;
-class GameObject;
-class Camera;
-
 class Game {
 protected:
     GameObject* root;

@@ -1,4 +1,4 @@
-#include "RecourceLoader.h"
+#include "stdafx.h"
 
 #include "lodepng.h"
 
@@ -7,6 +7,8 @@
 
 #include "Texture.h"
 #include "Shader.h"
+
+#include "RecourceLoader.h"
 
 Mesh *RecourceLoader::loadOBJ(string fileName, Shader* shader) {
     vector<vec3> positions;

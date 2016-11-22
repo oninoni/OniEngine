@@ -1,3 +1,5 @@
+#include "stdafx.h"
+
 #include "Attenuation.h"
 
 Attenuation::Attenuation(float range) {

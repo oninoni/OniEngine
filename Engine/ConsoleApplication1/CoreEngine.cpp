@@ -1,4 +1,4 @@
-#include "CoreEngine.h"
+#include "stdafx.h"
 
 #include "Time.h"
 #include "InputManager.h"
@@ -6,6 +6,8 @@
 #include "Window.h"
 #include "Game.h"
 #include "RenderingEngine.h"
+
+#include "CoreEngine.h"
 
 CoreEngine::CoreEngine(int width, int height, float framerate, Game* game) {
     this->game = game;

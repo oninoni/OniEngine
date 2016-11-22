@@ -1,3 +1,5 @@
+#include "stdafx.h"
+
 #include "RenderUtil.h"
 
 void RenderUtil::clearScreen() {

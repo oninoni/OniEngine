@@ -1,3 +1,5 @@
+#include "stdafx.h"
+
 #include "m_matrix.h"
 
 template <>

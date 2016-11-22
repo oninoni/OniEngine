@@ -1,4 +1,4 @@
-#include "TestGame.h"
+#include "stdafx.h"
 
 #include "Time.h"
 #include "InputManager.h"
@@ -10,8 +10,9 @@
 #include "MeshRenderer.h"
 #include "GameObject.h"
 
-#include "Shader.h"
 #include "PhongShader.h"
+
+#include "TestGame.h"
 
 TestGame::TestGame() : Game(){
 }

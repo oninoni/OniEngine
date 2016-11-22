@@ -1,3 +1,5 @@
+#include "stdafx.h"
+
 #include "BaseLight.h"
 
 BaseLight::BaseLight(vec3 c, float i) {

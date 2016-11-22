@@ -1,7 +1,12 @@
-#include "GameObject.h"
+#include "stdafx.h"
+
+#include "Camera.h"
+#include "Shader.h"
 
 #include "InputManager.h"
 #include "GameComponent.h"
+
+#include "GameObject.h"
 
 GameObject::GameObject() {
     transform = new Transform();

@@ -1,7 +1,5 @@
 #pragma once
 
-#include "stdafx.h"
-
 /*
 Postion vec3
 Normal vec3

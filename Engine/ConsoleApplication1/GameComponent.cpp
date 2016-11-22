@@ -1,8 +1,10 @@
-#include "GameComponent.h"
+#include "stdafx.h"
 
 #include "InputManager.h"
 #include "Camera.h"
 #include "Shader.h"
+
+#include "GameComponent.h"
 
 GameComponent::GameComponent() {
 }

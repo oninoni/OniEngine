@@ -1,6 +1,6 @@
+#include "stdafx.h"
+
 #include "PhongShader.h"
-
-
 
 PhongShader::PhongShader() : Shader("phong") {
     addAttribute("v_position", GL_FLOAT, 3);

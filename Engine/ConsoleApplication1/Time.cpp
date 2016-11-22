@@ -1,3 +1,5 @@
+#include "stdafx.h"
+
 #include "Time.h"
 
 const double Time::SECOND = 1;

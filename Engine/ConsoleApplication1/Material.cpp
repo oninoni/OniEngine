@@ -1,7 +1,9 @@
-#include "Material.h"
+#include "stdafx.h"
 
 #include "Texture.h"
 #include "Shader.h"
+
+#include "Material.h"
 
 Material::Material(Texture* t, float sE, float sR, vec4 c): Material(t, t, t, sE, sR, c) {
 

@@ -1,9 +1,5 @@
 #pragma once
 
-#include "stdafx.h"
-
-class CoreEngine;
-
 #define IM_SCROLL_UP -2
 #define IM_SCROLL_DOWN -1
 

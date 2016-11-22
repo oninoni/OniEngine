@@ -1,13 +1,5 @@
 #pragma once
 
-#include "stdafx.h"
-
-class GameComponent;
-
-class InputManager;
-class Camera;
-class Shader;
-
 class GameObject {
 private:
     Transform* transform;

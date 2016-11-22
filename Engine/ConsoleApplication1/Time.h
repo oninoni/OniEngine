@@ -1,7 +1,5 @@
 #pragma once
 
-#include "stdafx.h"
-
 class Time {
 private:
     static double delta;

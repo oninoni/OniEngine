@@ -1,10 +1,5 @@
 #pragma once
 
-#include "stdafx.h"
-
-class Mesh;
-class Shader;
-
 enum FaceMode {
     fM_NAM,
     fM_Vertex,

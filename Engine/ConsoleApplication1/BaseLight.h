@@ -1,7 +1,5 @@
 #pragma once
 
-#include "stdafx.h"
-
 class BaseLight {
 protected:
     vec3 color;

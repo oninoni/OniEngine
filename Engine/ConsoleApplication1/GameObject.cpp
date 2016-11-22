@@ -9,11 +9,9 @@
 #include "GameObject.h"
 
 GameObject::GameObject() {
-    transform = new Transform();
 }
 
 GameObject::~GameObject() {
-    delete transform;
 }
 
 void GameObject::addChild(GameObject* child) {
@@ -22,14 +20,13 @@ void GameObject::addChild(GameObject* child) {
 }
 
 void GameObject::addComponent(GameComponent* component) {
-    component->setParent(this);
     components.push_back(component);
-    component->init();
+    component->init(this);
 }
 
 void GameObject::update(const double & delta, InputManager * input) {
     for (GameComponent* gameComponent : components) {
-        gameComponent->update(delta, input);
+        gameComponent->update(this, delta, input);
     }
 
     for (GameObject* gameObject : children) {
@@ -39,7 +36,7 @@ void GameObject::update(const double & delta, InputManager * input) {
 
 void GameObject::render(Shader* shader, Camera* camera) {
     for (GameComponent* gameComponent : components) {
-        gameComponent->render(shader, camera);
+        gameComponent->render(this, shader, camera);
     }
 
     for (GameObject* gameObject : children) {
@@ -47,12 +44,18 @@ void GameObject::render(Shader* shader, Camera* camera) {
     }
 }
 
-Transform* GameObject::getRelativeTransform() {
+Transform& GameObject::getTransform() {
     return transform;
 }
 
-Transform * GameObject::getTransform() {
-    return &(*(getParent()->getTransform()) + *transform);
+mat4 GameObject::getTransformationMatrix(bool inverted) {
+    if (parent == NULL)
+        return getTransform().getTransformationMatrix(inverted);
+    else
+        if(inverted)
+            return transform.getTransformationMatrix(inverted) * parent->getTransformationMatrix(inverted);
+        else
+            return parent->getTransformationMatrix(inverted) * transform.getTransformationMatrix(inverted);
 }
 
 GameObject * GameObject::getParent() {

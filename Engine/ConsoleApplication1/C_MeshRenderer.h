@@ -11,5 +11,5 @@ public:
     C_MeshRenderer(Mesh* m, Material* mat);
     ~C_MeshRenderer();
     
-    void render(Shader* shader, Camera* camera);
+    void render(GameObject* parent, Shader* shader, Camera* camera);
 };

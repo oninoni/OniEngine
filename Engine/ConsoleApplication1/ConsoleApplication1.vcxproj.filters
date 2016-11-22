@@ -61,9 +61,6 @@
     <Filter Include="Source Files\Engine\Render\Scene">
       <UniqueIdentifier>{d5b09cc0-92ac-4f44-82b2-d547aa0405dd}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\Engine\Physics">
-      <UniqueIdentifier>{571986c0-fe3f-4d47-a6ba-09bae7f43e05}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\Engine\Core\SceneGraph">
       <UniqueIdentifier>{b6e1a767-843e-43f8-9166-54d346c3051e}</UniqueIdentifier>
     </Filter>
@@ -87,6 +84,9 @@
     </Filter>
     <Filter Include="Source Files\Engine\Core\SceneGraph\Components">
       <UniqueIdentifier>{75da2412-b9c2-4f28-bfc9-e11b7776d4f4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Engine\Render\Physics">
+      <UniqueIdentifier>{571986c0-fe3f-4d47-a6ba-09bae7f43e05}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -175,7 +175,7 @@
       <Filter>Header Files\Engine\Core\SceneGraph\Components</Filter>
     </ClInclude>
     <ClInclude Include="C_Camera.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\Engine\Core\SceneGraph\Components</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -261,7 +261,7 @@
       <Filter>Source Files\Engine\Core\SceneGraph\Components</Filter>
     </ClCompile>
     <ClCompile Include="C_Camera.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\Engine\Core\SceneGraph\Components</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

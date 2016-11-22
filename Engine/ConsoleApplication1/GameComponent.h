@@ -3,22 +3,20 @@
 class Camera;
 class Shader;
 class InputManager;
+
 class GameObject;
 
 class GameComponent {
 private:
-    GameObject* parent;
+    Transform transform;
 protected:
     GameComponent();
     ~GameComponent();
-
-    inline Transform* getTransform();
 public:
-    virtual void init();
-    virtual void update(const double & delta, InputManager* input);
-    virtual void render(Shader* shader, Camera* camera);
+    virtual void init(GameObject* parent);
+    virtual void update(GameObject* parent, const double & delta, InputManager* input);
+    virtual void render(GameObject* parent, Shader* shader, Camera* camera);
 
-    GameObject* getParent();
-    void setParent(GameObject* parent);
-
+    mat4 getTransformationMatrix(GameObject* parent, bool inverted = false);
+    Transform& GameComponent::getTransform();
 };

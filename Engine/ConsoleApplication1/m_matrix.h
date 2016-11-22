@@ -287,6 +287,12 @@ struct m_matrix {
         return a;
     }
 
+    void normalize() {
+        for (int i = 0; i < M; i++)
+            for (int j = 0; j < N; j++)
+                data[i][j] /= data[M - 1][N - 1];
+    }
+
     T cofactor(int i, int j) const {
         if ((i + j) % 2 == 0) {
             return minor(i, j).determinant();
@@ -300,7 +306,7 @@ struct m_matrix {
 
     void setRotationMatrix(const vec3 & r, bool invert = false);
 
-    void setScaleMatrix(const vec3 & s);
+    void setScaleMatrix(const vec3 & s, bool invert = false);
 
     void SetProjectionMatrix(float aspectRatio, float zNear, float zFar, float fov);
 

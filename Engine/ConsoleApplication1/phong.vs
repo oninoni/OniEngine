@@ -13,8 +13,10 @@ in vec2 v_uv;
 out vec3 f_normal;
 out vec2 f_uv;  
 out vec3 f_position;
+out vec3 f_cameraPosition;
 
 void main(){
+    f_cameraPosition = (view[3] * view).xyz;
     f_normal = normalize(v_normal);
     f_uv = v_uv;
     f_position = vec3(vec4(v_position, 1) * model);

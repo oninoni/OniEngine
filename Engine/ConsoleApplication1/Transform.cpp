@@ -2,7 +2,7 @@
 
 #include "Transform.h"
 
-Transform::Transform(bool invert) {
+Transform::Transform() {
     translationHasChanged = true;
     rotationHasChanged = true;
     scaleHasChanged = true;
@@ -12,7 +12,6 @@ Transform::Transform(bool invert) {
     upHasChanged = true;
 
     scale = vec3(1, 1, 1);
-    inverted = invert;
 }
 
 
@@ -20,15 +19,17 @@ Transform::~Transform() {
 
 }
 
-mat4 Transform::getTransformationMatrix() {
+mat4 Transform::getTransformationMatrix(bool inverted) {
     if (translationHasChanged) {
-        translationMatrix.setTranslationMatrix(t_translation, inverted);
+        translationMatrix.setTranslationMatrix(t_translation, false);
+        translationMatrixInverse.setTranslationMatrix(t_translation, true);
         translationHasChanged = false;
         hasChanged = true;
     }
 
     if (rotationHasChanged) {
-        rotationMatrix.setRotationMatrix(t_rotation, inverted);
+        rotationMatrix.setRotationMatrix(t_rotation, false);
+        rotationMatrixInverse.setRotationMatrix(t_rotation, true);
         rotationHasChanged = false;
         hasChanged = true;
 
@@ -38,38 +39,38 @@ mat4 Transform::getTransformationMatrix() {
     }
 
     if (scaleHasChanged) {
-        scaleMatrix.setScaleMatrix(t_scale);
+        scaleMatrix.setScaleMatrix(t_scale, false);
+        scaleMatrixInverse.setScaleMatrix(t_scale, true);
         scaleHasChanged = false;
         hasChanged = true;
     }
 
     if (offsetHasChanged) {
-        offsetMatrix.setTranslationMatrix(t_offset, inverted);
+        offsetMatrix.setTranslationMatrix(t_offset, false);
+        offsetMatrixInverse.setTranslationMatrix(t_offset, true);
         offsetHasChanged = false;
         hasChanged = true;
     }
 
     if (hasChanged) {
+        transformationMatrixInverse.identity();
+
+        transformationMatrixInverse *= offsetMatrixInverse;
+        transformationMatrixInverse *= scaleMatrixInverse;
+        transformationMatrixInverse *= rotationMatrixInverse;
+        transformationMatrixInverse *= translationMatrixInverse;
+
         transformationMatrix.identity();
-
-        if (inverted) {
-            transformationMatrix *= offsetMatrix;
-            transformationMatrix *= scaleMatrix;
-            transformationMatrix *= rotationMatrix;
-            transformationMatrix *= translationMatrix;
-        }
-        else {
-            transformationMatrix *= translationMatrix;
-            transformationMatrix *= rotationMatrix;
-            transformationMatrix *= scaleMatrix;
-            transformationMatrix *= offsetMatrix;
-        }
-
+       
+        transformationMatrix *= translationMatrix;
+        transformationMatrix *= rotationMatrix;
+        transformationMatrix *= scaleMatrix;
+        transformationMatrix *= offsetMatrix;
 
         hasChanged = false;
     }
 
-    return transformationMatrix;
+    return inverted ? transformationMatrixInverse : transformationMatrix;
 }
 
 vec3 Transform::getTranslation() const{
@@ -164,15 +165,4 @@ vec3 Transform::getUp() {
         upHasChanged = false;
     }
     return d_up;
-}
-
-Transform Transform::operator+(const Transform & other) const {
-    Transform t;
-
-    t.position = position + other.position;
-    t.rotation = rotation + other.rotation;
-    t.scale = scale + other.scale;
-    t.offset = offset + other.offset;
-
-    return t;
 }

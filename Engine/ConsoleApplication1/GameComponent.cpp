@@ -5,6 +5,7 @@
 #include "Shader.h"
 
 #include "GameObject.h"
+
 #include "GameComponent.h"
 
 GameComponent::GameComponent() {
@@ -13,23 +14,22 @@ GameComponent::GameComponent() {
 GameComponent::~GameComponent() {
 }
 
-void GameComponent::init() {
+void GameComponent::init(GameObject* parent) {
 }
 
-void GameComponent::update(const double & delta, InputManager * input) {
+void GameComponent::update(GameObject* parent, const double & delta, InputManager * input) {
 }
 
-void GameComponent::render(Shader * shader, Camera * camera) {
+void GameComponent::render(GameObject* parent, Shader * shader, Camera * camera) {
 }
 
-GameObject * GameComponent::getParent() {
-    return parent;
+Transform& GameComponent::getTransform() {
+    return transform;
 }
 
-void GameComponent::setParent(GameObject * parent) {
-    this->parent = parent;
-}
-
-Transform * GameComponent::getTransform() {
-    return parent->getTransform();
+mat4 GameComponent::getTransformationMatrix(GameObject* parent, bool inverted) {
+    if(inverted)
+        return transform.getTransformationMatrix(inverted) * parent->getTransformationMatrix(inverted);
+    else
+        return parent->getTransformationMatrix(inverted) * transform.getTransformationMatrix(inverted);
 }

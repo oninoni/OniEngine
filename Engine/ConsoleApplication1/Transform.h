@@ -2,8 +2,6 @@
 
 class Transform {
 private:
-    bool inverted;
-
     vec3 d_forward;
     bool forwardHasChanged;
 
@@ -16,26 +14,31 @@ private:
     vec3 t_translation;
     bool translationHasChanged;
     mat4 translationMatrix;
+    mat4 translationMatrixInverse;
 
     vec3 t_rotation;
     bool rotationHasChanged;
     mat4 rotationMatrix;
+    mat4 rotationMatrixInverse;
 
     vec3 t_scale;
     bool scaleHasChanged;
     mat4 scaleMatrix;
+    mat4 scaleMatrixInverse;
 
     vec3 t_offset;
     bool offsetHasChanged;
     mat4 offsetMatrix;
+    mat4 offsetMatrixInverse;
 
     bool hasChanged;
     mat4 transformationMatrix;
+    mat4 transformationMatrixInverse;
 public:
-    Transform(bool invert = false);
+    Transform();
     ~Transform();
 
-    mat4 getTransformationMatrix();
+    mat4 getTransformationMatrix(bool inverted = false);
 
     vec3 getTranslation() const;
     void setTranslation(vec3 t);
@@ -56,8 +59,6 @@ public:
     vec3 getForward();
     vec3 getLeft();
     vec3 getUp();
-
-    Transform operator+(const Transform & other) const;
 
     __declspec(property(get = getTranslation, put = setTranslation)) vec3 position;
     __declspec(property(get = getRotation, put = setRotation)) vec3 rotation;

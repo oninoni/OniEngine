@@ -10,5 +10,6 @@ private:
 public:
     C_Camera(Camera* camera);
     ~C_Camera();
-};
 
+    void update(GameObject* parent, const double & delta, InputManager* input);
+};

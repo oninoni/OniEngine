@@ -8,10 +8,12 @@
 #include "PhongShader.h"
 
 #include "C_MeshRenderer.h"
+#include "C_Camera.h"
 #include "GameObject.h"
 
 #include "Camera.h"
 #include "TestGame.h"
+#include "Time.h"
 
 TestGame::TestGame() : Game(){
 }
@@ -27,13 +29,27 @@ void TestGame::init() {
         new Material(new Texture("Textures/brick.png"), new Texture("Textures/brick.png"), new Texture("Textures/brick.png"))
     );
 
-    GameObject* cubeObject = new GameObject();
+    C_Camera* c_camera = new C_Camera(getCamera());
 
-    cubeObject->addComponent(meshRenderer);
+    meshRenderer->getTransform().offset = vec3(-.5f, -.5f, -.5f);
 
-    getRootGameObject()->addChild(cubeObject);
+    cubeObject1 = new GameObject();
+    cameraObject = new GameObject();
+
+    cameraObject->getTransform().offset = vec3(0, 0, 5);
+
+    cubeObject1->addComponent(meshRenderer);
+    cameraObject->addComponent(c_camera);
+
+    getRootGameObject()->addChild(cubeObject1);
+    cubeObject1->addChild(cameraObject);
 }
 
 void TestGame::update(const double & delta, InputManager * input) {
-    getCamera()->updateFreeCam(delta, input);
+    Game::update(delta, input);
+
+    cameraObject->getTransform().rotation = vec3(0, Time::getTime() * 90, 0);
+    cubeObject1->getTransform().rotation = vec3(0, Time::getTime() * 90, 0);
+    cameraObject->getTransform().position = vec3(0, 0, Time::getTime());
+    //getCamera()->updateFreeCam(delta, input);
 }

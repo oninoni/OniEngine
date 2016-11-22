@@ -44,8 +44,6 @@ uniform sampler2D f_specular;
 uniform float f_specularReflectance;
 uniform float f_specularExponent;
 
-uniform vec3 f_cameraPosition;
-
 uniform DirectionalLight l_directionalLight;
 uniform PointLight l_pointLights[MAX_POINT_LIGHTS];
 uniform SpotLight l_spotLights[MAX_SPOT_LIGHTS];
@@ -53,8 +51,10 @@ uniform SpotLight l_spotLights[MAX_SPOT_LIGHTS];
 in vec3 f_normal;
 in vec2 f_uv;
 in vec3 f_position;
+in vec3 f_cameraPosition;
 
 out vec4 out_color;
+
 
 vec4 calcLight(BaseLight base, vec3 direction){
     float diffuseFactor = dot(-direction, f_normal);

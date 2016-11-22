@@ -8,7 +8,7 @@
 #include "Game.h"
 
 Game::Game() {
-    camera = new Camera(800 / 600, 0.1, 1000, 70 * 3.141 / 360);
+    camera = new Camera(800.0f / 600.0f, 0.1f, 1000.0f, 60.0f);
 }
 
 Game::~Game() {

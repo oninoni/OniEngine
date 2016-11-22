@@ -3,26 +3,17 @@
 class InputManager;
 class Shader;
 
-struct Perspective {
-    float zNear;
-    float zFar;
-    float aspectRatio;
-    float fov;
-};
-
 class Camera {
 private:
-    Transform* transform;
-    mat4 projectionMatrix;
+    mat4 viewMatrix;
 
-    Perspective perspective;
+    mat4 projectionMatrix;
 public:
     Camera(float aspectRatio, float zNear, float zFar, float fov);
     ~Camera();
 
-    Transform* getTransform();
-
-    void updateFreeCam(const double & delta, InputManager* input);
+    void setViewMatrix(mat4 matrix);
+    void setProjectionMatrix(float aspectRatio, float zNear, float zFar, float fov);
 
     void render(Shader* shader, const mat4 & modelmatrix);
 };

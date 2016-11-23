@@ -177,6 +177,12 @@
     <ClInclude Include="C_Camera.h">
       <Filter>Header Files\Engine\Core\SceneGraph\Components</Filter>
     </ClInclude>
+    <ClInclude Include="PerspectiveCamera.h">
+      <Filter>Header Files\Engine\Render\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="OrthogonalCamera.h">
+      <Filter>Header Files\Engine\Render\Scene</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="m_matrix.cpp">
@@ -262,6 +268,12 @@
     </ClCompile>
     <ClCompile Include="C_Camera.cpp">
       <Filter>Source Files\Engine\Core\SceneGraph\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="PerspectiveCamera.cpp">
+      <Filter>Source Files\Engine\Render\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="OrthogonalCamera.cpp">
+      <Filter>Source Files\Engine\Render\Scene</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

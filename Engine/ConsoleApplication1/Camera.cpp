@@ -8,19 +8,8 @@
 #define FLYSPEED 4
 #define TURNSPEED 20
 
-Camera::Camera(float aspectRatio, float zNear, float zFar, float fov) {
-    setProjectionMatrix(aspectRatio, zNear, zFar, fov);
-}
-
-Camera::~Camera() {
-}
-
 void Camera::setViewMatrix(mat4 matrix) {
     this->viewMatrix = matrix;
-}
-
-void Camera::setProjectionMatrix(float aspectRatio, float zNear, float zFar, float fov) {
-    projectionMatrix.SetProjectionMatrix(aspectRatio, zNear, zFar, fov);
 }
 
 /*

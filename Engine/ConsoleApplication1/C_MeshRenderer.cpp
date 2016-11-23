@@ -16,7 +16,7 @@ C_MeshRenderer::~C_MeshRenderer() {
 
 }
 
-void C_MeshRenderer::render(GameObject* parent, Shader* shader, Camera* camera) {
+void C_MeshRenderer::render(Shader* shader, Camera* camera) {
     material->bind(shader, 0);
     camera->render(shader, getTransformationMatrix(parent));
     mesh->render();

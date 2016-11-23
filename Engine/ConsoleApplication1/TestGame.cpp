@@ -24,32 +24,35 @@ TestGame::~TestGame(){
 void TestGame::init() {
     Game::init();
 
-    C_MeshRenderer* meshRenderer = new C_MeshRenderer(
-        new Mesh(PhongShader::getInstance(), "Models/cube.obj"),
-        new Material(new Texture("Textures/brick.png"), new Texture("Textures/brick.png"), new Texture("Textures/brick.png"))
-    );
+    Mesh* mesh = new Mesh(PhongShader::getInstance(), "Models/cube.obj");
+    Material* material = new Material(new Texture("Textures/brick.png"), new Texture("Textures/brick.png"), new Texture("Textures/brick.png"));
 
-    C_Camera* c_camera = new C_Camera(getCamera());
+    C_MeshRenderer* cube = new C_MeshRenderer( mesh, material);
+    C_MeshRenderer* floor = new C_MeshRenderer(mesh, material);
 
-    meshRenderer->getTransform().offset = vec3(-.5f, -.5f, -.5f);
+    c_camera = new C_Camera(getCamera());
 
+    floorObject = new GameObject();
     cubeObject1 = new GameObject();
     cameraObject = new GameObject();
 
-    cameraObject->getTransform().offset = vec3(0, 0, 5);
+    cameraObject->getTransform().position = vec3(0, 0, 5);
 
-    cubeObject1->addComponent(meshRenderer);
+    cubeObject1->addComponent(cube);
+    cubeObject1->getTransform().offset = vec3(.5f, .5f, .5f);
+    cubeObject1->getTransform().scale = vec3(1, 1, 1);
+    cubeObject1->getTransform().position = vec3(1, 2, 1);
+    floorObject->addComponent(cube);
+    floorObject->getTransform().offset = vec3(.5f, .5f, .5f);
+    floorObject->getTransform().scale = vec3(10, 1, 10);
     cameraObject->addComponent(c_camera);
 
-    getRootGameObject()->addChild(cubeObject1);
-    cubeObject1->addChild(cameraObject);
+    getRootGameObject()->addChild(floorObject);
+    floorObject->addChild(cubeObject1);
+    getRootGameObject()->addChild(cameraObject);
 }
 
 void TestGame::update(const double & delta, InputManager * input) {
     Game::update(delta, input);
-
-    cameraObject->getTransform().rotation = vec3(0, Time::getTime() * 90, 0);
-    cubeObject1->getTransform().rotation = vec3(0, Time::getTime() * 90, 0);
-    cameraObject->getTransform().position = vec3(0, 0, Time::getTime());
-    //getCamera()->updateFreeCam(delta, input);
+    c_camera->updateFreeCam(delta, input);
 }

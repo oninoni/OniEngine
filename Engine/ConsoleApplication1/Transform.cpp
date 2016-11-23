@@ -39,8 +39,8 @@ mat4 Transform::getTransformationMatrix(bool inverted) {
     }
 
     if (scaleHasChanged) {
-        scaleMatrix.setScaleMatrix(t_scale, false);
-        scaleMatrixInverse.setScaleMatrix(t_scale, true);
+        scaleMatrix.setScaleMatrix(t_scale);
+        scaleMatrixInverse.setScaleMatrix(t_scale);
         scaleHasChanged = false;
         hasChanged = true;
     }
@@ -139,8 +139,8 @@ void Transform::setOffset(float x, float y, float z) {
 
 vec3 Transform::getForward() {
     if (forwardHasChanged) {
-        vec4 f = rotationMatrix * vec4(0, 0, -1, 0);
-        d_forward = vec3(f.x, f.y, f.z);
+        vec4 f = transformationMatrixInverse * vec4(0, 0, -1, 0);
+        d_forward = vec3(f);
         d_forward.normalize();
         forwardHasChanged = false;
     }
@@ -149,8 +149,8 @@ vec3 Transform::getForward() {
 
 vec3 Transform::getLeft() {
     if (leftHasChanged) {
-        vec4 f = rotationMatrix * vec4(-1, 0, 0, 0);
-        d_left = vec3(f.x, f.y, f.z);
+        vec4 f = transformationMatrixInverse * vec4(-1, 0, 0, 0);
+        d_left = vec3(f);
         d_left.normalize();
         leftHasChanged = false;
     }
@@ -159,8 +159,8 @@ vec3 Transform::getLeft() {
 
 vec3 Transform::getUp() {
     if (upHasChanged) {
-        vec4 f = rotationMatrix * vec4(0, 1, 0, 0);
-        d_up = vec3(f.x, f.y, f.z);
+        vec4 f = transformationMatrixInverse * vec4(0, 1, 0, 0);
+        d_up = vec3(f);
         d_up.normalize();
         upHasChanged = false;
     }

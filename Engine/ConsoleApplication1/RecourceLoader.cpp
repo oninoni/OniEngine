@@ -197,7 +197,7 @@ Mesh *RecourceLoader::loadOBJ(string fileName, Shader* shader) {
 
         Vertex* verts = new Vertex[indices.size()]();
 
-        for (int i = 0; i < indices.size(); i++) {
+        for (uint i = 0; i < indices.size(); i++) {
             ivec3 index = indices[i];
             verts[i] = Vertex(
                 positions[index.x],

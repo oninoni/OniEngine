@@ -122,7 +122,7 @@ vec4 calcSpotLight(SpotLight spotLight){
 void main(){
     vec4 total_Light = texture(f_ambient, f_uv) * f_color * vec4(l_ambient, 1);
     
-    /*total_Light += calcDirectionalLight(l_directionalLight);
+    total_Light += calcDirectionalLight(l_directionalLight);
     
     for(int i = 0; i < MAX_POINT_LIGHTS; i++){
         if(l_pointLights[i].base.l_intensity > 0)
@@ -133,6 +133,6 @@ void main(){
         if(l_spotLights[i].pointLight.base.l_intensity > 0)
             total_Light += calcSpotLight(l_spotLights[i]);
     }
-    */
+
     out_color = total_Light;
 }

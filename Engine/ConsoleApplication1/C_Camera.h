@@ -3,6 +3,7 @@
 #include "GameComponent.h"
 
 class Camera;
+class Input;
 
 class C_Camera : public GameComponent {
 private:
@@ -11,5 +12,7 @@ public:
     C_Camera(Camera* camera);
     ~C_Camera();
 
-    void update(GameObject* parent, const double & delta, InputManager* input);
+    void updateFreeCam(const double & delta, InputManager* input);
+
+    void update(const double & delta, InputManager* input);
 };

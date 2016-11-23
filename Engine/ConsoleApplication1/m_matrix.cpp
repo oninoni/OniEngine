@@ -63,16 +63,16 @@ template<>
 void m_matrix<float, 4, 4>::setScaleMatrix(const vec3 & s, bool invert) {
     clear();
 
-    if (invert) {
-        data[0][0] = 1 / s.x;
-        data[1][1] = 1 / s.y;
-        data[2][2] = 1 / s.z;
-    }
-    else {
+    //if (invert) {
+    //    data[0][0] = 1 / s.x;
+    //    data[1][1] = 1 / s.y;
+    //    data[2][2] = 1 / s.z;
+    //}
+    //else {
         data[0][0] = s.x;
         data[1][1] = s.y;
         data[2][2] = s.z;
-    }
+    //}
 
     data[3][3] = 1;
 

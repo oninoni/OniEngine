@@ -14,22 +14,16 @@ GameComponent::GameComponent() {
 GameComponent::~GameComponent() {
 }
 
-void GameComponent::init(GameObject* parent) {
+void GameComponent::init(GameObject* parent){
+    this->parent = parent;
 }
 
-void GameComponent::update(GameObject* parent, const double & delta, InputManager * input) {
+void GameComponent::update(const double & delta, InputManager * input) {
 }
 
-void GameComponent::render(GameObject* parent, Shader * shader, Camera * camera) {
+void GameComponent::render(Shader * shader, Camera * camera) {
 }
 
-Transform& GameComponent::getTransform() {
-    return transform;
-}
-
-mat4 GameComponent::getTransformationMatrix(GameObject* parent, bool inverted) {
-    if(inverted)
-        return transform.getTransformationMatrix(inverted) * parent->getTransformationMatrix(inverted);
-    else
-        return parent->getTransformationMatrix(inverted) * transform.getTransformationMatrix(inverted);
+mat4 GameComponent::getTransformationMatrix(bool inverted) {
+    return parent->getTransformationMatrix(inverted);
 }

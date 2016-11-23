@@ -26,7 +26,7 @@ void GameObject::addComponent(GameComponent* component) {
 
 void GameObject::update(const double & delta, InputManager * input) {
     for (GameComponent* gameComponent : components) {
-        gameComponent->update(this, delta, input);
+        gameComponent->update(delta, input);
     }
 
     for (GameObject* gameObject : children) {
@@ -36,7 +36,7 @@ void GameObject::update(const double & delta, InputManager * input) {
 
 void GameObject::render(Shader* shader, Camera* camera) {
     for (GameComponent* gameComponent : components) {
-        gameComponent->render(this, shader, camera);
+        gameComponent->render(shader, camera);
     }
 
     for (GameObject* gameObject : children) {

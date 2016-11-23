@@ -320,6 +320,16 @@ public:
         setW(w);
     }
 
+    template<int M>
+    m_vector(m_vector<T, M> a, T t = 0) {
+        for (int i = 0; i < N; i++) {
+            if (i >= M)
+                data[i] = t;
+            else
+                data[i] = a[i];
+        }
+    }
+
     inline T operator[](int i) const {
         return data[i];
     }

@@ -15,5 +15,5 @@ public:
 
     void updateFreeCam(const double & delta, InputManager* input);
 
-    void update(const double & delta, InputManager* input);
+    void c_update(const double & delta, InputManager* input);
 };

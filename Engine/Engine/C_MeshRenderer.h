@@ -12,5 +12,5 @@ public:
 
     string GetDafaultName();
     
-    void render(Shader* shader, Camera* camera);
+    void c_render(Shader* shader, Camera* camera);
 };

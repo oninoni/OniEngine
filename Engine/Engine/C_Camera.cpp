@@ -46,7 +46,7 @@ void C_Camera::updateFreeCam(const double & delta, InputManager * input) {
     parent->getTransform().rotation = cameraRotation;
 }
 
-void C_Camera::update(const double & delta, InputManager * input) {
+void C_Camera::c_update(const double & delta, InputManager * input) {
     mat4 viewMatrix = getTransformationMatrix(true);
     camera->setViewMatrix(viewMatrix);
 }

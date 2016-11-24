@@ -11,24 +11,22 @@ private:
 
     GameObject* parent;
 
-    vector<GameObject> children;
-    vector<GameComponent> components;
+    unordered_set<GameObject*> children;
+    unordered_set<GameComponent*> components;
 public:
     GameObject();
     ~GameObject();
 
-    void addChild(GameObject child);
+    void addChild(GameObject* child);
+    void removeChild(GameObject* child);
 
-    void addComponent(GameComponent& component);
-    void addComponent(string name, GameComponent& component);
-    void removeComponent(string name);
-    GameComponent& getComponent(string name);
+    void addComponent(GameComponent* component);
+    void removeComponent(GameComponent* component);
 
+    void init(GameObject* parent);
     void update(const double & delta, InputManager* input);
+    void preRender(Shader* shader);
     void render(Shader* shader, Camera* camera);
-
-    GameObject* getParent();
-    void setParent(GameObject* parent);
 
     mat4 getTransformationMatrix(bool inverted = false);
     Transform& getTransform();

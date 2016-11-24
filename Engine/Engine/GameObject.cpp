@@ -12,56 +12,65 @@ GameObject::GameObject() {
 }
 
 GameObject::~GameObject() {
-}
+    if(parent)
+       parent->removeChild(this);
 
-void GameObject::addChild(GameObject child) {
-    child.setParent(this);
-    children.push_back(child);
-}
+    for (GameComponent* gameComponent : components) {
+        gameComponent->c_destroy();
+        gameComponent->setParent(NULL);
+        delete gameComponent;
+    }
 
-void GameObject::addComponent(GameComponent & component) {
-    addComponent(component.GetDafaultName(), component);
-}
-
-void GameObject::addComponent(string name, GameComponent& component) {
-    components.push_back(component);
-    component.init(this, name);
-}
-
-void GameObject::removeComponent(string name) {
-    int i = 0;
-    for (GameComponent& gameComponent : components) {
-        if (gameComponent.getName() == name)
-            components.erase(components.begin() + i);
-        i++;
+    for (GameObject* child : children) {
+        child->parent = NULL;
+        delete child;
     }
 }
 
-GameComponent& GameObject::getComponent(string name) {
-    for (GameComponent& gameComponent : components) {
-        if (gameComponent.getName() == name)
-            return gameComponent;
-    }
+void GameObject::addChild(GameObject* child) {
+    child->init(this);
+    children.insert(child);
+}
+
+void GameObject::removeChild(GameObject* child) {
+    children.erase(child);
+}
+
+void GameObject::addComponent(GameComponent* component) {
+    component->init(this);
+    components.insert(component);
+}
+
+void GameObject::removeComponent(GameComponent* component) {
+    components.erase(component);
+}
+
+void GameObject::init(GameObject * parent) {
+    this->parent = parent;
 }
 
 void GameObject::update(const double & delta, InputManager * input) {
-    for (GameComponent& gameComponent : components) {
-        gameComponent.update(delta, input);
-    }
+    for (GameComponent* gameComponent : components)
+        gameComponent->update(delta, input);
 
-    for (GameObject gameObject : children) {
-        gameObject.update(delta, input);
-    }
+    for (GameObject* child : children)
+        child->update(delta, input);
+}
+
+void GameObject::preRender(Shader * shader) {
+    for (GameComponent* gameComponent : components)
+        gameComponent->preRender(shader);
+
+    for (GameObject* child : children)
+        child->preRender(shader);
 }
 
 void GameObject::render(Shader* shader, Camera* camera) {
-    for (GameComponent& gameComponent : components) {
-        gameComponent.render(shader, camera);
-    }
+    for (GameComponent* gameComponent : components)
+        gameComponent->render(shader, camera);
 
-    for (GameObject gameObject : children) {
-        gameObject.render(shader, camera);
-    }
+    for (GameObject* child : children)
+        child->render(shader, camera);
 }
 
 Transform& GameObject::getTransform() {
@@ -69,19 +78,11 @@ Transform& GameObject::getTransform() {
 }
 
 mat4 GameObject::getTransformationMatrix(bool inverted) {
-    if (parent == NULL)
+    if (!parent)
         return getTransform().getTransformationMatrix(inverted);
     else
         if(inverted)
             return transform.getTransformationMatrix(inverted) * parent->getTransformationMatrix(inverted);
         else
             return parent->getTransformationMatrix(inverted) * transform.getTransformationMatrix(inverted);
-}
-
-GameObject * GameObject::getParent() {
-    return parent;
-}
-
-void GameObject::setParent(GameObject * parent) {
-    this->parent = parent;
 }

@@ -7,7 +7,7 @@ PhongShader::PhongShader() : Shader("phong") {
     addAttribute("v_normal", GL_FLOAT, 3);
     addAttribute("v_uv", GL_FLOAT, 2);
 
-    setUniformVec3("l_ambient", vec3(1.0f, 1.0f, 1.0f));
+    setUniformVec3("l_ambient", vec3(0.1f, 0.1f, 0.1f));
 }
 
 PhongShader::~PhongShader() {
@@ -17,3 +17,4 @@ PhongShader* PhongShader::getInstance() {
     static PhongShader phongShader;
     return &phongShader;
 }
+

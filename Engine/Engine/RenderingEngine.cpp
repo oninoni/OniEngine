@@ -4,6 +4,8 @@
 #include "GameObject.h"
 #include "Camera.h"
 
+#include "LightHandler.h"
+
 #include "RenderingEngine.h"
 
 RenderingEngine::RenderingEngine(Camera* camera) {
@@ -18,8 +20,9 @@ RenderingEngine::RenderingEngine(Camera* camera) {
 RenderingEngine::~RenderingEngine() {
 }
 
-void RenderingEngine::render(GameObject * object) {
-    object->render(shader, camera);
+void RenderingEngine::render(GameObject * root) {
+    root->preRender(shader);
+    root->render(shader, camera);
 }
 
 

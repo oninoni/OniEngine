@@ -11,19 +11,30 @@
 GameComponent::GameComponent() {
 }
 
-void GameComponent::init(GameObject* parent, string name){
+GameComponent::~GameComponent() {
+    if(parent)
+        parent->removeComponent(this);
+}
+
+void GameComponent::init(GameObject* parent){
+    c_init(parent);
     this->parent = parent;
-    this->name = name;
 }
 
 void GameComponent::update(const double & delta, InputManager * input) {
+    c_update(delta, input);
+}
+
+void GameComponent::preRender(Shader * shader) {
+    c_preRender(shader);
 }
 
 void GameComponent::render(Shader * shader, Camera * camera) {
+    c_render(shader, camera);
 }
 
-string GameComponent::getName() {
-    return name;
+void GameComponent::setParent(GameObject * parent) {
+    this->parent = parent;
 }
 
 mat4 GameComponent::getTransformationMatrix(bool inverted) {

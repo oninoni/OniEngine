@@ -1,5 +1,7 @@
 #pragma once
 
+class Shader;
+
 class Attenuation {
 protected:
     float constant;
@@ -8,13 +10,6 @@ protected:
 
     Attenuation(float range);
     Attenuation(float c, float l, float s);
-public:
-    float getConstant();
-    void setConstant(float c);
 
-    float getLinear();
-    void setLinear(float l);
-
-    float getSquare();
-    void setSquare(float s);
+    void setUniformAttenuation(Shader* shader, string uniformLocation);
 };

@@ -1,5 +1,7 @@
 #include "stdafx.h"
 
+#include "Shader.h"
+
 #include "SpotLight.h"
 
 SpotLight::SpotLight(vec3 d, float cO, float cOB, vec3 p, float r, vec3 c, float i) : PointLight(p, r, c, i) {
@@ -12,6 +14,13 @@ SpotLight::SpotLight(vec3 d, float cO, float cOB, vec3 p, float r, vec3 c, float
     direction = d.normalize();
     cutoff = cO;
     cutoffBlend = cOB;
+}
+
+void SpotLight::setUniformSpotLight(Shader * shader, string uniformLocation) {
+    setUniformPointLight(shader, uniformLocation + ".pointLight");
+    shader->setUniformVec3(uniformLocation + ".l_direction", direction);
+    shader->setUniformF(uniformLocation + ".l_cutoff", cutoff);
+    shader->setUniformF(uniformLocation + ".l_cutoffBlend", cutoffBlend);
 }
 
 vec3 SpotLight::getDirection() {

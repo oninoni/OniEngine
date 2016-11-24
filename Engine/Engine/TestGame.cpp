@@ -9,13 +9,13 @@
 
 #include "C_MeshRenderer.h"
 #include "C_Camera.h"
+#include "C_DirectionalLight.h"
 #include "GameObject.h"
 
-#include "Camera.h"
 #include "TestGame.h"
 #include "Time.h"
 
-TestGame::TestGame() : Game(){
+TestGame::TestGame(){
 }
 
 TestGame::~TestGame(){
@@ -30,20 +30,23 @@ void TestGame::init() {
     C_MeshRenderer* cube = new C_MeshRenderer(mesh, material);
     C_MeshRenderer* floor = new C_MeshRenderer(mesh, material);
 
+    C_DirectionalLight* dLight = new C_DirectionalLight(vec3(1, 0, 0), 1, vec3(1, -1, 1));
+
     c_camera = new C_Camera(getCamera());
 
     floorObject = new GameObject();
     cubeObject1 = new GameObject();
     cameraObject = new GameObject();
 
-    cameraObject->getTransform().position = vec3(0, 0, 5);
+    cameraObject->getTransform().position = vec3(0, 1, 0);
 
     floorObject->addComponent(floor);
     floorObject->getTransform().offset = vec3(-.5f, -.5f, -.5f);
     floorObject->getTransform().scale = vec3(10, 1, 10);
 
     cubeObject1->addComponent(cube);
-    cubeObject1->getTransform().scale = vec3(.1, 1, .1);
+    cubeObject1->addComponent(dLight);
+    cubeObject1->getTransform().scale = vec3(.1f, 1, .1f);
     cubeObject1->getTransform().position = vec3(0, 5, 0);
 
     cameraObject->addComponent(c_camera);
@@ -56,4 +59,9 @@ void TestGame::init() {
 void TestGame::update(const double & delta, InputManager * input) {
     Game::update(delta, input);
     c_camera->updateFreeCam(delta, input);
+
+    if (input->keyPressed(KeyAction::kaFirePrimary) && cubeObject1) {
+        delete cubeObject1;
+        cubeObject1 = NULL;
+    }
 }

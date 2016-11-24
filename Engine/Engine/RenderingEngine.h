@@ -3,6 +3,8 @@
 class Shader;
 class Camera;
 
+class LightHandler;
+
 class RenderingEngine {
 private:
     Shader* shader;

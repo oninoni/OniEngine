@@ -23,11 +23,13 @@
     <ClInclude Include="BaseLight.h" />
     <ClInclude Include="Camera.h" />
     <ClInclude Include="C_Camera.h" />
+    <ClInclude Include="C_DirectionalLight.h" />
     <ClInclude Include="DirectionalLight.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="GameComponent.h" />
     <ClInclude Include="GameObject.h" />
     <ClInclude Include="InputManager.h" />
+    <ClInclude Include="LightHandler.h" />
     <ClInclude Include="lodepng.h" />
     <ClInclude Include="CoreEngine.h" />
     <ClInclude Include="Material.h" />
@@ -48,6 +50,7 @@
     <ClInclude Include="Texture.h" />
     <ClInclude Include="Time.h" />
     <ClInclude Include="Transform.h" />
+    <ClInclude Include="UniformBufferObject.h" />
     <ClInclude Include="Vertex.h" />
     <ClInclude Include="Window.h" />
   </ItemGroup>
@@ -56,11 +59,13 @@
     <ClCompile Include="BaseLight.cpp" />
     <ClCompile Include="Camera.cpp" />
     <ClCompile Include="C_Camera.cpp" />
+    <ClCompile Include="C_DirectionalLight.cpp" />
     <ClCompile Include="DirectionalLight.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="GameComponent.cpp" />
     <ClCompile Include="GameObject.cpp" />
     <ClCompile Include="InputManager.cpp" />
+    <ClCompile Include="LightHandler.cpp" />
     <ClCompile Include="lodepng.cpp" />
     <ClCompile Include="CoreEngine.cpp" />
     <ClCompile Include="Material.cpp" />
@@ -81,6 +86,7 @@
     <ClCompile Include="Texture.cpp" />
     <ClCompile Include="Time.cpp" />
     <ClCompile Include="Transform.cpp" />
+    <ClCompile Include="UniformBufferObject.cpp" />
     <ClCompile Include="Vertex.cpp" />
     <ClCompile Include="Window.cpp" />
   </ItemGroup>

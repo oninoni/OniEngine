@@ -1,11 +1,6 @@
 #pragma once
 
-class BaseLight;
-class Attenuation;
-
-class DirectionalLight;
-class PointLight;
-class SpotLight;
+class LightHandler;
 
 enum ShaderType{
     VertexShader,
@@ -32,13 +27,12 @@ private:
     GLuint program;
     GLuint shaders[NUM_SHADERS];
 
+    LightHandler* lightHandler;
+
     void addUniform(string uniform);
 
     static GLuint createShader(const string& text, GLenum type);
     static void checkShaderError(GLuint shader, GLuint flag, bool isProgram, const std::string& errorMessage);
-
-    void setUniformBLight(string uniformLocation, BaseLight * baseLight);
-    void setUniformAttend(string uniformLocation, Attenuation* attenuation);
 public:
     Shader(const string& fileName);
     void bind();
@@ -57,7 +51,7 @@ public:
     void setUniformVec4(string uniformLocation, vec4 value);
     void setUniformMat4(string uniformLocation, mat4 value, GLboolean transpose = GL_FALSE);
 
-    void setUniformDLight(string uniformLocation, DirectionalLight* directionalLight);
-    void setUniformPLight(string uniformLocation, PointLight* pointLight);
-    void setUniformSLight(string uniformLocation, SpotLight* spotLight);
+    GLuint getProgramID();
+
+    LightHandler* getLightHandler();
 };

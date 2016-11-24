@@ -23,7 +23,7 @@ void Game::update(const double & delta, InputManager * input) {
 }
 
 GameObject* Game::getRootGameObject() {
-    if (root == NULL)
+    if (!root)
         root = new GameObject();
 
     return root;

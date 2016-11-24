@@ -94,6 +94,15 @@
     <ClCompile Include="Time.cpp">
       <Filter>Source\Core\Util</Filter>
     </ClCompile>
+    <ClCompile Include="C_DirectionalLight.cpp">
+      <Filter>Source\Core\Scene\Components\Light</Filter>
+    </ClCompile>
+    <ClCompile Include="LightHandler.cpp">
+      <Filter>Source\Rendering\Lighting</Filter>
+    </ClCompile>
+    <ClCompile Include="UniformBufferObject.cpp">
+      <Filter>Source\Rendering\Shader</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="C_Camera.h">
@@ -189,6 +198,15 @@
     <ClInclude Include="Time.h">
       <Filter>Header\Core\Util</Filter>
     </ClInclude>
+    <ClInclude Include="C_DirectionalLight.h">
+      <Filter>Header\Core\Scene\Components\Light</Filter>
+    </ClInclude>
+    <ClInclude Include="LightHandler.h">
+      <Filter>Header\Rendering\Lighting</Filter>
+    </ClInclude>
+    <ClInclude Include="UniformBufferObject.h">
+      <Filter>Header\Rendering\Shader</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="phong.fs">
@@ -279,6 +297,12 @@
     </Filter>
     <Filter Include="Source\TestGame">
       <UniqueIdentifier>{9282ad55-cdba-404f-a27c-403abb30edc0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header\Core\Scene\Components\Light">
+      <UniqueIdentifier>{a1a678e2-fd1c-4315-8dd7-064e9b1bbc61}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\Core\Scene\Components\Light">
+      <UniqueIdentifier>{e297d6f5-c652-40ad-a148-fb7a7c27f24b}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

@@ -1,7 +1,8 @@
 #version 420
 
-const int MAX_POINT_LIGHTS = 4;
-const int MAX_SPOT_LIGHTS = 4;
+const int MAX_DIRECTIONAL_LIGHTS = 4;
+const int MAX_POINT_LIGHTS = 64;
+const int MAX_SPOT_LIGHTS = 64;
 
 struct BaseLight{
     vec3 l_color;
@@ -44,9 +45,16 @@ uniform sampler2D f_specular;
 uniform float f_specularReflectance;
 uniform float f_specularExponent;
 
-uniform DirectionalLight l_directionalLight;
-uniform PointLight l_pointLights[MAX_POINT_LIGHTS];
-uniform SpotLight l_spotLights[MAX_SPOT_LIGHTS];
+uniform DirectionalLight ;
+//uniform 
+layout (std140) uniform l_lightdata{
+    int l_directionalLightCount;
+    DirectionalLight l_directionalLights[MAX_DIRECTIONAL_LIGHTS];
+    //int l_pointLightCount;
+    //PointLight l_pointLights[MAX_POINT_LIGHTS];
+    //int l_spotLightCount;
+    //SpotLight l_spotLights[MAX_SPOT_LIGHTS];
+};
 
 in vec3 f_normal;
 in vec2 f_uv;
@@ -69,9 +77,9 @@ vec4 calcLight(BaseLight base, vec3 direction){
         vec3 reflectedDirection = normalize(reflect(direction, f_normal));
         
         float specularFactor = dot(directionToEye, reflectedDirection);
-        specularFactor = pow(specularFactor, f_specularExponent);
         
         if(specularFactor > 0){
+            specularFactor = pow(specularFactor, f_specularExponent);
             specularColor = texture(f_specular, f_uv) * f_specularReflectance * f_color * vec4(base.l_color, 1.0) * base.l_intensity * specularFactor;
         }
     }
@@ -120,19 +128,19 @@ vec4 calcSpotLight(SpotLight spotLight){
 }
 
 void main(){
-    vec4 total_Light = texture(f_ambient, f_uv) * f_color * vec4(l_ambient, 1);
+    out_color = texture(f_ambient, f_uv) * f_color * vec4(l_ambient, 1);
     
-    total_Light += calcDirectionalLight(l_directionalLight);
-    
-    for(int i = 0; i < MAX_POINT_LIGHTS; i++){
-        if(l_pointLights[i].base.l_intensity > 0)
-            total_Light += calcPointLight(l_pointLights[i]);
+    for(int i = 0; i < l_directionalLightCount; i++){
+        if(l_directionalLights[i].base.l_intensity > 0)
+            out_color += calcDirectionalLight(l_directionalLights[i]);
     }
-    
-    for(int i = 0; i < MAX_SPOT_LIGHTS; i++){
-        if(l_spotLights[i].pointLight.base.l_intensity > 0)
-            total_Light += calcSpotLight(l_spotLights[i]);
-    }
-
-    out_color = total_Light;
+    //for(int i = 0; i < l_pointLightCount; i++){
+    //    if(l_pointLights[i].base.l_intensity > 0)
+    //        out_color += calcPointLight(l_pointLights[i]);
+    //}
+    //
+    //for(int i = 0; i < l_spotLightCount; i++){
+    //    if(l_spotLights[i].pointLight.base.l_intensity > 0)
+    //        out_color += calcSpotLight(l_spotLights[i]);
+    //}
 }

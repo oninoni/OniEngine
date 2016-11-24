@@ -2,12 +2,7 @@
 
 #include "RecourceLoader.h"
 
-#include "Attenuation.h"
-#include "BaseLight.h"
-
-#include "DirectionalLight.h"
-#include "PointLight.h"
-#include "SpotLight.h"
+#include "LightHandler.h"
 
 #include "Shader.h"
 
@@ -84,6 +79,9 @@ Shader::Shader(const string & fileName) {
 
     glValidateProgram(program);
     checkShaderError(program, GL_VALIDATE_STATUS, true, "Error: Shadersprogram " + fileName + " failed to validate: ");
+
+    lightHandler = new LightHandler();
+    lightHandler->bindShader(this, "l_lightdata");
 }
 
 void Shader::bind() {
@@ -131,34 +129,12 @@ void Shader::setUniformMat4(string uniformLocation, mat4 value, GLboolean transp
     glUniformMatrix4fv(getUniformLocation(uniformLocation), 1, transpose, (float*)&value);
 }
 
-void Shader::setUniformBLight(string uniformLocation, BaseLight * baseLight) {
-    setUniformVec3(uniformLocation + ".l_color", baseLight->getColor());
-    setUniformF(uniformLocation + ".l_intensity", baseLight->getIntensity());
+GLuint Shader::getProgramID() {
+    return program;
 }
 
-void Shader::setUniformAttend(string uniformLocation, Attenuation * attenuation) {
-    setUniformF(uniformLocation + ".attend_constant", attenuation->getConstant());
-    setUniformF(uniformLocation + ".attend_linear", attenuation->getLinear());
-    setUniformF(uniformLocation + ".attend_square", attenuation->getSquare());
-}
-
-void Shader::setUniformDLight(string uniformLocation, DirectionalLight* directionalLight) {
-    setUniformBLight(uniformLocation + ".base", directionalLight);
-    setUniformVec3(uniformLocation + ".l_direction", directionalLight->getDirection());
-}
-
-void Shader::setUniformPLight(string uniformLocation, PointLight * pointLight) {
-    setUniformBLight(uniformLocation + ".base", pointLight);
-    setUniformAttend(uniformLocation + ".attenuation", pointLight);
-    setUniformVec3(uniformLocation + ".l_position", pointLight->getPosition());
-    setUniformF(uniformLocation + ".l_range", pointLight->getRange());
-}
-
-void Shader::setUniformSLight(string uniformLocation, SpotLight * spotLight) {
-    setUniformPLight(uniformLocation + ".pointLight", spotLight);
-    setUniformVec3(uniformLocation + ".l_direction", spotLight->getDirection());
-    setUniformF(uniformLocation + ".l_cutoff", spotLight->getCutoff());
-    setUniformF(uniformLocation + ".l_cutoffBlend", spotLight->getCutoffBlend());
+LightHandler * Shader::getLightHandler() {
+    return lightHandler;
 }
 
 Shader::~Shader() {

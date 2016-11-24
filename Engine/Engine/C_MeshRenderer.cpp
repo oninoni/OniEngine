@@ -16,7 +16,7 @@ string C_MeshRenderer::GetDafaultName() {
     return "C_MeshRenderer";
 }
 
-void C_MeshRenderer::render(Shader* shader, Camera* camera) {
+void C_MeshRenderer::c_render(Shader* shader, Camera* camera) {
     material->bind(shader, 0);
     camera->render(shader, getTransformationMatrix());
     mesh->render();

@@ -90,7 +90,7 @@
   <PropertyGroup Label="Globals">
     <ProjectGuid>{EF709456-5B3A-42D9-9FA9-8AF020C5F5D7}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
-    <RootNamespace>ConsoleApplication1</RootNamespace>
+    <RootNamespace>Engine</RootNamespace>
     <WindowsTargetPlatformVersion>8.1</WindowsTargetPlatformVersion>
     <ProjectName>Engine</ProjectName>
   </PropertyGroup>

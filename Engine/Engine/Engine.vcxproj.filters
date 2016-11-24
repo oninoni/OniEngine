@@ -1,0 +1,72 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="Attenuation.cpp" />
+    <ClCompile Include="BaseLight.cpp" />
+    <ClCompile Include="Camera.cpp" />
+    <ClCompile Include="C_Camera.cpp" />
+    <ClCompile Include="DirectionalLight.cpp" />
+    <ClCompile Include="Game.cpp" />
+    <ClCompile Include="GameComponent.cpp" />
+    <ClCompile Include="GameObject.cpp" />
+    <ClCompile Include="InputManager.cpp" />
+    <ClCompile Include="lodepng.cpp" />
+    <ClCompile Include="CoreEngine.cpp" />
+    <ClCompile Include="Material.cpp" />
+    <ClCompile Include="Mesh.cpp" />
+    <ClCompile Include="C_MeshRenderer.cpp" />
+    <ClCompile Include="m_matrix.cpp" />
+    <ClCompile Include="OrthogonalCamera.cpp" />
+    <ClCompile Include="PerspectiveCamera.cpp" />
+    <ClCompile Include="PhongShader.cpp" />
+    <ClCompile Include="PointLight.cpp" />
+    <ClCompile Include="RecourceLoader.cpp" />
+    <ClCompile Include="RenderingEngine.cpp" />
+    <ClCompile Include="Shader.cpp" />
+    <ClCompile Include="Source.cpp" />
+    <ClCompile Include="SpotLight.cpp" />
+    <ClCompile Include="TestGame.cpp" />
+    <ClCompile Include="Texture.cpp" />
+    <ClCompile Include="Time.cpp" />
+    <ClCompile Include="Transform.cpp" />
+    <ClCompile Include="Vertex.cpp" />
+    <ClCompile Include="Window.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Attenuation.h" />
+    <ClInclude Include="BaseLight.h" />
+    <ClInclude Include="Camera.h" />
+    <ClInclude Include="C_Camera.h" />
+    <ClInclude Include="DirectionalLight.h" />
+    <ClInclude Include="Game.h" />
+    <ClInclude Include="GameComponent.h" />
+    <ClInclude Include="GameObject.h" />
+    <ClInclude Include="InputManager.h" />
+    <ClInclude Include="lodepng.h" />
+    <ClInclude Include="CoreEngine.h" />
+    <ClInclude Include="Material.h" />
+    <ClInclude Include="Mesh.h" />
+    <ClInclude Include="C_MeshRenderer.h" />
+    <ClInclude Include="m_matrix.h" />
+    <ClInclude Include="m_vector.h" />
+    <ClInclude Include="OrthogonalCamera.h" />
+    <ClInclude Include="PerspectiveCamera.h" />
+    <ClInclude Include="PhongShader.h" />
+    <ClInclude Include="PointLight.h" />
+    <ClInclude Include="RecourceLoader.h" />
+    <ClInclude Include="RenderingEngine.h" />
+    <ClInclude Include="Shader.h" />
+    <ClInclude Include="SpotLight.h" />
+    <ClInclude Include="stdafx.h" />
+    <ClInclude Include="TestGame.h" />
+    <ClInclude Include="Texture.h" />
+    <ClInclude Include="Time.h" />
+    <ClInclude Include="Transform.h" />
+    <ClInclude Include="Vertex.h" />
+    <ClInclude Include="Window.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="phong.fs" />
+    <None Include="phong.vs" />
+  </ItemGroup>
+</Project>

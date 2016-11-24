@@ -9,7 +9,8 @@ private:
 protected:
 public:
     C_MeshRenderer(Mesh* m, Material* mat);
-    ~C_MeshRenderer();
+
+    string GetDafaultName();
     
     void render(Shader* shader, Camera* camera);
 };

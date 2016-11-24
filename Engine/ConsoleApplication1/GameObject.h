@@ -11,14 +11,18 @@ private:
 
     GameObject* parent;
 
-    vector<GameObject*> children;
-    vector<GameComponent*> components;
+    vector<GameObject> children;
+    vector<GameComponent> components;
 public:
     GameObject();
     ~GameObject();
 
-    void addChild(GameObject* child);
-    void addComponent(GameComponent* component);
+    void addChild(GameObject child);
+
+    void addComponent(GameComponent& component);
+    void addComponent(string name, GameComponent& component);
+    void removeComponent(string name);
+    GameComponent& getComponent(string name);
 
     void update(const double & delta, InputManager* input);
     void render(Shader* shader, Camera* camera);
@@ -28,5 +32,4 @@ public:
 
     mat4 getTransformationMatrix(bool inverted = false);
     Transform& getTransform();
-
 };

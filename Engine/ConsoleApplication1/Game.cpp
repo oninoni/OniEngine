@@ -3,12 +3,12 @@
 #include "InputManager.h"
 #include "GameObject.h"
 #include "Shader.h"
-#include "Camera.h"
+#include "PerspectiveCamera.h"
 
 #include "Game.h"
 
 Game::Game() {
-    camera = new Camera(800.0f / 600.0f, 0.1f, 1000.0f, 60.0f);
+    camera = new PerspectiveCamera(800.0f / 600.0f, 0.1f, 1000.0f, 60.0f);
 }
 
 Game::~Game() {

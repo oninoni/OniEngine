@@ -3,7 +3,7 @@
 #include "OrthogonalCamera.h"
 
 OrthogonalCamera::OrthogonalCamera(float left, float right, float bottom, float top, float nearZ, float farZ) {
-    setProjectionMatrix(left, right, bottom, top, nearZ, farZ));
+    setProjectionMatrix(left, right, bottom, top, nearZ, farZ);
 }
 
 void OrthogonalCamera::setProjectionMatrix(float left, float right, float bottom, float top, float nearZ, float farZ) {

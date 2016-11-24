@@ -10,7 +10,8 @@ private:
     Camera* camera;
 public:
     C_Camera(Camera* camera);
-    ~C_Camera();
+
+    string GetDafaultName();
 
     void updateFreeCam(const double & delta, InputManager* input);
 

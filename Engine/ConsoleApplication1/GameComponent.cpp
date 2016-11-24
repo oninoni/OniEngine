@@ -11,17 +11,19 @@
 GameComponent::GameComponent() {
 }
 
-GameComponent::~GameComponent() {
-}
-
-void GameComponent::init(GameObject* parent){
+void GameComponent::init(GameObject* parent, string name){
     this->parent = parent;
+    this->name = name;
 }
 
 void GameComponent::update(const double & delta, InputManager * input) {
 }
 
 void GameComponent::render(Shader * shader, Camera * camera) {
+}
+
+string GameComponent::getName() {
+    return name;
 }
 
 mat4 GameComponent::getTransformationMatrix(bool inverted) {

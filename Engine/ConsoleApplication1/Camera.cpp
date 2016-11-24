@@ -12,10 +12,6 @@ void Camera::setViewMatrix(mat4 matrix) {
     this->viewMatrix = matrix;
 }
 
-void Camera::setProjectionMatrix(float aspectRatio, float zNear, float zFar, float fov) {
-    projectionMatrix.SetProjectionMatrix(aspectRatio, zNear, zFar, fov);
-}
-
 void Camera::render(Shader* shader, const mat4 & modelmatrix) {
     mat4 mvp = projectionMatrix * viewMatrix * modelmatrix;
 

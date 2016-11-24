@@ -11,7 +11,8 @@ C_Camera::C_Camera(Camera* camera) {
     this->camera = camera;
 }
 
-C_Camera::~C_Camera() {
+string C_Camera::GetDafaultName() {
+    return "C_Camera";
 }
 
 void C_Camera::updateFreeCam(const double & delta, InputManager * input) {

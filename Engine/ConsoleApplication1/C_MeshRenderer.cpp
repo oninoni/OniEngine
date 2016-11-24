@@ -12,12 +12,12 @@ C_MeshRenderer::C_MeshRenderer(Mesh * m, Material * mat) {
     material = mat;
 }
 
-C_MeshRenderer::~C_MeshRenderer() {
-
+string C_MeshRenderer::GetDafaultName() {
+    return "C_MeshRenderer";
 }
 
 void C_MeshRenderer::render(Shader* shader, Camera* camera) {
     material->bind(shader, 0);
-    camera->render(shader, getTransformationMatrix(parent));
+    camera->render(shader, getTransformationMatrix());
     mesh->render();
 }

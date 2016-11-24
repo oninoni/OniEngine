@@ -1,72 +1,284 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <ClCompile Include="Attenuation.cpp" />
-    <ClCompile Include="BaseLight.cpp" />
-    <ClCompile Include="Camera.cpp" />
-    <ClCompile Include="C_Camera.cpp" />
-    <ClCompile Include="DirectionalLight.cpp" />
-    <ClCompile Include="Game.cpp" />
-    <ClCompile Include="GameComponent.cpp" />
-    <ClCompile Include="GameObject.cpp" />
-    <ClCompile Include="InputManager.cpp" />
-    <ClCompile Include="lodepng.cpp" />
-    <ClCompile Include="CoreEngine.cpp" />
-    <ClCompile Include="Material.cpp" />
-    <ClCompile Include="Mesh.cpp" />
-    <ClCompile Include="C_MeshRenderer.cpp" />
-    <ClCompile Include="m_matrix.cpp" />
-    <ClCompile Include="OrthogonalCamera.cpp" />
-    <ClCompile Include="PerspectiveCamera.cpp" />
-    <ClCompile Include="PhongShader.cpp" />
-    <ClCompile Include="PointLight.cpp" />
-    <ClCompile Include="RecourceLoader.cpp" />
-    <ClCompile Include="RenderingEngine.cpp" />
-    <ClCompile Include="Shader.cpp" />
-    <ClCompile Include="Source.cpp" />
-    <ClCompile Include="SpotLight.cpp" />
-    <ClCompile Include="TestGame.cpp" />
-    <ClCompile Include="Texture.cpp" />
-    <ClCompile Include="Time.cpp" />
-    <ClCompile Include="Transform.cpp" />
-    <ClCompile Include="Vertex.cpp" />
-    <ClCompile Include="Window.cpp" />
+    <ClCompile Include="C_Camera.cpp">
+      <Filter>Source\Core\Scene\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="C_MeshRenderer.cpp">
+      <Filter>Source\Core\Scene\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="CoreEngine.cpp">
+      <Filter>Source\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="Attenuation.cpp">
+      <Filter>Source\Rendering\Lighting</Filter>
+    </ClCompile>
+    <ClCompile Include="BaseLight.cpp">
+      <Filter>Source\Rendering\Lighting</Filter>
+    </ClCompile>
+    <ClCompile Include="DirectionalLight.cpp">
+      <Filter>Source\Rendering\Lighting</Filter>
+    </ClCompile>
+    <ClCompile Include="Game.cpp">
+      <Filter>Source\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="GameObject.cpp">
+      <Filter>Source\Core\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="GameComponent.cpp">
+      <Filter>Source\Core\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="InputManager.cpp">
+      <Filter>Source\Core\Util</Filter>
+    </ClCompile>
+    <ClCompile Include="lodepng.cpp">
+      <Filter>Source\Core\Util</Filter>
+    </ClCompile>
+    <ClCompile Include="PointLight.cpp">
+      <Filter>Source\Rendering\Lighting</Filter>
+    </ClCompile>
+    <ClCompile Include="SpotLight.cpp">
+      <Filter>Source\Rendering\Lighting</Filter>
+    </ClCompile>
+    <ClCompile Include="Camera.cpp">
+      <Filter>Source\Rendering\Camera</Filter>
+    </ClCompile>
+    <ClCompile Include="OrthogonalCamera.cpp">
+      <Filter>Source\Rendering\Camera</Filter>
+    </ClCompile>
+    <ClCompile Include="PerspectiveCamera.cpp">
+      <Filter>Source\Rendering\Camera</Filter>
+    </ClCompile>
+    <ClCompile Include="PhongShader.cpp">
+      <Filter>Source\Rendering\Shader</Filter>
+    </ClCompile>
+    <ClCompile Include="Shader.cpp">
+      <Filter>Source\Rendering\Shader</Filter>
+    </ClCompile>
+    <ClCompile Include="Material.cpp">
+      <Filter>Source\Rendering\Object</Filter>
+    </ClCompile>
+    <ClCompile Include="Mesh.cpp">
+      <Filter>Source\Rendering\Object</Filter>
+    </ClCompile>
+    <ClCompile Include="Texture.cpp">
+      <Filter>Source\Rendering\Object</Filter>
+    </ClCompile>
+    <ClCompile Include="Vertex.cpp">
+      <Filter>Source\Rendering\Object</Filter>
+    </ClCompile>
+    <ClCompile Include="m_matrix.cpp">
+      <Filter>Source\Math</Filter>
+    </ClCompile>
+    <ClCompile Include="Transform.cpp">
+      <Filter>Source\Math</Filter>
+    </ClCompile>
+    <ClCompile Include="stdafx.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="RecourceLoader.cpp">
+      <Filter>Source\Core\Util</Filter>
+    </ClCompile>
+    <ClCompile Include="RenderingEngine.cpp">
+      <Filter>Source\Rendering</Filter>
+    </ClCompile>
+    <ClCompile Include="TestGame.cpp">
+      <Filter>Source\TestGame</Filter>
+    </ClCompile>
+    <ClCompile Include="Main.cpp">
+      <Filter>Source\TestGame</Filter>
+    </ClCompile>
+    <ClCompile Include="Window.cpp">
+      <Filter>Source\Rendering</Filter>
+    </ClCompile>
+    <ClCompile Include="Time.cpp">
+      <Filter>Source\Core\Util</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Attenuation.h" />
-    <ClInclude Include="BaseLight.h" />
-    <ClInclude Include="Camera.h" />
-    <ClInclude Include="C_Camera.h" />
-    <ClInclude Include="DirectionalLight.h" />
-    <ClInclude Include="Game.h" />
-    <ClInclude Include="GameComponent.h" />
-    <ClInclude Include="GameObject.h" />
-    <ClInclude Include="InputManager.h" />
-    <ClInclude Include="lodepng.h" />
-    <ClInclude Include="CoreEngine.h" />
-    <ClInclude Include="Material.h" />
-    <ClInclude Include="Mesh.h" />
-    <ClInclude Include="C_MeshRenderer.h" />
-    <ClInclude Include="m_matrix.h" />
-    <ClInclude Include="m_vector.h" />
-    <ClInclude Include="OrthogonalCamera.h" />
-    <ClInclude Include="PerspectiveCamera.h" />
-    <ClInclude Include="PhongShader.h" />
-    <ClInclude Include="PointLight.h" />
-    <ClInclude Include="RecourceLoader.h" />
-    <ClInclude Include="RenderingEngine.h" />
-    <ClInclude Include="Shader.h" />
-    <ClInclude Include="SpotLight.h" />
-    <ClInclude Include="stdafx.h" />
-    <ClInclude Include="TestGame.h" />
-    <ClInclude Include="Texture.h" />
-    <ClInclude Include="Time.h" />
-    <ClInclude Include="Transform.h" />
-    <ClInclude Include="Vertex.h" />
-    <ClInclude Include="Window.h" />
+    <ClInclude Include="C_Camera.h">
+      <Filter>Header\Core\Scene\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="C_MeshRenderer.h">
+      <Filter>Header\Core\Scene\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="CoreEngine.h">
+      <Filter>Header\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Attenuation.h">
+      <Filter>Header\Rendering\Lighting</Filter>
+    </ClInclude>
+    <ClInclude Include="BaseLight.h">
+      <Filter>Header\Rendering\Lighting</Filter>
+    </ClInclude>
+    <ClInclude Include="DirectionalLight.h">
+      <Filter>Header\Rendering\Lighting</Filter>
+    </ClInclude>
+    <ClInclude Include="Game.h">
+      <Filter>Header\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="GameComponent.h">
+      <Filter>Header\Core\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="GameObject.h">
+      <Filter>Header\Core\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="InputManager.h">
+      <Filter>Header\Core\Util</Filter>
+    </ClInclude>
+    <ClInclude Include="lodepng.h">
+      <Filter>Header\Core\Util</Filter>
+    </ClInclude>
+    <ClInclude Include="PointLight.h">
+      <Filter>Header\Rendering\Lighting</Filter>
+    </ClInclude>
+    <ClInclude Include="SpotLight.h">
+      <Filter>Header\Rendering\Lighting</Filter>
+    </ClInclude>
+    <ClInclude Include="Camera.h">
+      <Filter>Header\Rendering\Camera</Filter>
+    </ClInclude>
+    <ClInclude Include="OrthogonalCamera.h">
+      <Filter>Header\Rendering\Camera</Filter>
+    </ClInclude>
+    <ClInclude Include="PerspectiveCamera.h">
+      <Filter>Header\Rendering\Camera</Filter>
+    </ClInclude>
+    <ClInclude Include="PhongShader.h">
+      <Filter>Header\Rendering\Shader</Filter>
+    </ClInclude>
+    <ClInclude Include="Shader.h">
+      <Filter>Header\Rendering\Shader</Filter>
+    </ClInclude>
+    <ClInclude Include="Material.h">
+      <Filter>Header\Rendering\Object</Filter>
+    </ClInclude>
+    <ClInclude Include="Mesh.h">
+      <Filter>Header\Rendering\Object</Filter>
+    </ClInclude>
+    <ClInclude Include="Texture.h">
+      <Filter>Header\Rendering\Object</Filter>
+    </ClInclude>
+    <ClInclude Include="Vertex.h">
+      <Filter>Header\Rendering\Object</Filter>
+    </ClInclude>
+    <ClInclude Include="m_matrix.h">
+      <Filter>Header\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="m_vector.h">
+      <Filter>Header\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Transform.h">
+      <Filter>Header\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="stdafx.h">
+      <Filter>Header</Filter>
+    </ClInclude>
+    <ClInclude Include="RecourceLoader.h">
+      <Filter>Header\Core\Util</Filter>
+    </ClInclude>
+    <ClInclude Include="RenderingEngine.h">
+      <Filter>Header\Rendering</Filter>
+    </ClInclude>
+    <ClInclude Include="TestGame.h">
+      <Filter>Header\TestGame</Filter>
+    </ClInclude>
+    <ClInclude Include="Window.h">
+      <Filter>Header\Rendering</Filter>
+    </ClInclude>
+    <ClInclude Include="Time.h">
+      <Filter>Header\Core\Util</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <None Include="phong.fs" />
-    <None Include="phong.vs" />
+    <None Include="phong.fs">
+      <Filter>Shader Files</Filter>
+    </None>
+    <None Include="phong.vs">
+      <Filter>Shader Files</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Shader Files">
+      <UniqueIdentifier>{3310ec89-d910-4883-b845-8973362bfa56}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header">
+      <UniqueIdentifier>{31fa67ea-e4eb-41f1-a910-15e7690aa698}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source">
+      <UniqueIdentifier>{6686b5d0-a8ff-4f4b-91ef-a399c2be0c04}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header\Core">
+      <UniqueIdentifier>{d3359948-d983-49db-b8e5-c8851d0522e6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header\Phiysics">
+      <UniqueIdentifier>{36729ad7-4076-4d14-a3ae-0511a024932e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header\Rendering">
+      <UniqueIdentifier>{7272bed8-e72e-431a-9092-9d8b6599b31e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header\Core\Scene">
+      <UniqueIdentifier>{964c2103-04e7-4504-84a4-1affbd69fb7f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header\Core\Util">
+      <UniqueIdentifier>{f7bb66f9-ee3f-4443-995e-3de7638407a4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header\Core\Scene\Components">
+      <UniqueIdentifier>{43e70a88-d2d0-46a0-9e8e-3966dbdafcc3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header\Rendering\Lighting">
+      <UniqueIdentifier>{b3dbd280-e918-47ff-9986-ccf81b7270ed}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header\Rendering\Camera">
+      <UniqueIdentifier>{2c65787d-e75a-4fb2-9b2f-41b5aed468b3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header\Rendering\Shader">
+      <UniqueIdentifier>{4fdfe963-34c4-4918-b520-049e72e22f3b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header\Rendering\Object">
+      <UniqueIdentifier>{88f0ec42-d90c-44bc-80c8-b224525a85d1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header\Math">
+      <UniqueIdentifier>{418c5a9d-643f-4c8a-bd74-b79c99410527}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\Core">
+      <UniqueIdentifier>{96d19bbb-c42a-4c42-b2d1-8e981a4408c6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\Core\Scene">
+      <UniqueIdentifier>{61f2c266-1507-4aaf-9f8b-7508433c2bc7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\Core\Scene\Components">
+      <UniqueIdentifier>{722be62e-b605-47c8-8f23-df3c0e3c1e8b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\Core\Util">
+      <UniqueIdentifier>{ea75af71-afa8-4c05-a6c3-27bfa46c46b7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\Math">
+      <UniqueIdentifier>{32ff1e28-5e46-4d6b-993f-0bbf0fa0a828}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\Physics">
+      <UniqueIdentifier>{f8115191-6b80-47ad-b512-a9d16fb6d607}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\Rendering">
+      <UniqueIdentifier>{9bdd0b68-a7a2-4289-b523-91f14f8ecf1e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\Rendering\Lighting">
+      <UniqueIdentifier>{7d7624ba-9cec-4242-8f28-efb125aa96e6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\Rendering\Shader">
+      <UniqueIdentifier>{4c9de704-0f35-4b3f-86fb-659b4b08db3a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\Rendering\Camera">
+      <UniqueIdentifier>{2f696d38-a1f9-43bb-a2e6-9819959aebcb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\Rendering\Object">
+      <UniqueIdentifier>{d0d05ebf-3c10-4d72-b3a7-13da013572de}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header\TestGame">
+      <UniqueIdentifier>{9cc15f8e-a914-4b29-b98f-2b2c8b83c711}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\TestGame">
+      <UniqueIdentifier>{9282ad55-cdba-404f-a27c-403abb30edc0}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
 </Project>

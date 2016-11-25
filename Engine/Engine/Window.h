@@ -18,4 +18,6 @@ public:
     void dispose();
 
     GLFWwindow* getGLFWWindow();
+
+    void setTitle(string title);
 };

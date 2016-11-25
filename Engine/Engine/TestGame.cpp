@@ -10,6 +10,8 @@
 #include "C_MeshRenderer.h"
 #include "C_Camera.h"
 #include "C_DirectionalLight.h"
+#include "C_PointLight.h"
+#include "C_SpotLight.h"
 #include "GameObject.h"
 
 #include "TestGame.h"
@@ -25,34 +27,33 @@ void TestGame::init() {
     Game::init();
 
     Mesh* mesh = new Mesh(PhongShader::getInstance(), "Models/cube.obj");
-    Material* material = new Material(new Texture("Textures/brick.png"), new Texture("Textures/brick.png"), new Texture("Textures/brick.png"));
+    Texture* texture = new Texture("Textures/brick.png");
+    Texture* textureS = new Texture("Textures/brickSpecular.png");
+    Texture* textureN = new Texture("Textures/brickNormal.png");
+    Material* material = new Material(texture, texture, textureS, textureN, texture);
 
     C_MeshRenderer* cube = new C_MeshRenderer(mesh, material);
-    C_MeshRenderer* floor = new C_MeshRenderer(mesh, material);
 
-    C_DirectionalLight* dLight = new C_DirectionalLight(vec3(1, 0, 0), 1, vec3(1, -1, 1));
+    C_DirectionalLight* dLight = new C_DirectionalLight(vec3(1, 1, 1), 1, vec3(1, -1, 1));
+    //C_PointLight* pLight = new C_PointLight(vec3(0, 2, 0), 10, vec3(1, 0, 1), 1);
+    //C_SpotLight* cLight = new C_SpotLight(vec3(0, -1, 0), 45, vec3(0, 5, 0), 10, vec3(0, 1, 1), 1);
 
     c_camera = new C_Camera(getCamera());
 
-    floorObject = new GameObject();
     cubeObject1 = new GameObject();
     cameraObject = new GameObject();
 
-    cameraObject->getTransform().position = vec3(0, 1, 0);
-
-    floorObject->addComponent(floor);
-    floorObject->getTransform().offset = vec3(-.5f, -.5f, -.5f);
-    floorObject->getTransform().scale = vec3(10, 1, 10);
+    cameraObject->getTransform().position = vec3(0, 0, 5);
 
     cubeObject1->addComponent(cube);
-    cubeObject1->addComponent(dLight);
-    cubeObject1->getTransform().scale = vec3(.1f, 1, .1f);
-    cubeObject1->getTransform().position = vec3(0, 5, 0);
+    cubeObject1->getTransform().offset = vec3(-.5f);
+    getRootGameObject()->addComponent(dLight);
+    //getRootGameObject()->addComponent(pLight);
+    //getRootGameObject()->addComponent(cLight);
 
     cameraObject->addComponent(c_camera);
 
-    getRootGameObject()->addChild(floorObject);
-    floorObject->addChild(cubeObject1);
+    getRootGameObject()->addChild(cubeObject1);
     getRootGameObject()->addChild(cameraObject);
 }
 

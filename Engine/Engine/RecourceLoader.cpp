@@ -14,6 +14,8 @@ Mesh *RecourceLoader::loadOBJ(string fileName, Shader* shader) {
     vector<vec3> positions;
     vector<vec3> normals;
     vector<vec2> uvs;
+    vector<vec3> tangent;
+    vector<vec3> biTangent;
     vector<ivec3> indices;
 
     ifstream file;
@@ -78,8 +80,8 @@ Mesh *RecourceLoader::loadOBJ(string fileName, Shader* shader) {
             else if (tokens[0] == "vt") {
                 if (tokens.size() >= 3) {
                     vec2 uv;
-                    uv.x = stof(tokens[1]);
-                    uv.y = stof(tokens[2]);
+                    uv.s = stof(tokens[1]);
+                    uv.t = stof(tokens[2]);
                     //cout << line << " read as " << uv << endl;
                     uvs.push_back(uv);
                 }
@@ -155,7 +157,7 @@ Mesh *RecourceLoader::loadOBJ(string fileName, Shader* shader) {
 
                         if (mode == fM_NAM) {
                             cerr << "Face invalid: " << line << endl;
-                            //break;
+                            break;
                         }
                         
                         ivec3 index;
@@ -180,6 +182,8 @@ Mesh *RecourceLoader::loadOBJ(string fileName, Shader* shader) {
                         }
                         
                         indices.push_back(index);
+
+
                         //Per Vertice Materials here too
 
                         //cout << vertexIds << " read as: " << index << endl;
@@ -195,6 +199,36 @@ Mesh *RecourceLoader::loadOBJ(string fileName, Shader* shader) {
 
         cout << "All is read!" << endl;
 
+        cout << indices.size() << endl;
+
+        for (uint i = 0; i < (indices.size() / 3); i++) {
+            vec3 A = positions[indices[i * 3 + 0].x];
+            vec3 B = positions[indices[i * 3 + 1].x];
+            vec3 C = positions[indices[i * 3 + 2].x];
+
+            vec3 p1 = B - A;
+            vec3 p2 = C - A;
+
+            vec2 stA = uvs[indices[i * 3 + 0].y];
+            vec2 stB = uvs[indices[i * 3 + 1].y];
+            vec2 stC = uvs[indices[i * 3 + 2].y];
+
+            vec2 st1 = stB - stA;
+            vec2 st2 = stC - stA;
+
+            float r = 1.0f / (st1.x * st2.y - st1.y * st2.x);
+            vec3 tangentVector = (p1 * st2.y - p2 * st1.y)*r;
+            vec3 biTangentVector = (p2 * st1.x - p1 * st2.x)*r;
+           
+            tangent.push_back(tangentVector.normalize());
+            tangent.push_back(tangentVector.normalize());
+            tangent.push_back(tangentVector.normalize());
+
+            biTangent.push_back(biTangentVector.normalize());
+            biTangent.push_back(biTangentVector.normalize());
+            biTangent.push_back(biTangentVector.normalize());
+        }
+
         Vertex* verts = new Vertex[indices.size()]();
 
         for (uint i = 0; i < indices.size(); i++) {
@@ -202,7 +236,9 @@ Mesh *RecourceLoader::loadOBJ(string fileName, Shader* shader) {
             verts[i] = Vertex(
                 positions[index.x],
                 normals[index.z],
-                uvs[index.y]
+                uvs[index.y],
+                tangent[i],
+                biTangent[i]
                 );
         }
 

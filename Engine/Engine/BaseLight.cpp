@@ -17,7 +17,6 @@ vec3 BaseLight::getColor() {
 
 void BaseLight::setColor(vec3 c) {
     if (color == c)return;
-
     color = c;
     colorChanged = true;
 }
@@ -28,7 +27,6 @@ float BaseLight::getIntensity() {
 
 void BaseLight::setIntensity(float i) {
     if (intensity == i)return;
-
     intensity = i;
     intensityChanged = true;
 }

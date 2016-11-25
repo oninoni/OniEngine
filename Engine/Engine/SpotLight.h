@@ -2,18 +2,19 @@
 
 #include "PointLight.h"
 
-class Shader;
+class LightHandler;
 
 class SpotLight : public PointLight {
 protected:
     vec3 direction;
+    bool directionChanged;
     float cutoff;
-    float cutoffBlend;
+    bool cutoffChanged;
 public:
-    SpotLight(vec3 d, float cO, float cOB, vec3 p, float r, vec3 c, float i);
-    SpotLight(vec3 d, float cO, float cOB, vec3 p, float r, vec3 c, float i, float ac, float al, float as);
+    SpotLight(vec3 d, float cO, vec3 p, float r, vec3 c, float i);
+    SpotLight(vec3 d, float cO, vec3 p, float r, vec3 c, float i, float ac, float al, float as);
 
-    void setUniformSpotLight(Shader* shader, string uniformLocation);
+    void setUniformSpotLight(LightHandler * lightHandler);
 
     vec3 getDirection();
     void setDirection(vec3 d);
@@ -21,7 +22,5 @@ public:
     float getCutoff();
     void setCutoff(float c);
 
-    float getCutoffBlend();
-    void setCutoffBlend(float cOB);
+    void forceUpdate();
 };
-

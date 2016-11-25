@@ -4,10 +4,6 @@ class LightHandler;
 
 #include "BaseLight.h"
 
-struct DirectionalLightData : BaseLight{
-    vec3 direction;
-};
-
 class DirectionalLight : public BaseLight {
 private:
     vec3 direction;
@@ -21,5 +17,5 @@ public:
     vec3 getDirection();
     void setDirection(vec3 direction);
 
-    void forceUpdate(LightHandler* lightHandler);
+    void forceUpdate();
 };

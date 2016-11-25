@@ -1,4 +1,4 @@
-#version 420
+#version 430
 
 const int MAX_DIRECTIONAL_LIGHTS = 4;
 const int MAX_POINT_LIGHTS = 64;
@@ -31,7 +31,6 @@ struct SpotLight{
     PointLight pointLight;
     vec3 l_direction;
     float l_cutoff;
-    float l_cutoffBlend;
 };
 
 uniform vec4 f_color;
@@ -45,45 +44,51 @@ uniform sampler2D f_specular;
 uniform float f_specularReflectance;
 uniform float f_specularExponent;
 
-uniform DirectionalLight ;
-//uniform 
+uniform sampler2D f_normalMap;
+uniform sampler2D f_displacementMap;
+
 layout (std140) uniform l_lightdata{
     int l_directionalLightCount;
     DirectionalLight l_directionalLights[MAX_DIRECTIONAL_LIGHTS];
-    //int l_pointLightCount;
-    //PointLight l_pointLights[MAX_POINT_LIGHTS];
-    //int l_spotLightCount;
-    //SpotLight l_spotLights[MAX_SPOT_LIGHTS];
+    int l_pointLightCount;
+    PointLight l_pointLights[MAX_POINT_LIGHTS];
+    int l_spotLightCount;
+    SpotLight l_spotLights[MAX_SPOT_LIGHTS];
 };
 
-in vec3 f_normal;
-in vec2 f_uv;
 in vec3 f_position;
+in vec2 f_uv;
+
+in mat3 TBN;
+
 in vec3 f_cameraPosition;
 
 out vec4 out_color;
 
-
 vec4 calcLight(BaseLight base, vec3 direction){
+    vec3 f_normal = - normalize(TBN * (texture(f_normalMap, f_uv).rgb * 2.0 - 1.0));
+    
+    return vec4(f_uv, 0, 1);
+    return vec4(TBN[0] / 2.0 + 0.5, 1);
+    
     float diffuseFactor = dot(-direction, f_normal);
     
     vec4 diffuseColor = vec4(0, 0, 0, 0);
     vec4 specularColor = vec4(0, 0, 0, 0);
     
     if(diffuseFactor > 0){
-        diffuseColor = texture(f_diffuse, f_uv) * f_color * vec4(base.l_color, 1.0) * base.l_intensity * diffuseFactor;
+        diffuseColor = /*texture(f_diffuse, f_uv) * */f_color */* vec4(base.l_color, 1.0) * base.l_intensity */diffuseFactor;
         
-        vec3 directionToEye = normalize(f_cameraPosition - f_position);
-        vec3 reflectedDirection = normalize(reflect(direction, f_normal));
+        /*vec3 directionToEye = normalize(TBN * f_cameraPosition - f_position);
+        vec3 reflectedDirection = normalize(TBN * reflect(direction, f_normal));
         
         float specularFactor = dot(directionToEye, reflectedDirection);
         
         if(specularFactor > 0){
             specularFactor = pow(specularFactor, f_specularExponent);
             specularColor = texture(f_specular, f_uv) * f_specularReflectance * f_color * vec4(base.l_color, 1.0) * base.l_intensity * specularFactor;
-        }
+        }*/
     }
-    
     return diffuseColor + specularColor;
 }
 
@@ -116,10 +121,12 @@ vec4 calcSpotLight(SpotLight spotLight){
     
     vec4 color = vec4(0, 0, 0, 0);
     
+    int l_cutoffBlend = 5;
+    
     if(angle < spotLight.l_cutoff){
         float multiplier = 1;
-        if(spotLight.l_cutoff - spotLight.l_cutoffBlend < angle){
-            multiplier = 1 - (angle - (spotLight.l_cutoff - spotLight.l_cutoffBlend)) / spotLight.l_cutoffBlend;
+        if(spotLight.l_cutoff - l_cutoffBlend < angle){
+            multiplier = 1 - (angle - (spotLight.l_cutoff - l_cutoffBlend)) / l_cutoffBlend;
         }
         color = calcPointLight(spotLight.pointLight) * multiplier;
     }
@@ -134,13 +141,12 @@ void main(){
         if(l_directionalLights[i].base.l_intensity > 0)
             out_color += calcDirectionalLight(l_directionalLights[i]);
     }
-    //for(int i = 0; i < l_pointLightCount; i++){
-    //    if(l_pointLights[i].base.l_intensity > 0)
-    //        out_color += calcPointLight(l_pointLights[i]);
-    //}
-    //
-    //for(int i = 0; i < l_spotLightCount; i++){
-    //    if(l_spotLights[i].pointLight.base.l_intensity > 0)
-    //        out_color += calcSpotLight(l_spotLights[i]);
-    //}
+    for(int i = 0; i < l_pointLightCount; i++){
+        if(l_pointLights[i].base.l_intensity > 0)
+            out_color += calcPointLight(l_pointLights[i]);
+    }
+    for(int i = 0; i < l_spotLightCount; i++){
+        if(l_spotLights[i].pointLight.base.l_intensity > 0)
+            out_color += calcSpotLight(l_spotLights[i]);
+    }
 }

@@ -14,15 +14,15 @@ DirectionalLight::~DirectionalLight() {
 
 void DirectionalLight::setUniformDirectionalLight(LightHandler * lightHandler) {
     if (colorChanged) {
-        lightHandler->updateDirectionalLight(this, 0, sizeof(vec3), &color);
+        lightHandler->updateDirectionalLight(this, 0, 12, &color);
         colorChanged = false;
     }
     if (intensityChanged) {
-        lightHandler->updateDirectionalLight(this, sizeof(vec3), sizeof(float), &intensity);
+        lightHandler->updateDirectionalLight(this, 12, 4, &intensity);
         intensityChanged = false;
     }
     if (directionChanged) {
-        lightHandler->updateDirectionalLight(this, sizeof(vec3) + sizeof(float), sizeof(vec3), &direction);
+        lightHandler->updateDirectionalLight(this, 16, 12, &direction);
         directionChanged = false;
     }
 }
@@ -34,15 +34,11 @@ vec3 DirectionalLight::getDirection() {
 void DirectionalLight::setDirection(vec3 d) {
     vec3 dNormalized = d.normalize();
     if (dNormalized == direction)return;
-
     direction = dNormalized;
     directionChanged = true;
 }
 
-void DirectionalLight::forceUpdate(LightHandler* lightHandler) {
-    cout << "Force Update" << endl;
+void DirectionalLight::forceUpdate() {
     BaseLight::forceUpdate();
     directionChanged = true;
-
-    setUniformDirectionalLight(lightHandler);
 }

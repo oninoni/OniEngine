@@ -38,3 +38,7 @@ void Window::dispose() {
 GLFWwindow * Window::getGLFWWindow() {
     return window;
 }
+
+void Window::setTitle(string title) {
+    glfwSetWindowTitle(window, title.c_str());
+}

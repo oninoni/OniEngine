@@ -355,7 +355,12 @@ public:
     }
 
     m_vector<T, N> normalize() const {
-        return *this / length();
+        for (int i = 0; i < N; i++) {
+            if (data[i] != 0) {
+                return *this / length();
+            }
+        }
+        return m_vector<T, N>(0);
     }
 
     m_vector<T, N> cross(const m_vector<T, N> & a) const {

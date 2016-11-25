@@ -3,8 +3,6 @@
 class LightHandler;
 
 struct BaseLightData{
-    vec3 color;
-    float intensity;
 };
 
 class BaseLight {

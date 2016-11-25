@@ -91,7 +91,7 @@ void CoreEngine::run() {
 
             if (frameCounter >= Time::SECOND)
             {
-                cout << frames << endl;
+                window->setTitle("FPS: " + to_string(frames));
                 frames = 0;
                 frameCounter = 0;
             }

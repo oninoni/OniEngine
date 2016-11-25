@@ -24,6 +24,8 @@
     <ClInclude Include="Camera.h" />
     <ClInclude Include="C_Camera.h" />
     <ClInclude Include="C_DirectionalLight.h" />
+    <ClInclude Include="C_PointLight.h" />
+    <ClInclude Include="C_SpotLight.h" />
     <ClInclude Include="DirectionalLight.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="GameComponent.h" />
@@ -60,6 +62,8 @@
     <ClCompile Include="Camera.cpp" />
     <ClCompile Include="C_Camera.cpp" />
     <ClCompile Include="C_DirectionalLight.cpp" />
+    <ClCompile Include="C_PointLight.cpp" />
+    <ClCompile Include="C_SpotLight.cpp" />
     <ClCompile Include="DirectionalLight.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="GameComponent.cpp" />

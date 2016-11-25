@@ -103,6 +103,12 @@
     <ClCompile Include="UniformBufferObject.cpp">
       <Filter>Source\Rendering\Shader</Filter>
     </ClCompile>
+    <ClCompile Include="C_PointLight.cpp">
+      <Filter>Source\Core\Scene\Components\Light</Filter>
+    </ClCompile>
+    <ClCompile Include="C_SpotLight.cpp">
+      <Filter>Source\Core\Scene\Components\Light</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="C_Camera.h">
@@ -206,6 +212,12 @@
     </ClInclude>
     <ClInclude Include="UniformBufferObject.h">
       <Filter>Header\Rendering\Shader</Filter>
+    </ClInclude>
+    <ClInclude Include="C_PointLight.h">
+      <Filter>Header\Core\Scene\Components\Light</Filter>
+    </ClInclude>
+    <ClInclude Include="C_SpotLight.h">
+      <Filter>Header\Core\Scene\Components\Light</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

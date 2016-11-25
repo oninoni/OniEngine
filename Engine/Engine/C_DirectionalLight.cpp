@@ -21,7 +21,6 @@ void C_DirectionalLight::c_preRender(Shader * shader){
 }
 
 void C_DirectionalLight::c_destroy() {
-    cout << "RESET C_DirectionalLight" << endl;
     activeShader->getLightHandler()->removeDirectionalLight(directionalLight);
     delete directionalLight;
 }

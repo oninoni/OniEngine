@@ -2,11 +2,14 @@
 
 class Shader;
 class Camera;
+class Window;
+class Texture;
 
 class LightHandler;
 
 class RenderingEngine {
 private:
+    Window* window;
     Shader* shader;
     Camera* camera;
 
@@ -17,10 +20,11 @@ private:
     inline void setClearColor(vec3 color);
 
 public:
-    RenderingEngine(Camera* camera);
+    static TextureRenderTarget* tempTarget;
+
+    RenderingEngine(Camera* camera, Window* window);
     ~RenderingEngine();
 
     void clearScreen();
     void render(GameObject* object);
 };
-

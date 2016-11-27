@@ -8,7 +8,7 @@
 //Material::Material(Texture* t, float sE, float sR, vec4 c): Material(t, t, t, sE, sR, c) {
 //}
 
-Material::Material(Texture * ambient, Texture * diffuse, Texture * specular, Texture * normal, Texture * displacement, float sE, float sR, vec4 c) {
+Material::Material(Texture * ambient, Texture * diffuse, Texture * specular, Texture * normal, Texture * displacement, float dS, float dO, float sE, float sR, vec4 c) {
     this->ambient = ambient;
     this->diffuse = diffuse;
     this->specular = specular;
@@ -18,6 +18,9 @@ Material::Material(Texture * ambient, Texture * diffuse, Texture * specular, Tex
     color = c;
     specularExponent = sE;
     specularReflectance = sR;
+
+    displacementScale = dS;
+    displacementBias = ((dS / 2) * dO) - (dS / 2);
 }
 
 Material::~Material() {
@@ -67,4 +70,6 @@ void Material::bind(Shader* shader, uint unit) {
     shader->setUniformI("f_normalMap", unit + 3);
 
     shader->setUniformI("f_displacementMap", unit + 4);
+    shader->setUniformF("f_dispMapScale", displacementScale);
+    shader->setUniformF("f_dispMapBias", displacementBias);
 }

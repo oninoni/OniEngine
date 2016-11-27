@@ -3,8 +3,6 @@
 uniform mat4 model;
 uniform mat4 view;
 
-uniform mat4 modelView;
-
 uniform mat4 modelViewProjection;
 
 in vec3 v_position;
@@ -27,13 +25,13 @@ void main(){
     vec3 b = normalize(vec3(vec4(v_biTangent, 0) * model));
     vec3 n = normalize(vec3(vec4(v_normal, 0) * model));
     
-    TBN = transpose(mat3(
+    TBN = mat3(
         t,
         b,
         n
-    ));
+    );
     
-    f_cameraPosition = (view[3] * view).xyz;
+    f_cameraPosition = - (view * transpose(view)[3]).xyz;
     
     gl_Position = vec4(v_position, 1.0) * modelViewProjection;
 }

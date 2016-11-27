@@ -2,6 +2,9 @@
 
 class Window {
 private:
+    int width;
+    int height;
+
     GLFWwindow* window;
 public:
     Window(int width, int height, string title);
@@ -20,4 +23,6 @@ public:
     GLFWwindow* getGLFWWindow();
 
     void setTitle(string title);
+
+    void bindAsRenderTarget();
 };

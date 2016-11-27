@@ -50,6 +50,7 @@
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="TestGame.h" />
     <ClInclude Include="Texture.h" />
+    <ClInclude Include="TextureRenderTarget.h" />
     <ClInclude Include="Time.h" />
     <ClInclude Include="Transform.h" />
     <ClInclude Include="UniformBufferObject.h" />
@@ -88,6 +89,7 @@
     <ClCompile Include="stdafx.cpp" />
     <ClCompile Include="TestGame.cpp" />
     <ClCompile Include="Texture.cpp" />
+    <ClCompile Include="TextureRenderTarget.cpp" />
     <ClCompile Include="Time.cpp" />
     <ClCompile Include="Transform.cpp" />
     <ClCompile Include="UniformBufferObject.cpp" />

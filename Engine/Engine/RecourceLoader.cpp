@@ -25,8 +25,6 @@ Mesh *RecourceLoader::loadOBJ(string fileName, Shader* shader) {
 
     if (file.is_open()) {
 
-        
-
         while (file.good()) {
             getline(file, line);
             vector<string> tokens;
@@ -218,8 +216,8 @@ Mesh *RecourceLoader::loadOBJ(string fileName, Shader* shader) {
 
             float r = 1.0f / (st1.x * st2.y - st1.y * st2.x);
             vec3 tangentVector = (p1 * st2.y - p2 * st1.y)*r;
-            vec3 biTangentVector = (p2 * st1.x - p1 * st2.x)*r;
-           
+            vec3 biTangentVector = (p1 * st2.x - p2 * st1.x)*r;
+
             tangent.push_back(tangentVector.normalize());
             tangent.push_back(tangentVector.normalize());
             tangent.push_back(tangentVector.normalize());
@@ -310,23 +308,26 @@ Image RecourceLoader::loadTexture(string fileName) {
         return loadPNG(fileName.c_str());
     }
 
-    cerr << "File: " << fileName << " could not be loaded by the Engine. Texture Format not supported!" << endl;
+    cerr << "File: " << fileName << " could not be loaded by the Engine. Texture Format not supported!\n Loaded Error Texture (Purle/Black) instead!" << endl;
 
-    return Image();
+    if (fileName == "Textures/Error.png")
+        assert(false);
+
+    return loadTexture("Textures/Error.png");
 }
 
 Image RecourceLoader::loadPNG(const char * filename) {
     Image image;
 
     //decode
-    unsigned error = lodepng::decode(image.data, image.width, image.height, filename);
+    uint error = lodepng::decode(image.data, image.width, image.height, filename);
 
     //if there's an error, display it
-    if (error)
-        cout << "decoder error " << error << ": " << lodepng_error_text(error) << endl;
+    if (error) {
+        cerr << "decoder error " << error << ": " << lodepng_error_text(error) << endl;
+    }
 
     //the pixels are now in the vector "image", 4 bytes per pixel, ordered RGBARGBA..., use it as texture, draw it, ...
-
 
     return image;
 }

@@ -16,7 +16,5 @@ void Camera::render(Shader* shader, const mat4 & modelmatrix) {
     shader->setUniformMat4("model", modelmatrix);
     shader->setUniformMat4("view", viewMatrix);
 
-    shader->setUniformMat4("modelView", viewMatrix * modelmatrix);
-
     shader->setUniformMat4("modelViewProjection", projectionMatrix * viewMatrix * modelmatrix);
 }

@@ -3,6 +3,9 @@
 #include "Window.h"
 
 Window::Window(int width, int height, string title) {
+    this->width = width;
+    this->height = height;
+
     if (!glfwInit()) {
         cout << "GLFW failed. You suck!" << endl;
         return;
@@ -41,4 +44,9 @@ GLFWwindow * Window::getGLFWWindow() {
 
 void Window::setTitle(string title) {
     glfwSetWindowTitle(window, title.c_str());
+}
+
+void Window::bindAsRenderTarget() {
+    glBindFramebuffer(GL_DRAW_FRAMEBUFFER, 0);
+    glViewport(0, 0, width, height);
 }

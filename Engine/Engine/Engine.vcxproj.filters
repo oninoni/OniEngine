@@ -61,9 +61,6 @@
     <ClCompile Include="Mesh.cpp">
       <Filter>Source\Rendering\Object</Filter>
     </ClCompile>
-    <ClCompile Include="Texture.cpp">
-      <Filter>Source\Rendering\Object</Filter>
-    </ClCompile>
     <ClCompile Include="Vertex.cpp">
       <Filter>Source\Rendering\Object</Filter>
     </ClCompile>
@@ -108,6 +105,12 @@
     </ClCompile>
     <ClCompile Include="C_SpotLight.cpp">
       <Filter>Source\Core\Scene\Components\Light</Filter>
+    </ClCompile>
+    <ClCompile Include="Texture.cpp">
+      <Filter>Source\Rendering\Object\Texture</Filter>
+    </ClCompile>
+    <ClCompile Include="TextureRenderTarget.cpp">
+      <Filter>Source\Rendering\Object\Texture</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -171,9 +174,6 @@
     <ClInclude Include="Mesh.h">
       <Filter>Header\Rendering\Object</Filter>
     </ClInclude>
-    <ClInclude Include="Texture.h">
-      <Filter>Header\Rendering\Object</Filter>
-    </ClInclude>
     <ClInclude Include="Vertex.h">
       <Filter>Header\Rendering\Object</Filter>
     </ClInclude>
@@ -218,6 +218,12 @@
     </ClInclude>
     <ClInclude Include="C_SpotLight.h">
       <Filter>Header\Core\Scene\Components\Light</Filter>
+    </ClInclude>
+    <ClInclude Include="Texture.h">
+      <Filter>Header\Rendering\Object\Texture</Filter>
+    </ClInclude>
+    <ClInclude Include="TextureRenderTarget.h">
+      <Filter>Header\Rendering\Object\Texture</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -315,6 +321,12 @@
     </Filter>
     <Filter Include="Source\Core\Scene\Components\Light">
       <UniqueIdentifier>{e297d6f5-c652-40ad-a148-fb7a7c27f24b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\Rendering\Object\Texture">
+      <UniqueIdentifier>{ff12f82c-ab25-4ea5-88fa-2a7a04462f7c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header\Rendering\Object\Texture">
+      <UniqueIdentifier>{05f78de9-907b-4340-a591-bdcca8c5cccb}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

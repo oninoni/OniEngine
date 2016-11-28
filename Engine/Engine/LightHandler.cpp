@@ -93,3 +93,7 @@ void LightHandler::updateAll() {
 void LightHandler::bindShader(Shader * shader, string name) {
     ubo->bindToShader(shader, name);
 }
+
+void LightHandler::renderShadowmaps() {
+    // Rendering all the Shadowmaps!
+}

@@ -3,6 +3,11 @@
 class Shader;
 class Vertex;
 
+enum MeshType {
+    Plane,
+    Cube
+};
+
 class Mesh {
 private:
     enum {
@@ -17,7 +22,10 @@ private:
 public:
     Mesh(Shader* shader, Vertex* vertices, uint nVert);
     Mesh(Shader* shader, string fileName);
+    Mesh(Shader* shader, MeshType type);
     ~Mesh();
+
+    void init(Shader* shader, Vertex* vertices, uint nVert);
 
     void render();
 };

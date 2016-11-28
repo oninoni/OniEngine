@@ -30,7 +30,7 @@ Window::Window(int width, int height, string title) {
     glfwSwapInterval(0); // V-Sync off (on is default, but it glitches if you don't call it)
 }
 
-void Window::render() {
+void Window::swapBuffers() {
     glfwSwapBuffers(window);
 }
 

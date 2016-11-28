@@ -5,7 +5,6 @@
 #include "Vertex.h"
 #include "Mesh.h"
 
-#include "Texture.h"
 #include "Shader.h"
 
 #include "RecourceLoader.h"
@@ -241,7 +240,6 @@ Mesh *RecourceLoader::loadOBJ(string fileName, Shader* shader) {
         }
 
         Mesh* m = new Mesh(shader, verts, indices.size());
-
         delete[] verts;
 
         return m;

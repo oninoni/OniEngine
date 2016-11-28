@@ -1,11 +1,11 @@
 #include "stdafx.h"
 
-#include "TextureRenderTarget.h"
+#include "OldFramebuffer.h"
 
-TextureRenderTarget::TextureRenderTarget(vector<GLenum> attachments, uint width, uint height) : Texture(attachments.size() * 2, width, height){
+TextureRenderTarget::TextureRenderTarget(vector<GLenum> attachments, uint width, uint height, GLenum format) : Texture(attachments.size() * 2, width, height, format){
     frameBuffer = 0;
 
-    if (attachments.size() != textureCount) {
+    if ((attachments.size() * 2) != textureCount) {
         cerr << "Texture Count does not fit attachment Count in a TextureRenderTarget!" << endl;
     }
 
@@ -42,13 +42,15 @@ void TextureRenderTarget::initRenderTarget(vector<GLenum> attachments) {
         glFramebufferTexture(GL_FRAMEBUFFER, attachments[i], textureID[i], 0);
     }
 
-    if (frameBuffer == 0)
-        return
+    if (frameBuffer == 0) {
+        cerr << "Framebuffer not generated!" << endl;
+        assert(false);
+    }
 
-        glDrawBuffers(textureCount, drawBuffers);
+    glDrawBuffers(textureCount, drawBuffers);
 
     if (glCheckFramebufferStatus(GL_FRAMEBUFFER) != GL_FRAMEBUFFER_COMPLETE) {
-        cerr << "Framebuffer Creation Failed" << endl;
+        cerr << "Framebuffer not completed!" << endl;
         assert(false);
     }
 

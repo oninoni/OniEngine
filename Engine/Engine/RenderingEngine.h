@@ -12,6 +12,8 @@ private:
     Window* window;
     Shader* shader;
     Camera* camera;
+    
+    LightHandler* lightHandler;
 
     void initGraphics();
     const char* getOpenGLVersion();
@@ -20,8 +22,6 @@ private:
     inline void setClearColor(vec3 color);
 
 public:
-    static TextureRenderTarget* tempTarget;
-
     RenderingEngine(Camera* camera, Window* window);
     ~RenderingEngine();
 

@@ -38,4 +38,6 @@ public:
     void updateAll();
 
     void bindShader(Shader* shader, string name);
+
+    void renderShadowmaps();
 };

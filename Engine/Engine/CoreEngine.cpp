@@ -98,11 +98,9 @@ void CoreEngine::run() {
         }
         
          if (shouldRender) {
-             renderingEngine->clearScreen();
              renderingEngine->render(game->getRootGameObject());
 
-             window->render();
-             
+             window->swapBuffers();
              frames++;
         }
         else {

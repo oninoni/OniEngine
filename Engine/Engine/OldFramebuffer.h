@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Texture.h"
+#include "OldTexture.h"
 
 class TextureRenderTarget : public Texture {
 private:
@@ -8,7 +8,7 @@ private:
 
     void initRenderTarget(vector<GLenum> attachments);
 public:
-    TextureRenderTarget(vector<GLenum> attachments, uint width, uint height);
+    TextureRenderTarget(vector<GLenum> attachments, uint width, uint height, GLenum format = GL_RGBA);
     ~TextureRenderTarget();
 
     void bindAsRenderTarget();

@@ -2,9 +2,9 @@
 
 #include "RecourceLoader.h"
 
-#include "Texture.h"
+#include "OldTexture.h"
 
-Texture::Texture(uint count, uint width, uint height) {
+Texture::Texture(uint count, uint width, uint height, GLenum format) {
     textureCount = count;
 
     this->width = width;
@@ -14,7 +14,7 @@ Texture::Texture(uint count, uint width, uint height) {
     glGenTextures(textureCount, textureID);
 
     for (uint i = 0; i < textureCount; i++) {
-        addEmptyTexture(i);
+        addEmptyTexture(i, format);
     }
 }
 
@@ -51,7 +51,7 @@ void Texture::loadTextures(vector<string> fileNames) {
     }
 }
 
-void Texture::addTexture(uint id, unsigned char* data, GLenum wrapS, GLenum wrapT, GLenum minFilter, GLenum magFilter, int baseLevel, int maxLevel) {
+void Texture::addTexture(uint id, unsigned char* data, GLenum wrapS, GLenum wrapT, GLenum minFilter, GLenum magFilter, GLenum format, int baseLevel, int maxLevel) {
     glBindTexture(GL_TEXTURE_2D, textureID[id]);
 
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, wrapS);
@@ -63,11 +63,11 @@ void Texture::addTexture(uint id, unsigned char* data, GLenum wrapS, GLenum wrap
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_BASE_LEVEL, baseLevel);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAX_LEVEL, maxLevel);
 
-    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, width, height, 0, GL_RGBA, GL_UNSIGNED_BYTE, data);
+    glTexImage2D(GL_TEXTURE_2D, 0, format, width, height, 0, GL_RGBA, GL_UNSIGNED_BYTE, data);
 }
 
-void Texture::addEmptyTexture(uint id) {
-    addTexture(id, 0, GL_CLAMP, GL_CLAMP, GL_LINEAR, GL_LINEAR);
+void Texture::addEmptyTexture(uint id, GLenum format) {
+    addTexture(id, 0, GL_CLAMP, GL_CLAMP, GL_LINEAR, GL_LINEAR, format);
 }
 
 void Texture::loadTexture(uint id, string fileName) {
@@ -80,7 +80,7 @@ void Texture::loadTexture(uint id, string fileName) {
     this->width = image.width;
     this->height = image.height;
 
-    addTexture(id, image.data.data(), GL_REPEAT, GL_REPEAT, GL_NEAREST, GL_NEAREST);
+    addTexture(id, image.data.data(), GL_REPEAT, GL_REPEAT, GL_LINEAR, GL_LINEAR, GL_RGBA);
 }
 
 GLuint Texture::getID(uint id) {

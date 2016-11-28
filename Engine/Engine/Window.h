@@ -9,7 +9,7 @@ private:
 public:
     Window(int width, int height, string title);
 
-    void render();
+    void swapBuffers();
 
     bool isCloseRequested() {
         return glfwWindowShouldClose(window) == 1;

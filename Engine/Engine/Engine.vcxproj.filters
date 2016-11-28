@@ -106,10 +106,16 @@
     <ClCompile Include="C_SpotLight.cpp">
       <Filter>Source\Core\Scene\Components\Light</Filter>
     </ClCompile>
-    <ClCompile Include="Texture.cpp">
+    <ClCompile Include="TextureArray.cpp">
       <Filter>Source\Rendering\Object\Texture</Filter>
     </ClCompile>
-    <ClCompile Include="TextureRenderTarget.cpp">
+    <ClCompile Include="OldTexture.cpp">
+      <Filter>Source\Rendering\Object\Texture</Filter>
+    </ClCompile>
+    <ClCompile Include="TextureArrayFramebuffer.cpp">
+      <Filter>Source\Rendering\Object\Texture</Filter>
+    </ClCompile>
+    <ClCompile Include="OldFramebuffer.cpp">
       <Filter>Source\Rendering\Object\Texture</Filter>
     </ClCompile>
   </ItemGroup>
@@ -219,10 +225,16 @@
     <ClInclude Include="C_SpotLight.h">
       <Filter>Header\Core\Scene\Components\Light</Filter>
     </ClInclude>
-    <ClInclude Include="Texture.h">
+    <ClInclude Include="TextureArray.h">
       <Filter>Header\Rendering\Object\Texture</Filter>
     </ClInclude>
-    <ClInclude Include="TextureRenderTarget.h">
+    <ClInclude Include="TextureArrayFramebuffer.h">
+      <Filter>Header\Rendering\Object\Texture</Filter>
+    </ClInclude>
+    <ClInclude Include="OldTexture.h">
+      <Filter>Header\Rendering\Object\Texture</Filter>
+    </ClInclude>
+    <ClInclude Include="OldFramebuffer.h">
       <Filter>Header\Rendering\Object\Texture</Filter>
     </ClInclude>
   </ItemGroup>

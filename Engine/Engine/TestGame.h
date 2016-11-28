@@ -7,7 +7,7 @@ class C_Camera;
 
 class TestGame : public Game{
 private:
-    GameObject* cubeObject1;
+    GameObject* cubeObject;
     GameObject* cameraObject;
     C_Camera* c_camera;
 public:

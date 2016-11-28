@@ -8,6 +8,45 @@
 #include "Mesh.h"
 
 Mesh::Mesh(Shader* shader, Vertex* vertices, uint nVert){
+    init(shader, vertices, nVert);
+}
+
+Mesh::Mesh(Shader * shader, string fileName) : Mesh(*(RecourceLoader::loadMesh(fileName, shader))){
+}
+
+Mesh::Mesh(Shader* shader, MeshType type) {
+    Vertex* vertices;
+    uint nVert;
+    switch (type) {
+    default:
+    case Plane:
+        nVert = 6;
+        vertices = new Vertex[nVert];
+
+        vertices[0] = Vertex(vec3(-1, -1, 0), vec3(0, 0, 1), vec2(0, 0), vec3(1, 0, 0), vec3(0, 1, 0));
+        vertices[1] = Vertex(vec3( 1, -1, 0), vec3(0, 0, 1), vec2(1, 0), vec3(1, 0, 0), vec3(0, 1, 0));
+        vertices[2] = Vertex(vec3(-1,  1, 0), vec3(0, 0, 1), vec2(0, 1), vec3(1, 0, 0), vec3(0, 1, 0));
+        vertices[3] = Vertex(vec3( 1, -1, 0), vec3(0, 0, 1), vec2(1, 0), vec3(1, 0, 0), vec3(0, 1, 0));
+        vertices[4] = Vertex(vec3( 1,  1, 0), vec3(0, 0, 1), vec2(1, 1), vec3(1, 0, 0), vec3(0, 1, 0));
+        vertices[5] = Vertex(vec3(-1,  1, 0), vec3(0, 0, 1), vec2(0, 1), vec3(1, 0, 0), vec3(0, 1, 0));
+        break;
+    case Cube:
+        nVert = 6 * 6;
+        vertices = new Vertex[nVert];
+
+        //NOPE!!!!!!!!!!
+        break;
+    }
+    init(shader, vertices, nVert);
+    delete[] vertices;
+}
+
+Mesh::~Mesh() {
+    glDeleteBuffers(NUM_BUFFERS, vaoBuffers);
+    glDeleteVertexArrays(1, &vao);
+}
+
+void Mesh::init(Shader * shader, Vertex * vertices, uint nVert) {
     drawCount = nVert;
 
     glGenVertexArrays(1, &vao);
@@ -20,7 +59,7 @@ Mesh::Mesh(Shader* shader, Vertex* vertices, uint nVert){
 
     for (int i = 0; i < shader->getGLSLAttributeCount(); i++) {
         GLSLAttribute attribute = shader->getGLSLAttribute(i);
-        
+
         glEnableVertexAttribArray(attribute.location);
         glVertexAttribPointer(
             attribute.location,
@@ -29,16 +68,8 @@ Mesh::Mesh(Shader* shader, Vertex* vertices, uint nVert){
             GL_FALSE,
             shader->getGLSLALSKJFHJKADSHFJKSDHFJKHSTride(),
             (void*)attribute.offset
-        );
+            );
     }
-}
-
-Mesh::Mesh(Shader * shader, string fileName) : Mesh(*(RecourceLoader::loadMesh(fileName, shader))){
-}
-
-Mesh::~Mesh() {
-    glDeleteBuffers(NUM_BUFFERS, vaoBuffers);
-    glDeleteVertexArrays(1, &vao);
 }
 
 void Mesh::render() {

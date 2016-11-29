@@ -17,4 +17,3 @@ public:
     void init();
     void update(const double & delta, InputManager* input);
 };
-

@@ -4,8 +4,8 @@
 
 #include "DirectionalLight.h"
 
-DirectionalLight::DirectionalLight(GameComponent* comp, vec3 c, float i, vec3 d) : BaseLight(c, i, comp){
-    direction = d.normalize();
+DirectionalLight::DirectionalLight(GameComponent* component, vec3 color, float intensity, vec3 direction) : BaseLight(component, color, intensity){
+    this->direction = direction.normalize();
     directionChanged = true;
 }
 
@@ -31,10 +31,11 @@ vec3 DirectionalLight::getDirection() {
     return direction;
 }
 
-void DirectionalLight::setDirection(vec3 d) {
-    vec3 dNormalized = d.normalize();
-    if (dNormalized == direction)return;
-    direction = dNormalized;
+void DirectionalLight::setDirection(vec3 direction) {
+    vec3 dNormalized = direction.normalize();
+    if (this->direction == dNormalized)return;
+
+    this->direction = dNormalized;
     directionChanged = true;
 }
 

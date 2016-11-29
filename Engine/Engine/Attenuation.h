@@ -12,7 +12,7 @@ protected:
     bool squareChanged;
 
     Attenuation(float range);
-    Attenuation(float c, float l, float s);
+    Attenuation(float constant, float linear, float square);
 
     void forceUpdate();
 public:

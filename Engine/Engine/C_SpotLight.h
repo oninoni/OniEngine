@@ -14,6 +14,7 @@ public:
     C_SpotLight(vec3 d, float cO, vec3 p, float r, vec3 c, float i);
     C_SpotLight(vec3 d, float cO, vec3 p, float r, vec3 c, float i, float ac, float al, float as);
 
+    void c_update(const double & delta, InputManager* input);
     void c_preRender(Shader* shader);
     void c_destroy();
 };

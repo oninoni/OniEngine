@@ -5,22 +5,24 @@
 
 #include "BaseLight.h"
 
-BaseLight::BaseLight(vec3 c, float i, GameComponent* comp) {
-    color = c;
-    colorChanged = true;
-    intensity = i;
-    intensityChanged = true;
+BaseLight::BaseLight(GameComponent* component, vec3 color, float intensity) {
+    this->color = color;
+    this->colorChanged = true;
 
-    component = comp;
+    this->intensity = intensity;
+    this->intensityChanged = true;
+
+    this->component = component;
 }
 
 vec3 BaseLight::getColor() {
     return color;
 }
 
-void BaseLight::setColor(vec3 c) {
-    if (color == c)return;
-    color = c;
+void BaseLight::setColor(vec3 color) {
+    if (this->color == color)return;
+
+    this->color = color;
     colorChanged = true;
 }
 
@@ -28,9 +30,10 @@ float BaseLight::getIntensity() {
     return intensity;
 }
 
-void BaseLight::setIntensity(float i) {
-    if (intensity == i)return;
-    intensity = i;
+void BaseLight::setIntensity(float intensity) {
+    if (this->intensity == intensity)return;
+
+    this->intensity = intensity;
     intensityChanged = true;
 }
 
@@ -39,10 +42,6 @@ void BaseLight::forceUpdate() {
     intensityChanged = true;
 }
 
-GameComponent * BaseLight::getComponent() {
-    return component;
-}
-
-mat4 BaseLight::getModelMatrix() {
-    return component->getTransformationMatrix();
+mat4 BaseLight::getTransformationMatrix(bool inverted) {
+    return component->getTransformationMatrix(inverted);
 }

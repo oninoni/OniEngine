@@ -101,16 +101,21 @@ void LightHandler::updateAll() {
 
 void LightHandler::bindShader(Shader * shader, string name) {
     ubo->bindToShader(shader, name);
+    shader->setUniformI("f_shadowMap", 1);
 }
 
 void LightHandler::renderShadowmaps(Shader* shader, GameObject* root) {
     //TODO Directional and Point Lights
     if (spotLights.size() == 0) return;
     SpotLight* sL = spotLights[0];
-    Camera* camera = new PerspectiveCamera(1, .1, 100, sL->getCutoff());
-    camera->render(shader, sL->getModelMatrix());
+    PerspectiveCamera* camera = new PerspectiveCamera(1.0f, 0.1f, 1000.0f, sL->getCutoff());
+    camera->setViewMatrix(sL->getTransformationMatrix(true));
 
     shadowMaps->bindFramebuffer(0);
     RenderingEngine::clearScreen();
 
+    root->preRender(shader);
+    root->render(shader, camera);
+
+    shadowMaps->bind(1);
 }

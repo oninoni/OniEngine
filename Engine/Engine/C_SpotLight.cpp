@@ -16,6 +16,11 @@ C_SpotLight::C_SpotLight(vec3 d, float cO, vec3 p, float r, vec3 c, float i, flo
     init = true;
 }
 
+void C_SpotLight::c_update(const double & delta, InputManager * input) {
+    spotLight->setPosition(getTransformationMatrix(false).transpose()[3]);
+    spotLight->setDirection(getTransformationMatrix(false) * vec4(0, 0, -1, 0));
+}
+
 void C_SpotLight::c_preRender(Shader * shader) {
     activeShader = shader;
     if (init) {

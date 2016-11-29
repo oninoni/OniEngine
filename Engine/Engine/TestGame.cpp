@@ -31,7 +31,7 @@ void TestGame::init() {
     Game::init();
 
     Mesh* mesh = new Mesh(PhongShader::getInstance(), "Models/cube.obj");
-    Mesh* mesh2 = new Mesh(PhongShader::getInstance(), MeshType::Plane, 2);
+    Mesh* mesh2 = new Mesh(PhongShader::getInstance(), MeshType::Plane);
 
     TextureArray* brickTexture = new TextureArray(4, 512, 512, GL_RGBA);
     brickTexture->loadImage(0, "Textures/bricks2.png");
@@ -43,11 +43,11 @@ void TestGame::init() {
     Material* material2 = new Material(LightHandler::shadowMaps);
 
     C_MeshRenderer* cube = new C_MeshRenderer(mesh, material);
-    C_MeshRenderer* plane = new C_MeshRenderer(mesh2, material2);
+    C_MeshRenderer* plane = new C_MeshRenderer(mesh2, material);
 
     //C_DirectionalLight* dLight = new C_DirectionalLight(vec3(1, 1, 1), 1, vec3(-1, -1, -1));
     //C_PointLight* pLight = new C_PointLight(vec3(0, 5, 0), 10, vec3(1, 0, 0), 1);
-    C_SpotLight* sLight = new C_SpotLight(vec3(0, -1, 0), 45, vec3(0, 0, 0), 10, vec3(1, 1, 1), 1);
+    C_SpotLight* sLight = new C_SpotLight(vec3(0, 0, -1), 45, vec3(0, 0, 0), 10, vec3(1, 1, 1), 2);
 
     c_camera = new C_Camera(getCamera());
 
@@ -55,7 +55,7 @@ void TestGame::init() {
     cubeObject = new GameObject();
     cameraObject = new GameObject();
 
-    cubeObject->getTransform().position = vec3(0, 2, 0);
+    cubeObject->getTransform().position = vec3(0, .5, 0);
 
     planeObject->getTransform().rotation = vec3(-90, 0, 0);
     planeObject->getTransform().scale = vec3(4);
@@ -66,7 +66,11 @@ void TestGame::init() {
     cubeObject->getTransform().offset = vec3(-.5f);
     //getRootGameObject()->addComponent(dLight);
     //getRootGameObject()->addComponent(pLight);
-    getRootGameObject()->addComponent(sLight);
+
+    GameObject* spotLight = new GameObject();
+    spotLight->addComponent(sLight);
+    spotLight->getTransform().position = vec3(0, 1, 5);
+    getRootGameObject()->addChild(spotLight);
 
     cameraObject->addComponent(c_camera);
     planeObject->addComponent(plane);

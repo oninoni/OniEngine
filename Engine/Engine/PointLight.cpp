@@ -4,18 +4,20 @@
 
 #include "PointLight.h"
 
-PointLight::PointLight(GameComponent* comp, vec3 p, float r, vec3 c, float i) : BaseLight(c, i, comp), Attenuation(r) {
-    position = p;
-    positionChanged = true;
-    range = r;
-    rangeChanged = true;
+PointLight::PointLight(GameComponent* component, vec3 position, float radius, vec3 color, float intensity) : BaseLight(component, color, intensity), Attenuation(radius) {
+    this->position = position;
+    this->positionChanged = true;
+
+    this->range = radius;
+    this->rangeChanged = true;
 }
 
-PointLight::PointLight(GameComponent* comp, vec3 p, float r, vec3 c, float i, float ac, float al, float as) : BaseLight(c, i, comp), Attenuation(ac, al, as){
-    position = p;
-    positionChanged = true;
-    range = r;
-    rangeChanged = true;
+PointLight::PointLight(GameComponent* component, vec3 position, float radius, vec3 color, float intensity, float constant, float linear, float square) : BaseLight(component, color, intensity), Attenuation(constant, linear, square){
+    this->position = position;
+    this->positionChanged = true;
+
+    this->range = radius;
+    this->rangeChanged = true;
 }
 
 void PointLight::setUniformPointLight(LightHandler * lightHandler) {
@@ -53,9 +55,10 @@ vec3 PointLight::getPosition() {
     return position;
 }
 
-void PointLight::setPosition(vec3 p) {
-    if (position == p)return;
-    position = p;
+void PointLight::setPosition(vec3 position) {
+    if (this->position == position)return;
+
+    this->position = position;
     positionChanged = true;
 }
 
@@ -63,9 +66,10 @@ float PointLight::getRange() {
     return range;
 }
 
-void PointLight::setRange(float r) {
-    if (range == r)return;
-    range = r;
+void PointLight::setRange(float radius) {
+    if (this->range == radius)return;
+
+    this->range = radius;
     rangeChanged = true;
 }
 

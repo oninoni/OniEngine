@@ -12,16 +12,15 @@ protected:
 
     GameComponent* component;
 
-    BaseLight(vec3 c, float i, GameComponent* comp);
+    BaseLight(GameComponent* component, vec3 color, float intensity);
 public:
     vec3 getColor();
-    void setColor(vec3 c);
+    void setColor(vec3 color);
 
     float getIntensity();
-    void setIntensity(float i);
+    void setIntensity(float intensity);
 
     void forceUpdate();
 
-    GameComponent* getComponent();
-    mat4 getModelMatrix();
+    mat4 getTransformationMatrix(bool inverted);
 };

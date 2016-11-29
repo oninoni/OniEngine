@@ -26,5 +26,6 @@ public:
     virtual void c_destroy() {}
 
     void setParent(GameObject* parent);
+
     mat4 getTransformationMatrix(bool inverted = false);
 };

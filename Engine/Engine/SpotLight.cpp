@@ -4,17 +4,19 @@
 
 #include "SpotLight.h"
 
-SpotLight::SpotLight(GameComponent* comp, vec3 d, float cO, vec3 p, float r, vec3 c, float i) : PointLight(comp, p, r, c, i) {
-    direction = d.normalize();
+SpotLight::SpotLight(GameComponent* component, vec3 direction, float cutoff, vec3 position, float radius, vec3 color, float intensity) : PointLight(component, position, radius, color, intensity) {
+    this->direction = direction.normalize();
     directionChanged = true;
-    cutoff = cO;
+
+    this->cutoff = cutoff;
     cutoffChanged = true;
 }
 
-SpotLight::SpotLight(GameComponent* comp, vec3 d, float cO, vec3 p, float r, vec3 c, float i, float ac, float al, float as) : PointLight(comp, p ,r, c, i, ac, al, as){
-    direction = d.normalize();
+SpotLight::SpotLight(GameComponent* component, vec3 direction, float cutoff, vec3 position, float radius, vec3 color, float intensity, float constant, float linear, float square) : PointLight(component, position, radius, color, intensity, constant, linear, square){
+    this->direction = direction.normalize();
     directionChanged = true;
-    cutoff = cO;
+
+    this->cutoff = cutoff;
     cutoffChanged = true;
 }
 
@@ -62,10 +64,12 @@ vec3 SpotLight::getDirection() {
     return direction;
 }
 
-void SpotLight::setDirection(vec3 d) {
-    vec3 dNormalized = d.normalize();
-    if (direction == dNormalized)return;
-    direction = dNormalized;
+void SpotLight::setDirection(vec3 direction) {
+    vec3 dNormalized = direction.normalize();
+    if (this->direction == dNormalized)return;
+
+    this->direction = dNormalized;
+    directionChanged = true;
 }
 
 float SpotLight::getCutoff() {
@@ -73,8 +77,10 @@ float SpotLight::getCutoff() {
 }
 
 void SpotLight::setCutoff(float c) {
-    if (cutoff == c)return;
-    cutoff = c;
+    if (this->cutoff == cutoff)return;
+
+    this->cutoff = c;
+    cutoffChanged = true;
 }
 
 void SpotLight::forceUpdate() {

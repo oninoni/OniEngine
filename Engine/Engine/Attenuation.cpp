@@ -13,13 +13,15 @@ Attenuation::Attenuation(float range) {
     squareChanged = true;
 }
 
-Attenuation::Attenuation(float c, float l, float s) {
-    constant = c;
-    constantChanged = true;
-    linear = l;
-    linearChanged = true;
-    square = s;
-    squareChanged = true;
+Attenuation::Attenuation(float constant, float linear, float square) {
+    this->constant = constant;
+    this->constantChanged = true;
+
+    this->linear = linear;
+    this->linearChanged = true;
+
+    this->square = square;
+    this->squareChanged = true;
 }
 
 void Attenuation::forceUpdate() {
@@ -32,9 +34,10 @@ float Attenuation::getConstant() {
     return constant;
 }
 
-void Attenuation::setConstant(float c) {
-    if (constant == c)return;
-    constant = c;
+void Attenuation::setConstant(float constant) {
+    if (this->constant == constant)return;
+
+    this->constant = constant;
     constantChanged = true;
 }
 
@@ -42,9 +45,10 @@ float Attenuation::getLinear() {
     return linear;
 }
 
-void Attenuation::setLinear(float l) {
-    if (linear = l)return;
-    linear = l;
+void Attenuation::setLinear(float linear) {
+    if (this->linear = linear)return;
+
+    this->linear = linear;
     linearChanged = true;
 }
 
@@ -52,8 +56,9 @@ float Attenuation::getSquare() {
     return square;
 }
 
-void Attenuation::setSquare(float s) {
-    if (square == s)return;
-    square = s;
+void Attenuation::setSquare(float square) {
+    if (this->square == square)return;
+
+    this->square = square;
     squareChanged = true;
 }

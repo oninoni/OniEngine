@@ -8,16 +8,17 @@ class SpotLight : public PointLight {
 protected:
     vec3 direction;
     bool directionChanged;
+
     float cutoff;
     bool cutoffChanged;
 public:
-    SpotLight(GameComponent* comp, vec3 d, float cO, vec3 p, float r, vec3 c, float i);
-    SpotLight(GameComponent* comp, vec3 d, float cO, vec3 p, float r, vec3 c, float i, float ac, float al, float as);
+    SpotLight(GameComponent* component, vec3 direction, float cutoff, vec3 position, float radius, vec3 color, float intensity);
+    SpotLight(GameComponent* component, vec3 direction, float cutoff, vec3 position, float radius, vec3 color, float intensity, float constant, float linear, float square);
 
     void setUniformSpotLight(LightHandler * lightHandler);
 
     vec3 getDirection();
-    void setDirection(vec3 d);
+    void setDirection(vec3 direction);
 
     float getCutoff();
     void setCutoff(float c);

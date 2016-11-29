@@ -26,13 +26,13 @@ RenderingEngine::~RenderingEngine() {
 }
 
 void RenderingEngine::render(GameObject * root) {
-    lightHandler->renderShadowmaps(shader, root);
 
     window->bindAsRenderTarget();
     clearScreen();
 
     root->preRender(shader);
     root->render(shader, camera);
+    lightHandler->renderShadowmaps(shader, root);
 }
 
 void RenderingEngine::clearScreen() {

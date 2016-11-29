@@ -166,7 +166,7 @@ int Shader::getGLSLAttributeCount() {
     return attributes.size();
 }
 
-int Shader::getGLSLALSKJFHJKADSHFJKSDHFJKHSTride() {
+int Shader::getStride() {
     return stride;
 }
 

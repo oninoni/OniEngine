@@ -4,7 +4,7 @@ class LightHandler;
 
 enum ShaderType{
     VertexShader,
-    GeometryShader,
+    //GeometryShader,
     FragmentShader,
 
     NUM_SHADERS
@@ -41,7 +41,7 @@ public:
     void addAttribute(string name, GLenum type, int size);
     GLSLAttribute getGLSLAttribute(int i);
     int getGLSLAttributeCount();
-    int getGLSLALSKJFHJKADSHFJKSDHFJKHSTride();
+    int getStride();
 
     GLint getUniformLocation(string uniform);
 

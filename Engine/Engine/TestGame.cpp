@@ -16,6 +16,8 @@
 
 #include "TestGame.h"
 
+#include "TextureArrayFramebuffer.h"
+
 #include "RenderingEngine.h"
 
 TestGame::TestGame(){
@@ -28,17 +30,18 @@ void TestGame::init() {
     Game::init();
 
     Mesh* mesh = new Mesh(PhongShader::getInstance(), "Models/cube.obj");
-    Mesh* mesh2 = new Mesh(PhongShader::getInstance(), MeshType::Plane);
+    Mesh* mesh2 = new Mesh(PhongShader::getInstance(), MeshType::Plane, 2);
 
-    TextureArray* brickTexture = new TextureArray(4, 512, 512);
+    TextureArray* brickTexture = new TextureArray(4, 512, 512, GL_RGBA);
     brickTexture->loadImage(0, "Textures/bricks2.png");
     brickTexture->loadImage(1, "Textures/bricks2_spec.png");
     brickTexture->loadImage(2, "Textures/bricks2_normal.png");
     brickTexture->loadImage(3, "Textures/bricks2_disp.png");
 
     Material* material = new Material(brickTexture, 0.02f, 1.0f);
+    Material* renderBuffer = new Material(RenderingEngine::tempTarget);
 
-    C_MeshRenderer* cube = new C_MeshRenderer(mesh, material);
+    C_MeshRenderer* cube = new C_MeshRenderer(mesh, renderBuffer);
     C_MeshRenderer* plane = new C_MeshRenderer(mesh2, material);
 
     //C_DirectionalLight* dLight = new C_DirectionalLight(vec3(1, 1, 1), 1, vec3(-1, -1, -1));
@@ -76,6 +79,9 @@ void TestGame::update(const double & delta, InputManager * input) {
     Game::update(delta, input);
     c_camera->updateFreeCam(delta, input);
 
+    int err = glGetError();
+    if(err)
+        cerr << "Error: " << err << endl;
     /*if (input->keyPressed(KeyAction::kaFirePrimary) && cubeObject1) {
         delete cubeObject1;
         cubeObject1 = NULL;

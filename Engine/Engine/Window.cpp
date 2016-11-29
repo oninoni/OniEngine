@@ -7,8 +7,8 @@ Window::Window(int width, int height, string title) {
     this->height = height;
 
     if (!glfwInit()) {
-        cout << "GLFW failed. You suck!" << endl;
-        return;
+        cerr << "GLFW failed. You suck!" << endl;
+        assert(false);
     }
 
     glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 4);
@@ -21,8 +21,8 @@ Window::Window(int width, int height, string title) {
     glfwMakeContextCurrent(window);
 
     if (glewInit()) {
-        cout << "Glew could not be initilalized. You suck!" << endl;
-        return;
+        cerr << "Glew could not be initilalized. You suck!" << endl;
+        assert(false);
     }
 
     glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);

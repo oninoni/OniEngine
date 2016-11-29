@@ -3,9 +3,10 @@
 class Shader;
 class Camera;
 class Window;
-class Texture;
 
 class LightHandler;
+
+class TextureArrayFramebuffer;
 
 class RenderingEngine {
 private:
@@ -24,6 +25,8 @@ private:
 public:
     RenderingEngine(Camera* camera, Window* window);
     ~RenderingEngine();
+
+    static TextureArrayFramebuffer* tempTarget;
 
     void clearScreen();
     void render(GameObject* object);

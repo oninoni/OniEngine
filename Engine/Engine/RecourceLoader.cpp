@@ -194,10 +194,6 @@ Mesh *RecourceLoader::loadOBJ(string fileName, Shader* shader) {
             //cerr << "Unknown Line in " << fileName << ": " << line << endl;
         }
 
-        cout << "All is read!" << endl;
-
-        cout << indices.size() << endl;
-
         for (uint i = 0; i < (indices.size() / 3); i++) {
             vec3 A = positions[indices[i * 3 + 0].x];
             vec3 B = positions[indices[i * 3 + 1].x];

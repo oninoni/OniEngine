@@ -259,9 +259,6 @@
     <Filter Include="Header\Core">
       <UniqueIdentifier>{d3359948-d983-49db-b8e5-c8851d0522e6}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header\Phiysics">
-      <UniqueIdentifier>{36729ad7-4076-4d14-a3ae-0511a024932e}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header\Rendering">
       <UniqueIdentifier>{7272bed8-e72e-431a-9092-9d8b6599b31e}</UniqueIdentifier>
     </Filter>
@@ -339,6 +336,9 @@
     </Filter>
     <Filter Include="Header\Rendering\Object\Texture">
       <UniqueIdentifier>{05f78de9-907b-4340-a591-bdcca8c5cccb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header\Physics">
+      <UniqueIdentifier>{36729ad7-4076-4d14-a3ae-0511a024932e}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

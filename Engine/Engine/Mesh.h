@@ -22,7 +22,7 @@ private:
 public:
     Mesh(Shader* shader, Vertex* vertices, uint nVert);
     Mesh(Shader* shader, string fileName);
-    Mesh(Shader* shader, MeshType type);
+    Mesh(Shader* shader, MeshType type, float scale = 1.0f);
     ~Mesh();
 
     void init(Shader* shader, Vertex* vertices, uint nVert);

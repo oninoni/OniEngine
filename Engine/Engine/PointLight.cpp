@@ -4,14 +4,14 @@
 
 #include "PointLight.h"
 
-PointLight::PointLight(vec3 p, float r, vec3 c, float i) : BaseLight(c, i), Attenuation(r) {
+PointLight::PointLight(GameComponent* comp, vec3 p, float r, vec3 c, float i) : BaseLight(c, i, comp), Attenuation(r) {
     position = p;
     positionChanged = true;
     range = r;
     rangeChanged = true;
 }
 
-PointLight::PointLight(vec3 p, float r, vec3 c, float i, float ac, float al, float as) : BaseLight(c, i), Attenuation(ac, al, as){
+PointLight::PointLight(GameComponent* comp, vec3 p, float r, vec3 c, float i, float ac, float al, float as) : BaseLight(c, i, comp), Attenuation(ac, al, as){
     position = p;
     positionChanged = true;
     range = r;

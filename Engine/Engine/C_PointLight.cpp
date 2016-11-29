@@ -7,12 +7,12 @@
 #include "C_PointLight.h"
 
 C_PointLight::C_PointLight(vec3 p, float r, vec3 c, float i) {
-    pointLight = new PointLight(p, r, c, i);
+    pointLight = new PointLight(this, p, r, c, i);
     init = true;
 }
 
 C_PointLight::C_PointLight(vec3 p, float r, vec3 c, float i, float ac, float al, float as) {
-    pointLight = new PointLight(p, r, c, i, ac, al, as);
+    pointLight = new PointLight(this, p, r, c, i, ac, al, as);
     init = true;
 }
 

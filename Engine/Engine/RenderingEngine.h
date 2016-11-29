@@ -26,8 +26,6 @@ public:
     RenderingEngine(Camera* camera, Window* window);
     ~RenderingEngine();
 
-    static TextureArrayFramebuffer* tempTarget;
-
-    void clearScreen();
+    static void clearScreen();
     void render(GameObject* object);
 };

@@ -1,18 +1,18 @@
 #pragma once
 
 class LightHandler;
+class GameComponent;
 
-struct BaseLightData{
-};
-
-class BaseLight {
+class BaseLight abstract{
 protected:
     vec3 color;
     bool colorChanged;
     float intensity;
     bool intensityChanged;
 
-    BaseLight(vec3 c, float i);
+    GameComponent* component;
+
+    BaseLight(vec3 c, float i, GameComponent* comp);
 public:
     vec3 getColor();
     void setColor(vec3 c);
@@ -21,4 +21,7 @@ public:
     void setIntensity(float i);
 
     void forceUpdate();
+
+    GameComponent* getComponent();
+    mat4 getModelMatrix();
 };

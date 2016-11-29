@@ -11,15 +11,13 @@
 
 #include "RenderingEngine.h"
 
-TextureArrayFramebuffer* RenderingEngine::tempTarget;
-
 RenderingEngine::RenderingEngine(Camera* camera, Window* window) {
     initGraphics();
     cout << getOpenGLVersion() << endl;
 
     shader = PhongShader::getInstance();
-    tempTarget = new TextureArrayFramebuffer(1, 512, 512, GL_DEPTH_COMPONENT, GL_DEPTH_ATTACHMENT);
-
+    lightHandler = shader->getLightHandler();
+    
     this->camera = camera;
     this->window = window;
 }
@@ -28,11 +26,7 @@ RenderingEngine::~RenderingEngine() {
 }
 
 void RenderingEngine::render(GameObject * root) {
-    tempTarget->bindFramebuffer(0);
-    clearScreen();
-
-    root->preRender(shader);
-    root->render(shader, camera);
+    lightHandler->renderShadowmaps(shader, root);
 
     window->bindAsRenderTarget();
     clearScreen();

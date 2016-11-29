@@ -4,14 +4,14 @@
 
 #include "SpotLight.h"
 
-SpotLight::SpotLight(vec3 d, float cO, vec3 p, float r, vec3 c, float i) : PointLight(p, r, c, i) {
+SpotLight::SpotLight(GameComponent* comp, vec3 d, float cO, vec3 p, float r, vec3 c, float i) : PointLight(comp, p, r, c, i) {
     direction = d.normalize();
     directionChanged = true;
     cutoff = cO;
     cutoffChanged = true;
 }
 
-SpotLight::SpotLight(vec3 d, float cO, vec3 p, float r, vec3 c, float i, float ac, float al, float as) : PointLight(p ,r, c, i, ac, al, as){
+SpotLight::SpotLight(GameComponent* comp, vec3 d, float cO, vec3 p, float r, vec3 c, float i, float ac, float al, float as) : PointLight(comp, p ,r, c, i, ac, al, as){
     direction = d.normalize();
     directionChanged = true;
     cutoff = cO;

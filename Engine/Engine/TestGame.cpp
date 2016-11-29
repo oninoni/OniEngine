@@ -14,11 +14,12 @@
 #include "C_SpotLight.h"
 #include "GameObject.h"
 
-#include "TestGame.h"
-
 #include "TextureArrayFramebuffer.h"
+#include "LightHandler.h"
 
 #include "RenderingEngine.h"
+
+#include "TestGame.h"
 
 TestGame::TestGame(){
 }
@@ -39,14 +40,14 @@ void TestGame::init() {
     brickTexture->loadImage(3, "Textures/bricks2_disp.png");
 
     Material* material = new Material(brickTexture, 0.02f, 1.0f);
-    Material* renderBuffer = new Material(RenderingEngine::tempTarget);
+    Material* material2 = new Material(LightHandler::shadowMaps);
 
-    C_MeshRenderer* cube = new C_MeshRenderer(mesh, renderBuffer);
-    C_MeshRenderer* plane = new C_MeshRenderer(mesh2, material);
+    C_MeshRenderer* cube = new C_MeshRenderer(mesh, material);
+    C_MeshRenderer* plane = new C_MeshRenderer(mesh2, material2);
 
     //C_DirectionalLight* dLight = new C_DirectionalLight(vec3(1, 1, 1), 1, vec3(-1, -1, -1));
     //C_PointLight* pLight = new C_PointLight(vec3(0, 5, 0), 10, vec3(1, 0, 0), 1);
-    C_SpotLight* sLight = new C_SpotLight(vec3(0, -1, 0), 45, vec3(0, 4, 0), 10, vec3(1, 1, 1), 1);
+    C_SpotLight* sLight = new C_SpotLight(vec3(0, -1, 0), 45, vec3(0, 0, 0), 10, vec3(1, 1, 1), 1);
 
     c_camera = new C_Camera(getCamera());
 

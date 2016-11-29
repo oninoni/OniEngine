@@ -4,7 +4,10 @@ class DirectionalLight;
 class PointLight;
 class SpotLight;
 
+class TextureArrayFramebuffer;
 class UniformBufferObject;
+
+class GameObject;
 
 class Shader;
 
@@ -39,5 +42,7 @@ public:
 
     void bindShader(Shader* shader, string name);
 
-    void renderShadowmaps();
+    void renderShadowmaps(Shader* shader, GameObject* root);
+
+    static TextureArrayFramebuffer* shadowMaps;
 };

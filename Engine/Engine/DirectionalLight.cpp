@@ -4,7 +4,7 @@
 
 #include "DirectionalLight.h"
 
-DirectionalLight::DirectionalLight(vec3 c, float i, vec3 d) : BaseLight(c, i){
+DirectionalLight::DirectionalLight(GameComponent* comp, vec3 c, float i, vec3 d) : BaseLight(c, i, comp){
     direction = d.normalize();
     directionChanged = true;
 }

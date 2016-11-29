@@ -109,13 +109,7 @@
     <ClCompile Include="TextureArray.cpp">
       <Filter>Source\Rendering\Object\Texture</Filter>
     </ClCompile>
-    <ClCompile Include="OldTexture.cpp">
-      <Filter>Source\Rendering\Object\Texture</Filter>
-    </ClCompile>
     <ClCompile Include="TextureArrayFramebuffer.cpp">
-      <Filter>Source\Rendering\Object\Texture</Filter>
-    </ClCompile>
-    <ClCompile Include="OldFramebuffer.cpp">
       <Filter>Source\Rendering\Object\Texture</Filter>
     </ClCompile>
   </ItemGroup>
@@ -229,12 +223,6 @@
       <Filter>Header\Rendering\Object\Texture</Filter>
     </ClInclude>
     <ClInclude Include="TextureArrayFramebuffer.h">
-      <Filter>Header\Rendering\Object\Texture</Filter>
-    </ClInclude>
-    <ClInclude Include="OldTexture.h">
-      <Filter>Header\Rendering\Object\Texture</Filter>
-    </ClInclude>
-    <ClInclude Include="OldFramebuffer.h">
       <Filter>Header\Rendering\Object\Texture</Filter>
     </ClInclude>
   </ItemGroup>

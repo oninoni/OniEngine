@@ -7,7 +7,7 @@
 #include "C_DirectionalLight.h"
 
 C_DirectionalLight::C_DirectionalLight(vec3 color, float intensity, vec3 direction) {
-    directionalLight = new DirectionalLight(color, intensity, direction);
+    directionalLight = new DirectionalLight(this, color, intensity, direction);
     init = true;
 }
 

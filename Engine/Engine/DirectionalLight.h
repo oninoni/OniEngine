@@ -9,7 +9,7 @@ private:
     vec3 direction;
     bool directionChanged;
 public:
-    DirectionalLight(vec3 c, float i, vec3 d);
+    DirectionalLight(GameComponent* comp, vec3 c, float i, vec3 d);
     ~DirectionalLight();
 
     void setUniformDirectionalLight(LightHandler* lightHandler);

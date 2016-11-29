@@ -11,4 +11,3 @@ public:
 
     static PhongShader* getInstance();
 };
-

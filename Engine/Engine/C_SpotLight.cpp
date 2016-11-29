@@ -7,12 +7,12 @@
 #include "C_SpotLight.h"
 
 C_SpotLight::C_SpotLight(vec3 d, float cO, vec3 p, float r, vec3 c, float i) {
-    spotLight = new SpotLight(d, cO, p, r, c, i);
+    spotLight = new SpotLight(this, d, cO, p, r, c, i);
     init = true;
 }
 
 C_SpotLight::C_SpotLight(vec3 d, float cO, vec3 p, float r, vec3 c, float i, float ac, float al, float as) {
-    spotLight = new SpotLight(d, cO, p, r, c, i, ac, al, as);
+    spotLight = new SpotLight(this, d, cO, p, r, c, i, ac, al, as);
     init = true;
 }
 

@@ -11,8 +11,6 @@ protected:
     GameComponent();
 
     GameObject* parent;
-
-    mat4 getTransformationMatrix(bool inverted = false);
 public:
     ~GameComponent();
 
@@ -28,4 +26,5 @@ public:
     virtual void c_destroy() {}
 
     void setParent(GameObject* parent);
+    mat4 getTransformationMatrix(bool inverted = false);
 };

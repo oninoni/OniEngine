@@ -49,10 +49,8 @@
     <ClInclude Include="SpotLight.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="TestGame.h" />
-    <ClInclude Include="OldTexture.h" />
     <ClInclude Include="TextureArray.h" />
     <ClInclude Include="TextureArrayFramebuffer.h" />
-    <ClInclude Include="OldFramebuffer.h" />
     <ClInclude Include="Time.h" />
     <ClInclude Include="Transform.h" />
     <ClInclude Include="UniformBufferObject.h" />
@@ -90,10 +88,8 @@
     <ClCompile Include="SpotLight.cpp" />
     <ClCompile Include="stdafx.cpp" />
     <ClCompile Include="TestGame.cpp" />
-    <ClCompile Include="OldTexture.cpp" />
     <ClCompile Include="TextureArray.cpp" />
     <ClCompile Include="TextureArrayFramebuffer.cpp" />
-    <ClCompile Include="OldFramebuffer.cpp" />
     <ClCompile Include="Time.cpp" />
     <ClCompile Include="Transform.cpp" />
     <ClCompile Include="UniformBufferObject.cpp" />

@@ -1,18 +1,27 @@
 #include "stdafx.h"
 
+#include "TextureArrayFramebuffer.h"
 #include "UniformBufferObject.h"
 
 #include "DirectionalLight.h"
 #include "PointLight.h"
 #include "SpotLight.h"
 
+#include "GameObject.h"
+
+#include "PerspectiveCamera.h"
+#include "Shader.h"
+#include "RenderingEngine.h"
+
 #include "LightHandler.h"
 
-#include "Shader.h"
+TextureArrayFramebuffer* LightHandler::shadowMaps;
 
 LightHandler::LightHandler() {
     ubo = new UniformBufferObject();
     ubo->generate(sizeof(vec4) + (2 * sizeof(vec4)) * MAX_DIRECTIONAL_LIGHTS + sizeof(vec4) + (3 * sizeof(vec4)) * MAX_POINT_LIGHTS + sizeof(vec4) + (4 * sizeof(vec4)) * MAX_SPOT_LIGHTS, GL_DYNAMIC_DRAW);
+
+    shadowMaps = new TextureArrayFramebuffer(MAX_DIRECTIONAL_LIGHTS + MAX_POINT_LIGHTS + MAX_SPOT_LIGHTS, 1024, 1024, GL_DEPTH_COMPONENT, GL_DEPTH_ATTACHMENT);
 }
 
 LightHandler::~LightHandler() {
@@ -94,6 +103,14 @@ void LightHandler::bindShader(Shader * shader, string name) {
     ubo->bindToShader(shader, name);
 }
 
-void LightHandler::renderShadowmaps() {
-    // Rendering all the Shadowmaps!
+void LightHandler::renderShadowmaps(Shader* shader, GameObject* root) {
+    //TODO Directional and Point Lights
+    if (spotLights.size() == 0) return;
+    SpotLight* sL = spotLights[0];
+    Camera* camera = new PerspectiveCamera(1, .1, 100, sL->getCutoff());
+    camera->render(shader, sL->getModelMatrix());
+
+    shadowMaps->bindFramebuffer(0);
+    RenderingEngine::clearScreen();
+
 }

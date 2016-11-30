@@ -18,6 +18,7 @@ private:
     const int MAX_SPOT_LIGHTS = 64;
 
     UniformBufferObject* ubo;
+    UniformBufferObject* lightProjections;
 
     vector<DirectionalLight*> directionalLights;
     vector<PointLight*> pointLights;
@@ -40,7 +41,7 @@ public:
 
     void updateAll();
 
-    void bindShader(Shader* shader, string name);
+    void bindShader(Shader* shader);
 
     void renderShadowmaps(Shader* shader, GameObject* root);
 

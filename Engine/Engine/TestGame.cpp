@@ -69,7 +69,7 @@ void TestGame::init() {
 
     GameObject* spotLight = new GameObject();
     spotLight->addComponent(sLight);
-    spotLight->getTransform().position = vec3(0, 1, 5);
+    spotLight->getTransform().position = vec3(0, .5f, 5);
     getRootGameObject()->addChild(spotLight);
 
     cameraObject->addComponent(c_camera);
@@ -84,9 +84,9 @@ void TestGame::update(const double & delta, InputManager * input) {
     Game::update(delta, input);
     c_camera->updateFreeCam(delta, input);
 
-    int err = glGetError();
-    if(err)
-        cerr << "Error: " << err << endl;
+    //int err = glGetError();
+    //if(err)
+        //cerr << "Error: " << err << endl;
     /*if (input->keyPressed(KeyAction::kaFirePrimary) && cubeObject1) {
         delete cubeObject1;
         cubeObject1 = NULL;

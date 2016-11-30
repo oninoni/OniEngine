@@ -21,6 +21,9 @@ LightHandler::LightHandler() {
     ubo = new UniformBufferObject();
     ubo->generate(sizeof(vec4) + (2 * sizeof(vec4)) * MAX_DIRECTIONAL_LIGHTS + sizeof(vec4) + (3 * sizeof(vec4)) * MAX_POINT_LIGHTS + sizeof(vec4) + (4 * sizeof(vec4)) * MAX_SPOT_LIGHTS, GL_DYNAMIC_DRAW);
 
+    lightProjections = new UniformBufferObject();
+    lightProjections->generate(sizeof(mat4) * (MAX_DIRECTIONAL_LIGHTS + MAX_POINT_LIGHTS + MAX_SPOT_LIGHTS), GL_DYNAMIC_DRAW);
+
     shadowMaps = new TextureArrayFramebuffer(MAX_DIRECTIONAL_LIGHTS + MAX_POINT_LIGHTS + MAX_SPOT_LIGHTS, 1024, 1024, GL_DEPTH_COMPONENT, GL_DEPTH_ATTACHMENT);
 }
 
@@ -99,8 +102,9 @@ void LightHandler::updateAll() {
     }
 }
 
-void LightHandler::bindShader(Shader * shader, string name) {
-    ubo->bindToShader(shader, name);
+void LightHandler::bindShader(Shader * shader) {
+    ubo->bindToShader(shader, "l_lightdata");
+    lightProjections->bindToShader(shader, "l_lightMatrices");
     shader->setUniformI("f_shadowMap", 1);
 }
 
@@ -108,7 +112,7 @@ void LightHandler::renderShadowmaps(Shader* shader, GameObject* root) {
     //TODO Directional and Point Lights
     if (spotLights.size() == 0) return;
     SpotLight* sL = spotLights[0];
-    PerspectiveCamera* camera = new PerspectiveCamera(1.0f, 0.1f, 1000.0f, sL->getCutoff());
+    PerspectiveCamera* camera = new PerspectiveCamera(1.0f, 0.1f, 10.0f, sL->getCutoff());
     camera->setViewMatrix(sL->getTransformationMatrix(true));
 
     shadowMaps->bindFramebuffer(0);
@@ -118,4 +122,5 @@ void LightHandler::renderShadowmaps(Shader* shader, GameObject* root) {
     root->render(shader, camera);
 
     shadowMaps->bind(1);
+    lightProjections->setData(sizeof(mat4) * (MAX_DIRECTIONAL_LIGHTS + MAX_POINT_LIGHTS), sizeof(mat4), &(camera->getViewProjectionMatrix()));
 }

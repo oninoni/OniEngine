@@ -12,6 +12,7 @@ Mesh::Mesh(Shader* shader, Vertex* vertices, uint nVert){
 }
 
 Mesh::Mesh(Shader * shader, string fileName) : Mesh(*(RecourceLoader::loadMesh(fileName, shader))){
+
 }
 
 Mesh::Mesh(Shader* shader, MeshType type, float scale) {

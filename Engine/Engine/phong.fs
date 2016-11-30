@@ -51,6 +51,8 @@ layout (std140) uniform l_lightdata{
     SpotLight l_spotLights[MAX_SPOT_LIGHTS];
 };
 
+in vec4 shadowPosSpot[MAX_SPOT_LIGHTS];
+
 uniform vec3 l_ambient;
 
 in vec3 f_position;
@@ -112,6 +114,9 @@ vec4 calcPointLight(PointLight pointLight, vec2 uvDisplaced){
 }
 
 vec4 calcSpotLight(SpotLight spotLight, vec2 uvDisplaced){
+    if(texture(f_shadowMap, vec3(shadowPosSpot[0].xy, 0)).a > shadowPosSpot[0].z)
+        return vec4(1, 0, 0, 1);
+
     vec3 direction = normalize(f_position - spotLight.pointLight.l_position);
     float angle = acos(dot(spotLight.l_direction, direction)) * 180 / 3.14159265359;
     
@@ -148,4 +153,6 @@ void main(){
         if(l_spotLights[i].pointLight.base.l_intensity > 0)
             out_color += calcSpotLight(l_spotLights[i], uvDisplaced);
     }
+
+    out_color.a = gl_FragCoord.z;
 }

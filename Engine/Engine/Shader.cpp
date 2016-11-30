@@ -81,7 +81,7 @@ Shader::Shader(const string & fileName) {
     checkShaderError(program, GL_VALIDATE_STATUS, true, "Error: Shadersprogram " + fileName + " failed to validate: ");
 
     lightHandler = new LightHandler();
-    lightHandler->bindShader(this, "l_lightdata");
+    lightHandler->bindShader(this);
 }
 
 void Shader::bind() {

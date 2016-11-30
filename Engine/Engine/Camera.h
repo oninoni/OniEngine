@@ -12,4 +12,6 @@ public:
     void setViewMatrix(mat4 matrix);
 
     void render(Shader* shader, const mat4 & modelmatrix);
+
+    mat4 getViewProjectionMatrix();
 };

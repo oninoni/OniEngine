@@ -6,10 +6,11 @@
 #include "Mesh.h"
 
 #include "Shader.h"
+#include "ShaderHandler.h"
 
 #include "RecourceLoader.h"
 
-Mesh *RecourceLoader::loadOBJ(string fileName, Shader* shader) {
+Mesh *RecourceLoader::loadOBJ(string fileName, ShaderHandler* shaderHandler) {
     vector<vec3> positions;
     vector<vec3> normals;
     vector<vec2> uvs;
@@ -235,7 +236,7 @@ Mesh *RecourceLoader::loadOBJ(string fileName, Shader* shader) {
                 );
         }
 
-        Mesh* m = new Mesh(shader, verts, indices.size());
+        Mesh* m = new Mesh(shaderHandler, verts, indices.size());
         delete[] verts;
 
         return m;
@@ -267,7 +268,7 @@ string RecourceLoader::loadShader(string fileName) {
     return output;
 }
 
-Mesh* RecourceLoader::loadMesh(string fileName, Shader* shader) {
+Mesh* RecourceLoader::loadMesh(string fileName, ShaderHandler* shaderHandler) {
     string format;
 
     for (int i = fileName.size() - 1; i >= 0; i--) {
@@ -279,7 +280,7 @@ Mesh* RecourceLoader::loadMesh(string fileName, Shader* shader) {
     transform(format.begin(), format.end(), format.begin(), tolower);
 
     if (format == "obj") {
-        return loadOBJ(fileName, shader);
+        return loadOBJ(fileName, shaderHandler);
     }
 
     cerr << "File: " << fileName << " could not be loaded by the Engine. Object Format not supported!" << endl;

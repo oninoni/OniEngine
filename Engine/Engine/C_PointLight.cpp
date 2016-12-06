@@ -16,16 +16,16 @@ C_PointLight::C_PointLight(vec3 p, float r, vec3 c, float i, float ac, float al,
     init = true;
 }
 
-void C_PointLight::c_preRender(Shader * shader) {
-    activeShader = shader;
+void C_PointLight::c_preRender(LightHandler* lightHandler, Shader* shader) {
+    this->lightHandler = lightHandler;
     if (init) {
-        activeShader->getLightHandler()->addPointLight(pointLight);
+        lightHandler->addPointLight(pointLight);
         init = false;
     }
-    pointLight->setUniformPointLight(activeShader->getLightHandler());
+    pointLight->setUniformPointLight(lightHandler);
 }
 
 void C_PointLight::c_destroy() {
-    activeShader->getLightHandler()->removePointLight(pointLight);
+    lightHandler->removePointLight(pointLight);
     delete pointLight;
 }

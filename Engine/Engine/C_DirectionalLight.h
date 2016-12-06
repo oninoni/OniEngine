@@ -9,11 +9,10 @@ private:
     bool init;
 
     DirectionalLight* directionalLight;
-
-    Shader* activeShader;
+    LightHandler* lightHandler;
 public:
     C_DirectionalLight(vec3 color, float intensity, vec3 direction);
 
-    void c_preRender(Shader* shader);
+    void c_preRender(LightHandler* lightHandler, Shader* shader);
     void c_destroy();
 };

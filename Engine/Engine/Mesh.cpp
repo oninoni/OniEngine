@@ -4,18 +4,21 @@
 
 #include "RecourceLoader.h"
 #include "Shader.h"
+#include "PhongShader.h"
+
+#include "ShaderHandler.h"
 
 #include "Mesh.h"
 
-Mesh::Mesh(Shader* shader, Vertex* vertices, uint nVert){
-    init(shader, vertices, nVert);
+Mesh::Mesh(ShaderHandler* shaderHandler, Vertex* vertices, uint nVert){
+    init(shaderHandler, vertices, nVert);
 }
 
-Mesh::Mesh(Shader * shader, string fileName) : Mesh(*(RecourceLoader::loadMesh(fileName, shader))){
+Mesh::Mesh(ShaderHandler* shaderHandler, string fileName) : Mesh(*(RecourceLoader::loadMesh(fileName, shaderHandler))){
 
 }
 
-Mesh::Mesh(Shader* shader, MeshType type, float scale) {
+Mesh::Mesh(ShaderHandler* shaderHandler, MeshType type, float scale) {
     Vertex* vertices;
     uint nVert;
     switch (type) {
@@ -38,7 +41,7 @@ Mesh::Mesh(Shader* shader, MeshType type, float scale) {
         //NOPE!!!!!!!!!!
         break;
     }
-    init(shader, vertices, nVert);
+    init(shaderHandler, vertices, nVert);
     delete[] vertices;
 }
 
@@ -47,10 +50,10 @@ Mesh::~Mesh() {
     glDeleteVertexArrays(1, &vao);
 }
 
-void Mesh::init(Shader * shader, Vertex * vertices, uint nVert) {
+void Mesh::init(ShaderHandler* shaderHandler, Vertex * vertices, uint nVert) {
+    glGenVertexArrays(1, &vao);
     drawCount = nVert;
 
-    glGenVertexArrays(1, &vao);
     glBindVertexArray(vao);
 
     glGenBuffers(NUM_BUFFERS, vaoBuffers);
@@ -58,8 +61,10 @@ void Mesh::init(Shader * shader, Vertex * vertices, uint nVert) {
     glBindBuffer(GL_ARRAY_BUFFER, vaoBuffers[VERTICE_BUFFER]);
     glBufferData(GL_ARRAY_BUFFER, sizeof(Vertex) * nVert, vertices, GL_STATIC_DRAW);
 
-    for (int i = 0; i < shader->getGLSLAttributeCount(); i++) {
-        GLSLAttribute attribute = shader->getGLSLAttribute(i);
+    Shader* shader = shaderHandler->getPhongShader();
+
+    for (int j = 0; j < shader->getGLSLAttributeCount(); j++) {
+        GLSLAttribute attribute = shader->getGLSLAttribute(j);
 
         glEnableVertexAttribArray(attribute.location);
         glVertexAttribPointer(
@@ -69,8 +74,11 @@ void Mesh::init(Shader * shader, Vertex * vertices, uint nVert) {
             GL_FALSE,
             shader->getStride(),
             (void*)attribute.offset
-            );
+        );
     }
+    
+
+
 }
 
 void Mesh::render() {

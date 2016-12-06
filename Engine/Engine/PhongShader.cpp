@@ -14,8 +14,3 @@ PhongShader::PhongShader() : Shader("phong") {
 
 PhongShader::~PhongShader() {
 }
-
-PhongShader* PhongShader::getInstance() {
-    static PhongShader phongShader;
-    return &phongShader;
-}

@@ -5,7 +5,7 @@
 #include "TextureArray.h"
 #include "Material.h"
 #include "Mesh.h"
-#include "PhongShader.h"
+
 
 #include "C_MeshRenderer.h"
 #include "C_Camera.h"
@@ -16,6 +16,7 @@
 
 #include "TextureArrayFramebuffer.h"
 #include "LightHandler.h"
+#include "ShaderHandler.h"
 
 #include "RenderingEngine.h"
 
@@ -27,11 +28,11 @@ TestGame::TestGame(){
 TestGame::~TestGame(){
 }
 
-void TestGame::init() {
+void TestGame::init(ShaderHandler* shaderHandler) {
     Game::init();
 
-    Mesh* mesh = new Mesh(PhongShader::getInstance(), "Models/cube.obj");
-    Mesh* mesh2 = new Mesh(PhongShader::getInstance(), MeshType::Plane);
+    Mesh* mesh = new Mesh(shaderHandler, "Models/cube.obj");
+    Mesh* mesh2 = new Mesh(shaderHandler, MeshType::Plane);
 
     TextureArray* brickTexture = new TextureArray(4, 512, 512, GL_RGBA);
     brickTexture->loadImage(0, "Textures/bricks2.png");

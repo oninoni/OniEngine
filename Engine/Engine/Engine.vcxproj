@@ -46,6 +46,8 @@
     <ClInclude Include="RecourceLoader.h" />
     <ClInclude Include="RenderingEngine.h" />
     <ClInclude Include="Shader.h" />
+    <ClInclude Include="ShaderHandler.h" />
+    <ClInclude Include="ShadowmapShader.h" />
     <ClInclude Include="SpotLight.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="TestGame.h" />
@@ -85,6 +87,8 @@
     <ClCompile Include="RenderingEngine.cpp" />
     <ClCompile Include="Shader.cpp" />
     <ClCompile Include="Main.cpp" />
+    <ClCompile Include="ShaderHandler.cpp" />
+    <ClCompile Include="ShadowmapShader.cpp" />
     <ClCompile Include="SpotLight.cpp" />
     <ClCompile Include="stdafx.cpp" />
     <ClCompile Include="TestGame.cpp" />
@@ -99,6 +103,8 @@
   <ItemGroup>
     <None Include="phong.fs" />
     <None Include="phong.vs" />
+    <None Include="shadowmap.fs" />
+    <None Include="shadowmap.vs" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{EF709456-5B3A-42D9-9FA9-8AF020C5F5D7}</ProjectGuid>

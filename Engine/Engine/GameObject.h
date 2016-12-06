@@ -4,6 +4,7 @@ class GameComponent;
 class InputManager;
 class Camera;
 class Shader;
+class LightHandler;
 
 class GameObject {
 private:
@@ -25,7 +26,7 @@ public:
 
     void init(GameObject* parent);
     void update(const double & delta, InputManager* input);
-    void preRender(Shader* shader);
+    void preRender(LightHandler* lightHandler, Shader* shader);
     void render(Shader* shader, Camera* camera);
 
     mat4 getTransformationMatrix(bool inverted = false);

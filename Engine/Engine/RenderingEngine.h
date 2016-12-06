@@ -5,16 +5,17 @@ class Camera;
 class Window;
 
 class LightHandler;
+class ShaderHandler;
 
 class TextureArrayFramebuffer;
 
 class RenderingEngine {
 private:
     Window* window;
-    Shader* shader;
     Camera* camera;
     
     LightHandler* lightHandler;
+    ShaderHandler* shaderHandler;
 
     void initGraphics();
     const char* getOpenGLVersion();

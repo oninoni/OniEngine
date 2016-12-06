@@ -2,8 +2,6 @@
 
 #include "RecourceLoader.h"
 
-#include "LightHandler.h"
-
 #include "Shader.h"
 
 GLuint getDataSize(GLenum dataType) {
@@ -79,9 +77,6 @@ Shader::Shader(const string & fileName) {
 
     glValidateProgram(program);
     checkShaderError(program, GL_VALIDATE_STATUS, true, "Error: Shadersprogram " + fileName + " failed to validate: ");
-
-    lightHandler = new LightHandler();
-    lightHandler->bindShader(this);
 }
 
 void Shader::bind() {
@@ -131,10 +126,6 @@ void Shader::setUniformMat4(string uniformLocation, mat4 value, GLboolean transp
 
 GLuint Shader::getProgramID() {
     return program;
-}
-
-LightHandler * Shader::getLightHandler() {
-    return lightHandler;
 }
 
 Shader::~Shader() {

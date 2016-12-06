@@ -11,16 +11,16 @@ C_DirectionalLight::C_DirectionalLight(vec3 color, float intensity, vec3 directi
     init = true;
 }
 
-void C_DirectionalLight::c_preRender(Shader * shader){
-    activeShader = shader;
+void C_DirectionalLight::c_preRender(LightHandler* lightHandler, Shader * shader) {
+    this->lightHandler = lightHandler;
     if (init) {
-        activeShader->getLightHandler()->addDirectionalLight(directionalLight);
+        lightHandler->addDirectionalLight(directionalLight);
         init = false;
     }
-    directionalLight->setUniformDirectionalLight(activeShader->getLightHandler());
+    directionalLight->setUniformDirectionalLight(lightHandler);
 }
 
 void C_DirectionalLight::c_destroy() {
-    activeShader->getLightHandler()->removeDirectionalLight(directionalLight);
+    lightHandler->removeDirectionalLight(directionalLight);
     delete directionalLight;
 }

@@ -29,4 +29,6 @@ public:
 
     static void clearScreen();
     void render(GameObject* object);
+
+    ShaderHandler* getShaderHandler();
 };

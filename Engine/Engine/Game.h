@@ -2,6 +2,7 @@
 
 class GameObject;
 class Camera;
+class ShaderHandler;
 
 class Game {
 private:
@@ -12,7 +13,7 @@ public:
     Game();
     virtual ~Game() = 0;
 
-    virtual void init();
+    virtual void init(ShaderHandler* shaderHandler);
     virtual void update(const double & delta, InputManager* input);
 
     GameObject* getRootGameObject();

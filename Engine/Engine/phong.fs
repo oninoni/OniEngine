@@ -114,6 +114,7 @@ vec4 calcPointLight(PointLight pointLight, vec2 uvDisplaced){
 }
 
 vec4 calcSpotLight(SpotLight spotLight, vec2 uvDisplaced){
+    return texture(f_shadowMap, vec3(shadowPosSpot[0].xy, 0));
     if(texture(f_shadowMap, vec3(shadowPosSpot[0].xy, 0)).a > shadowPosSpot[0].z)
         return vec4(1, 0, 0, 1);
 

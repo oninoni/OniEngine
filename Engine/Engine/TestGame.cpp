@@ -29,7 +29,7 @@ TestGame::~TestGame(){
 }
 
 void TestGame::init(ShaderHandler* shaderHandler) {
-    Game::init();
+    Game::init(shaderHandler);
 
     Mesh* mesh = new Mesh(shaderHandler, "Models/cube.obj");
     Mesh* mesh2 = new Mesh(shaderHandler, MeshType::Plane);

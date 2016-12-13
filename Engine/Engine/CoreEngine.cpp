@@ -36,7 +36,7 @@ void CoreEngine::createWindow(string title) {
 void CoreEngine::start() {
     if (isRunning)return;
 
-    game->init();
+    game->init(renderingEngine->getShaderHandler());
 
     run();
 }

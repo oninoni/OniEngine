@@ -36,4 +36,3 @@ Shader * ShaderHandler::getShader(uint id) {
         return shadowmapShader;
     }
 }
-

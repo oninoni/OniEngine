@@ -82,7 +82,19 @@ template<>
 void m_matrix<float, 4, 4>::SetProjectionMatrix(float aspectRatio, float zNear, float zFar, float fov) {
     clear();
 
+    fov = fov / 360.0f * PI;
     float f = cos(fov) / sin(fov);
+
+    /*    
+       -.          -.
+  ======/     ======/
+  /    \      /    \
+  | () |      | () |
+  \____/      \____/
+
+        =====      
+
+    */
 
     data[0][0] = f / aspectRatio;
     data[1][1] = f;

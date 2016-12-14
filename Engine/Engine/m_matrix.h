@@ -287,10 +287,12 @@ struct m_matrix {
         return a;
     }
 
-    void normalize() {
+    m_matrix<T, M, N> normalize() {
         for (int i = 0; i < M; i++)
             for (int j = 0; j < N; j++)
                 data[i][j] /= data[M - 1][N - 1];
+
+        return *this;
     }
 
     T cofactor(int i, int j) const {

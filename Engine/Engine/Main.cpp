@@ -3,6 +3,8 @@
 #include "CoreEngine.h"
 #include "TestGame.h"
 
+#include "PerspectiveCamera.h"
+
 #include "LightHandler.h"
 #include "DirectionalLight.h"
 

@@ -50,4 +50,6 @@ void main(){
     
     gl_Position = vec4(v_position, 1.0) * modelViewProjection;
     //gl_Position = vec4(shadowPosSpot[0], 1);
+    //gl_Position = vec4(shadowPosTemp.xyz / shadowPosTemp.w, 1);
+    //gl_Position = shadowPosTemp;
 }

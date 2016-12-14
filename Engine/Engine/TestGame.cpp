@@ -62,17 +62,17 @@ void TestGame::init(ShaderHandler* shaderHandler) {
     planeObject->getTransform().rotation = vec3(-90, 0, 0);
     //planeObject->getTransform().scale = vec3(4, 4, 4);
 
-    cameraObject->getTransform().position = vec3(0, 3, 3);
+    cameraObject->getTransform().position = vec3(0, 0, 3);
 
     cubeObject->addComponent(cube);
-    cubeObject->getTransform().offset = vec3(-.5f); 
+    cubeObject->getTransform().offset = vec3(-.5f);
     //getRootGameObject()->addComponent(dLight);
     //getRootGameObject()->addComponent(pLight);
 
     spotLight = new GameObject();
     spotLight->addComponent(sLight);
-    spotLight->getTransform().position = vec3(0, 2, 0);
-    spotLight->getTransform().rotation = vec3(90, 0, 0);
+    spotLight->getTransform().position = vec3(0, .5, 3);
+    spotLight->getTransform().rotation = vec3(0, 0, 0);
     getRootGameObject()->addChild(spotLight);
 
     cameraObject->addComponent(c_camera);
@@ -88,7 +88,7 @@ void TestGame::update(const double & delta, InputManager * input) {
     c_camera->updateFreeCam(delta, input);
 
     //spotLight->getTransform().position = vec3(sin(Time::getTime()) * 5.0f, 5, cos(Time::getTime()) * 5.0f);
-    //spotLight->getTransform().rotation = Time::getTime();
+    //spotLight->getTransform().rotation = vec3(Time::getTime() * 90.0f, 0, 0);
 
     //int err = glGetError();
     //if(err)

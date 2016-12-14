@@ -9,7 +9,7 @@ PhongShader::PhongShader() : Shader("phong") {
     addAttribute("v_tangent", GL_FLOAT, 3);
     addAttribute("v_biTangent", GL_FLOAT, 3);
 
-    setUniformVec3("l_ambient", vec3(0.05f));
+    setUniformVec3("l_ambient", vec3(0.1f));
 }
 
 PhongShader::~PhongShader() {

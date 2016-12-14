@@ -51,7 +51,7 @@ layout (std140) uniform l_lightdata{
     SpotLight l_spotLights[MAX_SPOT_LIGHTS];
 };
 
-in vec4 shadowPosSpot[MAX_SPOT_LIGHTS];
+in vec3 shadowPosSpot[MAX_SPOT_LIGHTS];
 
 uniform vec3 l_ambient;
 
@@ -63,7 +63,10 @@ in mat3 TBN;
 in vec3 f_cameraPosition;
 
 out vec4 out_color;
-//layout(location = 0) out vec4 out_color;
+
+float calcShadow(int layer, vec2 coords, float compare){
+    return step(shadowPosSpot[0].z - 0.001, texture(f_shadowMap, vec3(shadowPosSpot[0].xy, 0)).x);
+}
 
 vec4 calcLight(BaseLight base, vec3 direction, vec2 uvDisplaced){
     vec3 f_normal = normalize(TBN * (texture(f_materialTexture, vec3(uvDisplaced, 2)).rgb * 2.0 - 1.0));
@@ -114,23 +117,26 @@ vec4 calcPointLight(PointLight pointLight, vec2 uvDisplaced){
 }
 
 vec4 calcSpotLight(SpotLight spotLight, vec2 uvDisplaced){
-    if(texture(f_shadowMap, vec3(shadowPosSpot[0].xy, 0)).a > shadowPosSpot[0].z)
-        return vec4(1, 0, 0, 1);
-
+    return vec4(shadowPosSpot[0].xy, 0, 1);
+    //return vec4(texture(f_shadowMap, vec3(shadowPosSpot[0].xy, 0)).r);
+    
+    if(calcShadow(0, shadowPosSpot[0].xy, shadowPosSpot[0].z) == 0)
+        return vec4(0, 0, 0, 0);
+    return vec4(1, 1, 1, 1);
+    
     vec3 direction = normalize(f_position - spotLight.pointLight.l_position);
     float angle = acos(dot(spotLight.l_direction, direction)) * 180 / 3.14159265359;
     
     vec4 color = vec4(0, 0, 0, 0);
     
     int l_cutoffBlend = 5;
-    
     if(angle < spotLight.l_cutoff){
         float multiplier = 1;
         if(spotLight.l_cutoff - l_cutoffBlend < angle){
             multiplier = 1 - (angle - (spotLight.l_cutoff - l_cutoffBlend)) / l_cutoffBlend;
         }
         color = calcPointLight(spotLight.pointLight, uvDisplaced) * multiplier;
-    }
+    }   
     
     return color;
 }
@@ -153,6 +159,4 @@ void main(){
         if(l_spotLights[i].pointLight.base.l_intensity > 0)
             out_color += calcSpotLight(l_spotLights[i], uvDisplaced);
     }
-
-    out_color.a = gl_FragCoord.z;
 }

@@ -17,6 +17,7 @@
 #include "TextureArrayFramebuffer.h"
 #include "LightHandler.h"
 
+#include "Time.h"
 #include "RenderingEngine.h"
 
 #include "TestGame.h"
@@ -47,7 +48,7 @@ void TestGame::init() {
 
     //C_DirectionalLight* dLight = new C_DirectionalLight(vec3(1, 1, 1), 1, vec3(-1, -1, -1));
     //C_PointLight* pLight = new C_PointLight(vec3(0, 5, 0), 10, vec3(1, 0, 0), 1);
-    C_SpotLight* sLight = new C_SpotLight(vec3(0, 0, -1), 45, vec3(0, 0, 0), 10, vec3(1, 1, 1), 2);
+    C_SpotLight* sLight = new C_SpotLight(vec3(0, 0, 0), 40, vec3(0, 0, 0), 20, vec3(1, 1, 1), 1);
 
     c_camera = new C_Camera(getCamera());
 
@@ -58,18 +59,19 @@ void TestGame::init() {
     cubeObject->getTransform().position = vec3(0, .5, 0);
 
     planeObject->getTransform().rotation = vec3(-90, 0, 0);
-    planeObject->getTransform().scale = vec3(4);
+    //planeObject->getTransform().scale = vec3(4, 4, 4);
 
-    cameraObject->getTransform().position = vec3(0, 2, 5);
+    cameraObject->getTransform().position = vec3(0, 3, 3);
 
     cubeObject->addComponent(cube);
-    cubeObject->getTransform().offset = vec3(-.5f);
+    cubeObject->getTransform().offset = vec3(-.5f); 
     //getRootGameObject()->addComponent(dLight);
     //getRootGameObject()->addComponent(pLight);
 
-    GameObject* spotLight = new GameObject();
+    spotLight = new GameObject();
     spotLight->addComponent(sLight);
-    spotLight->getTransform().position = vec3(0, .5f, 5);
+    spotLight->getTransform().position = vec3(0, 1, 1);
+    spotLight->getTransform().rotation = vec3(-45, 0, 0);
     getRootGameObject()->addChild(spotLight);
 
     cameraObject->addComponent(c_camera);
@@ -83,6 +85,9 @@ void TestGame::init() {
 void TestGame::update(const double & delta, InputManager * input) {
     Game::update(delta, input);
     c_camera->updateFreeCam(delta, input);
+
+    //spotLight->getTransform().position = vec3(sin(Time::getTime()) * 5.0f, 5, cos(Time::getTime()) * 5.0f);
+    //spotLight->getTransform().rotation = Time::getTime();
 
     //int err = glGetError();
     //if(err)

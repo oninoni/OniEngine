@@ -112,15 +112,16 @@ void LightHandler::renderShadowmaps(Shader* shader, GameObject* root) {
     //TODO Directional and Point Lights
     if (spotLights.size() == 0) return;
     SpotLight* sL = spotLights[0];
-    PerspectiveCamera* camera = new PerspectiveCamera(1.0f, 0.1f, 10.0f, sL->getCutoff());
-    camera->setViewMatrix(sL->getTransformationMatrix(true));
-
+    PerspectiveCamera* perspectiveCamera = new PerspectiveCamera(1.0f, 0.1f, 100.0f, sL->getCutoff());
+    perspectiveCamera->setViewMatrix(sL->getTransformationMatrix(true));
+    
     shadowMaps->bindFramebuffer(0);
     RenderingEngine::clearScreen();
 
     root->preRender(shader);
-    root->render(shader, camera);
-
+    root->render(shader, perspectiveCamera);
+    
     shadowMaps->bind(1);
-    lightProjections->setData(sizeof(mat4) * (MAX_DIRECTIONAL_LIGHTS + MAX_POINT_LIGHTS), sizeof(mat4), &(camera->getViewProjectionMatrix()));
+    //cout << perspectiveCamera->getViewProjectionMatrix() << endl;
+    lightProjections->setData(sizeof(mat4) * (MAX_DIRECTIONAL_LIGHTS + MAX_POINT_LIGHTS), sizeof(mat4), &(perspectiveCamera->getViewProjectionMatrix()));
 }

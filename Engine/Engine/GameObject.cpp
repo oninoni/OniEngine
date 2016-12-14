@@ -6,6 +6,8 @@
 #include "InputManager.h"
 #include "GameComponent.h"
 
+#include "LightHandler.h"
+
 #include "GameObject.h"
 
 GameObject::GameObject() {
@@ -57,12 +59,12 @@ void GameObject::update(const double & delta, InputManager * input) {
         child->update(delta, input);
 }
 
-void GameObject::preRender(Shader * shader) {
+void GameObject::preRender(LightHandler* lightHandler, Shader * shader) {
     for (GameComponent* gameComponent : components)
-        gameComponent->preRender(shader);
+        gameComponent->preRender(lightHandler, shader);
 
     for (GameObject* child : children)
-        child->preRender(shader);
+        child->preRender(lightHandler, shader);
 }
 
 void GameObject::render(Shader* shader, Camera* camera) {

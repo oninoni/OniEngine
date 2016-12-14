@@ -5,7 +5,7 @@
 #include "TextureArray.h"
 #include "Material.h"
 #include "Mesh.h"
-#include "PhongShader.h"
+
 
 #include "C_MeshRenderer.h"
 #include "C_Camera.h"
@@ -16,6 +16,7 @@
 
 #include "TextureArrayFramebuffer.h"
 #include "LightHandler.h"
+#include "ShaderHandler.h"
 
 #include "Time.h"
 #include "RenderingEngine.h"
@@ -28,11 +29,11 @@ TestGame::TestGame(){
 TestGame::~TestGame(){
 }
 
-void TestGame::init() {
-    Game::init();
+void TestGame::init(ShaderHandler* shaderHandler) {
+    Game::init(shaderHandler);
 
-    Mesh* mesh = new Mesh(PhongShader::getInstance(), "Models/cube.obj");
-    Mesh* mesh2 = new Mesh(PhongShader::getInstance(), MeshType::Plane);
+    Mesh* mesh = new Mesh(shaderHandler, "Models/cube.obj");
+    Mesh* mesh2 = new Mesh(shaderHandler, MeshType::Plane);
 
     TextureArray* brickTexture = new TextureArray(4, 512, 512, GL_RGBA);
     brickTexture->loadImage(0, "Textures/bricks2.png");
@@ -70,8 +71,8 @@ void TestGame::init() {
 
     spotLight = new GameObject();
     spotLight->addComponent(sLight);
-    spotLight->getTransform().position = vec3(0, 1, 1);
-    spotLight->getTransform().rotation = vec3(-45, 0, 0);
+    spotLight->getTransform().position = vec3(0, 2, 0);
+    spotLight->getTransform().rotation = vec3(90, 0, 0);
     getRootGameObject()->addChild(spotLight);
 
     cameraObject->addComponent(c_camera);

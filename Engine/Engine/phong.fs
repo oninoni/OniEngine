@@ -123,7 +123,7 @@ vec4 calcSpotLight(SpotLight spotLight, vec2 uvDisplaced){
     if(calcShadow(0, shadowPosSpot[0].xy, shadowPosSpot[0].z) == 0)
         return vec4(0, 0, 0, 0);
     return vec4(1, 1, 1, 1);
-    
+
     vec3 direction = normalize(f_position - spotLight.pointLight.l_position);
     float angle = acos(dot(spotLight.l_direction, direction)) * 180 / 3.14159265359;
     
@@ -136,7 +136,7 @@ vec4 calcSpotLight(SpotLight spotLight, vec2 uvDisplaced){
             multiplier = 1 - (angle - (spotLight.l_cutoff - l_cutoffBlend)) / l_cutoffBlend;
         }
         color = calcPointLight(spotLight.pointLight, uvDisplaced) * multiplier;
-    }   
+    }
     
     return color;
 }

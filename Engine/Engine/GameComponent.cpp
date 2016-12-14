@@ -25,8 +25,8 @@ void GameComponent::update(const double & delta, InputManager * input) {
     c_update(delta, input);
 }
 
-void GameComponent::preRender(Shader * shader) {
-    c_preRender(shader);
+void GameComponent::preRender(LightHandler* lightHandler, Shader * shader) {
+    c_preRender(lightHandler, shader);
 }
 
 void GameComponent::render(Shader * shader, Camera * camera) {

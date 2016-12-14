@@ -15,11 +15,11 @@ layout (std140) uniform l_lightMatrices{
     mat4 l_spotMatrices[MAX_SPOT_LIGHTS];
 };
 
-in vec3 v_position;
-in vec3 v_normal;
-in vec2 v_uv;
-in vec3 v_tangent;
-in vec3 v_biTangent;
+layout(location = 0) in vec3 v_position;
+layout(location = 1) in vec3 v_normal;
+layout(location = 2) in vec2 v_uv;
+layout(location = 3) in vec3 v_tangent;
+layout(location = 4) in vec3 v_biTangent;
 
 out vec3 f_position;
 out vec2 f_uv;
@@ -49,5 +49,5 @@ void main(){
     shadowPosSpot[0] = (shadowPosTemp.xyz / shadowPosTemp.w) * 0.5 + 0.5;
     
     gl_Position = vec4(v_position, 1.0) * modelViewProjection;
-    gl_Position = vec4(shadowPosTemp.xyz / shadowPosTemp.w, 1);
+    //gl_Position = vec4(shadowPosSpot[0], 1);
 }

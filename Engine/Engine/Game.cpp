@@ -5,6 +5,8 @@
 #include "Shader.h"
 #include "PerspectiveCamera.h"
 
+#include "ShaderHandler.h"
+
 #include "Game.h"
 
 Game::Game() {
@@ -15,7 +17,7 @@ Game::~Game() {
     delete camera;
 }
 
-void Game::init() {
+void Game::init(ShaderHandler* shaderHandler) {
 }
 
 void Game::update(const double & delta, InputManager * input) {

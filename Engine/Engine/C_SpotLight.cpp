@@ -21,16 +21,16 @@ void C_SpotLight::c_update(const double & delta, InputManager * input) {
     spotLight->setDirection(getTransformationMatrix(false) * vec4(0, 0, -1, 0));
 }
 
-void C_SpotLight::c_preRender(Shader * shader) {
-    activeShader = shader;
+void C_SpotLight::c_preRender(LightHandler* lightHandler, Shader * shader) {
+    this->lightHandler = lightHandler;
     if (init) {
-        activeShader->getLightHandler()->addSpotLight(spotLight);
+        lightHandler->addSpotLight(spotLight);
         init = false;
     }
-    spotLight->setUniformSpotLight(activeShader->getLightHandler());
+    spotLight->setUniformSpotLight(lightHandler);
 }
 
 void C_SpotLight::c_destroy() {
-    activeShader->getLightHandler()->removePointLight(spotLight);
+    lightHandler->removePointLight(spotLight);
     delete spotLight;
 }

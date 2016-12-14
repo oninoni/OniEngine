@@ -1,5 +1,6 @@
 #pragma once
 
+class ShaderHandler;
 class Shader;
 class Vertex;
 
@@ -20,12 +21,12 @@ private:
     GLuint vaoBuffers[NUM_BUFFERS];
     unsigned int drawCount;
 public:
-    Mesh(Shader* shader, Vertex* vertices, uint nVert);
-    Mesh(Shader* shader, string fileName);
-    Mesh(Shader* shader, MeshType type, float scale = 1.0f);
+    Mesh(ShaderHandler* shaderHandler, Vertex* vertices, uint nVert);
+    Mesh(ShaderHandler* shaderHandler, string fileName);
+    Mesh(ShaderHandler* shaderHandler, MeshType type, float scale = 1.0f);
     ~Mesh();
 
-    void init(Shader* shader, Vertex* vertices, uint nVert);
+    void init(ShaderHandler* shaderHandler, Vertex* vertices, uint nVert);
 
     void render();
 };

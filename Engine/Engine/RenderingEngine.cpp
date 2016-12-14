@@ -1,10 +1,13 @@
 #include "stdafx.h"
 
 #include "PhongShader.h"
+#include "ShadowmapShader.h"
+
 #include "GameObject.h"
 #include "Camera.h"
 
 #include "LightHandler.h"
+#include "ShaderHandler.h"
 #include "Window.h"
 
 #include "TextureArrayFramebuffer.h"
@@ -15,8 +18,8 @@ RenderingEngine::RenderingEngine(Camera* camera, Window* window) {
     initGraphics();
     cout << getOpenGLVersion() << endl;
 
-    shader = PhongShader::getInstance();
-    lightHandler = shader->getLightHandler();
+    lightHandler = new LightHandler();
+    shaderHandler = new ShaderHandler();
     
     this->camera = camera;
     this->window = window;
@@ -26,13 +29,18 @@ RenderingEngine::~RenderingEngine() {
 }
 
 void RenderingEngine::render(GameObject * root) {
+    lightHandler->renderShadowmaps(shaderHandler->getShadowmapShader(), root);
 
     window->bindAsRenderTarget();
     clearScreen();
 
-    root->preRender(shader);
-    root->render(shader, camera);
-    lightHandler->renderShadowmaps(shader, root);
+    lightHandler->bindShader(shaderHandler->getPhongShader());
+    root->preRender(lightHandler, shaderHandler->getPhongShader());
+    root->render(shaderHandler->getPhongShader(), camera);
+}
+
+ShaderHandler * RenderingEngine::getShaderHandler() {
+    return shaderHandler;
 }
 
 void RenderingEngine::clearScreen() {

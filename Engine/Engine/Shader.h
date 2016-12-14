@@ -1,7 +1,5 @@
 #pragma once
 
-class LightHandler;
-
 enum ShaderType{
     VertexShader,
     //GeometryShader,
@@ -27,8 +25,6 @@ private:
     GLuint program;
     GLuint shaders[NUM_SHADERS];
 
-    LightHandler* lightHandler;
-
     void addUniform(string uniform);
 
     static GLuint createShader(const string& text, GLenum type);
@@ -52,6 +48,4 @@ public:
     void setUniformMat4(string uniformLocation, mat4 value, GLboolean transpose = GL_FALSE);
 
     GLuint getProgramID();
-
-    LightHandler* getLightHandler();
 };

@@ -143,8 +143,8 @@ vec4 calcSpotLight(SpotLight spotLight, vec2 uvDisplaced){
 void main(){
     //out_color = vec4(f_uv, 0, 1);
     //out_color = vec4((texture(f_shadowMap, vec3(f_uv, 0)).rrr - 0.9) * 10, 1);
-    out_color = vec4((texture(f_shadowMap, vec3(shadowPosSpot[0].xy, 0)).rrr - 0.9) * 10, 1);
-    //out_color = vec4(0, 0, shadowPosSpot[0].z * 20.0 - 19.0 , 1);
+    //out_color = vec4((texture(f_shadowMap, vec3(shadowPosSpot[0].xy, 0)).rrr - 0.9) * 10, 1);
+    out_color = vec4(shadowPosSpot[0].xy,0 , 1);
     return;
     
     vec3 directionToEye = normalize(f_cameraPosition - f_position);

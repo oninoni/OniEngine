@@ -62,10 +62,11 @@ void TestGame::init(ShaderHandler* shaderHandler) {
     planeObject->getTransform().rotation = vec3(-90, 0, 0);
     //planeObject->getTransform().scale = vec3(4, 4, 4);
 
-    cameraObject->getTransform().position = vec3(0, 0, 3);
+    cameraObject->getTransform().position = vec3(0, 0.5, 3);
 
     cubeObject->addComponent(cube);
     cubeObject->getTransform().offset = vec3(-.5f);
+    
     //getRootGameObject()->addComponent(dLight);
     //getRootGameObject()->addComponent(pLight);
 

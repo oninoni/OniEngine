@@ -45,7 +45,7 @@ void main(){
     
     f_cameraPosition = - (view * transpose(view)[3]).xyz;
     
-    vec4 shadowPosTemp = (vec4(v_position, 1.0) * model) * l_spotMatrices[0];
+    vec4 shadowPosTemp = (vec4(v_position, 1.0) * inverse(model)) * l_spotMatrices[0];
     shadowPosSpot[0] = (shadowPosTemp.xyz / shadowPosTemp.w) * 0.5 + 0.5;
     
     gl_Position = vec4(v_position, 1.0) * modelViewProjection;

@@ -109,6 +109,7 @@ void LightHandler::bindShader(Shader * shader) {
 }
 
 void LightHandler::renderShadowmaps(Shader* shader, GameObject* root) {
+    glDisable(GL_CULL_FACE);
     if (spotLights.size() == 0) return;
     SpotLight* sL = spotLights[0];
     PerspectiveCamera* perspectiveCamera = new PerspectiveCamera(1.0f, 0.1f, 100.0f, sL->getCutoff());
@@ -124,4 +125,5 @@ void LightHandler::renderShadowmaps(Shader* shader, GameObject* root) {
 
     //cout << "\n" << perspectiveCamera->getViewProjectionMatrix() << endl;
     lightProjections->setData(sizeof(mat4) * (MAX_DIRECTIONAL_LIGHTS + MAX_POINT_LIGHTS), sizeof(mat4), &perspectiveCamera->getViewProjectionMatrix());
+    glEnable(GL_CULL_FACE);
 }

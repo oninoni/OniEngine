@@ -39,8 +39,8 @@ mat4 Transform::getTransformationMatrix(bool inverted) {
     }
 
     if (scaleHasChanged) {
-        scaleMatrix.setScaleMatrix(t_scale);
-        scaleMatrixInverse.setScaleMatrix(t_scale);
+        scaleMatrix.setScaleMatrix(t_scale, false);
+        scaleMatrixInverse.setScaleMatrix(t_scale, true);
         scaleHasChanged = false;
         hasChanged = true;
     }

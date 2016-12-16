@@ -33,7 +33,7 @@ void TestGame::init(ShaderHandler* shaderHandler) {
     Game::init(shaderHandler);
 
     Mesh* mesh = new Mesh(shaderHandler, "Models/cube.obj");
-    Mesh* mesh2 = new Mesh(shaderHandler, MeshType::Plane);
+    Mesh* mesh2 = new Mesh(shaderHandler, MeshType::Plane, 5);
 
     TextureArray* brickTexture = new TextureArray(4, 512, 512, GL_RGBA);
     brickTexture->loadImage(0, "Textures/bricks2.png");
@@ -57,10 +57,10 @@ void TestGame::init(ShaderHandler* shaderHandler) {
     cubeObject = new GameObject();
     cameraObject = new GameObject();
 
-    cubeObject->getTransform().position = vec3(0, .5, 0);
+    cubeObject->getTransform().position = vec3(1, .5, 0);
 
     planeObject->getTransform().rotation = vec3(-90, 0, 0);
-    //planeObject->getTransform().scale = vec3(4, 4, 4);
+    planeObject->getTransform().scale = 10;
 
     cameraObject->getTransform().position = vec3(0, 0.5, 3);
 
@@ -73,7 +73,6 @@ void TestGame::init(ShaderHandler* shaderHandler) {
     spotLight = new GameObject();
     spotLight->addComponent(sLight);
     spotLight->getTransform().position = vec3(0, .5, 3);
-    spotLight->getTransform().rotation = vec3(0, 0, 0);
     getRootGameObject()->addChild(spotLight);
 
     cameraObject->addComponent(c_camera);
@@ -88,14 +87,6 @@ void TestGame::update(const double & delta, InputManager * input) {
     Game::update(delta, input);
     c_camera->updateFreeCam(delta, input);
 
-    //spotLight->getTransform().position = vec3(sin(Time::getTime()) * 5.0f, 5, cos(Time::getTime()) * 5.0f);
-    //spotLight->getTransform().rotation = vec3(Time::getTime() * 90.0f, 0, 0);
-
-    //int err = glGetError();
-    //if(err)
-        //cerr << "Error: " << err << endl;
-    /*if (input->keyPressed(KeyAction::kaFirePrimary) && cubeObject1) {
-        delete cubeObject1;
-        cubeObject1 = NULL;
-    }*/
+    spotLight->getTransform().position = vec3(sin(Time::getTime() * 0.1) * 3.0f, .5f, cos(Time::getTime() * 0.1) * 3.0f);
+    spotLight->getTransform().rotation = vec3(0, Time::getTime() * 18 / PI, 0);
 }

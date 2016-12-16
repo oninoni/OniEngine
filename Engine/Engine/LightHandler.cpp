@@ -112,7 +112,7 @@ void LightHandler::renderShadowmaps(Shader* shader, GameObject* root) {
     glDisable(GL_CULL_FACE);
     if (spotLights.size() == 0) return;
     SpotLight* sL = spotLights[0];
-    PerspectiveCamera* perspectiveCamera = new PerspectiveCamera(1.0f, 0.1f, 100.0f, sL->getCutoff());
+    PerspectiveCamera* perspectiveCamera = new PerspectiveCamera(1.0f, 0.1f, 100.0f, sL->getCutoff() * 2.0f);
     perspectiveCamera->setViewMatrix(sL->getTransformationMatrix(true));
 
     shadowMaps->bindFramebuffer(0);

@@ -34,7 +34,7 @@ struct SpotLight{
 };
 
 uniform sampler2DArray f_materialTexture;
-uniform sampler2DArray f_shadowMap;
+uniform sampler2DArrayShadow f_shadowMap;
 
 uniform vec4 f_color;
 uniform float f_specularReflectance;
@@ -51,7 +51,11 @@ layout (std140) uniform l_lightdata{
     SpotLight l_spotLights[MAX_SPOT_LIGHTS];
 };
 
-in vec3 shadowPosSpot[MAX_SPOT_LIGHTS];
+layout (std140) uniform l_lightMatrices{
+    mat4 l_directionalMatrices[MAX_DIRECTIONAL_LIGHTS];
+    mat4 l_pointMatrices[MAX_POINT_LIGHTS];
+    mat4 l_spotMatrices[MAX_SPOT_LIGHTS];
+};
 
 uniform vec3 l_ambient;
 
@@ -65,7 +69,7 @@ in vec3 f_cameraPosition;
 out vec4 out_color;
 
 float calcShadow(int layer, vec2 coords, float compare){
-    return step(shadowPosSpot[0].z - 0.001, texture(f_shadowMap, vec3(shadowPosSpot[0].xy, 0)).x);
+    return texture(f_shadowMap, vec4(coords, layer, compare));
 }
 
 vec4 calcLight(BaseLight base, vec3 direction, vec2 uvDisplaced){
@@ -117,12 +121,24 @@ vec4 calcPointLight(PointLight pointLight, vec2 uvDisplaced){
 }
 
 vec4 calcSpotLight(SpotLight spotLight, vec2 uvDisplaced){
-    //return vec4(vec3((texture(f_shadowMap, vec3(shadowPosSpot[0].xy, 0)).r - 0.9) * 10), 1);
+    vec4 shadowMapPosTemp = vec4(f_position, 1.0) * l_spotMatrices[0];
+    vec3 shadowMapPos = (shadowMapPosTemp.xyz / shadowMapPosTemp.w) * 0.5 + 0.5;
     
-    if(calcShadow(0, shadowPosSpot[0].xy, shadowPosSpot[0].z) == 0)
-        return vec4(0, 0, 0, 0);
-    return vec4(1, 1, 1, 1);
-
+    float shadowFactor = 0;
+    
+    if(shadowMapPos.x >= 0 && shadowMapPos.x <= 1 && 
+       shadowMapPos.y >= 0 && shadowMapPos.y <= 1 && 
+     shadowMapPos.z >= 0 && shadowMapPos.z <= 1){
+        vec3 lightVec = f_position - spotLight.pointLight.l_position;
+        float cosTheta = dot(TBN[2], normalize(-lightVec));
+        if(cosTheta > 0){
+        float bias = 1e-3 / length(lightVec) * max(1, tan(acos(cosTheta)));
+        shadowFactor = calcShadow(0, shadowMapPos.xy, shadowMapPos.z - bias);
+         if (cosTheta < 5e-2)
+            shadowFactor *= cosTheta / 5e-2;
+        }
+    }
+    
     vec3 direction = normalize(f_position - spotLight.pointLight.l_position);
     float angle = acos(dot(spotLight.l_direction, direction)) * 180 / 3.14159265359;
     
@@ -134,18 +150,13 @@ vec4 calcSpotLight(SpotLight spotLight, vec2 uvDisplaced){
         if(spotLight.l_cutoff - l_cutoffBlend < angle){
             multiplier = 1 - (angle - (spotLight.l_cutoff - l_cutoffBlend)) / l_cutoffBlend;
         }
-        color = calcPointLight(spotLight.pointLight, uvDisplaced) * multiplier;
+        color = calcPointLight(spotLight.pointLight, uvDisplaced) * multiplier * shadowFactor;
     }
     
     return color;
 }
 
 void main(){
-    //out_color = vec4(f_uv, 0, 1);
-    //out_color = vec4((texture(f_shadowMap, vec3(f_uv, 0)).rrr - 0.9) * 10, 1);
-    //out_color = vec4((texture(f_shadowMap, vec3(shadowPosSpot[0].xy, 0)).rrr - 0.9) * 10, 1);
-    out_color = vec4(shadowPosSpot[0].xy,0 , 1);
-    return;
     
     vec3 directionToEye = normalize(f_cameraPosition - f_position);
     vec2 uvDisplaced = f_uv + ((TBN * directionToEye).xy * (texture(f_materialTexture, vec3(f_uv, 3)).r) * f_dispMapScale) + f_dispMapBias;

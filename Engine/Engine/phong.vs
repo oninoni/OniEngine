@@ -1,19 +1,9 @@
 #version 430
 
-const int MAX_DIRECTIONAL_LIGHTS = 4;
-const int MAX_POINT_LIGHTS = 64;
-const int MAX_SPOT_LIGHTS = 64;
-
 uniform mat4 model;
 uniform mat4 view;
 
 uniform mat4 modelViewProjection;
-
-layout (std140) uniform l_lightMatrices{
-    mat4 l_directionalMatrices[MAX_DIRECTIONAL_LIGHTS];
-    mat4 l_pointMatrices[MAX_POINT_LIGHTS];
-    mat4 l_spotMatrices[MAX_SPOT_LIGHTS];
-};
 
 layout(location = 0) in vec3 v_position;
 layout(location = 1) in vec3 v_normal;
@@ -24,8 +14,6 @@ layout(location = 4) in vec3 v_biTangent;
 out vec3 f_position;
 out vec2 f_uv;
 out mat3 TBN;
-
-out vec3 shadowPosSpot[MAX_SPOT_LIGHTS];
 
 out vec3 f_cameraPosition;
 
@@ -45,11 +33,5 @@ void main(){
     
     f_cameraPosition = - (view * transpose(view)[3]).xyz;
     
-    vec4 shadowPosTemp = (vec4(v_position, 1.0) * inverse(model)) * l_spotMatrices[0];
-    shadowPosSpot[0] = (shadowPosTemp.xyz / shadowPosTemp.w) * 0.5 + 0.5;
-    
     gl_Position = vec4(v_position, 1.0) * modelViewProjection;
-    //gl_Position = vec4(shadowPosSpot[0], 1);
-    //gl_Position = vec4(shadowPosTemp.xyz / shadowPosTemp.w, 1);
-    //gl_Position = shadowPosTemp;
 }

@@ -87,7 +87,7 @@ void Shader::addUniform(string uniform) {
     GLint uniformLocation = glGetUniformLocation(program, uniform.c_str());
     
     if (uniformLocation == 0xFFFFFFFF) {
-        cerr << "Warning: could not find uniform " + uniform + "!";
+        cerr << "Warning: could not find uniform " + uniform + "!" << endl;
     }
     
     uniforms[uniform] = uniformLocation;

@@ -6,14 +6,22 @@
 
 #include "C_PointLight.h"
 
-C_PointLight::C_PointLight(vec3 p, float r, vec3 c, float i) {
-    pointLight = new PointLight(this, p, r, c, i);
+C_PointLight::C_PointLight(float r, vec3 c, bool shadowMapEnabled) {
+    pointLight = new PointLight(this, vec3(0, 0, 0), r, c);
+    if (shadowMapEnabled)
+        cout << "Point Lights Shadows not implemented yet!" << endl;
     init = true;
 }
 
-C_PointLight::C_PointLight(vec3 p, float r, vec3 c, float i, float ac, float al, float as) {
-    pointLight = new PointLight(this, p, r, c, i, ac, al, as);
+C_PointLight::C_PointLight(float r, vec3 c, bool shadowMapEnabled, float ac, float al, float as) {
+    pointLight = new PointLight(this, vec3(0, 0, 0), r, c, ac, al, as);
+    if (shadowMapEnabled)
+        cout << "Point Lights Shadows not implemented yet!" << endl;
     init = true;
+}
+
+void C_PointLight::c_update(const double & delta, InputManager * input) {
+    pointLight->setPosition(getTransformationMatrix(false).transpose()[3]);
 }
 
 void C_PointLight::c_preRender(LightHandler* lightHandler, Shader* shader) {

@@ -11,9 +11,10 @@ private:
     PointLight* pointLight;
     LightHandler* lightHandler;
 public:
-    C_PointLight(vec3 p, float r, vec3 v, float i);
-    C_PointLight(vec3 p, float r, vec3 c, float i, float ac, float al, float as);
+    C_PointLight(float r, vec3 c, bool shadowMapEnabled = false);
+    C_PointLight(float r, vec3 c, bool shadowMapEnabled, float ac, float al, float as);
 
+    void c_update(const double & delta, InputManager* input);
     void c_preRender(LightHandler* lightHandler, Shader* shader);
     void c_destroy();
 };

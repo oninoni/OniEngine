@@ -6,9 +6,23 @@
 
 #include "C_DirectionalLight.h"
 
-C_DirectionalLight::C_DirectionalLight(vec3 color, float intensity, vec3 direction) {
-    directionalLight = new DirectionalLight(this, color, intensity, direction);
+C_DirectionalLight::C_DirectionalLight(vec3 color, bool shadowMapEnabled) {
+    directionalLight = new DirectionalLight(this, color, vec3(0, 0, 0));
+    if (shadowMapEnabled)
+        directionalLight->setShadowMapID(-2);
     init = true;
+}
+
+void C_DirectionalLight::setShadowMapID(int shadowMapID) {
+    directionalLight->setShadowMapID(shadowMapID);
+}
+
+int C_DirectionalLight::getShadowMapID() {
+    return directionalLight->getShadowMapID();
+}
+
+void C_DirectionalLight::c_update(const double & delta, InputManager * input) {
+    directionalLight->setDirection((getTransformationMatrix(true) * vec4(0, 0, -1, 0)).normalize());
 }
 
 void C_DirectionalLight::c_preRender(LightHandler* lightHandler, Shader * shader) {
@@ -18,6 +32,9 @@ void C_DirectionalLight::c_preRender(LightHandler* lightHandler, Shader * shader
         init = false;
     }
     directionalLight->setUniformDirectionalLight(lightHandler);
+
+    if (directionalLight->getShadowMapID() == -2)
+        lightHandler->registerShadowmapDirectionalLight(directionalLight);
 }
 
 void C_DirectionalLight::c_destroy() {

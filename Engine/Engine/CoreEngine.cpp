@@ -12,7 +12,7 @@ CoreEngine::CoreEngine(int width, int height, float framerate, Game* game) {
     this->game = game;
 
     this->width = width;
-    this->height = height; 
+    this->height = height;
     this->frameTime = 1.0f / framerate;
 
     isRunning = false;

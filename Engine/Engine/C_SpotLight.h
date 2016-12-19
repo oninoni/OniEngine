@@ -11,8 +11,11 @@ private:
     SpotLight* spotLight;
     LightHandler* lightHandler;
 public:
-    C_SpotLight(vec3 d, float cO, vec3 p, float r, vec3 c, float i);
-    C_SpotLight(vec3 d, float cO, vec3 p, float r, vec3 c, float i, float ac, float al, float as);
+    C_SpotLight(vec3 c, float r, float cO, bool shadowMapEnabled = false);
+    C_SpotLight(vec3 c, float r, float cO, bool shadowMapEnabled, float ac, float al, float as);
+
+    void setShadowMapID(int shadowMapID);
+    int getShadowMapID();
 
     void c_update(const double & delta, InputManager* input);
     void c_preRender(LightHandler* lightHandler, Shader* shader);

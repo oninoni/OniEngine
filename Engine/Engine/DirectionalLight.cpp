@@ -4,7 +4,7 @@
 
 #include "DirectionalLight.h"
 
-DirectionalLight::DirectionalLight(GameComponent* component, vec3 color, float intensity, vec3 direction) : BaseLight(component, color, intensity){
+DirectionalLight::DirectionalLight(GameComponent* component, vec3 color, vec3 direction) : BaseLight(component, color){
     this->direction = direction.normalize();
     directionChanged = true;
 }
@@ -17,9 +17,9 @@ void DirectionalLight::setUniformDirectionalLight(LightHandler * lightHandler) {
         lightHandler->updateDirectionalLight(this, 0, 12, &color);
         colorChanged = false;
     }
-    if (intensityChanged) {
-        lightHandler->updateDirectionalLight(this, 12, 4, &intensity);
-        intensityChanged = false;
+    if (shadowMapIDChanged) {
+        lightHandler->updateDirectionalLight(this, 12, 4, &shadowMapID);
+        shadowMapIDChanged = false;
     }
     if (directionChanged) {
         lightHandler->updateDirectionalLight(this, 16, 12, &direction);

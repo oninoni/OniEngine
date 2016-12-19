@@ -12,6 +12,7 @@ layout(location = 3) in vec3 v_tangent;
 layout(location = 4) in vec3 v_biTangent;
 
 out vec3 f_position;
+out vec3 f_normal;
 out vec2 f_uv;
 out mat3 TBN;
 
@@ -24,6 +25,8 @@ void main(){
     vec3 t = normalize(vec3(vec4(v_tangent, 0) * model));
     vec3 b = normalize(vec3(vec4(v_biTangent, 0) * model));
     vec3 n = normalize(vec3(vec4(v_normal, 0) * model));
+    
+    f_normal = n;
     
     TBN = mat3(
         t,

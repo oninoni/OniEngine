@@ -5,12 +5,12 @@
 
 #include "BaseLight.h"
 
-BaseLight::BaseLight(GameComponent* component, vec3 color, float intensity) {
+BaseLight::BaseLight(GameComponent* component, vec3 color) {
     this->color = color;
     this->colorChanged = true;
 
-    this->intensity = intensity;
-    this->intensityChanged = true;
+    this->shadowMapID = -1;
+    this->shadowMapIDChanged = true;
 
     this->component = component;
 }
@@ -26,20 +26,20 @@ void BaseLight::setColor(vec3 color) {
     colorChanged = true;
 }
 
-float BaseLight::getIntensity() {
-    return intensity;
+int BaseLight::getShadowMapID() {
+    return shadowMapID;
 }
 
-void BaseLight::setIntensity(float intensity) {
-    if (this->intensity == intensity)return;
+void BaseLight::setShadowMapID(int shadowMapID) {
+    if (this->shadowMapID == shadowMapID)return;
 
-    this->intensity = intensity;
-    intensityChanged = true;
+    this->shadowMapID = shadowMapID;
+    shadowMapIDChanged = true;
 }
 
 void BaseLight::forceUpdate() {
     colorChanged = true;
-    intensityChanged = true;
+    shadowMapIDChanged = true;
 }
 
 mat4 BaseLight::getTransformationMatrix(bool inverted) {

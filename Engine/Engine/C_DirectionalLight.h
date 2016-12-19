@@ -11,8 +11,12 @@ private:
     DirectionalLight* directionalLight;
     LightHandler* lightHandler;
 public:
-    C_DirectionalLight(vec3 color, float intensity, vec3 direction);
+    C_DirectionalLight(vec3 color, bool shadowMapEnabled = false);
 
+    void setShadowMapID(int shadowMapID);
+    int getShadowMapID();
+
+    void c_update(const double & delta, InputManager* input);
     void c_preRender(LightHandler* lightHandler, Shader* shader);
     void c_destroy();
 };

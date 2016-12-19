@@ -112,8 +112,12 @@
     <ClCompile Include="TextureArrayFramebuffer.cpp">
       <Filter>Source\Rendering\Object\Texture</Filter>
     </ClCompile>
-    <ClCompile Include="ShaderHandler.cpp" />
-    <ClCompile Include="ShadowmapShader.cpp" />
+    <ClCompile Include="ShaderHandler.cpp">
+      <Filter>Source\Rendering\Shader</Filter>
+    </ClCompile>
+    <ClCompile Include="ShadowmapShader.cpp">
+      <Filter>Source\Rendering\Shader</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="C_Camera.h">
@@ -227,8 +231,12 @@
     <ClInclude Include="TextureArrayFramebuffer.h">
       <Filter>Header\Rendering\Object\Texture</Filter>
     </ClInclude>
-    <ClInclude Include="ShaderHandler.h" />
-    <ClInclude Include="ShadowmapShader.h" />
+    <ClInclude Include="ShaderHandler.h">
+      <Filter>Header\Rendering\Shader</Filter>
+    </ClInclude>
+    <ClInclude Include="ShadowmapShader.h">
+      <Filter>Header\Rendering\Shader</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="phong.fs">

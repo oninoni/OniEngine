@@ -2,7 +2,7 @@
 
 #include "Camera.h"
 
-class OrthogonalCamera : Camera{
+class OrthogonalCamera : public Camera{
 public:
     OrthogonalCamera(float left, float right, float bottom, float top, float nearZ, float farZ);
 

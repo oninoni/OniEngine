@@ -12,8 +12,9 @@ public:
     void swapBuffers();
 
     bool isCloseRequested() {
-        return glfwWindowShouldClose(window) == 1;
+        return glfwWindowShouldClose(window) != 0;
     }
+
     void getSize(int & w, int & h) {
         glfwGetWindowSize(window, &w, &h);
     }

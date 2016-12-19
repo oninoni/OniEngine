@@ -4,6 +4,7 @@
 #include "GameObject.h"
 #include "Shader.h"
 #include "PerspectiveCamera.h"
+#include "OrthogonalCamera.h"
 
 #include "ShaderHandler.h"
 

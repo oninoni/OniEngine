@@ -29,7 +29,6 @@ void Material::bind(Shader* shader, uint unit) {
     textures->bind(unit);
 
     shader->setUniformVec4("f_color", color);
-
     shader->setUniformI("f_materialTexture", unit);
 
     shader->setUniformF("f_specularExponent", specularExponent);

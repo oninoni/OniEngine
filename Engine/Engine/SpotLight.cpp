@@ -4,7 +4,7 @@
 
 #include "SpotLight.h"
 
-SpotLight::SpotLight(GameComponent* component, vec3 direction, float cutoff, vec3 position, float radius, vec3 color, float intensity) : PointLight(component, position, radius, color, intensity) {
+SpotLight::SpotLight(GameComponent* component, vec3 direction, float cutoff, vec3 position, float radius, vec3 color) : PointLight(component, position, radius, color) {
     this->direction = direction.normalize();
     directionChanged = true;
 
@@ -12,7 +12,7 @@ SpotLight::SpotLight(GameComponent* component, vec3 direction, float cutoff, vec
     cutoffChanged = true;
 }
 
-SpotLight::SpotLight(GameComponent* component, vec3 direction, float cutoff, vec3 position, float radius, vec3 color, float intensity, float constant, float linear, float square) : PointLight(component, position, radius, color, intensity, constant, linear, square){
+SpotLight::SpotLight(GameComponent* component, vec3 direction, float cutoff, vec3 position, float radius, vec3 color, float constant, float linear, float square) : PointLight(component, position, radius, color, constant, linear, square){
     this->direction = direction.normalize();
     directionChanged = true;
 
@@ -25,9 +25,9 @@ void SpotLight::setUniformSpotLight(LightHandler * lightHandler) {
         lightHandler->updateSpotLight(this, 0 * sizeof(float), 12, &color);
         colorChanged = false;
     }
-    if (intensityChanged) {
-        lightHandler->updateSpotLight(this, 3 * sizeof(float), 4, &intensity);
-        intensityChanged = false;
+    if (shadowMapIDChanged) {
+        lightHandler->updateSpotLight(this, 3 * sizeof(float), 4, &shadowMapID);
+        shadowMapIDChanged = false;
     }
     if (constantChanged) {
         lightHandler->updateSpotLight(this, 4 * sizeof(float), 4, &constant);

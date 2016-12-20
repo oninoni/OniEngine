@@ -6,6 +6,7 @@ class GameComponent;
 class BaseLight abstract{
 protected:
     vec3 color;
+    float intensity;
     bool colorChanged;
     int shadowMapID;
     bool shadowMapIDChanged;
@@ -16,6 +17,11 @@ protected:
 public:
     vec3 getColor();
     void setColor(vec3 color);
+
+    float getIntensity();
+    void setIntensity(float intensity);
+
+    vec3 getTrueColor();
 
     int getShadowMapID();
     void setShadowMapID(int shadowMapID);

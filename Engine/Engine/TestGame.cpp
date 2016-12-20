@@ -6,7 +6,6 @@
 #include "Material.h"
 #include "Mesh.h"
 
-
 #include "C_MeshRenderer.h"
 #include "C_Camera.h"
 #include "C_DirectionalLight.h"
@@ -14,7 +13,6 @@
 #include "C_SpotLight.h"
 #include "GameObject.h"
 
-#include "LightHandler.h"
 #include "ShaderHandler.h"
 
 #include "Time.h"
@@ -31,7 +29,7 @@ TestGame::~TestGame(){
 void TestGame::init(ShaderHandler* shaderHandler) {
     Game::init(shaderHandler);
 
-    Mesh* mesh = new Mesh(shaderHandler, "Models/sphere.obj");
+    Mesh* mesh = new Mesh(shaderHandler, "Models/cube.obj");
     Mesh* mesh2 = new Mesh(shaderHandler, MeshType::Plane, 5);
 
     TextureArray* brickTexture = new TextureArray(4, 512, 512, GL_RGBA);
@@ -46,7 +44,7 @@ void TestGame::init(ShaderHandler* shaderHandler) {
     C_MeshRenderer* plane = new C_MeshRenderer(mesh2, material);
 
     C_PointLight* pLight = new C_PointLight(2, vec3(1, 0, 0));
-    C_SpotLight* sLight = new C_SpotLight(vec3(2, 0, 0), 20, 45, true);
+    C_SpotLight* sLight = new C_SpotLight(vec3(0.8, 1.0, 0.5), 20, 45, true);
 
     c_camera = new C_Camera(getCamera());
 
@@ -55,18 +53,19 @@ void TestGame::init(ShaderHandler* shaderHandler) {
     cameraObject = new GameObject();
 
     cubeObject->addComponent(cube);
-    cubeObject->getTransform().rotation = vec3(90, 0, 0);
+    cubeObject->getTransform().offset = vec3(-.5, -.5, -.5);
+    cubeObject->getTransform().position = vec3(0, .5, 0);
 
     planeObject->getTransform().rotation = vec3(-90, 0, 0);
     planeObject->getTransform().scale = 10;
 
     cameraObject->getTransform().position = vec3(0, 0.5, 3);
 
-
     for (int i = 0; i < 1; i++) {
         C_DirectionalLight* dLight = new C_DirectionalLight(vec3(1, 1, 1), true);
+        dLight->setIntensity(0.8);
         GameObject* sun = new GameObject();
-        //sun->addComponent(dLight);
+        sun->addComponent(dLight);
         sun->getTransform().rotation = vec3(-45, 45 + (90.0f * i), 0);
         getRootGameObject()->addChild(sun);
     }
@@ -77,6 +76,7 @@ void TestGame::init(ShaderHandler* shaderHandler) {
     getRootGameObject()->addChild(pointLightObject);
 
     spotLight = new GameObject();
+    sLight->setIntensity(4.0f);
     spotLight->addComponent(sLight);
     spotLight->getTransform().position = vec3(0, .5, 3);
     getRootGameObject()->addChild(spotLight);
@@ -95,4 +95,6 @@ void TestGame::update(const double & delta, InputManager * input) {
 
     spotLight->getTransform().position = vec3(sin((float) Time::getTime() * 0.1f) * 3.0f, .5f, cos((float) Time::getTime() * 0.1f) * 3.0f);
     spotLight->getTransform().rotation = vec3(0, (float) Time::getTime() * 18.0f / PI, 0);
+
+    cubeObject->getTransform().rotation = vec3((float)Time::getTime() * 16.0f, 0, 0);
 }

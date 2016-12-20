@@ -22,7 +22,7 @@ PointLight::PointLight(GameComponent* component, vec3 position, float radius, ve
 
 void PointLight::setUniformPointLight(LightHandler * lightHandler) {
     if (colorChanged) {
-        lightHandler->updatePointLight(this, 0 * sizeof(float), 12, &color);
+        lightHandler->updatePointLight(this, 0 * sizeof(float), 12, &(color * intensity));
         colorChanged = false;
     }
     if (shadowMapIDChanged) {

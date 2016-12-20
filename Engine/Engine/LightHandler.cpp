@@ -23,7 +23,7 @@ LightHandler::LightHandler() {
     lightProjections = new UniformBufferObject();
     lightProjections->generate(sizeof(mat4) * (MAX_DIRECTIONAL_LIGHTS_SHADOWS + MAX_SPOT_LIGHTS_SHADOWS) + sizeof(vec4) * MAX_POINT_LIGHTS_SHADOWS, GL_DYNAMIC_DRAW);
 
-    shadowMaps = new TextureArrayFramebuffer(MAX_SPOT_LIGHTS, 2048, 2048, GL_DEPTH_COMPONENT, GL_DEPTH_ATTACHMENT);
+    shadowMaps = new TextureArrayFramebuffer(MAX_SPOT_LIGHTS_SHADOWS + MAX_DIRECTIONAL_LIGHTS_SHADOWS, 2048, 2048, GL_DEPTH_COMPONENT, GL_DEPTH_ATTACHMENT);
 }
 
 LightHandler::~LightHandler() {

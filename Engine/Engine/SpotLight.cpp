@@ -22,7 +22,7 @@ SpotLight::SpotLight(GameComponent* component, vec3 direction, float cutoff, vec
 
 void SpotLight::setUniformSpotLight(LightHandler * lightHandler) {
     if (colorChanged) {
-        lightHandler->updateSpotLight(this, 0 * sizeof(float), 12, &color);
+        lightHandler->updateSpotLight(this, 0 * sizeof(float), 12, &(color * intensity));
         colorChanged = false;
     }
     if (shadowMapIDChanged) {

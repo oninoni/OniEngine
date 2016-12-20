@@ -16,6 +16,14 @@ public:
     void setShadowMapID(int shadowMapID);
     int getShadowMapID();
 
+    void setColor(vec3 color);
+    vec3 getColor();
+
+    float getIntensity();
+    void setIntensity(float intensity);
+
+    vec3 getTrueColor();
+
     void c_update(const double & delta, InputManager* input);
     void c_preRender(LightHandler* lightHandler, Shader* shader);
     void c_destroy();

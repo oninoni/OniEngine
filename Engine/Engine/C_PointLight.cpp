@@ -20,6 +20,14 @@ C_PointLight::C_PointLight(float r, vec3 c, bool shadowMapEnabled, float ac, flo
     init = true;
 }
 
+void C_PointLight::setColor(vec3 color) {
+    pointLight->setColor(color);
+}
+
+vec3 C_PointLight::getColor() {
+    return pointLight->getColor();
+}
+
 void C_PointLight::c_update(const double & delta, InputManager * input) {
     pointLight->setPosition(getTransformationMatrix(false).transpose()[3]);
 }

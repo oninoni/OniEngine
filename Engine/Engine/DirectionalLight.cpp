@@ -14,7 +14,7 @@ DirectionalLight::~DirectionalLight() {
 
 void DirectionalLight::setUniformDirectionalLight(LightHandler * lightHandler) {
     if (colorChanged) {
-        lightHandler->updateDirectionalLight(this, 0, 12, &color);
+        lightHandler->updateDirectionalLight(this, 0, 12, &(color * intensity));
         colorChanged = false;
     }
     if (shadowMapIDChanged) {

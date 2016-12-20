@@ -305,10 +305,28 @@ Image RecourceLoader::loadTexture(string fileName) {
 
     cerr << "File: " << fileName << " could not be loaded by the Engine. Texture Format not supported!\n Loaded Error Texture (Purle/Black) instead!" << endl;
 
-    if (fileName == "Textures/Error.png")
-        assert(false);
+    Image error;
+    error.height = 512;
+    error.width = 512;
+    error.data.clear();
 
-    return loadTexture("Textures/Error.png");
+    error.data.push_back(255);
+    error.data.push_back(0);
+    error.data.push_back(255);
+
+    error.data.push_back(0);
+    error.data.push_back(0);
+    error.data.push_back(0);
+
+    error.data.push_back(0);
+    error.data.push_back(0);
+    error.data.push_back(0);
+
+    error.data.push_back(255);
+    error.data.push_back(0);
+    error.data.push_back(255);
+
+    return error;
 }
 
 Image RecourceLoader::loadPNG(const char * filename) {
@@ -319,7 +337,36 @@ Image RecourceLoader::loadPNG(const char * filename) {
 
     //if there's an error, display it
     if (error) {
-        cerr << "decoder error " << error << ": " << lodepng_error_text(error) << endl;
+        cerr << "pngDecoderError " << error << ": " << lodepng_error_text(error) << endl;
+
+        Image error;
+        error.height = 512;
+        error.width = 512;
+        error.data.clear();
+
+        for (int y = 0; y < error.height; y++) {
+            for (int x = 0; x < error.width; x++) {
+                if (x > (error.width / 2) && y < (error.height / 2) || 
+                    x < (error.width / 2) && y > (error.height / 2)) {
+                    error.data.push_back(63);
+                    error.data.push_back(255);
+                    error.data.push_back(127);
+                    error.data.push_back(255);
+                }
+                else {
+                    error.data.push_back(255);
+                    error.data.push_back(255);
+                    error.data.push_back(255);
+                    error.data.push_back(255);
+                }
+            }
+        }
+
+        for (int i = 0; i < error.height * error.width; i++) {
+            
+        }
+
+        return error;
     }
 
     //the pixels are now in the vector "image", 4 bytes per pixel, ordered RGBARGBA..., use it as texture, draw it, ...

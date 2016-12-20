@@ -13,8 +13,11 @@ private:
     float specularExponent;
     float displacementScale;
     float displacementBias;
+
+    bool specularEnabled;
+    bool normalMappingEnabled;
+    bool displacementMappingEnabled; //TODO
 public:
-    //Material::Material(Texture* t, float sE = 8, float sR = 1, vec4 c = vec4(1, 1, 1, 1));
     Material(TextureArray* textures, float displacementScale = 0.0f, float displacementOffset = 0.0f, float specularExponent = 8.0f, float specularReflectance = 1.0f, vec4 color = vec3(1, 1, 1));
 
     vec4 getBaseColor();

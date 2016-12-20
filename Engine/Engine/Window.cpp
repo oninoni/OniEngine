@@ -12,16 +12,25 @@ Window::Window(int width, int height, string title) {
     }
 
     glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 4);
-    glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 2);
+    glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
 
     glfwWindowHint(GLFW_RESIZABLE, GL_FALSE);
     glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);
 
     window = glfwCreateWindow(width, height, title.c_str(), NULL, NULL);
+    
+    if (window == NULL) {
+        glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 4);
+        glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 0);
+
+        window = glfwCreateWindow(width, height, title.c_str(), NULL, NULL);
+    }
+    
     glfwMakeContextCurrent(window);
 
-    if (glewInit()) {
-        cerr << "Glew could not be initilalized. You suck!" << endl;
+    GLenum error = glewInit();
+    if (error != GLEW_OK) {
+        cerr << glewGetErrorString(error) << endl;
         assert(false);
     }
 

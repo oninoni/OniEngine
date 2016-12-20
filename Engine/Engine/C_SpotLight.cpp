@@ -28,6 +28,26 @@ int C_SpotLight::getShadowMapID() {
     return spotLight->getShadowMapID();
 }
 
+void C_SpotLight::setColor(vec3 color) {
+    spotLight->setColor(color);
+}
+
+vec3 C_SpotLight::getColor() {
+    return spotLight->getColor();
+}
+
+float C_SpotLight::getIntensity() {
+    return spotLight->getIntensity();
+}
+
+void C_SpotLight::setIntensity(float intensity) {
+    spotLight->setIntensity(intensity);
+}
+
+vec3 C_SpotLight::getTrueColor() {
+    return spotLight->getTrueColor();
+}
+
 void C_SpotLight::c_update(const double & delta, InputManager * input) {
     spotLight->setPosition(getTransformationMatrix(false).transpose()[3]);
     spotLight->setDirection((getTransformationMatrix(true) * vec4(0, 0, -1, 0)).normalize());

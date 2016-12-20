@@ -14,9 +14,6 @@ TextureArrayFramebuffer::TextureArrayFramebuffer(uint width, uint height, GLenum
     int err = glCheckFramebufferStatus(GL_FRAMEBUFFER);
     if (err != GL_FRAMEBUFFER_COMPLETE) {
         cerr << "Framebuffer creation is not complete! Kot: " << err << endl;
-        cerr << glGetError() << endl;
-        cerr << glGetError() << endl;
-        cerr << glGetError() << endl;
         assert(false);
     }
 }

@@ -26,7 +26,7 @@ void m_matrix<float, 4, 4>::setRotationMatrix(const vec3 & r, bool invert) {
     rx.identity();
     ry.identity();
     rz.identity();
-
+    
     vec3 derNeue = r * PI / 180.0f;
 
     if (invert)

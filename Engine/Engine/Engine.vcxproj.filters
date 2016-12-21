@@ -118,6 +118,7 @@
     <ClCompile Include="ShadowmapShader.cpp">
       <Filter>Source\Rendering\Shader</Filter>
     </ClCompile>
+    <ClCompile Include="Quaternion.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="C_Camera.h">
@@ -237,6 +238,7 @@
     <ClInclude Include="ShadowmapShader.h">
       <Filter>Header\Rendering\Shader</Filter>
     </ClInclude>
+    <ClInclude Include="Quaternion.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="phong.fs">

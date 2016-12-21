@@ -16,7 +16,8 @@ private:
     mat4 translationMatrix;
     mat4 translationMatrixInverse;
 
-    vec3 t_rotation;
+    //vec3 t_rotation;
+    Quaternion t_rotation;
     bool rotationHasChanged;
     mat4 rotationMatrix;
     mat4 rotationMatrixInverse;
@@ -44,9 +45,9 @@ public:
     void setTranslation(vec3 t);
     void setTranslation(float x, float y, float z);
 
-    vec3 getRotation() const;
-    void setRotation(vec3 r);
-    void setRotation(float x, float y, float z);
+    Quaternion& getRotation();
+    void setRotation(Quaternion r);
+    void setRotation(float x, float y, float z, float w);
 
     vec3 getScale() const;
     void setScale(vec3 s);
@@ -61,7 +62,7 @@ public:
     vec3 getUp();
 
     __declspec(property(get = getTranslation, put = setTranslation)) vec3 position;
-    __declspec(property(get = getRotation, put = setRotation)) vec3 rotation;
+    __declspec(property(get = getRotation, put = setRotation)) Quaternion rotation;
     __declspec(property(get = getScale, put = setScale)) vec3 scale;
     __declspec(property(get = getOffset, put = setOffset)) vec3 offset;
 };

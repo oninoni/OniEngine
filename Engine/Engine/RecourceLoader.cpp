@@ -344,8 +344,8 @@ Image RecourceLoader::loadPNG(const char * filename) {
         error.width = 512;
         error.data.clear();
 
-        for (int y = 0; y < error.height; y++) {
-            for (int x = 0; x < error.width; x++) {
+        for (uint y = 0; y < error.height; y++) {
+            for (uint x = 0; x < error.width; x++) {
                 if (x > (error.width / 2) && y < (error.height / 2) || 
                     x < (error.width / 2) && y > (error.height / 2)) {
                     error.data.push_back(63);

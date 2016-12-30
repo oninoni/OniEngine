@@ -21,6 +21,22 @@ int C_DirectionalLight::getShadowMapID() {
     return directionalLight->getShadowMapID();
 }
 
+void C_DirectionalLight::setColor(vec3 color) {
+    directionalLight->setColor(color);
+}
+
+vec3 C_DirectionalLight::getColor() {
+    return directionalLight->getColor();
+}
+
+void C_DirectionalLight::setIntensity(float intensity) {
+    directionalLight->setIntensity(intensity);
+}
+
+float C_DirectionalLight::getIntensity() {
+    return directionalLight->getIntensity();
+}
+
 void C_DirectionalLight::c_update(const double & delta, InputManager * input) {
     directionalLight->setDirection((getTransformationMatrix(true) * vec4(0, 0, -1, 0)).normalize());
 }

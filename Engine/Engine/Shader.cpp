@@ -62,15 +62,17 @@ void Shader::checkShaderError(GLuint shader, GLuint flag, bool isProgram, const 
     }
 }
 
-Shader::Shader(const string & fileName) {
+Shader::Shader(const string & fileName, bool geometryEnabled) {
     program = glCreateProgram();
 
     shaders[VertexShader] = createShader(RecourceLoader::loadShader(fileName + ".vs"), GL_VERTEX_SHADER);
-    //shaders[GeometryShader] = createShader(RecourceLoader::loadShader(fileName + ".gs"), GL_GEOMETRY_SHADER);
+    glAttachShader(program, shaders[VertexShader]);
+    if (geometryEnabled) {
+        shaders[GeometryShader] = createShader(RecourceLoader::loadShader(fileName + ".gs"), GL_GEOMETRY_SHADER);
+        glAttachShader(program, shaders[GeometryShader]);
+    }
     shaders[FragmentShader] = createShader(RecourceLoader::loadShader(fileName + ".fs"), GL_FRAGMENT_SHADER);
-
-    for (int i = 0; i < NUM_SHADERS; i++)
-        glAttachShader(program, shaders[i]);
+    glAttachShader(program, shaders[FragmentShader]);
 
     glLinkProgram(program);
     checkShaderError(program, GL_LINK_STATUS, true, "Error: Shadersprogram " + fileName + " failed to link: ");

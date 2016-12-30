@@ -2,7 +2,7 @@
 
 enum ShaderType{
     VertexShader,
-    //GeometryShader,
+    GeometryShader,
     FragmentShader,
 
     NUM_SHADERS
@@ -30,7 +30,7 @@ private:
     static GLuint createShader(const string& text, GLenum type);
     static void checkShaderError(GLuint shader, GLuint flag, bool isProgram, const std::string& errorMessage);
 public:
-    Shader(const string& fileName);
+    Shader(const string& fileName, bool geometryEnabled = false);
     void bind();
     ~Shader();
 

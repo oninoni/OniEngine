@@ -45,8 +45,8 @@ void TestGame::init(ShaderHandler* shaderHandler) {
     C_MeshRenderer* cube = new C_MeshRenderer(mesh, material);
     C_MeshRenderer* plane = new C_MeshRenderer(mesh2, material);
 
-    C_PointLight* pLight = new C_PointLight(2, vec3(1, 0, 0));
-    C_SpotLight* sLight = new C_SpotLight(vec3(2, 0, 0), 20, 45, true);
+    C_PointLight* pLight = new C_PointLight(vec3(0, 1, 1), 5);
+    C_SpotLight* sLight = new C_SpotLight(vec3(1, 1, 0.8f), 20, 45, true);
 
     c_camera = new C_Camera(getCamera());
 
@@ -93,6 +93,6 @@ void TestGame::update(const double & delta, InputManager * input) {
     Game::update(delta, input);
     c_camera->updateFreeCam(delta, input);
 
-    spotLight->getTransform().position = vec3(sin((float) Time::getTime() * 0.1f) * 3.0f, .5f, cos((float) Time::getTime() * 0.1f) * 3.0f);
+    spotLight->getTransform().position = vec3(sin((float) Time::getTime() * 0.1f) * 5.0f, .5f, cos((float) Time::getTime() * 0.1f) * 5.0f);
     spotLight->getTransform().rotation = vec3(0, (float) Time::getTime() * 18.0f / PI, 0);
 }

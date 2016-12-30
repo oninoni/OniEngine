@@ -4,16 +4,16 @@
 
 #include "SpotLight.h"
 
-SpotLight::SpotLight(GameComponent* component, vec3 direction, float cutoff, vec3 position, float radius, vec3 color) : PointLight(component, position, radius, color) {
-    this->direction = direction.normalize();
+SpotLight::SpotLight(GameComponent* component, vec3 color, float radius, float cutoff) : PointLight(component, color, radius) {
+    this->direction = vec3(0, 0, 1);
     directionChanged = true;
 
     this->cutoff = cutoff;
     cutoffChanged = true;
 }
 
-SpotLight::SpotLight(GameComponent* component, vec3 direction, float cutoff, vec3 position, float radius, vec3 color, float constant, float linear, float square) : PointLight(component, position, radius, color, constant, linear, square){
-    this->direction = direction.normalize();
+SpotLight::SpotLight(GameComponent* component, vec3 color, float radius, float cutoff, float constant, float linear, float square) : PointLight(component, color, radius, constant, linear, square){
+    this->direction = vec3(0, 0, 1);
     directionChanged = true;
 
     this->cutoff = cutoff;
@@ -22,7 +22,7 @@ SpotLight::SpotLight(GameComponent* component, vec3 direction, float cutoff, vec
 
 void SpotLight::setUniformSpotLight(LightHandler * lightHandler) {
     if (colorChanged) {
-        lightHandler->updateSpotLight(this, 0 * sizeof(float), 12, &color);
+        lightHandler->updateSpotLight(this, 0 * sizeof(float), 12, &(color * intensity));
         colorChanged = false;
     }
     if (shadowMapIDChanged) {

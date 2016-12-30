@@ -4,16 +4,16 @@
 
 #include "PointLight.h"
 
-PointLight::PointLight(GameComponent* component, vec3 position, float radius, vec3 color) : BaseLight(component, color), Attenuation(radius) {
-    this->position = position;
+PointLight::PointLight(GameComponent* component, vec3 color, float radius) : BaseLight(component, color), Attenuation(radius) {
+    this->position = vec3(0, 0, 0);
     this->positionChanged = true;
 
     this->range = radius;
     this->rangeChanged = true;
 }
 
-PointLight::PointLight(GameComponent* component, vec3 position, float radius, vec3 color, float constant, float linear, float square) : BaseLight(component, color), Attenuation(constant, linear, square){
-    this->position = position;
+PointLight::PointLight(GameComponent* component, vec3 color, float radius, float constant, float linear, float square) : BaseLight(component, color), Attenuation(constant, linear, square){
+    this->position = vec3(0, 0, 0);
     this->positionChanged = true;
 
     this->range = radius;
@@ -22,7 +22,7 @@ PointLight::PointLight(GameComponent* component, vec3 position, float radius, ve
 
 void PointLight::setUniformPointLight(LightHandler * lightHandler) {
     if (colorChanged) {
-        lightHandler->updatePointLight(this, 0 * sizeof(float), 12, &color);
+        lightHandler->updatePointLight(this, 0 * sizeof(float), 12, &(color * intensity));
         colorChanged = false;
     }
     if (shadowMapIDChanged) {

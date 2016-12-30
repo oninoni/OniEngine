@@ -12,8 +12,8 @@ protected:
     float range;
     bool rangeChanged;
 public:
-    PointLight(GameComponent* component, vec3 position, float radius, vec3 color);
-    PointLight(GameComponent* component, vec3 position, float radius, vec3 color, float constant, float linear, float square);
+    PointLight(GameComponent* component, vec3 color, float radius);
+    PointLight(GameComponent* component, vec3 color, float radius, float constant, float linear, float square);
 
     void setUniformPointLight(LightHandler * lightHandler);
 

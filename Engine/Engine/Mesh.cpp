@@ -27,12 +27,12 @@ Mesh::Mesh(ShaderHandler* shaderHandler, MeshType type, float scale) {
         nVert = 6;
         vertices = new Vertex[nVert];
 
-        vertices[0] = Vertex(vec3(-1, -1, 0), vec3(0, 0, 1), vec2(0    ,     0), vec3(1, 0, 0), vec3(0, 1, 0));
-        vertices[1] = Vertex(vec3( 1, -1, 0), vec3(0, 0, 1), vec2(scale,     0), vec3(1, 0, 0), vec3(0, 1, 0));
-        vertices[2] = Vertex(vec3(-1,  1, 0), vec3(0, 0, 1), vec2(0    , scale), vec3(1, 0, 0), vec3(0, 1, 0));
-        vertices[3] = Vertex(vec3( 1, -1, 0), vec3(0, 0, 1), vec2(scale, 0    ), vec3(1, 0, 0), vec3(0, 1, 0));
-        vertices[4] = Vertex(vec3( 1,  1, 0), vec3(0, 0, 1), vec2(scale, scale), vec3(1, 0, 0), vec3(0, 1, 0));
-        vertices[5] = Vertex(vec3(-1,  1, 0), vec3(0, 0, 1), vec2(0    , scale), vec3(1, 0, 0), vec3(0, 1, 0));
+        vertices[0] = Vertex(vec3(-1, -1, 0), vec3(0, 0, 1), vec2(0    , 0    ), vec3(1, 0, 0), vec3(0, -1, 0));
+        vertices[1] = Vertex(vec3( 1, -1, 0), vec3(0, 0, 1), vec2(scale, 0    ), vec3(1, 0, 0), vec3(0, -1, 0));
+        vertices[2] = Vertex(vec3(-1,  1, 0), vec3(0, 0, 1), vec2(0    , scale), vec3(1, 0, 0), vec3(0, -1, 0));
+        vertices[3] = Vertex(vec3( 1, -1, 0), vec3(0, 0, 1), vec2(scale, 0    ), vec3(1, 0, 0), vec3(0, -1, 0));
+        vertices[4] = Vertex(vec3( 1,  1, 0), vec3(0, 0, 1), vec2(scale, scale), vec3(1, 0, 0), vec3(0, -1, 0));
+        vertices[5] = Vertex(vec3(-1,  1, 0), vec3(0, 0, 1), vec2(0    , scale), vec3(1, 0, 0), vec3(0, -1, 0));
         break;
     case Cube:
         nVert = 6 * 6;

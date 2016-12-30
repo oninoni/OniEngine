@@ -62,6 +62,8 @@ void RenderingEngine::initGraphics() {
     glEnable(GL_DEPTH_TEST);
 
     glEnable(GL_DEPTH_CLAMP);
+
+    glEnable(GL_MULTISAMPLE);
 }
 
 const char* RenderingEngine::getOpenGLVersion() {

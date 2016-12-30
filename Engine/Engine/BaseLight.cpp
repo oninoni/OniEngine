@@ -7,6 +7,7 @@
 
 BaseLight::BaseLight(GameComponent* component, vec3 color) {
     this->color = color;
+    this->intensity = 1;
     this->colorChanged = true;
 
     this->shadowMapID = -1;
@@ -23,6 +24,17 @@ void BaseLight::setColor(vec3 color) {
     if (this->color == color)return;
 
     this->color = color;
+    colorChanged = true;
+}
+
+float BaseLight::getIntensity() {
+    return intensity;
+}
+
+void BaseLight::setIntensity(float intensity) {
+    if (this->intensity == intensity)return;
+
+    this->intensity = intensity;
     colorChanged = true;
 }
 

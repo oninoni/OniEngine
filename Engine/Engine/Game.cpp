@@ -11,7 +11,7 @@
 #include "Game.h"
 
 Game::Game() {
-    camera = new PerspectiveCamera(1.0f, 0.1f, 1000.0f, 60.0f);
+    camera = new PerspectiveCamera(800.0f / 600.0f, 0.1f, 1000.0f, 60.0f);
 }
 
 Game::~Game() {

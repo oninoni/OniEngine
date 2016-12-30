@@ -84,7 +84,7 @@ float calcPCFShadow(vec2 coords, int layer, float compare){
     for(int x = -level; x <= level; x++){
         for(int y = -level; y <= level; y++){
             vec2 texelPos = vec2(
-                coords.x + x * SHADOWMAP_TEXEL_SIZE, 
+                coords.x + x * SHADOWMAP_TEXEL_SIZE,
                 coords.y + y * SHADOWMAP_TEXEL_SIZE
             );
             shadowFactor += texture(f_shadowMaps, vec4(texelPos, layer, compare2)) / partCount;

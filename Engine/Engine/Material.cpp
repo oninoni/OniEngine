@@ -5,9 +5,6 @@
 
 #include "Material.h"
 
-//Material::Material(Texture* t, float sE, float sR, vec4 c): Material(t, t, t, sE, sR, c) {
-//}
-
 Material::Material(TextureArray* textures, float displacementScale, float displacementOffset, float specularExponent, float specularReflectance, vec4 color) {
     this->textures = textures;
     this->displacementScale = displacementScale;

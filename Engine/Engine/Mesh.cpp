@@ -15,7 +15,6 @@ Mesh::Mesh(ShaderHandler* shaderHandler, Vertex* vertices, uint nVert){
 }
 
 Mesh::Mesh(ShaderHandler* shaderHandler, string fileName) : Mesh(*(RecourceLoader::loadMesh(fileName, shaderHandler))){
-
 }
 
 Mesh::Mesh(ShaderHandler* shaderHandler, MeshType type, float scale) {

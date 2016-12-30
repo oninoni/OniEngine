@@ -20,9 +20,6 @@ public:
     void setIntensity(float intensity);
     float getIntensity();
 
-    void setColor(vec3 color);
-    vec3 getColor();
-
     void c_update(const double & delta, InputManager* input);
     void c_preRender(LightHandler* lightHandler, Shader* shader);
     void c_destroy();

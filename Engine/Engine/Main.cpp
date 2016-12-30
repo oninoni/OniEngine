@@ -9,7 +9,7 @@
 #include "DirectionalLight.h"
 
 int main() {
-    CoreEngine coreEngine(800, 600, 120, new TestGame()); // NOSCOPE!!!!!!!! (+)
+    CoreEngine coreEngine(1920, 1080, 120, new TestGame());
     coreEngine.createWindow("Test");
     coreEngine.start();
 }

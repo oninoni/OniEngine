@@ -77,9 +77,10 @@ out vec4 out_color;
 
 float calcPCFShadow(vec2 coords, int layer, float compare){
     int level = 1;
+    float bias = SHADOWMAP_TEXEL_SIZE * 0.4;
+    if(level <= 0)return texture(f_shadowMaps, vec4(coords, layer, compare - bias));
     float compare2 = compare - level * SHADOWMAP_TEXEL_SIZE;
     float partCount = pow(level * 2 + 1, 2);
-    if(level <= 0)return texture(f_shadowMaps, vec4(coords, layer, compare));
     float shadowFactor = 0.0f;
     for(int x = -level; x <= level; x++){
         for(int y = -level; y <= level; y++){
@@ -87,7 +88,7 @@ float calcPCFShadow(vec2 coords, int layer, float compare){
                 coords.x + x * SHADOWMAP_TEXEL_SIZE,
                 coords.y + y * SHADOWMAP_TEXEL_SIZE
             );
-            shadowFactor += texture(f_shadowMaps, vec4(texelPos, layer, compare2)) / partCount;
+            shadowFactor += texture(f_shadowMaps, vec4(texelPos, layer, compare - (level * 2 * bias))) / partCount;
         }
     }
     return shadowFactor;
@@ -101,9 +102,10 @@ float calcShadow(vec3 shadowMapPos, vec3 lightVec, int shadowID){
         shadowMapPos.z >= 0 && shadowMapPos.z <= 1){
         float cosTheta = dot(f_normal, normalize(-lightVec));
         if(cosTheta > 0){
-            float bias = 1e-3 / length(lightVec) * max(1, tan(acos(cosTheta)));
+            float bias = SHADOWMAP_TEXEL_SIZE * 0.4;
+            //float bias = 1e-3 / length(lightVec) * max(1, tan(acos(cosTheta)));
             //float bias = 2 * SHADOWMAP_TEXEL_SIZE / length(lightVec) * max(1, tan(acos(cosTheta)));
-            shadowFactor = calcPCFShadow(shadowMapPos.xy, shadowID, shadowMapPos.z - bias);
+            shadowFactor = calcPCFShadow(shadowMapPos.xy, shadowID, shadowMapPos.z);
             if (cosTheta < 5e-2)
                 shadowFactor *= cosTheta / 5e-2;
         }else{

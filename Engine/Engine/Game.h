@@ -16,6 +16,8 @@ public:
     virtual void init(ShaderHandler* shaderHandler);
     virtual void update(const double & delta, InputManager* input);
 
+    void setCamera(float aspectRatio);
+
     GameObject* getRootGameObject();
 
     Camera* getCamera();

@@ -115,12 +115,10 @@ void LightHandler::registerShadowmapDirectionalLight(DirectionalLight * directio
 
 void LightHandler::registerShadowmapSpotLight(SpotLight * spotLight) {
     spotLight->setShadowMapID(lightCameras.size());
-    lightCameras.push_back(new PerspectiveCamera(1.0f, 0.1f, 100.0f, spotLight->getCutoff() * 2.0f));
+    lightCameras.push_back(new PerspectiveCamera(1.0f, 0.1f, spotLight->getRange(), spotLight->getCutoff() * 2.0f));
 }
 
 void LightHandler::renderShadowmaps(Shader* shader, GameObject* root) {
-    glDisable(GL_CULL_FACE);
-
     for (DirectionalLight* directionalLight : directionalLights) {
         int id = directionalLight->getShadowMapID();
         if (id >= 0) {
@@ -152,6 +150,4 @@ void LightHandler::renderShadowmaps(Shader* shader, GameObject* root) {
             lightProjections->setData(sizeof(mat4) * (MAX_DIRECTIONAL_LIGHTS_SHADOWS + id), sizeof(mat4), &camera->getViewProjectionMatrix());
         }
     }
-
-    glEnable(GL_CULL_FACE);
 }

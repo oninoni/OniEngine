@@ -11,7 +11,6 @@
 #include "Game.h"
 
 Game::Game() {
-    camera = new PerspectiveCamera(800.0f / 600.0f, 0.1f, 1000.0f, 60.0f);
 }
 
 Game::~Game() {
@@ -23,6 +22,10 @@ void Game::init(ShaderHandler* shaderHandler) {
 
 void Game::update(const double & delta, InputManager * input) {
     getRootGameObject()->update(delta, input);
+}
+
+void Game::setCamera(float aspectRatio) {
+    camera = new PerspectiveCamera(aspectRatio, 0.1f, 1000.0f, 60.0f);
 }
 
 GameObject* Game::getRootGameObject() {

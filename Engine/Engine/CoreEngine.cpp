@@ -29,6 +29,7 @@ CoreEngine::~CoreEngine() {
 void CoreEngine::createWindow(string title) {
     window = new Window(width, height, title);
 
+    game->setCamera((float) width / (float) height);
     renderingEngine = new RenderingEngine(game->getCamera(), window);
     inputManager = new InputManager(this);
 }

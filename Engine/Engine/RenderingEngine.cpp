@@ -29,14 +29,14 @@ RenderingEngine::~RenderingEngine() {
 }
 
 void RenderingEngine::render(GameObject * root) {
-    lightHandler->renderShadowmaps(shaderHandler->getShadowmapShader(), root);
+    lightHandler->renderShadowmaps(shaderHandler, root);
 
     window->bindAsRenderTarget();
     clearScreen();
 
     lightHandler->bindShader(shaderHandler->getPhongShader());
-    root->preRender(lightHandler, shaderHandler->getPhongShader());
-    root->render(shaderHandler->getPhongShader(), camera);
+    root->preRender(shaderHandler, lightHandler);
+    root->render(shaderHandler, camera);
 }
 
 ShaderHandler * RenderingEngine::getShaderHandler() {

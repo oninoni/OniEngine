@@ -49,9 +49,9 @@ void C_SpotLight::c_update(const double & delta, InputManager * input) {
     spotLight->setDirection((getTransformationMatrix(true) * vec4(0, 0, -1, 0)).normalize());
 }
 
-void C_SpotLight::c_preRender(LightHandler* lightHandler, Shader * shader) {
-    this->lightHandler = lightHandler;
+void C_SpotLight::c_preRender(ShaderHandler* shaderHandler, LightHandler* lightHandler, bool shadowRender) {
     if (init) {
+        this->lightHandler = lightHandler;
         lightHandler->addSpotLight(spotLight);
         init = false;
     }

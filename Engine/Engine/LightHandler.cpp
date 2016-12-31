@@ -12,6 +12,7 @@
 #include "PerspectiveCamera.h"
 #include "OrthogonalCamera.h"
 #include "Shader.h"
+#include "ShaderHandler.h"
 #include "RenderingEngine.h"
 
 #include "LightHandler.h"
@@ -115,10 +116,10 @@ void LightHandler::registerShadowmapDirectionalLight(DirectionalLight * directio
 
 void LightHandler::registerShadowmapSpotLight(SpotLight * spotLight) {
     spotLight->setShadowMapID(lightCameras.size());
-    lightCameras.push_back(new PerspectiveCamera(1.0f, 0.1f, spotLight->getRange(), spotLight->getCutoff() * 2.0f));
+    lightCameras.push_back(new PerspectiveCamera(1.0f, 0.1f, spotLight->getRange(), spotLight->getCutoff() * 2.0f + 1.0f)); // Offset Because Border should be black
 }
 
-void LightHandler::renderShadowmaps(Shader* shader, GameObject* root) {
+void LightHandler::renderShadowmaps(ShaderHandler* shaderHandler, GameObject* root) {
     for (DirectionalLight* directionalLight : directionalLights) {
         int id = directionalLight->getShadowMapID();
         if (id >= 0) {
@@ -128,8 +129,8 @@ void LightHandler::renderShadowmaps(Shader* shader, GameObject* root) {
             shadowMaps->bindFramebuffer(id);
             RenderingEngine::clearScreen();
 
-            root->preRender(this, shader);
-            root->render(shader, camera);
+            root->preRender(shaderHandler, this, true);
+            root->render(shaderHandler, camera, true);
 
             lightProjections->setData(sizeof(mat4) * id, sizeof(mat4), &camera->getViewProjectionMatrix());
         }
@@ -144,8 +145,8 @@ void LightHandler::renderShadowmaps(Shader* shader, GameObject* root) {
             shadowMaps->bindFramebuffer(id);
             RenderingEngine::clearScreen();
 
-            root->preRender(this, shader);
-            root->render(shader, camera);
+            root->preRender(shaderHandler, this, true);
+            root->render(shaderHandler, camera, true);
 
             lightProjections->setData(sizeof(mat4) * (MAX_DIRECTIONAL_LIGHTS_SHADOWS + id), sizeof(mat4), &camera->getViewProjectionMatrix());
         }

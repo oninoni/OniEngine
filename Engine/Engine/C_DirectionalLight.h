@@ -23,6 +23,6 @@ public:
     float getIntensity();
 
     void c_update(const double & delta, InputManager* input);
-    void c_preRender(LightHandler* lightHandler, Shader* shader);
+    void c_preRender(ShaderHandler* shaderHandler, LightHandler* lightHandler, bool shadowRender = false);
     void c_destroy();
 };

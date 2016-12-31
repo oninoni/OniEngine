@@ -1,10 +1,10 @@
 #pragma once
 
 class Camera;
-class Shader;
 class InputManager;
-
-#include "GameObject.h"
+class ShaderHandler;
+class LightHandler;
+class GameObject;
 
 class GameComponent abstract {
 protected:
@@ -16,13 +16,13 @@ public:
 
     void init(GameObject* parent);
     void update(const double & delta, InputManager* input);
-    void preRender(LightHandler* lightHandler, Shader* shader);
-    void render(Shader* shader, Camera* camera);
+    void preRender(ShaderHandler* shaderHandler, LightHandler* lightHandler, bool shadowRender = false);
+    void render(ShaderHandler* shaderHandler, Camera* camera, bool shadowRender = false);
 
     virtual void c_init(GameObject* parent) {}
     virtual void c_update(const double & delta, InputManager* input) {}
-    virtual void c_preRender(LightHandler* lightHandler, Shader* shader) {}
-    virtual void c_render(Shader* shader, Camera* camera) {}
+    virtual void c_preRender(ShaderHandler* shaderHandler, LightHandler* lightHandler, bool shadowRender = false) {}
+    virtual void c_render(ShaderHandler* shaderHandler, Camera* camera, bool shadowRender = false) {}
     virtual void c_destroy() {}
 
     void setParent(GameObject* parent);

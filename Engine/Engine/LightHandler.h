@@ -11,6 +11,7 @@ class GameObject;
 
 class Camera;
 
+class ShaderHandler;
 class Shader;
 
 class LightHandler {
@@ -56,7 +57,7 @@ public:
     void registerShadowmapDirectionalLight(DirectionalLight* spotLight);
     void registerShadowmapSpotLight(SpotLight* spotLight);
 
-    void renderShadowmaps(Shader* shader, GameObject* root);
+    void renderShadowmaps(ShaderHandler* shaderHandler, GameObject* root);
 
     static TextureArrayFramebuffer* shadowMapsSpotLights;
 };

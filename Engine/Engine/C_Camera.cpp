@@ -1,8 +1,10 @@
 #include "stdafx.h"
 
-#include "C_Camera.h"
 #include "Camera.h"
 #include "InputManager.h"
+#include "GameObject.h"
+
+#include "C_Camera.h"
 
 #define FLYSPEED 4
 #define TURNSPEED 20

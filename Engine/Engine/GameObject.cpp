@@ -1,11 +1,11 @@
 #include "stdafx.h"
 
 #include "Camera.h"
-#include "Shader.h"
 
 #include "InputManager.h"
 #include "GameComponent.h"
 
+#include "ShaderHandler.h"
 #include "LightHandler.h"
 
 #include "GameObject.h"
@@ -18,8 +18,6 @@ GameObject::~GameObject() {
        parent->removeChild(this);
 
     for (GameComponent* gameComponent : components) {
-        gameComponent->c_destroy();
-        gameComponent->setParent(NULL);
         delete gameComponent;
     }
 
@@ -59,20 +57,20 @@ void GameObject::update(const double & delta, InputManager * input) {
         child->update(delta, input);
 }
 
-void GameObject::preRender(LightHandler* lightHandler, Shader * shader) {
+void GameObject::preRender(ShaderHandler* shaderHandler, LightHandler* lightHandler, bool shadowRender) {
     for (GameComponent* gameComponent : components)
-        gameComponent->preRender(lightHandler, shader);
+        gameComponent->preRender(shaderHandler, lightHandler, shadowRender);
 
     for (GameObject* child : children)
-        child->preRender(lightHandler, shader);
+        child->preRender(shaderHandler, lightHandler, shadowRender);
 }
 
-void GameObject::render(Shader* shader, Camera* camera) {
+void GameObject::render(ShaderHandler* shaderHandler, Camera* camera, bool shadowRender) {
     for (GameComponent* gameComponent : components)
-        gameComponent->render(shader, camera);
+        gameComponent->render(shaderHandler, camera, shadowRender);
 
     for (GameObject* child : children)
-        child->render(shader, camera);
+        child->render(shaderHandler, camera, shadowRender);
 }
 
 Transform& GameObject::getTransform() {

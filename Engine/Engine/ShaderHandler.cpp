@@ -34,5 +34,7 @@ Shader * ShaderHandler::getShader(uint id) {
         return phongShader;
     case 1:
         return shadowmapShader;
+    default:
+        return NULL;
     }
 }

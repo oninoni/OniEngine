@@ -9,7 +9,6 @@ class ShaderHandler;
 
 class TestGame : public Game{
 private:
-    GameObject* cubeObject;
     GameObject* cameraObject;
     GameObject* spotLight;
     C_Camera* c_camera;

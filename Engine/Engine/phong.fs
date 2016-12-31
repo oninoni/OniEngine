@@ -76,7 +76,7 @@ in vec3 f_cameraPosition;
 out vec4 out_color;
 
 float calcPCFShadow(vec3 coords, int layer){
-    int level = 1;
+    int level = 0;
     if(level <= 0)return texture(f_shadowMaps, vec4(coords.xy, layer, coords.z));
     float partCount = pow(level * 2 + 1, 2);
     float shadowFactor = 0.0f;

@@ -4,6 +4,7 @@
 
 class GameObject;
 class C_Camera;
+class C_SpotLight;
 
 class ShaderHandler;
 
@@ -12,6 +13,7 @@ private:
     GameObject* cameraObject;
     GameObject* spotLight;
     C_Camera* c_camera;
+    C_SpotLight* sLight;
 public:
     TestGame();
     ~TestGame();

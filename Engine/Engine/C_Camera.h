@@ -4,6 +4,7 @@
 
 class Camera;
 class Input;
+class ShaderHandler;
 
 class C_Camera : public GameComponent {
 private:
@@ -16,4 +17,5 @@ public:
     void updateFreeCam(const double & delta, InputManager* input);
 
     void c_update(const double & delta, InputManager* input);
+    void c_preRender(ShaderHandler* shaderHandler, LightHandler* lightHandler, bool shadowRender = false);
 };

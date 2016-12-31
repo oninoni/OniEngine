@@ -5,6 +5,8 @@
 
 #include "Material.h"
 
+Material* Material::activeMaterial = NULL;
+
 Material::Material(TextureArray* textures, float displacementScale, float displacementOffset, float specularExponent, float specularReflectance, vec4 color) {
     this->textures = textures;
     this->displacementScale = displacementScale;
@@ -23,6 +25,9 @@ void Material::setBaseColor(vec4 color) {
 }
 
 void Material::bind(Shader* shader, uint unit) {
+    if (activeMaterial == this)return;
+    activeMaterial = this;
+
     textures->bind(unit);
 
     shader->setUniformVec4("f_color", color);

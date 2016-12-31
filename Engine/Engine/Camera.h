@@ -11,6 +11,7 @@ protected:
 public:
     void setViewMatrix(mat4 matrix);
 
+    void bindViewMatrix(Shader* shader);
     void render(Shader* shader, const mat4 & modelmatrix);
 
     mat4 getViewProjectionMatrix();

@@ -52,7 +52,7 @@ void TestGame::init(ShaderHandler* shaderHandler) {
             GameObject* cubeObject = new GameObject();
             cubeObject->addComponent(cube);
             cubeObject->getTransform().offset = vec3(-.5, -.5, -.5);
-            cubeObject->getTransform().position = vec3(x * 2, .5, y * 2);
+            cubeObject->getTransform().position = vec3(x * 2.0f, 0.5f, y * 2.0f);
 
             getRootGameObject()->addChild(cubeObject);
         }
@@ -62,8 +62,8 @@ void TestGame::init(ShaderHandler* shaderHandler) {
 
     C_MeshRenderer* plane = new C_MeshRenderer(mesh2, grassMaterial);
 
-    C_PointLight* pLight = new C_PointLight(vec3(0, 1, 1), 5);
-    C_SpotLight* sLight = new C_SpotLight(vec3(1, 0.7f, 0.3f), 20, 45, true);
+    //C_PointLight* pLight = new C_PointLight(vec3(0, 1, 1), 5);
+    sLight = new C_SpotLight(vec3(1, 0.7f, 0.3f), 20, 20, true);
 
     c_camera = new C_Camera(getCamera());
 
@@ -75,7 +75,7 @@ void TestGame::init(ShaderHandler* shaderHandler) {
 
     cameraObject->getTransform().position = vec3(0, 0.5, 3);
 
-    for (int i = 0; i < 1; i++) {
+    for (int i = 0; i < 4; i++) {
         C_DirectionalLight* dLight = new C_DirectionalLight(vec3(1, 1, 1), true);
         dLight->setIntensity(0.8f);
         GameObject* sun = new GameObject();
@@ -83,18 +83,18 @@ void TestGame::init(ShaderHandler* shaderHandler) {
         sun->getTransform().rotation = vec3(-45, 45 + (90.0f * i), 0);
         getRootGameObject()->addChild(sun);
     }
-
+    /*
     GameObject* pointLightObject = new GameObject();
     //pointLightObject->addComponent(pLight);
     pointLightObject->getTransform().position = vec3(0, 1.5, 0);
     getRootGameObject()->addChild(pointLightObject);
-
+    */
     spotLight = new GameObject();
     sLight->setIntensity(4.0f);
-    spotLight->addComponent(sLight);
+    cameraObject->addComponent(sLight);
     spotLight->getTransform().position = vec3(0, .5, 3);
     getRootGameObject()->addChild(spotLight);
-
+    
     cameraObject->addComponent(c_camera);
     planeObject->addComponent(plane);
 
@@ -103,6 +103,10 @@ void TestGame::init(ShaderHandler* shaderHandler) {
 }
 
 void TestGame::update(const double & delta, InputManager * input) {
+    if(input->keyPressed(KeyAction::kaFirePrimary)) {
+        sLight->setIntensity((int)(sLight->getIntensity() + 1) % 2);
+    }
+
     Game::update(delta, input);
     c_camera->updateFreeCam(delta, input);
 

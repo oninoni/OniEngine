@@ -3,6 +3,7 @@
 #include "Camera.h"
 #include "InputManager.h"
 #include "GameObject.h"
+#include "ShaderHandler.h"
 
 #include "C_Camera.h"
 
@@ -51,4 +52,12 @@ void C_Camera::updateFreeCam(const double & delta, InputManager * input) {
 void C_Camera::c_update(const double & delta, InputManager * input) {
     mat4 viewMatrix = getTransformationMatrix(true);
     camera->setViewMatrix(viewMatrix);
+}
+
+void C_Camera::c_preRender(ShaderHandler * shaderHandler, LightHandler * lightHandler, bool shadowRender) {
+    if (shadowRender) {
+        camera->bindViewMatrix((Shader*) shaderHandler->getShadowmapShader());
+    } else {
+        camera->bindViewMatrix((Shader*) shaderHandler->getPhongShader());
+    }
 }

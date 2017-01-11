@@ -6,11 +6,11 @@
 #include "Material.h"
 #include "Mesh.h"
 
-#include "C_MeshRenderer.h"
-#include "C_Camera.h"
-#include "C_DirectionalLight.h"
-#include "C_PointLight.h"
-#include "C_SpotLight.h"
+#include "CR_MeshRenderer.h"
+#include "CR_Camera.h"
+#include "CR_DirectionalLight.h"
+#include "CR_PointLight.h"
+#include "CR_SpotLight.h"
 #include "GameObject.h"
 
 #include "ShaderHandler.h"
@@ -48,7 +48,7 @@ void TestGame::init(ShaderHandler* shaderHandler) {
 
     for (int x = -2; x <= 2; x++) {
         for (int y = -2; y <= 2; y++) {
-            C_MeshRenderer* cube = new C_MeshRenderer(mesh, brickMaterial);
+            CR_MeshRenderer* cube = new CR_MeshRenderer(mesh, brickMaterial);
             GameObject* cubeObject = new GameObject();
             cubeObject->addComponent(cube);
             cubeObject->getTransform().offset = vec3(-.5, -.5, -.5);
@@ -60,12 +60,12 @@ void TestGame::init(ShaderHandler* shaderHandler) {
     for (int i = 0; i < 4; i++) {
     }
 
-    C_MeshRenderer* plane = new C_MeshRenderer(mesh2, grassMaterial);
+    CR_MeshRenderer* plane = new CR_MeshRenderer(mesh2, grassMaterial);
 
     //C_PointLight* pLight = new C_PointLight(vec3(0, 1, 1), 5);
-    sLight = new C_SpotLight(vec3(1, 0.7f, 0.3f), 20, 20, true);
+    sLight = new CR_SpotLight(vec3(1, 0.7f, 0.3f), 10, 45, true);
 
-    c_camera = new C_Camera(getCamera());
+    c_camera = new CR_Camera(getCamera());
 
     GameObject* planeObject = new GameObject();
     cameraObject = new GameObject();
@@ -75,12 +75,12 @@ void TestGame::init(ShaderHandler* shaderHandler) {
 
     cameraObject->getTransform().position = vec3(0, 0.5, 3);
 
-    for (int i = 0; i < 4; i++) {
-        C_DirectionalLight* dLight = new C_DirectionalLight(vec3(1, 1, 1), true);
-        dLight->setIntensity(0.8f);
+    for (int i = 0; i < 1; i++) {
+        CR_DirectionalLight* dLight = new CR_DirectionalLight(vec3(1, 1, 1), true);
+        dLight->setIntensity(2.0f);
         GameObject* sun = new GameObject();
-        sun->addComponent(dLight);
-        sun->getTransform().rotation = vec3(-45, 45 + (90.0f * i), 0);
+        //sun->addComponent(dLight);
+        sun->getTransform().rotation = vec3(-1, 45 + (90.0f * i), 0);
         getRootGameObject()->addChild(sun);
     }
     /*
@@ -90,8 +90,8 @@ void TestGame::init(ShaderHandler* shaderHandler) {
     getRootGameObject()->addChild(pointLightObject);
     */
     spotLight = new GameObject();
-    sLight->setIntensity(4.0f);
-    cameraObject->addComponent(sLight);
+    sLight->setIntensity(10.0f);
+    spotLight->addComponent(sLight);
     spotLight->getTransform().position = vec3(0, .5, 3);
     getRootGameObject()->addChild(spotLight);
     
@@ -103,13 +103,9 @@ void TestGame::init(ShaderHandler* shaderHandler) {
 }
 
 void TestGame::update(const double & delta, InputManager * input) {
-    if(input->keyPressed(KeyAction::kaFirePrimary)) {
-        sLight->setIntensity((int)(sLight->getIntensity() + 1) % 2);
-    }
-
     Game::update(delta, input);
     c_camera->updateFreeCam(delta, input);
 
-    spotLight->getTransform().position = vec3(sin((float) Time::getTime() * 0.1f) * 8.0f, 2.0f, cos((float) Time::getTime() * 0.1f) * 8.0f);
-    spotLight->getTransform().rotation = vec3(-45.0f, (float) Time::getTime() * 18.0f / PI, 0);
+    spotLight->getTransform().position = vec3(sin((float) Time::getTime() * 0.1f) * 8.0f, 0.5f, cos((float) Time::getTime() * 0.1f) * 8.0f);
+    spotLight->getTransform().rotation = vec3(0, (float) Time::getTime() * 18.0f / PI, 0);
 }

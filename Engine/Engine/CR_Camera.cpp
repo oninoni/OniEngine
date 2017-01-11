@@ -5,20 +5,20 @@
 #include "GameObject.h"
 #include "ShaderHandler.h"
 
-#include "C_Camera.h"
+#include "CR_Camera.h"
 
 #define FLYSPEED 4
 #define TURNSPEED 20
 
-C_Camera::C_Camera(Camera* camera) {
+CR_Camera::CR_Camera(Camera* camera) {
     this->camera = camera;
 }
 
-string C_Camera::GetDafaultName() {
+string CR_Camera::GetDafaultName() {
     return "C_Camera";
 }
 
-void C_Camera::updateFreeCam(const double & delta, InputManager * input) {
+void CR_Camera::updateFreeCam(const double & delta, InputManager * input) {
     vec3 cameraMovement;
     if (input->keyDown(KeyAction::kaSpace)) {
     cameraMovement += parent->getTransform().getUp()* (float)(delta * FLYSPEED);
@@ -49,12 +49,12 @@ void C_Camera::updateFreeCam(const double & delta, InputManager * input) {
     parent->getTransform().rotation = cameraRotation;
 }
 
-void C_Camera::c_update(const double & delta, InputManager * input) {
+void CR_Camera::c_update(const double & delta, InputManager * input) {
     mat4 viewMatrix = getTransformationMatrix(true);
     camera->setViewMatrix(viewMatrix);
 }
 
-void C_Camera::c_preRender(ShaderHandler * shaderHandler, LightHandler * lightHandler, bool shadowRender) {
+void CR_Camera::c_preRender(ShaderHandler * shaderHandler, LightHandler * lightHandler, bool shadowRender) {
     if (shadowRender) {
         camera->bindViewMatrix((Shader*) shaderHandler->getShadowmapShader());
     } else {

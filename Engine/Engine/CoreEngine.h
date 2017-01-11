@@ -10,7 +10,7 @@ struct GLFWwindow;
 class CoreEngine {
 private:
     int width, height;
-    float frameTime;
+    double frameDurationLimit;
 
     Window* window;
     bool isRunning;

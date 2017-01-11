@@ -10,6 +10,8 @@
 #include "ShaderHandler.h"
 #include "Window.h"
 
+#include "UniformBufferObject.h"
+
 #include "TextureArrayFramebuffer.h"
 
 #include "RenderingEngine.h"

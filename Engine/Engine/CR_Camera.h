@@ -6,11 +6,11 @@ class Camera;
 class Input;
 class ShaderHandler;
 
-class C_Camera : public GameComponent {
+class CR_Camera : public GameComponent {
 private:
     Camera* camera;
 public:
-    C_Camera(Camera* camera);
+    CR_Camera(Camera* camera);
 
     string GetDafaultName();
 

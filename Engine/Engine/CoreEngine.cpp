@@ -13,7 +13,7 @@ CoreEngine::CoreEngine(int width, int height, float framerate, Game* game) {
 
     this->width = width;
     this->height = height;
-    this->frameTime = 1.0f / framerate;
+    this->frameDurationLimit = 1.0 / framerate;
 
     isRunning = false;
 }
@@ -59,53 +59,41 @@ InputManager * CoreEngine::getInputManager() {
 void CoreEngine::run() {
     isRunning = true;
 
-    int frames = 0;
-    double frameCounter = 0;
-
     double lastTime = Time::getTime();
-    double unprocessedTime = 0;
+
+    int frames = 0;
+    double frameTime = 0;
+    double frameDuration = 0;
 
     while (isRunning) {
-        bool shouldRender = false;
+        double thisTime = Time::getTime();
+        double deltaTime = thisTime - lastTime;
+        lastTime = thisTime;
 
-        double startTime = Time::getTime();
-        double passedTime = startTime - lastTime;
-        lastTime = startTime;
+        glfwPollEvents();
+        if (window->isCloseRequested())
+            stop();
 
-        unprocessedTime += passedTime / (double)(Time::SECOND);
-        frameCounter += passedTime;
+        Time::setDelta(deltaTime);
+        inputManager->update();
 
-        while (unprocessedTime > frameTime) {
-            shouldRender = true;
+        game->update(deltaTime, inputManager);
 
-            unprocessedTime -= frameTime;
+        renderingEngine->render(game->getRootGameObject());
+        window->swapBuffers();
 
-            if (window->isCloseRequested())
-                stop();
+        frames++;
+        frameTime += deltaTime;
 
-            glfwPollEvents();
-            
-            Time::setDelta(frameTime);
-            inputManager->update();
-
-            game->update(Time::getDelta(), inputManager);
-
-            if (frameCounter >= Time::SECOND)
-            {
-                window->setTitle("FPS: " + to_string(frames));
-                frames = 0;
-                frameCounter = 0;
-            }
+        if (frameTime >= 1) {
+            frameTime -= 1;
+            window->setTitle("FPS: " + to_string(frames));
+            frames = 0;
         }
-        
-         if (shouldRender) {
-             renderingEngine->render(game->getRootGameObject());
 
-             window->swapBuffers();
-             frames++;
-        }
-        else {
-            Sleep(1);
+        frameDuration = Time::getTime() - thisTime;
+        if (frameDurationLimit > frameDuration) {
+            Sleep((frameDurationLimit - frameDuration) * 1000.0);
         }
     }
 }

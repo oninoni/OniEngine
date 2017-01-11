@@ -249,6 +249,13 @@ Mesh *RecourceLoader::loadOBJ(string fileName, ShaderHandler* shaderHandler) {
 }
 
 string RecourceLoader::loadShader(string fileName) {
+    cout << "Loading Shader: " << fileName << endl;
+
+    string path = "";
+    uint lastSlash = fileName.find_last_of("/");
+    if(lastSlash < fileName.length())
+        path = fileName.substr(0, lastSlash);
+
     ifstream file;
     file.open(fileName.c_str());
 
@@ -258,12 +265,29 @@ string RecourceLoader::loadShader(string fileName) {
     if (file.is_open()) {
         while (file.good()) {
             getline(file, line);
+
+            //#include Code implementation
+
+            if (line.substr(0, 9) == "#include ") {
+                uint first = line.find("\"");
+                uint last = line.find_last_of("\"");
+                string includeFileName = path + line.substr(first + 1, last - first - 1);
+
+                cout << "Including " << includeFileName << " to the shader program!" << endl;
+
+                output.append(loadShader(includeFileName));
+
+                continue;
+            }
+
             output.append(line + "\n");
         }
     }
     else {
         cerr << "Unable to open shader: " << fileName << endl;
     }
+
+    cout << "Sucessfully loaded Shader: " << fileName << endl;
 
     return output;
 }

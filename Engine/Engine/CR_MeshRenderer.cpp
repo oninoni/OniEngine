@@ -7,18 +7,18 @@
 
 #include "ShaderHandler.h"
 
-#include "C_MeshRenderer.h"
+#include "CR_MeshRenderer.h"
 
-C_MeshRenderer::C_MeshRenderer(Mesh * m, Material * mat) {
+CR_MeshRenderer::CR_MeshRenderer(Mesh * m, Material * mat) {
     mesh = m;
     material = mat;
 }
 
-string C_MeshRenderer::GetDafaultName() {
+string CR_MeshRenderer::GetDafaultName() {
     return "C_MeshRenderer";
 }
 
-void C_MeshRenderer::c_render(ShaderHandler* shaderHandler, Camera* camera, bool shadowRender) {
+void CR_MeshRenderer::c_render(ShaderHandler* shaderHandler, Camera* camera, bool shadowRender) {
     Shader* shader;
     if (shadowRender) {
         shader = (Shader*)shaderHandler->getShadowmapShader();

@@ -4,15 +4,15 @@
 
 class PointLight;
 
-class C_PointLight : public GameComponent {
+class CR_PointLight : public GameComponent {
 private:
     bool init;
 
     PointLight* pointLight;
     LightHandler* lightHandler;
 public:
-    C_PointLight(vec3 color, float range, bool shadowMapEnabled = false);
-    C_PointLight(vec3 color, float range, bool shadowMapEnabled, float ac, float al, float as);
+    CR_PointLight(vec3 color, float range, bool shadowMapEnabled = false);
+    CR_PointLight(vec3 color, float range, bool shadowMapEnabled, float ac, float al, float as);
 
     void setColor(vec3 color);
     vec3 getColor();

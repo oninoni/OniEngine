@@ -4,15 +4,15 @@ class SpotLight;
 
 #include "GameComponent.h"
 
-class C_SpotLight : public GameComponent {
+class CR_SpotLight : public GameComponent {
 private:
     bool init;
     
     SpotLight* spotLight;
     LightHandler* lightHandler;
 public:
-    C_SpotLight(vec3 color, float range, float cutOff, bool shadowMapEnabled = false);
-    C_SpotLight(vec3 color, float range, float cutOff, bool shadowMapEnabled, float ac, float al, float as);
+    CR_SpotLight(vec3 color, float range, float cutOff, bool shadowMapEnabled = false);
+    CR_SpotLight(vec3 color, float range, float cutOff, bool shadowMapEnabled, float ac, float al, float as);
 
     void setShadowMapID(int shadowMapID);
     int getShadowMapID();

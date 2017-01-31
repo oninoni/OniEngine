@@ -17,6 +17,7 @@ struct GLSLAttribute {
 
 class Shader {
 private:
+
     vector<GLSLAttribute> attributes;
     int stride;
 

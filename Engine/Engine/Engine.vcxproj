@@ -22,10 +22,10 @@
     <ClInclude Include="Attenuation.h" />
     <ClInclude Include="BaseLight.h" />
     <ClInclude Include="Camera.h" />
-    <ClInclude Include="C_Camera.h" />
-    <ClInclude Include="C_DirectionalLight.h" />
-    <ClInclude Include="C_PointLight.h" />
-    <ClInclude Include="C_SpotLight.h" />
+    <ClInclude Include="CR_Camera.h" />
+    <ClInclude Include="CR_DirectionalLight.h" />
+    <ClInclude Include="CR_PointLight.h" />
+    <ClInclude Include="CR_SpotLight.h" />
     <ClInclude Include="DirectionalLight.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="GameComponent.h" />
@@ -36,7 +36,7 @@
     <ClInclude Include="CoreEngine.h" />
     <ClInclude Include="Material.h" />
     <ClInclude Include="Mesh.h" />
-    <ClInclude Include="C_MeshRenderer.h" />
+    <ClInclude Include="CR_MeshRenderer.h" />
     <ClInclude Include="m_matrix.h" />
     <ClInclude Include="m_vector.h" />
     <ClInclude Include="OrthogonalCamera.h" />
@@ -63,10 +63,10 @@
     <ClCompile Include="Attenuation.cpp" />
     <ClCompile Include="BaseLight.cpp" />
     <ClCompile Include="Camera.cpp" />
-    <ClCompile Include="C_Camera.cpp" />
-    <ClCompile Include="C_DirectionalLight.cpp" />
-    <ClCompile Include="C_PointLight.cpp" />
-    <ClCompile Include="C_SpotLight.cpp" />
+    <ClCompile Include="CR_Camera.cpp" />
+    <ClCompile Include="CR_DirectionalLight.cpp" />
+    <ClCompile Include="CR_PointLight.cpp" />
+    <ClCompile Include="CR_SpotLight.cpp" />
     <ClCompile Include="DirectionalLight.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="GameComponent.cpp" />
@@ -77,7 +77,7 @@
     <ClCompile Include="CoreEngine.cpp" />
     <ClCompile Include="Material.cpp" />
     <ClCompile Include="Mesh.cpp" />
-    <ClCompile Include="C_MeshRenderer.cpp" />
+    <ClCompile Include="CR_MeshRenderer.cpp" />
     <ClCompile Include="m_matrix.cpp" />
     <ClCompile Include="OrthogonalCamera.cpp" />
     <ClCompile Include="PerspectiveCamera.cpp" />
@@ -102,9 +102,18 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="phong.fs" />
-    <None Include="phong.vs" />
+    <None Include="phong.vs">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="shadowmap.fs" />
     <None Include="shadowmap.vs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="lighting.hs" />
+    <Text Include="lightingUniforms.hs" />
+    <Text Include="lightingConstants.hs" />
+    <Text Include="vertexdata.hs" />
+    <Text Include="uniforms.hs" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{EF709456-5B3A-42D9-9FA9-8AF020C5F5D7}</ProjectGuid>

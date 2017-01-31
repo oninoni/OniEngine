@@ -1,12 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <ClCompile Include="C_Camera.cpp">
-      <Filter>Source\Core\Scene\Components</Filter>
-    </ClCompile>
-    <ClCompile Include="C_MeshRenderer.cpp">
-      <Filter>Source\Core\Scene\Components</Filter>
-    </ClCompile>
     <ClCompile Include="CoreEngine.cpp">
       <Filter>Source\Core</Filter>
     </ClCompile>
@@ -91,20 +85,11 @@
     <ClCompile Include="Time.cpp">
       <Filter>Source\Core\Util</Filter>
     </ClCompile>
-    <ClCompile Include="C_DirectionalLight.cpp">
-      <Filter>Source\Core\Scene\Components\Light</Filter>
-    </ClCompile>
     <ClCompile Include="LightHandler.cpp">
       <Filter>Source\Rendering\Lighting</Filter>
     </ClCompile>
     <ClCompile Include="UniformBufferObject.cpp">
       <Filter>Source\Rendering\Shader</Filter>
-    </ClCompile>
-    <ClCompile Include="C_PointLight.cpp">
-      <Filter>Source\Core\Scene\Components\Light</Filter>
-    </ClCompile>
-    <ClCompile Include="C_SpotLight.cpp">
-      <Filter>Source\Core\Scene\Components\Light</Filter>
     </ClCompile>
     <ClCompile Include="TextureArray.cpp">
       <Filter>Source\Rendering\Object\Texture</Filter>
@@ -118,14 +103,23 @@
     <ClCompile Include="ShadowmapShader.cpp">
       <Filter>Source\Rendering\Shader</Filter>
     </ClCompile>
+    <ClCompile Include="CR_DirectionalLight.cpp">
+      <Filter>Source\Core\Scene\Components\Light</Filter>
+    </ClCompile>
+    <ClCompile Include="CR_PointLight.cpp">
+      <Filter>Source\Core\Scene\Components\Light</Filter>
+    </ClCompile>
+    <ClCompile Include="CR_SpotLight.cpp">
+      <Filter>Source\Core\Scene\Components\Light</Filter>
+    </ClCompile>
+    <ClCompile Include="CR_Camera.cpp">
+      <Filter>Source\Core\Scene\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="CR_MeshRenderer.cpp">
+      <Filter>Source\Core\Scene\Components</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="C_Camera.h">
-      <Filter>Header\Core\Scene\Components</Filter>
-    </ClInclude>
-    <ClInclude Include="C_MeshRenderer.h">
-      <Filter>Header\Core\Scene\Components</Filter>
-    </ClInclude>
     <ClInclude Include="CoreEngine.h">
       <Filter>Header\Core</Filter>
     </ClInclude>
@@ -210,20 +204,11 @@
     <ClInclude Include="Time.h">
       <Filter>Header\Core\Util</Filter>
     </ClInclude>
-    <ClInclude Include="C_DirectionalLight.h">
-      <Filter>Header\Core\Scene\Components\Light</Filter>
-    </ClInclude>
     <ClInclude Include="LightHandler.h">
       <Filter>Header\Rendering\Lighting</Filter>
     </ClInclude>
     <ClInclude Include="UniformBufferObject.h">
       <Filter>Header\Rendering\Shader</Filter>
-    </ClInclude>
-    <ClInclude Include="C_PointLight.h">
-      <Filter>Header\Core\Scene\Components\Light</Filter>
-    </ClInclude>
-    <ClInclude Include="C_SpotLight.h">
-      <Filter>Header\Core\Scene\Components\Light</Filter>
     </ClInclude>
     <ClInclude Include="TextureArray.h">
       <Filter>Header\Rendering\Object\Texture</Filter>
@@ -237,19 +222,34 @@
     <ClInclude Include="ShadowmapShader.h">
       <Filter>Header\Rendering\Shader</Filter>
     </ClInclude>
+    <ClInclude Include="CR_DirectionalLight.h">
+      <Filter>Header\Core\Scene\Components\Light</Filter>
+    </ClInclude>
+    <ClInclude Include="CR_PointLight.h">
+      <Filter>Header\Core\Scene\Components\Light</Filter>
+    </ClInclude>
+    <ClInclude Include="CR_SpotLight.h">
+      <Filter>Header\Core\Scene\Components\Light</Filter>
+    </ClInclude>
+    <ClInclude Include="CR_Camera.h">
+      <Filter>Header\Core\Scene\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="CR_MeshRenderer.h">
+      <Filter>Header\Core\Scene\Components</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <None Include="phong.fs">
-      <Filter>Shader Files</Filter>
-    </None>
-    <None Include="phong.vs">
-      <Filter>Shader Files</Filter>
+    <None Include="shadowmap.fs">
+      <Filter>Shader Files\Lighting\Shadowmaps</Filter>
     </None>
     <None Include="shadowmap.vs">
-      <Filter>Shader Files</Filter>
+      <Filter>Shader Files\Lighting\Shadowmaps</Filter>
     </None>
-    <None Include="shadowmap.fs">
-      <Filter>Shader Files</Filter>
+    <None Include="phong.fs">
+      <Filter>Shader Files\Lighting</Filter>
+    </None>
+    <None Include="phong.vs">
+      <Filter>Shader Files\Lighting</Filter>
     </None>
   </ItemGroup>
   <ItemGroup>
@@ -346,5 +346,28 @@
     <Filter Include="Header\Physics">
       <UniqueIdentifier>{36729ad7-4076-4d14-a3ae-0511a024932e}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Shader Files\Lighting">
+      <UniqueIdentifier>{08733bb0-3fa4-4272-af5e-58bfaefffca4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Shader Files\Lighting\Shadowmaps">
+      <UniqueIdentifier>{422fd5df-4f9e-46bc-ac76-379ca2dee9fa}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="vertexdata.hs">
+      <Filter>Shader Files</Filter>
+    </Text>
+    <Text Include="uniforms.hs">
+      <Filter>Shader Files</Filter>
+    </Text>
+    <Text Include="lighting.hs">
+      <Filter>Shader Files\Lighting</Filter>
+    </Text>
+    <Text Include="lightingUniforms.hs">
+      <Filter>Shader Files\Lighting</Filter>
+    </Text>
+    <Text Include="lightingConstants.hs">
+      <Filter>Shader Files\Lighting</Filter>
+    </Text>
   </ItemGroup>
 </Project>

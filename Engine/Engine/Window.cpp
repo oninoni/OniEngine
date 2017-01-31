@@ -16,7 +16,7 @@ Window::Window(int width, int height, string title) {
 
     glfwWindowHint(GLFW_RESIZABLE, GL_FALSE);
     glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);
-    glfwWindowHint(GLFW_SAMPLES, 4);
+    glfwWindowHint(GLFW_SAMPLES, 16);
 
     window = glfwCreateWindow(width, height, title.c_str(), NULL, NULL);
     

@@ -4,7 +4,7 @@
 
 #include "TextureArray.h"
 
-TextureArray::TextureArray(uint layers, uint width, uint height, GLenum format) {
+TextureArray::TextureArray(uint layers, GLenum format, int width, int height){
     this->width = width;
     this->height = height;
     this->layers = layers;
@@ -28,9 +28,21 @@ TextureArray::~TextureArray() {
 void TextureArray::loadImage(uint layer, string fileName) {
     Image image = RecourceLoader::loadTexture(fileName);
 
-    if (width == 0 || height == 0 || this->width != image.width || this->height != image.height) {
-        cerr << "Image sizes in 1 Texture do not fit! " << endl;
-        assert(false);
+    if (width == 0 || height == 0) {
+        if (image.width == 0 || image.height == 0) {
+            cerr << "First Image read " + fileName + " has errored so default resolution of 512x512 was chosen! This will most likely create more bugs!" << endl;
+            width = 512;
+            height = 512;
+        }
+        else {
+            width = image.width;
+            height = image.height;
+        }
+    }
+
+    if (image.width != width || image.height != height) {
+        cerr << "Image " + fileName + "does not fit its Texture! " << endl;
+        image = RecourceLoader::getErrorImage(height, width);
     }
 
     glBindTexture(GL_TEXTURE_2D_ARRAY, textureID);

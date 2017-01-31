@@ -30,4 +30,6 @@ public:
     static Mesh* loadMesh(string fileName, ShaderHandler* ShaderHandler);
 
     static Image loadTexture(string fileName);
+
+    static Image getErrorImage(int height, int width);
 };

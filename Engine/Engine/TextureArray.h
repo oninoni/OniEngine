@@ -2,6 +2,7 @@
 class TextureArray {
 protected:
     uint width, height, layers;
+    GLenum format;
 
     GLuint textureID;
 public:

@@ -16,7 +16,7 @@ void main(){
     vec3 directionToEye = normalize(f_cameraPosition - f_position);
     vec2 uvDisplaced = f_uv + ((TBN * directionToEye).xy * (texture(f_materialTexture, vec3(f_uv, 3)).r) * f_dispMapScale) + f_dispMapBias;
     
-    out_color = /*texture(f_materialTexture, vec3(uvDisplaced, 0)) */ f_color * vec4(l_ambient, 1);
+    out_color = texture(f_materialTexture, vec3(uvDisplaced, 0)) * f_color * vec4(l_ambient, 1);
     
     for(int i = 0; i < l_directionalLightCount; i++){
         if(length(l_directionalLights[i].base.l_color) > 0)

@@ -8,6 +8,7 @@ TextureArray::TextureArray(uint layers, GLenum format, int width, int height){
     this->width = width;
     this->height = height;
     this->layers = layers;
+    this->format = format;
 
     glGenTextures(1, &textureID);
     glBindTexture(GL_TEXTURE_2D_ARRAY, textureID);
@@ -38,6 +39,7 @@ void TextureArray::loadImage(uint layer, string fileName) {
             width = image.width;
             height = image.height;
         }
+        glTexImage3D(GL_TEXTURE_2D_ARRAY, 0, format, width, height, layers, 0, format, GL_UNSIGNED_BYTE, NULL);
     }
 
     if (image.width != width || image.height != height) {

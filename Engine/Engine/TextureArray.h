@@ -5,7 +5,7 @@ protected:
 
     GLuint textureID;
 public:
-    TextureArray(uint layers, uint width, uint height, GLenum format);
+    TextureArray(uint layers, GLenum format, int width = 0, int height = 0);
     ~TextureArray();
 
     void bind(uint unit);

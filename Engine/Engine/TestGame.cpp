@@ -30,18 +30,18 @@ void TestGame::init(ShaderHandler* shaderHandler) {
     Game::init(shaderHandler);
 
     Mesh* mesh = new Mesh(shaderHandler, "Models/cube.obj");
-    Mesh* mesh2 = new Mesh(shaderHandler, MeshType::Plane, 5);
+    Mesh* mesh2 = new Mesh(shaderHandler, MeshType::Plane, 16);
 
-    TextureArray* brickTexture = new TextureArray(4, 512, 512, GL_RGBA);
+    TextureArray* brickTexture = new TextureArray(4, GL_RGBA);
     brickTexture->loadImage(0, "Textures/bricks2.png");
     brickTexture->loadImage(1, "Textures/bricks2_spec.png");
     brickTexture->loadImage(2, "Textures/bricks2_normal.png");
     brickTexture->loadImage(3, "Textures/bricks2_disp.png");
-    TextureArray* grassTexture = new TextureArray(4, 1024, 1024, GL_RGBA);
+    TextureArray* grassTexture = new TextureArray(4, GL_RGBA);
     grassTexture->loadImage(0, "Textures/grass01.png");
-    grassTexture->loadImage(1, "Textures/grass01_spec.png");
-    grassTexture->loadImage(2, "Textures/grass01_normal.png");
-    grassTexture->loadImage(3, "Textures/grass01_disp.png");
+    grassTexture->loadImage(1, "Textures/xgrass01_spec.png");
+    grassTexture->loadImage(2, "Textures/xgrass01_normal.png");
+    grassTexture->loadImage(3, "Textures/xgrass01_disp.png");
 
     Material* brickMaterial = new Material(brickTexture, 0.02f, 1.0f);
     Material* grassMaterial = new Material(grassTexture, 0.02f, 1.0f);

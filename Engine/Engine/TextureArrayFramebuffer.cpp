@@ -2,7 +2,7 @@
 
 #include "TextureArrayFramebuffer.h"
 
-TextureArrayFramebuffer::TextureArrayFramebuffer(uint width, uint height, GLenum format, vector<GLenum> attachments) : TextureArray(attachments.size(), width, height, format){
+TextureArrayFramebuffer::TextureArrayFramebuffer(uint width, uint height, GLenum format, vector<GLenum> attachments) : TextureArray(attachments.size(), format, width, height){
     framebuffer = new GLuint[this->layers];
     glGenFramebuffers(this->layers, framebuffer);
 

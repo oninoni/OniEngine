@@ -329,26 +329,32 @@ Image RecourceLoader::loadTexture(string fileName) {
 
     cerr << "File: " << fileName << " could not be loaded by the Engine. Texture Format not supported!\n Loaded Error Texture (Purle/Black) instead!" << endl;
 
+    return Image();
+}
+
+Image RecourceLoader::getErrorImage(int height, int width) {
     Image error;
     error.height = 512;
     error.width = 512;
     error.data.clear();
 
-    error.data.push_back(255);
-    error.data.push_back(0);
-    error.data.push_back(255);
-
-    error.data.push_back(0);
-    error.data.push_back(0);
-    error.data.push_back(0);
-
-    error.data.push_back(0);
-    error.data.push_back(0);
-    error.data.push_back(0);
-
-    error.data.push_back(255);
-    error.data.push_back(0);
-    error.data.push_back(255);
+    for (uint y = 0; y < error.height; y++) {
+        for (uint x = 0; x < error.width; x++) {
+            if (x >(error.width / 2) && y < (error.height / 2) ||
+                x < (error.width / 2) && y >(error.height / 2)) {
+                error.data.push_back(63);
+                error.data.push_back(255);
+                error.data.push_back(127);
+                error.data.push_back(255);
+            }
+            else {
+                error.data.push_back(255);
+                error.data.push_back(255);
+                error.data.push_back(255);
+                error.data.push_back(255);
+            }
+        }
+    }
 
     return error;
 }
@@ -363,30 +369,7 @@ Image RecourceLoader::loadPNG(const char * filename) {
     if (error) {
         cerr << "pngDecoderError " << error << ": " << lodepng_error_text(error) << endl;
 
-        Image error;
-        error.height = 512;
-        error.width = 512;
-        error.data.clear();
-
-        for (uint y = 0; y < error.height; y++) {
-            for (uint x = 0; x < error.width; x++) {
-                if (x > (error.width / 2) && y < (error.height / 2) || 
-                    x < (error.width / 2) && y > (error.height / 2)) {
-                    error.data.push_back(63);
-                    error.data.push_back(255);
-                    error.data.push_back(127);
-                    error.data.push_back(255);
-                }
-                else {
-                    error.data.push_back(255);
-                    error.data.push_back(255);
-                    error.data.push_back(255);
-                    error.data.push_back(255);
-                }
-            }
-        }
-
-        return error;
+        return image;
     }
 
     //the pixels are now in the vector "image", 4 bytes per pixel, ordered RGBARGBA..., use it as texture, draw it, ...

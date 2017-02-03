@@ -93,7 +93,7 @@ void CoreEngine::run() {
 
         frameDuration = Time::getTime() - thisTime;
         if (frameDurationLimit > frameDuration) {
-            Sleep((frameDurationLimit - frameDuration) * 1000.0);
+            Sleep((DWORD)((frameDurationLimit - frameDuration) * 1000));
         }
     }
 }

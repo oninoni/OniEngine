@@ -13,10 +13,12 @@ out vec3 f_cameraPosition;
 void main(){
     f_position = vec3(vec4(v_position, 1) * model);
     f_uv = v_uv;
-    
-    vec3 t = normalize(vec3(vec4(v_tangent, 0) * model));
-    vec3 b = normalize(vec3(vec4(v_biTangent, 0) * model));
-    vec3 n = normalize(vec3(vec4(v_normal, 0) * model));
+
+	mat4 inverseTransposeModel = transpose(inverse(model));
+
+    vec3 t = normalize(vec3(vec4(v_tangent, 0) * inverseTransposeModel));
+    vec3 b = normalize(vec3(vec4(v_biTangent, 0) * inverseTransposeModel));
+    vec3 n = normalize(vec3(vec4(v_normal, 0) * inverseTransposeModel));
     
     f_normal = n;
     

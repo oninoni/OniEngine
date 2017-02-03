@@ -1,33 +1,38 @@
 #include "lightingConstants.hs"
 #include "lightingUniforms.hs"
 
-float calcPCFShadow(vec3 coords, int layer){
+float calcPCFShadow(int shadowID){
     int level = 0;
+    vec4 shadowMapPosTemp = vec4(f_position + f_normal * SHADOWMAP_TEXEL_SIZE * 16, 1.0) * l_spotMatrices[shadowID];
+    vec3 shadowMapPos = (shadowMapPosTemp.xyz / shadowMapPosTemp.w) * 0.5 + 0.5;
 
-    if(level <= 0)return texture(f_shadowMaps, vec4(coords.xy, layer, coords.z));
+    if(level <= 0)return texture(f_shadowMaps, vec4(shadowMapPos.xy, shadowID, shadowMapPos.z));
     float partCount = pow(level * 2 + 1, 2);
     float shadowFactor = 0.0f;
     for(int x = -level; x <= level; x++){
         for(int y = -level; y <= level; y++){
             vec2 texelPos = vec2(
-                coords.x + x * SHADOWMAP_TEXEL_SIZE,
-                coords.y + y * SHADOWMAP_TEXEL_SIZE
+                shadowMapPos.x + x * SHADOWMAP_TEXEL_SIZE,
+                shadowMapPos.y + y * SHADOWMAP_TEXEL_SIZE
             );
-            shadowFactor += texture(f_shadowMaps, vec4(texelPos, layer, coords.z)) / partCount;
+			shadowFactor += texture(f_shadowMaps, vec4(texelPos, shadowID, shadowMapPos.z)) / partCount;
         }
     }
     return shadowFactor;
 }
 
-float calcShadow(vec3 shadowMapPos, vec3 lightVec, int shadowID){
+float calcShadow(vec3 lightVec, int shadowID){
     float shadowFactor = 1;
     
+    vec4 shadowMapPosTemp = vec4(f_position - f_normal * SHADOWMAP_TEXEL_SIZE, 1.0) * l_spotMatrices[shadowID];
+    vec3 shadowMapPos = (shadowMapPosTemp.xyz / shadowMapPosTemp.w) * 0.5 + 0.5;
+
     if(shadowMapPos.x >= 0 && shadowMapPos.x <= 1 && 
         shadowMapPos.y >= 0 && shadowMapPos.y <= 1 && 
         shadowMapPos.z >= 0 && shadowMapPos.z <= 1){
         float cosTheta = dot(f_normal, normalize(-lightVec));
         if(cosTheta > 0){
-            shadowFactor = calcPCFShadow(shadowMapPos, shadowID);
+            shadowFactor = calcPCFShadow(shadowID);
             if (cosTheta < 5e-2)
                 shadowFactor *= cosTheta / 5e-2;
         }else{
@@ -66,11 +71,8 @@ vec4 calcLight(BaseLight base, vec3 direction, vec2 uvDisplaced){
 vec4 calcDirectionalLightShadowed(DirectionalLight dLight, vec2 uvDisplaced){
     int shadowID = dLight.base.l_shadowMapID;
     if(shadowID >= 0){
-        vec4 shadowMapPosTemp = vec4(f_position + f_normal * 0.1, 1.0) * l_directionalMatrices[shadowID];
-        vec3 shadowMapPos = (shadowMapPosTemp.xyz / shadowMapPosTemp.w) * 0.5 + 0.5;
-        
         return calcLight(dLight.base, dLight.l_direction, uvDisplaced) *
-            calcShadow(shadowMapPos, dLight.l_direction, shadowID);
+            calcShadow(dLight.l_direction, shadowID);
     }
     return calcLight(dLight.base, dLight.l_direction, uvDisplaced);
 }
@@ -115,11 +117,8 @@ vec4 calcSpotLight(SpotLight spotLight, vec2 uvDisplaced){
 vec4 calcSpotLightShadowed(SpotLight spotLight, vec2 uvDisplaced){
     int shadowID = spotLight.pointLight.base.l_shadowMapID;
     if(shadowID >= 0){
-        vec4 shadowMapPosTemp = vec4(f_position + f_normal * 0.01, 1.0) * l_spotMatrices[shadowID];
-        vec3 shadowMapPos = (shadowMapPosTemp.xyz / shadowMapPosTemp.w) * 0.5 + 0.5;
-        
         return calcSpotLight(spotLight, uvDisplaced) *
-            calcShadow(shadowMapPos, f_position - spotLight.pointLight.l_position, shadowID);
+            calcShadow(f_position - spotLight.pointLight.l_position, shadowID);
     }
     return calcSpotLight(spotLight, uvDisplaced);
 }

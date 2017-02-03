@@ -51,19 +51,14 @@ void TestGame::init(ShaderHandler* shaderHandler) {
             CR_MeshRenderer* cube = new CR_MeshRenderer(mesh, brickMaterial);
             GameObject* cubeObject = new GameObject();
             cubeObject->addComponent(cube);
-            cubeObject->getTransform().offset = vec3(-.5, -.5, -.5);
-            cubeObject->getTransform().position = vec3(x * 2.0f, 0.5f, y * 2.0f);
+            cubeObject->getTransform().offset = vec3(-0.5, -0.5, -0.5);
+            cubeObject->getTransform().position = vec3(x * 2.0f, 0.5, y * 2.0f);
 
             getRootGameObject()->addChild(cubeObject);
         }
     }
-    for (int i = 0; i < 4; i++) {
-    }
 
     CR_MeshRenderer* plane = new CR_MeshRenderer(mesh2, grassMaterial);
-
-    //C_PointLight* pLight = new C_PointLight(vec3(0, 1, 1), 5);
-    sLight = new CR_SpotLight(vec3(1, 0.7f, 0.3f), 10, 45, true);
 
     c_camera = new CR_Camera(getCamera());
 
@@ -83,16 +78,12 @@ void TestGame::init(ShaderHandler* shaderHandler) {
         sun->getTransform().rotation = vec3(-1, 45 + (90.0f * i), 0);
         getRootGameObject()->addChild(sun);
     }
-    /*
-    GameObject* pointLightObject = new GameObject();
-    //pointLightObject->addComponent(pLight);
-    pointLightObject->getTransform().position = vec3(0, 1.5, 0);
-    getRootGameObject()->addChild(pointLightObject);
-    */
+
+    sLight = new CR_SpotLight(vec3(1, 0.7f, 0.3f), 20, 45, true);
     spotLight = new GameObject();
-    sLight->setIntensity(10.0f);
+    sLight->setIntensity(1.0f);
     spotLight->addComponent(sLight);
-    spotLight->getTransform().position = vec3(0, .5, 3);
+    spotLight->getTransform().position = vec3(0, .5, 8);
     getRootGameObject()->addChild(spotLight);
     
     cameraObject->addComponent(c_camera);

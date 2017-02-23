@@ -3,10 +3,10 @@
 
 float calcPCFShadow(int shadowID){
     int level = 0;
-    vec4 shadowMapPosTemp = vec4(f_position + f_normal * SHADOWMAP_TEXEL_SIZE * 16, 1.0) * l_spotMatrices[shadowID];
+    vec4 shadowMapPosTemp = vec4(f_position + f_normal * SHADOWMAP_TEXEL_SIZE * 16, 1.0) * l_Matrices[shadowID];
     vec3 shadowMapPos = (shadowMapPosTemp.xyz / shadowMapPosTemp.w) * 0.5 + 0.5;
 
-    if(level <= 0)return texture(f_shadowMaps, vec4(shadowMapPos.xy, shadowID, shadowMapPos.z * 0));
+    if(level <= 0)return texture(f_shadowMaps, vec4(shadowMapPos.xy, shadowID, shadowMapPos.z));
     float partCount = pow(level * 2 + 1, 2);
     float shadowFactor = 0.0f;
     for(int x = -level; x <= level; x++){
@@ -24,7 +24,7 @@ float calcPCFShadow(int shadowID){
 float calcShadow(vec3 lightVec, int shadowID){
     float shadowFactor = 1;
     
-    vec4 shadowMapPosTemp = vec4(f_position - f_normal * SHADOWMAP_TEXEL_SIZE, 1.0) * l_spotMatrices[shadowID];
+    vec4 shadowMapPosTemp = vec4(f_position - f_normal * SHADOWMAP_TEXEL_SIZE, 1.0) * l_Matrices[shadowID];
     vec3 shadowMapPos = (shadowMapPosTemp.xyz / shadowMapPosTemp.w) * 0.5 + 0.5;
 	
     if(shadowMapPos.x >= 0 && shadowMapPos.x <= 1 && 

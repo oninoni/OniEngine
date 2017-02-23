@@ -22,7 +22,6 @@ private:
 
     const int MAX_DIRECTIONAL_LIGHTS_SHADOWS = 4;
     const int MAX_SPOT_LIGHTS_SHADOWS = 32;
-    const int MAX_POINT_LIGHTS_SHADOWS = 16;
 
     UniformBufferObject* ubo;
     UniformBufferObject* lightProjections;

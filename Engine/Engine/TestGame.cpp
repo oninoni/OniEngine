@@ -71,6 +71,13 @@ void TestGame::init(ShaderHandler* shaderHandler) {
 
     cameraObject->getTransform().position = vec3(0, 0.5, 3);
 
+    sLight = new CR_SpotLight(vec3(1, 0.7f, 0.3f), 20, 45, true);
+    spotLight = new GameObject();
+    sLight->setIntensity(1.0f);
+    spotLight->addComponent(sLight);
+    spotLight->getTransform().position = vec3(0, .5, 8);
+    getRootGameObject()->addChild(spotLight);
+
     for (int i = 0; i < 1; i++) {
         CR_DirectionalLight* dLight = new CR_DirectionalLight(vec3(1, 1, 1), true);
         dLight->setIntensity(1.0f);
@@ -80,13 +87,6 @@ void TestGame::init(ShaderHandler* shaderHandler) {
         getRootGameObject()->addChild(sun);
     }
 
-    sLight = new CR_SpotLight(vec3(1, 0.7f, 0.3f), 20, 45, true);
-    spotLight = new GameObject();
-    sLight->setIntensity(1.0f);
-    //spotLight->addComponent(sLight);
-    spotLight->getTransform().position = vec3(0, .5, 8);
-    getRootGameObject()->addChild(spotLight);
-    
     cameraObject->addComponent(c_camera);
     planeObject->addComponent(plane);
 

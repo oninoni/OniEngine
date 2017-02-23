@@ -37,7 +37,5 @@ layout(std140) uniform l_lightdata {
 };
 
 layout(std140) uniform l_lightMatrices {
-    mat4 l_directionalMatrices[MAX_DIRECTIONAL_LIGHTS_SHADOWS];
-    mat4 l_spotMatrices[MAX_SPOT_LIGHTS_SHADOWS];
-    vec3 l_pointMatrices[MAX_POINT_LIGHTS_SHADOWS];
+    mat4 l_Matrices[MAX_DIRECTIONAL_LIGHTS_SHADOWS];
 };

@@ -22,7 +22,7 @@ LightHandler::LightHandler() {
     ubo->generate(sizeof(vec4) + (2 * sizeof(vec4)) * MAX_DIRECTIONAL_LIGHTS + sizeof(vec4) + (3 * sizeof(vec4)) * MAX_POINT_LIGHTS + sizeof(vec4) + (4 * sizeof(vec4)) * MAX_SPOT_LIGHTS, GL_DYNAMIC_DRAW);
 
     lightProjections = new UniformBufferObject();
-    lightProjections->generate(sizeof(mat4) * (MAX_DIRECTIONAL_LIGHTS_SHADOWS + MAX_SPOT_LIGHTS_SHADOWS) + sizeof(vec4) * MAX_POINT_LIGHTS_SHADOWS, GL_DYNAMIC_DRAW);
+    lightProjections->generate(sizeof(mat4) * (MAX_DIRECTIONAL_LIGHTS_SHADOWS + MAX_SPOT_LIGHTS_SHADOWS), GL_DYNAMIC_DRAW);
 
     shadowMaps = new TextureArrayFramebuffer(MAX_SPOT_LIGHTS_SHADOWS + MAX_DIRECTIONAL_LIGHTS_SHADOWS, 2048, 2048, GL_DEPTH_COMPONENT, GL_DEPTH_ATTACHMENT);
 }
@@ -148,7 +148,7 @@ void LightHandler::renderShadowmaps(ShaderHandler* shaderHandler, GameObject* ro
             root->preRender(shaderHandler, this, true);
             root->render(shaderHandler, camera, true);
 
-            lightProjections->setData(sizeof(mat4) * (MAX_DIRECTIONAL_LIGHTS_SHADOWS + id), sizeof(mat4), &camera->getViewProjectionMatrix());
+            lightProjections->setData(sizeof(mat4) * id, sizeof(mat4), &camera->getViewProjectionMatrix());
         }
     }
 }

@@ -56,7 +56,7 @@ void TestGame::init(ShaderHandler* shaderHandler) {
     cubeObject->getTransform().offset = vec3(-.5, -.5, -.5);
     cubeObject->getTransform().position = vec3(0, .5, 0);
 
-    planeObject->getTransform().rotation = Quaternion(0, 0, -1, 0);
+    planeObject->getTransform().rotation = vec3(-90, 0, 0);
     planeObject->getTransform().scale = 10;
 
     cameraObject->getTransform().position = vec3(0, 0.5, 3);
@@ -93,8 +93,8 @@ void TestGame::update(const double & delta, InputManager * input) {
     Game::update(delta, input);
     c_camera->updateFreeCam(delta, input);
 
-    //spotLight->getTransform().position = vec3(sin((float) Time::getTime() * 0.1f) * 3.0f, .5f, cos((float) Time::getTime() * 0.1f) * 3.0f);
-    //spotLight->getTransform().rotation = vec3(0, (float) Time::getTime() * 18.0f / PI, 0);
+    spotLight->getTransform().position = vec3(sin((float) Time::getTime() * 0.1f) * 3.0f, .5f, cos((float) Time::getTime() * 0.1f) * 3.0f);
+    spotLight->getTransform().rotation = vec3(0, (float) Time::getTime() * 18.0f / PI, 0);
 
     //cubeObject->getTransform().rotation = vec3((float)Time::getTime() * 16.0f, 0, 0);
 }

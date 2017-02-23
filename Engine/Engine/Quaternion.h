@@ -25,7 +25,7 @@ public:
 
     //Quaternion inverse() const;
     //float magnitude() const;
-    //Quaternion normalize();
+    Quaternion normalize();
 
     mat4 getRotationMatrix(bool invert);
 };

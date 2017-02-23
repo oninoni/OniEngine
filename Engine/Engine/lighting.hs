@@ -6,7 +6,7 @@ float calcPCFShadow(int shadowID){
     vec4 shadowMapPosTemp = vec4(f_position + f_normal * SHADOWMAP_TEXEL_SIZE * 16, 1.0) * l_spotMatrices[shadowID];
     vec3 shadowMapPos = (shadowMapPosTemp.xyz / shadowMapPosTemp.w) * 0.5 + 0.5;
 
-    if(level <= 0)return texture(f_shadowMaps, vec4(shadowMapPos.xy, shadowID, shadowMapPos.z));
+    if(level <= 0)return texture(f_shadowMaps, vec4(shadowMapPos.xy, shadowID, shadowMapPos.z * 0));
     float partCount = pow(level * 2 + 1, 2);
     float shadowFactor = 0.0f;
     for(int x = -level; x <= level; x++){
@@ -26,7 +26,7 @@ float calcShadow(vec3 lightVec, int shadowID){
     
     vec4 shadowMapPosTemp = vec4(f_position - f_normal * SHADOWMAP_TEXEL_SIZE, 1.0) * l_spotMatrices[shadowID];
     vec3 shadowMapPos = (shadowMapPosTemp.xyz / shadowMapPosTemp.w) * 0.5 + 0.5;
-
+	
     if(shadowMapPos.x >= 0 && shadowMapPos.x <= 1 && 
         shadowMapPos.y >= 0 && shadowMapPos.y <= 1 && 
         shadowMapPos.z >= 0 && shadowMapPos.z <= 1){
@@ -39,7 +39,7 @@ float calcShadow(vec3 lightVec, int shadowID){
             shadowFactor = 0;
         }
     }
-    
+	
     return shadowFactor;
 }
 
@@ -66,15 +66,6 @@ vec4 calcLight(BaseLight base, vec3 direction, vec2 uvDisplaced){
     }
     
     return diffuseColor + specularColor;
-}
-
-vec4 calcDirectionalLightShadowed(DirectionalLight dLight, vec2 uvDisplaced){
-    int shadowID = dLight.base.l_shadowMapID;
-    if(shadowID >= 0){
-        return calcLight(dLight.base, dLight.l_direction, uvDisplaced) *
-            calcShadow(dLight.l_direction, shadowID);
-    }
-    return calcLight(dLight.base, dLight.l_direction, uvDisplaced);
 }
 
 vec4 calcPointLight(PointLight pointLight, vec2 uvDisplaced){
@@ -112,6 +103,15 @@ vec4 calcSpotLight(SpotLight spotLight, vec2 uvDisplaced){
     }
     
     return color;
+}
+
+vec4 calcDirectionalLightShadowed(DirectionalLight dLight, vec2 uvDisplaced){
+    int shadowID = dLight.base.l_shadowMapID;
+    if(shadowID >= 0){
+        return calcLight(dLight.base, dLight.l_direction, uvDisplaced) *
+            calcShadow(dLight.l_direction, shadowID);
+    }
+    return calcLight(dLight.base, dLight.l_direction, uvDisplaced);
 }
 
 vec4 calcSpotLightShadowed(SpotLight spotLight, vec2 uvDisplaced){

@@ -343,15 +343,15 @@ Image RecourceLoader::getErrorImage(int height, int width) {
             if (x >(error.width / 2) && y < (error.height / 2) ||
                 x < (error.width / 2) && y >(error.height / 2)) {
                 error.data.push_back(63);
-                error.data.push_back(255);
+    error.data.push_back(255);
                 error.data.push_back(127);
-                error.data.push_back(255);
+    error.data.push_back(255);
             }
             else {
                 error.data.push_back(255);
                 error.data.push_back(255);
-                error.data.push_back(255);
-                error.data.push_back(255);
+    error.data.push_back(255);
+    error.data.push_back(255);
             }
         }
     }

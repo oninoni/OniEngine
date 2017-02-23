@@ -43,6 +43,7 @@
     <ClInclude Include="PerspectiveCamera.h" />
     <ClInclude Include="PhongShader.h" />
     <ClInclude Include="PointLight.h" />
+    <ClInclude Include="Quaternion.h" />
     <ClInclude Include="RecourceLoader.h" />
     <ClInclude Include="RenderingEngine.h" />
     <ClInclude Include="Shader.h" />
@@ -83,6 +84,7 @@
     <ClCompile Include="PerspectiveCamera.cpp" />
     <ClCompile Include="PhongShader.cpp" />
     <ClCompile Include="PointLight.cpp" />
+    <ClCompile Include="Quaternion.cpp" />
     <ClCompile Include="RecourceLoader.cpp" />
     <ClCompile Include="RenderingEngine.cpp" />
     <ClCompile Include="Shader.cpp" />

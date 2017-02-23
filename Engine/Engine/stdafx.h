@@ -22,4 +22,5 @@ using namespace std;
 #include "m_vector.h"
 #include "m_matrix.h"
 
+#include "Quaternion.h"
 #include "Transform.h"

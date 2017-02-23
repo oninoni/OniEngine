@@ -118,6 +118,9 @@
     <ClCompile Include="CR_MeshRenderer.cpp">
       <Filter>Source\Core\Scene\Components</Filter>
     </ClCompile>
+    <ClCompile Include="Quaternion.cpp">
+      <Filter>Source\Math</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CoreEngine.h">
@@ -221,6 +224,9 @@
     </ClInclude>
     <ClInclude Include="ShadowmapShader.h">
       <Filter>Header\Rendering\Shader</Filter>
+    </ClInclude>
+    <ClInclude Include="Quaternion.h">
+      <Filter>Header\Math</Filter>
     </ClInclude>
     <ClInclude Include="CR_DirectionalLight.h">
       <Filter>Header\Core\Scene\Components\Light</Filter>

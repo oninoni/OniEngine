@@ -189,7 +189,10 @@ template <typename T, int M, int N>
 T determinant(const m_matrix<T, M, N> & a) {
     T b = 0;
     for (int i = 0; i < ((N < M) ? N : M); i++) {
-        b += determinant(a.minor(i, i));
+        if (i % 2)
+            b -= a[i][0] * determinant(a.minor(i, 0));
+        else
+            b += a[i][0] * determinant(a.minor(i, 0));
     }
     return b;
 }

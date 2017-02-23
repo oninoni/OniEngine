@@ -100,4 +100,6 @@ void TestGame::update(const double & delta, InputManager * input) {
 
     spotLight->getTransform().position = vec3(sin((float) Time::getTime() * 0.1f) * 8.0f, 0.5f, cos((float) Time::getTime() * 0.1f) * 8.0f);
     spotLight->getTransform().rotation = vec3(0, (float) Time::getTime() * 18.0f / PI, 0);
+
+    //cubeObject->getTransform().rotation = vec3((float)Time::getTime() * 16.0f, 0, 0);
 }

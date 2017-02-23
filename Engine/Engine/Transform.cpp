@@ -28,8 +28,8 @@ mat4 Transform::getTransformationMatrix(bool inverted) {
     }
 
     if (rotationHasChanged) {
-        rotationMatrix.setRotationMatrix(t_rotation, false);
-        rotationMatrixInverse.setRotationMatrix(t_rotation, true);
+        rotationMatrix = t_rotation.getRotationMatrix(false);
+        rotationMatrixInverse = t_rotation.getRotationMatrix(true);
         rotationHasChanged = false;
         hasChanged = true;
 
@@ -89,20 +89,20 @@ void Transform::setTranslation(float x, float y, float z) {
     setTranslation(vec3(x, y, z));
 }
 
-vec3 Transform::getRotation() const{
+Quaternion& Transform::getRotation(){
     return t_rotation;
 }
 
-void Transform::setRotation(vec3 r) {
-    if (r == t_rotation)
+void Transform::setRotation(Quaternion r) {
+    if (this->t_rotation == r)
         return;
 
     rotationHasChanged = true;
     t_rotation = r;
 }
 
-void Transform::setRotation(float x, float y, float z) {
-    setRotation(vec3(x, y, z));
+void Transform::setRotation(float x, float y, float z, float w) {
+    setRotation(Quaternion(x, y, z, w));
 }
 
 vec3 Transform::getScale() const{

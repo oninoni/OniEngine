@@ -225,9 +225,6 @@
     <ClInclude Include="ShadowmapShader.h">
       <Filter>Header\Rendering\Shader</Filter>
     </ClInclude>
-    <ClInclude Include="Quaternion.h">
-      <Filter>Header\Math</Filter>
-    </ClInclude>
     <ClInclude Include="CR_DirectionalLight.h">
       <Filter>Header\Core\Scene\Components\Light</Filter>
     </ClInclude>
@@ -242,6 +239,9 @@
     </ClInclude>
     <ClInclude Include="CR_MeshRenderer.h">
       <Filter>Header\Core\Scene\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="Quaternion.h">
+      <Filter>Header\Math</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

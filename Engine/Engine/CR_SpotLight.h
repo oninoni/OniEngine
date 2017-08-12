@@ -2,9 +2,9 @@
 
 class SpotLight;
 
-#include "GameComponent.h"
+#include "GameProperty.h"
 
-class CR_SpotLight : public GameComponent {
+class CR_SpotLight : public GameProperty {
 private:
     bool init;
     

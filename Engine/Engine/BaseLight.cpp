@@ -1,11 +1,11 @@
 #include "stdafx.h"
 
 #include "LightHandler.h"
-#include "GameComponent.h"
+#include "GameProperty.h"
 
 #include "BaseLight.h"
 
-BaseLight::BaseLight(GameComponent* component, vec3 color) {
+BaseLight::BaseLight(GameProperty* property, vec3 color) {
     this->color = color;
     this->intensity = 1;
     this->colorChanged = true;
@@ -13,7 +13,7 @@ BaseLight::BaseLight(GameComponent* component, vec3 color) {
     this->shadowMapID = -1;
     this->shadowMapIDChanged = true;
 
-    this->component = component;
+    this->property = property;
 }
 
 vec3 BaseLight::getColor() {
@@ -55,5 +55,5 @@ void BaseLight::forceUpdate() {
 }
 
 mat4 BaseLight::getTransformationMatrix(bool inverted) {
-    return component->getTransformationMatrix(inverted);
+    return property->getTransformationMatrix(inverted);
 }

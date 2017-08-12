@@ -1,7 +1,7 @@
 #pragma once
 
 class LightHandler;
-class GameComponent;
+class GameProperty;
 
 class BaseLight abstract{
 protected:
@@ -12,9 +12,9 @@ protected:
     int shadowMapID;
     bool shadowMapIDChanged;
 
-    GameComponent* component;
+    GameProperty* property;
 
-    BaseLight(GameComponent* component, vec3 color);
+    BaseLight(GameProperty* property, vec3 color);
 public:
     vec3 getColor();
     void setColor(vec3 color);

@@ -19,9 +19,6 @@
     <ClCompile Include="GameObject.cpp">
       <Filter>Source\Core\Scene</Filter>
     </ClCompile>
-    <ClCompile Include="GameComponent.cpp">
-      <Filter>Source\Core\Scene</Filter>
-    </ClCompile>
     <ClCompile Include="InputManager.cpp">
       <Filter>Source\Core\Util</Filter>
     </ClCompile>
@@ -121,6 +118,18 @@
     <ClCompile Include="Quaternion.cpp">
       <Filter>Source\Math</Filter>
     </ClCompile>
+    <ClCompile Include="CR_ShadowedSpotLight.cpp">
+      <Filter>Source\Core\Scene\Components\Light\Shadowed</Filter>
+    </ClCompile>
+    <ClCompile Include="CR_ShadowedDirectionalLight.cpp">
+      <Filter>Source\Core\Scene\Components\Light\Shadowed</Filter>
+    </ClCompile>
+    <ClCompile Include="GameProperty.cpp">
+      <Filter>Source\Core\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="CP_Physics.cpp">
+      <Filter>Source\Core\Scene\Components\Physics</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CoreEngine.h">
@@ -137,9 +146,6 @@
     </ClInclude>
     <ClInclude Include="Game.h">
       <Filter>Header\Core</Filter>
-    </ClInclude>
-    <ClInclude Include="GameComponent.h">
-      <Filter>Header\Core\Scene</Filter>
     </ClInclude>
     <ClInclude Include="GameObject.h">
       <Filter>Header\Core\Scene</Filter>
@@ -243,6 +249,18 @@
     <ClInclude Include="Quaternion.h">
       <Filter>Header\Math</Filter>
     </ClInclude>
+    <ClInclude Include="CR_ShadowedDirectionalLight.h">
+      <Filter>Header\Core\Scene\Components\Light\Shadowed</Filter>
+    </ClInclude>
+    <ClInclude Include="CR_ShadowedSpotLight.h">
+      <Filter>Header\Core\Scene\Components\Light\Shadowed</Filter>
+    </ClInclude>
+    <ClInclude Include="GameProperty.h">
+      <Filter>Header\Core\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="CP_Physics.h">
+      <Filter>Header\Core\Scene\Components\Physics</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="shadowmap.fs">
@@ -313,9 +331,6 @@
     <Filter Include="Source\Math">
       <UniqueIdentifier>{32ff1e28-5e46-4d6b-993f-0bbf0fa0a828}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source\Physics">
-      <UniqueIdentifier>{f8115191-6b80-47ad-b512-a9d16fb6d607}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source\Rendering">
       <UniqueIdentifier>{9bdd0b68-a7a2-4289-b523-91f14f8ecf1e}</UniqueIdentifier>
     </Filter>
@@ -349,14 +364,26 @@
     <Filter Include="Header\Rendering\Object\Texture">
       <UniqueIdentifier>{05f78de9-907b-4340-a591-bdcca8c5cccb}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header\Physics">
-      <UniqueIdentifier>{36729ad7-4076-4d14-a3ae-0511a024932e}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Shader Files\Lighting">
       <UniqueIdentifier>{08733bb0-3fa4-4272-af5e-58bfaefffca4}</UniqueIdentifier>
     </Filter>
     <Filter Include="Shader Files\Lighting\Shadowmaps">
       <UniqueIdentifier>{422fd5df-4f9e-46bc-ac76-379ca2dee9fa}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\Core\Scene\Components\Light\Shadowed">
+      <UniqueIdentifier>{ebe92f08-0911-4df0-a654-b69cdf268c03}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header\Core\Scene\Components\Light\Shadowed">
+      <UniqueIdentifier>{32ad45b5-995c-4645-93ad-6124d01cd565}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header\Core\Scene\Components\Physics">
+      <UniqueIdentifier>{36729ad7-4076-4d14-a3ae-0511a024932e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\Core\Scene\Components\Physics">
+      <UniqueIdentifier>{f8115191-6b80-47ad-b512-a9d16fb6d607}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header\Core\Scene\Components\Physics\Collision">
+      <UniqueIdentifier>{7bab1d38-4c99-41bf-91c3-acd933dacf78}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>

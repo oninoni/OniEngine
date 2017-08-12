@@ -4,7 +4,7 @@
 
 #include "DirectionalLight.h"
 
-DirectionalLight::DirectionalLight(GameComponent* component, vec3 color, vec3 direction) : BaseLight(component, color){
+DirectionalLight::DirectionalLight(GameProperty* property, vec3 color, vec3 direction) : BaseLight(property, color){
     this->direction = direction.normalize();
     directionChanged = true;
 }

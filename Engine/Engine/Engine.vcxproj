@@ -28,7 +28,7 @@
     <ClInclude Include="CR_SpotLight.h" />
     <ClInclude Include="DirectionalLight.h" />
     <ClInclude Include="Game.h" />
-    <ClInclude Include="GameComponent.h" />
+    <ClInclude Include="GameProperty.h" />
     <ClInclude Include="GameObject.h" />
     <ClInclude Include="InputManager.h" />
     <ClInclude Include="LightHandler.h" />
@@ -43,9 +43,12 @@
     <ClInclude Include="PerspectiveCamera.h" />
     <ClInclude Include="PhongShader.h" />
     <ClInclude Include="PointLight.h" />
+    <ClInclude Include="CP_Physics.h" />
     <ClInclude Include="Quaternion.h" />
     <ClInclude Include="RecourceLoader.h" />
     <ClInclude Include="RenderingEngine.h" />
+    <ClInclude Include="CR_ShadowedDirectionalLight.h" />
+    <ClInclude Include="CR_ShadowedSpotLight.h" />
     <ClInclude Include="Shader.h" />
     <ClInclude Include="ShaderHandler.h" />
     <ClInclude Include="ShadowmapShader.h" />
@@ -70,7 +73,7 @@
     <ClCompile Include="CR_SpotLight.cpp" />
     <ClCompile Include="DirectionalLight.cpp" />
     <ClCompile Include="Game.cpp" />
-    <ClCompile Include="GameComponent.cpp" />
+    <ClCompile Include="GameProperty.cpp" />
     <ClCompile Include="GameObject.cpp" />
     <ClCompile Include="InputManager.cpp" />
     <ClCompile Include="LightHandler.cpp" />
@@ -84,9 +87,12 @@
     <ClCompile Include="PerspectiveCamera.cpp" />
     <ClCompile Include="PhongShader.cpp" />
     <ClCompile Include="PointLight.cpp" />
+    <ClCompile Include="CP_Physics.cpp" />
     <ClCompile Include="Quaternion.cpp" />
     <ClCompile Include="RecourceLoader.cpp" />
     <ClCompile Include="RenderingEngine.cpp" />
+    <ClCompile Include="CR_ShadowedDirectionalLight.cpp" />
+    <ClCompile Include="CR_ShadowedSpotLight.cpp" />
     <ClCompile Include="Shader.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="ShaderHandler.cpp" />

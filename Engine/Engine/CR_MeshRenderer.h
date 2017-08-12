@@ -1,8 +1,8 @@
 #pragma once
 
-#include "GameComponent.h"
+#include "GameProperty.h"
 
-class CR_MeshRenderer : public GameComponent {
+class CR_MeshRenderer : public GameProperty {
 private:
     Mesh* mesh;
     Material* material;

@@ -1,6 +1,6 @@
 #pragma once
 
-class GameComponent;
+class GameProperty;
 class InputManager;
 class Camera;
 class ShaderHandler;
@@ -13,7 +13,7 @@ private:
     GameObject* parent;
 
     unordered_set<GameObject*> children;
-    unordered_set<GameComponent*> components;
+    unordered_set<GameProperty*> properties;
 public:
     GameObject();
     ~GameObject();
@@ -21,8 +21,8 @@ public:
     void addChild(GameObject* child);
     void removeChild(GameObject* child);
 
-    void addComponent(GameComponent* component);
-    void removeComponent(GameComponent* component);
+    void addProperty(GameProperty* prop);
+    void removeProperty(GameProperty* prop);
 
     void init(GameObject* parent);
     void update(const double & delta, InputManager* input);

@@ -1,10 +1,10 @@
 #pragma once
 
-#include "GameComponent.h"
+#include "GameProperty.h"
 
 class PointLight;
 
-class CR_PointLight : public GameComponent {
+class CR_PointLight : public GameProperty {
 private:
     bool init;
 

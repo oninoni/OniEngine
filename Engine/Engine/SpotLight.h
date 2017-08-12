@@ -12,8 +12,8 @@ protected:
     float cutoff;
     bool cutoffChanged;
 public:
-    SpotLight(GameComponent* component, vec3 color, float radius, float cutoff);
-    SpotLight(GameComponent* component, vec3 color, float radius, float cutoff, float constant, float linear, float square);
+    SpotLight(GameProperty* property, vec3 color, float radius, float cutoff);
+    SpotLight(GameProperty* property, vec3 color, float radius, float cutoff, float constant, float linear, float square);
 
     void setUniformSpotLight(LightHandler * lightHandler);
 

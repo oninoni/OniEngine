@@ -4,7 +4,7 @@
 
 #include "PointLight.h"
 
-PointLight::PointLight(GameComponent* component, vec3 color, float radius) : BaseLight(component, color), Attenuation(radius) {
+PointLight::PointLight(GameProperty* property, vec3 color, float radius) : BaseLight(property, color), Attenuation(radius) {
     this->position = vec3(0, 0, 0);
     this->positionChanged = true;
 
@@ -12,7 +12,7 @@ PointLight::PointLight(GameComponent* component, vec3 color, float radius) : Bas
     this->rangeChanged = true;
 }
 
-PointLight::PointLight(GameComponent* component, vec3 color, float radius, float constant, float linear, float square) : BaseLight(component, color), Attenuation(constant, linear, square){
+PointLight::PointLight(GameProperty* property, vec3 color, float radius, float constant, float linear, float square) : BaseLight(property, color), Attenuation(constant, linear, square){
     this->position = vec3(0, 0, 0);
     this->positionChanged = true;
 

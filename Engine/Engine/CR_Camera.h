@@ -1,12 +1,12 @@
 #pragma once
 
-#include "GameComponent.h"
+#include "GameProperty.h"
 
 class Camera;
 class Input;
 class ShaderHandler;
 
-class CR_Camera : public GameComponent {
+class CR_Camera : public GameProperty {
 private:
     Camera* camera;
 public:

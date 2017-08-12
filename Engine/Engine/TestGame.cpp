@@ -50,7 +50,7 @@ void TestGame::init(ShaderHandler* shaderHandler) {
         for (int y = -2; y <= 2; y++) {
             CR_MeshRenderer* cube = new CR_MeshRenderer(mesh, brickMaterial);
             GameObject* cubeObject = new GameObject();
-            cubeObject->addComponent(cube);
+            cubeObject->addProperty(cube);
             cubeObject->getTransform().offset = vec3(-0.5, -0.5, -0.5);
             cubeObject->getTransform().position = vec3(x * 2.0f, 0.5, y * 2.0f);
 
@@ -73,8 +73,8 @@ void TestGame::init(ShaderHandler* shaderHandler) {
 
     sLight = new CR_SpotLight(vec3(1, 0.7f, 0.3f), 20, 45, true);
     spotLight = new GameObject();
-    sLight->setIntensity(1.0f);
-    spotLight->addComponent(sLight);
+    sLight->setIntensity(2.0f);
+    spotLight->addProperty(sLight);
     spotLight->getTransform().position = vec3(0, .5, 8);
     getRootGameObject()->addChild(spotLight);
 
@@ -82,16 +82,25 @@ void TestGame::init(ShaderHandler* shaderHandler) {
         CR_DirectionalLight* dLight = new CR_DirectionalLight(vec3(1, 1, 1), true);
         dLight->setIntensity(1.0f);
         GameObject* sun = new GameObject();
-        sun->addComponent(dLight);
+        sun->addProperty(dLight);
         sun->getTransform().rotation = vec3(-45, 45 + (90.0f * i), 0);
         getRootGameObject()->addChild(sun);
     }
 
-    cameraObject->addComponent(c_camera);
-    planeObject->addComponent(plane);
+    cameraObject->addProperty(c_camera);
+    planeObject->addProperty(plane);
 
     getRootGameObject()->addChild(cameraObject);
     getRootGameObject()->addChild(planeObject);
+
+
+    //Mesh* nx01Mesh = new Mesh(shaderHandler, "Models/nx01.obj");
+    //CR_MeshRenderer* nx01Renderer = new CR_MeshRenderer(nx01Mesh, brickMaterial);
+    //GameObject* nx01 = new GameObject();
+    //nx01->addProperty(nx01Renderer);
+    //nx01->getTransform().position = vec3(0, 10, 0);
+
+    //getRootGameObject()->addChild(nx01);
 }
 
 void TestGame::update(const double & delta, InputManager * input) {
@@ -100,6 +109,4 @@ void TestGame::update(const double & delta, InputManager * input) {
 
     spotLight->getTransform().position = vec3(sin((float) Time::getTime() * 0.1f) * 8.0f, 0.5f, cos((float) Time::getTime() * 0.1f) * 8.0f);
     spotLight->getTransform().rotation = vec3(0, (float) Time::getTime() * 18.0f / PI, 0);
-
-    //cubeObject->getTransform().rotation = vec3((float)Time::getTime() * 16.0f, 0, 0);
 }

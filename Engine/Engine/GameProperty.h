@@ -6,13 +6,13 @@ class ShaderHandler;
 class LightHandler;
 class GameObject;
 
-class GameComponent abstract {
+class GameProperty abstract {
 protected:
-    GameComponent();
+    GameProperty();
 
     GameObject* parent;
 public:
-    ~GameComponent();
+    virtual ~GameProperty();
 
     void init(GameObject* parent);
     void update(const double & delta, InputManager* input);

@@ -3,7 +3,7 @@
 #include "Camera.h"
 
 #include "InputManager.h"
-#include "GameComponent.h"
+#include "GameProperty.h"
 
 #include "ShaderHandler.h"
 #include "LightHandler.h"
@@ -17,8 +17,8 @@ GameObject::~GameObject() {
     if(parent)
        parent->removeChild(this);
 
-    for (GameComponent* gameComponent : components) {
-        delete gameComponent;
+    for (GameProperty* prop : properties) {
+        delete prop;
     }
 
     for (GameObject* child : children) {
@@ -36,13 +36,13 @@ void GameObject::removeChild(GameObject* child) {
     children.erase(child);
 }
 
-void GameObject::addComponent(GameComponent* component) {
-    component->init(this);
-    components.insert(component);
+void GameObject::addProperty(GameProperty* property) {
+    property->init(this);
+    properties.insert(property);
 }
 
-void GameObject::removeComponent(GameComponent* component) {
-    components.erase(component);
+void GameObject::removeProperty(GameProperty* property) {
+    properties.erase(property);
 }
 
 void GameObject::init(GameObject * parent) {
@@ -50,24 +50,24 @@ void GameObject::init(GameObject * parent) {
 }
 
 void GameObject::update(const double & delta, InputManager * input) {
-    for (GameComponent* gameComponent : components)
-        gameComponent->update(delta, input);
+    for (GameProperty* prop : properties)
+        prop->update(delta, input);
 
     for (GameObject* child : children)
         child->update(delta, input);
 }
 
 void GameObject::preRender(ShaderHandler* shaderHandler, LightHandler* lightHandler, bool shadowRender) {
-    for (GameComponent* gameComponent : components)
-        gameComponent->preRender(shaderHandler, lightHandler, shadowRender);
+    for (GameProperty* prop : properties)
+        prop->preRender(shaderHandler, lightHandler, shadowRender);
 
     for (GameObject* child : children)
         child->preRender(shaderHandler, lightHandler, shadowRender);
 }
 
 void GameObject::render(ShaderHandler* shaderHandler, Camera* camera, bool shadowRender) {
-    for (GameComponent* gameComponent : components)
-        gameComponent->render(shaderHandler, camera, shadowRender);
+    for (GameProperty* prop : properties)
+        prop->render(shaderHandler, camera, shadowRender);
 
     for (GameObject* child : children)
         child->render(shaderHandler, camera, shadowRender);

@@ -4,7 +4,7 @@
 
 #include "SpotLight.h"
 
-SpotLight::SpotLight(GameComponent* component, vec3 color, float radius, float cutoff) : PointLight(component, color, radius) {
+SpotLight::SpotLight(GameProperty* property, vec3 color, float radius, float cutoff) : PointLight(property, color, radius) {
     this->direction = vec3(0, 0, 1);
     directionChanged = true;
 
@@ -12,7 +12,7 @@ SpotLight::SpotLight(GameComponent* component, vec3 color, float radius, float c
     cutoffChanged = true;
 }
 
-SpotLight::SpotLight(GameComponent* component, vec3 color, float radius, float cutoff, float constant, float linear, float square) : PointLight(component, color, radius, constant, linear, square){
+SpotLight::SpotLight(GameProperty* property, vec3 color, float radius, float cutoff, float constant, float linear, float square) : PointLight(property, color, radius, constant, linear, square){
     this->direction = vec3(0, 0, 1);
     directionChanged = true;
 
